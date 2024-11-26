@@ -1,210 +1,340 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Forms with Multiple Pages</title>
-    <link rel="stylesheet" href="form1.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
+<div class="form-container">
+    <div id="form1" class="form-card">
+        <h3>Pre-Employment Candidate Health Evaluation Questionnaire (HEQ)</h3>
 
-    <div class="outer-card">
-        <div class="form-buttons">
-            <button class="form-button" onclick="showForm('form1')">
-                <i class="fa-solid fa-file"></i> 
-                Pre-Employment Candidate Health Evaluation Questionnaire(HEQ)
-            </button>
-    
-            <button class="form-button" onclick="showForm('form2')">
-                <i class="fa-solid fa-file"></i> 
-                Employment Application Supplement-Commercial Motor Vehicle(CMV)Driver
-            </button>
+        <div class="page-count">
+            <span id="currentPageText">Page 1 of 4</span>
         </div>
-        <div class="form-container">
-            
-            <div id="form1" class="form-card">
-                <h3>Pre-Employment Candidate Health Evaluation Questionnaire(HEQ)</h3>
-                <div class="page-count">
-                    <span id="currentPageText">Page 1 of 3</span> 
-                </div>
-                <div class="progress-container">
-                    <div class="progress-bar-container">
-                        <div class="progress-bar"></div>
-                        <span id="currentPagePercentage" class="percentage-text">0%</span>
-                    </div>
-                </div>
-                <br>
-                <div id="form1-page1" class="form-page">
-                    <p>
-                        Instructions to Candidate: Please complete the questionnaire in its entirety. Dominion Energy requires all candidates to complete a Health Evaluation Questionnaire (HEQ). The purpose of the HEQ is to assist the Corporate Medical Director (CMD) evaluate the medical history and determine if there are medical conditions or prescription medications prescribed that could affect a person's ability to perform their duties safely and effectively. You may be contacted to provide more information or to request a statement from your physician if the CMD has any concerns after reviewing your medical history.
-                    </p>
-                    <div class="form-row">
-                        <div>
-                            <label>First Name</label>
-                            <input type="text" name="firstName" onchange="updateProgress('form1')">
-                        </div>
-                        <div>
-                            <label>Last Name</label>
-                            <input type="text" name="lastName" onchange="updateProgress('form1')">
-                        </div>
-                        <div>
-                            <label>Middle Name</label>
-                            <input type="text" name="middleName" onchange="updateProgress('form1')">
-                        </div>
-                        <div class="small-field">
-                            <label>Suffix</label>
-                            <input type="text" name="suffix" onchange="updateProgress('form1')">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div>
-                            <label>Permanent Home Address(Line1)</label>
-                            <input type="text" name="address1" onchange="updateProgress('form1')">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div>
-                            <label>Permanent Home Address(Line2)</label>
-                            <input type="text" name="address2" onchange="updateProgress('form1')">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div>
-                            <label>City</label>
-                            <input type="text" name="city" onchange="updateProgress('form1')">
-                        </div>
-                        <div>
-                            <label>State</label>
-                            <input type="text" name="state" onchange="updateProgress('form1')">
-                        </div>
-                        <div>
-                            <label>Zip</label>
-                            <input type="text" name="zip" onchange="updateProgress('form1')">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div>
-                            <label>Date of Birth</label>
-                            <input type="date" name="dob" onchange="updateProgress('form1')">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div>
-                            <label>Gender</label>
-                            <input type="text" name="gender" onchange="updateProgress('form1')">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div>
-                            <label>Height</label>
-                            <input type="text" name="height" onchange="updateProgress('form1')">
-                        </div>
-                        <div>
-                            <label>Weight</label>
-                            <input type="text" name="weight" onchange="updateProgress('form1')">
-                        </div>
-                    </div>
-                    <button onclick="nextPage('form1', 2)">Next</button>
-                </div>
-                <div id="form1-page2" class="form-page" style="display: none;">
-                    <div><h3><P>Do you have or have you ever had any disease,injury,disorder,or surgery of the following?</P></h3></div>
-                    <div style="margin-top: 20px;">
-                        <h4 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Eyes</h4>
-                    </div>
-                    <div class="checkbox"> 
-                       <div>
-                        <label>Defective Vision</label>
-                         <div>
-                             <input type="checkbox" id="defective_vision_no" name="defective_vision" value="no" onchange="updateProgress('form1')">
-                             <label id="che" for="defective_vision_no">No</label>
-                         </div>
-                         <div>
-                             <input type="checkbox" id="defective_vision_yes" name="defective_vision" value="yes" onchange="updateProgress('form1')">
-                             <label id="che" for="defective_vision_yes">Yes</label>
-                         </div>
-                       </div>
-                    </div>
-                    <div class="checkbox"> 
-                        <div>
-                         <label>Other</label>
-                          <div>
-                              <input type="checkbox" id="box" name="defective_vision" value="no" onchange="updateProgress('form1')">
-                              <label id="cher" for="defective_vision_no">No</label>
-                          </div>
-                          <div>
-                              <input type="checkbox" id="box" name="defective_vision" value="yes" onchange="updateProgress('form1')">
-                              <label id="cher" for="defective_vision_yes">Yes</label>
-                          </div>
-                        </div>
-                    </div>
-                    <div style="margin-top: 20px;">
-                        <h4 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Ear,Nose,Throat</h4>
-                    </div>
-                    <div class="checkbox"> 
-                       <div>
-                        <label>Defective Vision</label>
-                         <div>
-                             <input type="checkbox" id="defective_vision_no" name="defective_vision" value="no" onchange="updateProgress('form1')">
-                             <label id="che" for="defective_vision_no">No</label>
-                         </div>
-                         <div>
-                             <input type="checkbox" id="defective_vision_yes" name="defective_vision" value="yes" onchange="updateProgress('form1')">
-                             <label id="che" for="defective_vision_yes">Yes</label>
-                         </div>
-                       </div>
-                    </div>
-                    <div class="checkbox"> 
-                        <div>
-                         <label>Other</label>
-                          <div>
-                              <input type="checkbox" id="box" name="defective_vision" value="no" onchange="updateProgress('form1')">
-                              <label id="cher" for="defective_vision_no">No</label>
-                          </div>
-                          <div>
-                              <input type="checkbox" id="box" name="defective_vision" value="yes" onchange="updateProgress('form1')">
-                              <label id="cher" for="defective_vision_yes">Yes</label>
-                          </div>
-                        </div>
-                    </div>
 
-                    <button onclick="previousPage('form1', 1)">Previous</button>
-                    <button onclick="nextPage('form1', 3)">Next</button>
+        <div class="progress-container">
+            <div class="progress-bar-container">
+                <div id="progressBar" class="progress-bar"></div>
+                <span id="currentPagePercentage" class="percentage-text">0%</span>
+            </div>
+        </div>
+        <div id="form1-page1" class="form-page">
+            <p>
+                Instructions to Candidate: Please complete the questionnaire in its entirety. Dominion Energy requires
+                all candidates to complete a Health Evaluation Questionnaire (HEQ). The purpose of the HEQ is to assist
+                the Corporate Medical Director (CMD) evaluate the medical history and determine if there are medical
+                conditions or prescription medications prescribed that could affect a person's ability to perform their
+                duties safely and effectively. You may be contacted to provide more information or to request a
+                statement from your physician if the CMD has any concerns after reviewing your medical history.
+            </p>
+            <div class="form-row">
+                <div>
+                    <label>First Name</label>
+                    <input type="text" name="firstName" onchange="updateProgress('form1')">
                 </div>
-                <div id="form1-page3" class="form-page" style="display: none;">
-                    <label>Email:</label>
-                    <input type="email" name="email" placeholder="Enter your email" onchange="updateProgress('form1')">
-                    <button onclick="previousPage('form1', 2)">Previous</button>
-                    <button class="submit-btn">Submit</button>
+                <div>
+                    <label>Last Name</label>
+                    <input type="text" name="lastName" onchange="updateProgress('form1')">
+                </div>
+                <div>
+                    <label>Middle Name</label>
+                    <input type="text" name="middleName" onchange="updateProgress('form1')">
+                </div>
+                <div class="small-field">
+                    <label>Suffix</label>
+                    <input type="text" name="suffix" onchange="updateProgress('form1')">
                 </div>
             </div>
-
-            <div id="form2" class="form-card" style="display: none;">
-                <h2>Form 2: Health Evaluation</h2>
-                <div id="form2-page1" class="form-page">
-                    <label>Height:</label>
-                    <input type="text" name="height" placeholder="Enter your height" onchange="updateProgress('form2')">
-                    <label>Weight:</label>
-                    <input type="text" name="weight" placeholder="Enter your weight" onchange="updateProgress('form2')">
-                    <button onclick="nextPage('form2', 2)">Next</button>
+            <div class="form-row">
+                <div>
+                    <label>Permanent Home Address(Line1)</label>
+                    <input type="text" name="address1" onchange="updateProgress('form1')">
                 </div>
-                <div id="form2-page2" class="form-page" style="display: none;">
-                    <label>Known Medical Conditions:</label>
-                    <input type="text" name="conditions" placeholder="Enter any known medical conditions" onchange="updateProgress('form2')">
-                    <button onclick="previousPage('form2', 1)">Previous</button>
-                    <button onclick="nextPage('form2', 3)">Next</button>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label>Permanent Home Address(Line2)</label>
+                    <input type="text" name="address2" onchange="updateProgress('form1')">
                 </div>
-                <div id="form2-page3" class="form-page" style="display: none;">
-                    <label>Emergency Contact:</label>
-                    <input type="text" name="contact" placeholder="Enter emergency contact info" onchange="updateProgress('form2')">
-                    <button onclick="previousPage('form2', 2)">Previous</button>
-                    <button class="submit-btn">Submit</button>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label>City</label>
+                    <input type="text" name="city" onchange="updateProgress('form1')">
                 </div>
+                <div>
+                    <label>State</label>
+                    <input type="text" name="state" onchange="updateProgress('form1')">
+                </div>
+                <div>
+                    <label>Zip</label>
+                    <input type="text" name="zip" onchange="updateProgress('form1')">
+                </div>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label>Date of Birth</label>
+                    <input type="date" name="dob" onchange="updateProgress('form1')">
+                </div>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label>Gender</label>
+                    <input type="text" name="gender" onchange="updateProgress('form1')">
+                </div>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label>Height</label>
+                    <input type="text" name="height" onchange="updateProgress('form1')">
+                </div>
+                <div>
+                    <label>Weight</label>
+                    <input type="text" name="weight" onchange="updateProgress('form1')">
+                </div>
+            </div>
+            <div class="single-button-container">
+                <button onclick="nextPage(2)">Next</button>
+            </div>
+        </div>
+        <div id="form1-page2" class="form-page" style="display: none;">
+            <div>
+                <h3>
+                    <p>Do you have or have you ever had any disease, injury, disorder, or surgery of the following?</p>
+                </h3>
+            </div>
+            <div>
+                <div style="margin-top: 20px;">
+                    <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Eyes</h3>
+                </div>
+        
+                <div class="input-group">
+                    <label class="question-label">Defective Vision</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="visionNo" name="defectiveVision" value="no"
+                                onchange="updateProgress('form1')">
+                            <label for="visionNo">No</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="visionYes" name="defectiveVision" value="yes"
+                                onchange="updateProgress('form1')">
+                            <label for="visionYes">Yes</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="question-label">Other</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="otherNo" name="other" value="no"
+                                onchange="updateProgress('form1')">
+                            <label for="otherNo">No</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="otherYes" name="other" value="yes"
+                                onchange="updateProgress('form1')">
+                            <label for="otherYes">Yes</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div style="margin-top: 20px;">
+                    <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Ear,Nose,Throat</h3>
+                </div>
+        
+                <div class="input-group">
+                    <label class="question-label">Hearing Loss</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="hearingNo" name="hearingLoss" value="no"
+                                onchange="updateProgress('form1')">
+                            <label for="hearingNo">No</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="hearingYes" name="hearingLoss" value="yes"
+                                onchange="updateProgress('form1')">
+                            <label for="hearingYes">Yes</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="question-label">Other</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="hearingotherNo" name="other" value="no"
+                                onchange="updateProgress('form1')">
+                            <label for="hearingotherNo">No</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="hearingotherYes" name="other" value="yes"
+                                onchange="updateProgress('form1')">
+                            <label for="hearingotherYes">Yes</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div style="margin-top: 20px;">
+                    <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Head</h3>
+                </div>
+                <div class="input-group">
+                    <label class="question-label">Migraines</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="migrainesNo" name="migraines" value="no"
+                                onchange="updateProgress('form1')">
+                            <label for="hearingNo">No</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="migrainesYes" name="migraines" value="yes"
+                                onchange="updateProgress('form1')">
+                            <label for="migrainesYes">Yes</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="question-label">Headaches</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="headachesNo" name="headaches" value="no"
+                                onchange="updateProgress('form1')">
+                            <label for="headachesYes">No</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="headachesYes" name="headaches" value="yes"
+                                onchange="updateProgress('form1')">
+                            <label for="headachesYes">Yes</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="question-label">TBI</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="tbiNo" name="tbi" value="no"
+                                onchange="updateProgress('form1')">
+                            <label for="tbiNo">No</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="tbiYes" name="tbi" value="yes"
+                                onchange="updateProgress('form1')">
+                            <label for="tbiYes">Yes</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div style="margin-top: 20px;">
+                    <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Neck</h3>
+                </div>
+        
+                <div class="input-group">
+                    <label class="question-label">Thyroid Disorder</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="thyroidNo" name="thyroid" value="no"
+                                onchange="updateProgress('form1')">
+                            <label for="thyroidNo">No</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="thyroidYes" name="thyroid" value="yes"
+                                onchange="updateProgress('form1')">
+                            <label for="thyroidYes">Yes</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div style="margin-top: 20px;">
+                    <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Heart</h3>
+                </div>
+                <div class="input-group">
+                    <label class="question-label">Irregular Heartbeat</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="irregularHeartbeatNo" name="irregularHeartbeat" value="no"
+                                onchange="updateProgress('form1')">
+                            <label for="irregularHeartbeatNo">No</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="irregularHeartbeatYes" name="irregularHeartbeat" value="yes"
+                                onchange="updateProgress('form1')">
+                            <label for="irregularHeartbeatYes">Yes</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="question-label">High Blood Pressure</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="highBpNo" name="highBp" value="no"
+                            onchange="toggleHighBpFields()">
+                            <label for="highBpNo">No</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="highBpYes" name="highBp" value="yes"
+                            onchange="toggleHighBpFields()">
+                            <label for="highBpYes">Yes</label>
+                        </div>
+                    </div>
+                </div>
+                <div id="highBpYearInput" style="display: none;">
+                    <label class="question-label">Indicate Year it Occurred</label>
+                    <select name="highBpYear" id="highBpYear">
+                        <option value="">Select Year</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                    </select>
+                </div>
+                <div id="highBpExplanationInput" style="display: none;">
+                    <label class="question-label">Explain</label>
+                    <textarea name="highBpExplanation" id="highBpExplanation" rows="4" ></textarea>
+                </div>
+                <div class="input-group">
+                    <label class="question-label">Heart Disease</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="heartDiseaseNo" name="heartDisease" value="no"
+                                onchange="updateProgress('form1')">
+                            <label for="heartDiseaseNo">No</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="heartDiseaseYes" name="heartDisease" value="yes"
+                                onchange="updateProgress('form1')">
+                            <label for="heartDiseaseYes">Yes</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="question-label">Heart Failure</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="heartFailureNo" name="heartFailure" value="no"
+                                onchange="updateProgress('form1')">
+                            <label for="heartFailureNo">No</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="heartFailureYes" name="heartFailure" value="yes"
+                                onchange="updateProgress('form1')">
+                            <label for="heartFailureYes">Yes</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="button-row">
+                <button onclick="previousPage(1)" style="background: none;">Back</button>
+                <button onclick="nextPage(3)">Next</button>
+            </div>
+        </div>
+        
+    
+        <div id="form1-page3" class="form-page" style="display: none;">
+            <label>Email</label>
+            <input type="email" name="email" onchange="updateProgress('form1')">
+            <div class="button-row">
+                <button onclick="previousPage(2)" style="background: none;">Back</button>
+                <button class="submit-btn">Submit</button>
             </div>
         </div>
     </div>
-
-    <script src="form1.js"></script>
-
-</body>
-</html>
+    
+</div>
+</div>

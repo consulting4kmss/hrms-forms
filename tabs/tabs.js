@@ -22,26 +22,37 @@ function addForm1EventListeners() {
     const form1SubmitButton = document.querySelector('.submit-btn');
     if (form1SubmitButton) {
         form1SubmitButton.addEventListener('click', function (event) {
-            event.preventDefault();  
+            event.preventDefault();
             form1Completed = true;
-
-            // const firstName = document.querySelector('input[name="firstName"]').value;
-            // const lastName = document.querySelector('input[name="lastName"]').value;
-            // const conditions = document.querySelector('input[name="conditions"]').value;
-            // const email = document.querySelector('input[name="email"]').value;
-
-            // console.log("Form 1 Submitted Data:");
-            // console.log("First Name:", firstName);
-            // console.log("Last Name:", lastName);
-            // console.log("Known Medical Conditions:", conditions);
-            // console.log("Email:", email);
-
-            enableForm2();  
-            showCheckmark('form1Tick');  
-            showSuccessModal();  
+            showCheckmark('form1Tick');
+            showSuccessModal();
         });
     }
 }
+
+function showCheckmark(formId) {
+    const checkmark = document.getElementById(formId);
+    if (checkmark) {
+        checkmark.classList.add('visible');
+    }
+}
+
+function showSuccessModal() {
+    const successModal = document.getElementById('successModal');
+    if (successModal) {
+        successModal.style.display = 'block';
+    }
+}
+
+
+function closeModal() {
+    const successModal = document.getElementById('successModal');
+    if (successModal) {
+        successModal.style.display = 'none';
+    }
+}
+
+
 
 function enableForm2() {
     const form2Link = document.getElementById('form2Link');
@@ -78,10 +89,7 @@ function addForm2EventListeners() {
             const contact = document.querySelector('input[name="contact"]').value;
 
             if (height && conditions && contact) {
-                console.log("Form 2 Submitted Data:");
-                console.log("Height:", height);
-                console.log("Known Medical Conditions:", conditions);
-                console.log("Emergency Contact:", contact);
+                
 
                 form2Completed = true;
                 showCheckmark('form2Tick');  

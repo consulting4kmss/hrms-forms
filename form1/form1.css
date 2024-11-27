@@ -1,19 +1,30 @@
 .form-container {
+    width: 100%;
+   
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 20px;
+    color: white;
+    box-sizing: border-box;
 }
 
 .form-card {
-    background-color: #004085;
+    background-color: #1d4f91;
     width: 100%;
-    max-width: 750px;
-    color: white;
+    max-width: 60%;
+    color: inherit;
     padding: 30px;
     border-radius: 8px;
     border: 2px solid #003366;
     box-sizing: border-box;
 }
+.form-page {
+    width: 100%;
+    max-width: 100%;
+}
+
+
 
 .form-row {
     display: flex;
@@ -27,16 +38,20 @@
 
 .form-row .small-field {
     flex: 0.5;
-}
+} 
 
-label {
+/* .text-white p{
+    color: white !important;
+} */
+
+/* label {
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 5px;
     display: block;
     color: white;
-    /* Label text color */
-}
+    
+} */
 
 input {
     width: 100%;
@@ -44,7 +59,7 @@ input {
     background-color: #007BFF;
     border: none;
     border-bottom: 2px solid white;
-    color: white;
+    color:inherit;
     font-size: 14px;
     transition: border-bottom 0.3s ease;
 }
@@ -64,7 +79,7 @@ input::placeholder {
 h3 {
     /* text-align: center; */
     font-size: 20px;
-    color: white;
+    /* color: white; */
     margin-bottom: 20px;
 }
 
@@ -98,7 +113,7 @@ h3 {
     left: 0%;
     transform: translateY(-50%);
     color: black;
-    font-weight: bold;
+    font-weight: bold; 
     font-size: 14px;
     transition: left 0.5s ease;
     padding-left: 5px;
@@ -112,13 +127,13 @@ h3 {
     display: flex;
 }
 
-.form-page label {
+/* .form-page label {
     display: block;
     margin: 10px 0 5px;
     font-size: 14px;
     font-weight: 600;
     color: white;
-}
+} */
 
 .form-page input {
     width: 100%;
@@ -129,7 +144,7 @@ h3 {
 .form-page button {
     padding: 10px 20px;
     background-color: #007BFF;
-    color: white;
+    color: inherit;
     border: none;
     border-radius: 20px;
     cursor: pointer;
@@ -157,7 +172,7 @@ h3 {
 button {
     padding: 10px 20px;
     background-color: #007BFF;
-    color: white;
+    color: inherit;
     border: none;
     border-radius: 20px;
     font-size: 14px;
@@ -177,7 +192,7 @@ button:disabled {
 .question-label {
     display: block;
     font-size: 16px;
-    color: white;
+    /* color: white; */
     margin-bottom: 10px;
     font-weight: bold;
 }
@@ -193,6 +208,7 @@ button:disabled {
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-bottom: 10px;
 }
 
 input[type="checkbox"] {
@@ -206,6 +222,7 @@ input[type="checkbox"] {
     background-color: transparent;
     transition: all 0.3s ease;
     position: relative;
+    top: 3px;
 }
 
 
@@ -224,13 +241,13 @@ input[type="checkbox"]:checked::before {
     position: absolute;
     top: -2px;
     left: 4px;
-    color: white;
+    /* color: white; */
     font-weight: bold;
 }
 
 .checkbox-item label {
     font-size: 14px;
-    color: white;
+    /* color: white; */
     cursor: pointer;
     font-weight: 500;
 }
@@ -240,7 +257,7 @@ input {
     background-color: #007BFF;
     border: none;
     border-bottom: 2px solid white;
-    color: white;
+    /* color: white; */
     font-size: 14px;
     transition: border-bottom 0.3s ease;
 }
@@ -256,7 +273,7 @@ select {
     background-color: #007BFF; 
     border: none;
     border-bottom: 2px solid white;
-    color: white;
+    /* color: white; */
     font-size: 14px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
@@ -282,7 +299,7 @@ textarea {
     background-color: #007BFF; 
     border: none;
     border-bottom: 2px solid white;
-    color: white;
+    /* color: white; */
     font-size: 14px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
@@ -294,3 +311,7 @@ textarea:focus {
     outline: none;
 }
 
+.form-check-label {
+    font-size: 1.25rem; 
+    margin-left: 5px;
+}

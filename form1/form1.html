@@ -1,5 +1,5 @@
-<div class="form-container">
-    <div id="form1" class="form-card">
+<div class="form-container text-white">
+    <div id="form1" class="form-card ">
         <h3>Pre-Employment Candidate Health Evaluation Questionnaire (HEQ)</h3>
 
         <div class="page-count">
@@ -13,14 +13,17 @@
             </div>
         </div>
         <div id="form1-page1" class="form-page">
-            <p>
-                Instructions to Candidate: Please complete the questionnaire in its entirety. Dominion Energy requires
-                all candidates to complete a Health Evaluation Questionnaire (HEQ). The purpose of the HEQ is to assist
-                the Corporate Medical Director (CMD) evaluate the medical history and determine if there are medical
-                conditions or prescription medications prescribed that could affect a person's ability to perform their
-                duties safely and effectively. You may be contacted to provide more information or to request a
-                statement from your physician if the CMD has any concerns after reviewing your medical history.
-            </p>
+                <p>
+                    Instructions to Candidate: Please complete the questionnaire in its entirety. Dominion Energy
+                    requires
+                    all candidates to complete a Health Evaluation Questionnaire (HEQ). The purpose of the HEQ is to
+                    assist
+                    the Corporate Medical Director (CMD) evaluate the medical history and determine if there are medical
+                    conditions or prescription medications prescribed that could affect a person's ability to perform
+                    their
+                    duties safely and effectively. You may be contacted to provide more information or to request a
+                    statement from your physician if the CMD has any concerns after reviewing your medical history.
+                </p>
             <div class="form-row">
                 <div>
                     <label>First Name</label>
@@ -68,7 +71,7 @@
             <div class="form-row">
                 <div>
                     <label>Date of Birth</label>
-                    <input type="date" name="dob" onchange="updateProgress('form1')">
+                    <input type="date" id="dob" name="dob" onchange="convertDateToFormat('dob')">
                 </div>
             </div>
             <div class="form-row">
@@ -101,182 +104,260 @@
                 <div style="margin-top: 20px;">
                     <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Eyes</h3>
                 </div>
-        
-                <div class="input-group">
-                    <label class="question-label">Defective Vision</label>
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="visionNo" name="defectiveVision" value="no"
-                                onchange="updateProgress('form1')">
-                            <label for="visionNo">No</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="visionYes" name="defectiveVision" value="yes"
-                                onchange="updateProgress('form1')">
-                            <label for="visionYes">Yes</label>
-                        </div>
+                <div class="col-12"> 
+                    <div class="col-12">
+                        <label class="question-label">Defective Vision</label>
                     </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="checkbox-item d-flex align-items-center"> 
+                            <div class="checkbox">
+                                <input type="checkbox" id="visionNo" name="defectiveVision" value="no" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="visionNo">No</label>
+                            </div>
+                        </div>
+                        <div class="checkbox-item d-flex align-items-center">
+                            <div class="checkbox">
+                                <input type="checkbox" id="visionYes" name="defectiveVision" value="yes" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="visionYes">Yes</label>
+                            </div>
+                        </div>
+                    </div>                    
                 </div>
-                <div class="input-group">
-                    <label class="question-label">Other</label>
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="otherNo" name="other" value="no"
-                                onchange="updateProgress('form1')">
-                            <label for="otherNo">No</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="otherYes" name="other" value="yes"
-                                onchange="updateProgress('form1')">
-                            <label for="otherYes">Yes</label>
-                        </div>
+                <div class="col-12"> 
+                    <div class="col-12">
+                        <label class="question-label">Other</label>
                     </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="checkbox-item d-flex align-items-center"> 
+                            <div class="checkbox">
+                                <input type="checkbox" id="visionOtherNo" name="visionOther" value="no" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="visionOtherNo">No</label>
+                            </div>
+                        </div>
+                        <div class="checkbox-item d-flex align-items-center">
+                            <div class="checkbox">
+                                <input type="checkbox" id="visionOtherYes" name="visionOther" value="yes" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="visionOtherYes">Yes</label>
+                            </div>
+                        </div>
+                    </div>                    
                 </div>
             </div>
             <div>
                 <div style="margin-top: 20px;">
                     <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Ear,Nose,Throat</h3>
                 </div>
-        
-                <div class="input-group">
-                    <label class="question-label">Hearing Loss</label>
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="hearingNo" name="hearingLoss" value="no"
-                                onchange="updateProgress('form1')">
-                            <label for="hearingNo">No</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="hearingYes" name="hearingLoss" value="yes"
-                                onchange="updateProgress('form1')">
-                            <label for="hearingYes">Yes</label>
-                        </div>
+                <div class="col-12"> 
+                    <div class="col-12">
+                        <label class="question-label">Hearing Loss</label>
                     </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="checkbox-item d-flex align-items-center"> 
+                            <div class="checkbox">
+                                <input type="checkbox" id="hearingNo" name="hearingLoss" value="no" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="hearingNo">No</label>
+                            </div>
+                        </div>
+                        <div class="checkbox-item d-flex align-items-center">
+                            <div class="checkbox">
+                                <input type="checkbox" id="hearingYes" name="hearingLoss" value="yes" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="hearingYes">Yes</label>
+                            </div>
+                        </div>
+                    </div>                    
                 </div>
-                <div class="input-group">
-                    <label class="question-label">Other</label>
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="hearingotherNo" name="other" value="no"
-                                onchange="updateProgress('form1')">
-                            <label for="hearingotherNo">No</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="hearingotherYes" name="other" value="yes"
-                                onchange="updateProgress('form1')">
-                            <label for="hearingotherYes">Yes</label>
-                        </div>
+                <div class="col-12"> 
+                    <div class="col-12">
+                        <label class="question-label">Other</label>
                     </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="checkbox-item d-flex align-items-center"> 
+                            <div class="checkbox">
+                                <input type="checkbox" id="hearingotherNo" name="hearingOther" value="no" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="hearingotherNo">No</label>
+                            </div>
+                        </div>
+                        <div class="checkbox-item d-flex align-items-center">
+                            <div class="checkbox">
+                                <input type="checkbox" id="hearingotherYes" name="hearingOther" value="yes" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="hearingotherYes">Yes</label>
+                            </div>
+                        </div>
+                    </div>                    
                 </div>
             </div>
             <div>
                 <div style="margin-top: 20px;">
                     <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Head</h3>
                 </div>
-                <div class="input-group">
-                    <label class="question-label">Migraines</label>
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="migrainesNo" name="migraines" value="no"
-                                onchange="updateProgress('form1')">
-                            <label for="hearingNo">No</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="migrainesYes" name="migraines" value="yes"
-                                onchange="updateProgress('form1')">
-                            <label for="migrainesYes">Yes</label>
-                        </div>
+                <div class="col-12"> 
+                    <div class="col-12">
+                        <label class="question-label">Migraines</label>
                     </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="checkbox-item d-flex align-items-center"> 
+                            <div class="checkbox">
+                                <input type="checkbox" id="migrainesNo" name="migraines" value="no" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="migrainesNo">No</label>
+                            </div>
+                        </div>
+                        <div class="checkbox-item d-flex align-items-center">
+                            <div class="checkbox">
+                                <input type="checkbox" id="migrainesYes" name="migraines" value="yes" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="migrainesYes">Yes</label>
+                            </div>
+                        </div>
+                    </div>                    
                 </div>
-                <div class="input-group">
-                    <label class="question-label">Headaches</label>
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="headachesNo" name="headaches" value="no"
-                                onchange="updateProgress('form1')">
-                            <label for="headachesYes">No</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="headachesYes" name="headaches" value="yes"
-                                onchange="updateProgress('form1')">
-                            <label for="headachesYes">Yes</label>
-                        </div>
+                <div class="col-12"> 
+                    <div class="col-12">
+                        <label class="question-label">Headaches</label>
                     </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="checkbox-item d-flex align-items-center"> 
+                            <div class="checkbox">
+                                <input type="checkbox" id="headachesNo" name="headaches" value="no" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="headachesNo">No</label>
+                            </div>
+                        </div>
+                        <div class="checkbox-item d-flex align-items-center">
+                            <div class="checkbox">
+                                <input type="checkbox" id="headachesYes" name="headaches" value="yes" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="headachesYes">Yes</label>
+                            </div>
+                        </div>
+                    </div>                    
                 </div>
-                <div class="input-group">
-                    <label class="question-label">TBI</label>
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="tbiNo" name="tbi" value="no"
-                                onchange="updateProgress('form1')">
-                            <label for="tbiNo">No</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="tbiYes" name="tbi" value="yes"
-                                onchange="updateProgress('form1')">
-                            <label for="tbiYes">Yes</label>
-                        </div>
+                <div class="col-12"> 
+                    <div class="col-12">
+                        <label class="question-label">TBI</label>
                     </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="checkbox-item d-flex align-items-center"> 
+                            <div class="checkbox">
+                                <input type="checkbox" id="tbiNo" name="tbi" value="no" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="tbiNo">No</label>
+                            </div>
+                        </div>
+                        <div class="checkbox-item d-flex align-items-center">
+                            <div class="checkbox">
+                                <input type="checkbox" id="tbiYes" name="tbi" value="yes" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="tbiYes">Yes</label>
+                            </div>
+                        </div>
+                    </div>                    
                 </div>
+                
             </div>
             <div>
                 <div style="margin-top: 20px;">
                     <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Neck</h3>
                 </div>
-        
-                <div class="input-group">
-                    <label class="question-label">Thyroid Disorder</label>
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="thyroidNo" name="thyroid" value="no"
-                                onchange="updateProgress('form1')">
-                            <label for="thyroidNo">No</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="thyroidYes" name="thyroid" value="yes"
-                                onchange="updateProgress('form1')">
-                            <label for="thyroidYes">Yes</label>
-                        </div>
+                <div class="col-12"> 
+                    <div class="col-12">
+                        <label class="question-label">Thyroid Disorder</label>
                     </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="checkbox-item d-flex align-items-center"> 
+                            <div class="checkbox">
+                                <input type="checkbox" id="thyroidNo" name="thyroid" value="no" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="thyroidNo">No</label>
+                            </div>
+                        </div>
+                        <div class="checkbox-item d-flex align-items-center">
+                            <div class="checkbox">
+                                <input type="checkbox" id="thyroidYes" name="thyroid" value="yes" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="thyroidYes">Yes</label>
+                            </div>
+                        </div>
+                    </div>                    
                 </div>
             </div>
             <div>
                 <div style="margin-top: 20px;">
                     <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Heart</h3>
                 </div>
-                <div class="input-group">
-                    <label class="question-label">Irregular Heartbeat</label>
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="irregularHeartbeatNo" name="irregularHeartbeat" value="no"
-                                onchange="updateProgress('form1')">
-                            <label for="irregularHeartbeatNo">No</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="irregularHeartbeatYes" name="irregularHeartbeat" value="yes"
-                                onchange="updateProgress('form1')">
-                            <label for="irregularHeartbeatYes">Yes</label>
-                        </div>
+                <div class="col-12"> 
+                    <div class="col-12">
+                        <label class="question-label">Irregular Heartbeat</label>
                     </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="checkbox-item d-flex align-items-center"> 
+                            <div class="checkbox">
+                                <input type="checkbox" id="irregularHeartbeatNo" name="irregularHeartbeat" value="no" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="irregularHeartbeatNo">No</label>
+                            </div>
+                        </div>
+                        <div class="checkbox-item d-flex align-items-center">
+                            <div class="checkbox">
+                                <input type="checkbox" id="irregularHeartbeatYes" name="irregularHeartbeat" value="yes" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="irregularHeartbeatYes">Yes</label>
+                            </div>
+                        </div>
+                    </div>                    
                 </div>
-                <div class="input-group">
-                    <label class="question-label">High Blood Pressure</label>
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="highBpNo" name="highBp" value="no"
-                            onchange="toggleHighBpFields()">
-                            <label for="highBpNo">No</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="highBpYes" name="highBp" value="yes"
-                            onchange="toggleHighBpFields()">
-                            <label for="highBpYes">Yes</label>
-                        </div>
+                <div class="col-12"> 
+                    <div class="col-12">
+                        <label class="question-label">High Blood Pressure</label>
                     </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="checkbox-item d-flex align-items-center"> 
+                            <div class="checkbox">
+                                <input type="checkbox" id="highBpNo" name="highBp" value="no" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="highBpNo">No</label>
+                            </div>
+                        </div>
+                        <div class="checkbox-item d-flex align-items-center">
+                            <div class="checkbox">
+                                <input type="checkbox" id="highBpYes" name="highBp" value="yes" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="highBpYes">Yes</label>
+                            </div>
+                        </div>
+                    </div>                    
                 </div>
-                <div id="highBpYearInput" style="display: none;">
+                <div id="highBpYearInput" class="col-12 mb-3" style="display: none;">
                     <label class="question-label">Indicate Year it Occurred</label>
-                    <select name="highBpYear" id="highBpYear">
+                    <select name="highBpYear" id="highBpYear" class="form-control">
                         <option value="">Select Year</option>
                         <option value="2020">2020</option>
                         <option value="2021">2021</option>
@@ -284,48 +365,65 @@
                         <option value="2023">2023</option>
                     </select>
                 </div>
-                <div id="highBpExplanationInput" style="display: none;">
+                <div id="highBpExplanationInput" class="col-12 mb-3" style="display: none;">
                     <label class="question-label">Explain</label>
-                    <textarea name="highBpExplanation" id="highBpExplanation" rows="4" ></textarea>
+                    <textarea name="highBpExplanation" id="highBpExplanation" rows="4" class="form-control"></textarea>
                 </div>
-                <div class="input-group">
-                    <label class="question-label">Heart Disease</label>
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="heartDiseaseNo" name="heartDisease" value="no"
-                                onchange="updateProgress('form1')">
-                            <label for="heartDiseaseNo">No</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="heartDiseaseYes" name="heartDisease" value="yes"
-                                onchange="updateProgress('form1')">
-                            <label for="heartDiseaseYes">Yes</label>
-                        </div>
+                <div class="col-12"> 
+                    <div class="col-12">
+                        <label class="question-label">Heart Disease</label>
                     </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="checkbox-item d-flex align-items-center"> 
+                            <div class="checkbox">
+                                <input type="checkbox" id="heartDiseaseNo" name="heartDisease" value="no" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="heartDiseaseNo">No</label>
+                            </div>
+                        </div>
+                        <div class="checkbox-item d-flex align-items-center">
+                            <div class="checkbox">
+                                <input type="checkbox" id="heartDiseaseYes" name="heartDisease" value="yes" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="heartDiseaseYes">Yes</label>
+                            </div>
+                        </div>
+                    </div>                    
                 </div>
-                <div class="input-group">
-                    <label class="question-label">Heart Failure</label>
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="heartFailureNo" name="heartFailure" value="no"
-                                onchange="updateProgress('form1')">
-                            <label for="heartFailureNo">No</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="heartFailureYes" name="heartFailure" value="yes"
-                                onchange="updateProgress('form1')">
-                            <label for="heartFailureYes">Yes</label>
-                        </div>
+                <div class="col-12"> 
+                    <div class="col-12">
+                        <label class="question-label">Heart Failure</label>
                     </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="checkbox-item d-flex align-items-center"> 
+                            <div class="checkbox">
+                                <input type="checkbox" id="heartFailureNo" name="heartFailure" value="no" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="heartFailureNo">No</label>
+                            </div>
+                        </div>
+                        <div class="checkbox-item d-flex align-items-center">
+                            <div class="checkbox">
+                                <input type="checkbox" id="heartFailureYes" name="heartFailure" value="yes" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="heartFailureYes">Yes</label>
+                            </div>
+                        </div>
+                    </div>                    
                 </div>
             </div>
+          
             <div class="button-row">
                 <button onclick="previousPage(1)" style="background: none;">Back</button>
                 <button onclick="nextPage(3)">Next</button>
             </div>
         </div>
-        
-    
+
+
         <div id="form1-page3" class="form-page" style="display: none;">
             <label>Email</label>
             <input type="email" name="email" onchange="updateProgress('form1')">
@@ -335,6 +433,5 @@
             </div>
         </div>
     </div>
-    
-</div>
+
 </div>

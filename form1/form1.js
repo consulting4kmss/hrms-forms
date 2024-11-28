@@ -14,11 +14,12 @@ function initializeForm(formId) {
 
     updatePageInfo(formId, 1);
 
-    const fields = document.querySelectorAll(`#${formId} .form-page input`);
+    const fields = document.querySelectorAll(`#${formId} .form-page input, #${formId} .form-page select`);
     fields.forEach(field => {
         field.addEventListener('change', () => {
             updateProgress(formId);
-            toggleHighBpFields(formId);
+            // toggleHighBpFields(formId);
+            toggleFields(formId, toggleFieldsConfig);
         });
     });
 
@@ -47,8 +48,9 @@ function handleMutualExclusiveCheckboxes(formId) {
                 }
             });
 
-            updateProgress(formId); 
-            toggleHighBpFields(formId);
+            updateProgress(formId);
+            // toggleHighBpFields(formId); 
+            toggleFields(formId, toggleFieldsConfig);
         });
     });
 }
@@ -118,15 +120,6 @@ function updateProgress(formId) {
             }
         }
     });
-    // const highBpYearInput = document.getElementById('highBpYear');
-    // const highBpExplanationInput = document.getElementById('highBpExplanation');
-    // if (highBpYearInput && highBpYearInput.style.display !== 'none') {
-    //     console.log("Captured highBpYear:", highBpYearInput.value);
-    // }
-    // if (highBpExplanationInput && highBpExplanationInput.style.display !== 'none') {
-    //     console.log("Captured highBpExplanation:", highBpExplanationInput.value);
-    // }
-
     const percentage = (filledFields / totalFields) * 100;
     console.log("Total Fields:", totalFields);
     console.log("Filled Fields:", filledFields);
@@ -139,9 +132,6 @@ function updateProgress(formId) {
     percentageText.textContent = `${Math.round(percentage)}%`;
     percentageText.style.left = `${percentage}%`;
 }
-
-
-
 function nextPage(pageNumber) {
     const form = document.getElementById('form1');
     const currentPage = form.querySelector(`#form1-page${pageNumber - 1}`);
@@ -165,32 +155,98 @@ function previousPage(pageNumber) {
     updatePageInfo('form1', pageNumber);
     updateProgress('form1');
 }
-function toggleHighBpFields(formId) {
-    if (highBpYes.checked) {
-        highBpYearInput.style.display = 'block';
-        highBpExplanationInput.style.display = 'block';
-    }
-    else {
-        highBpYearInput.style.display = 'none';
-        highBpExplanationInput.style.display = 'none';
-    }
-    // totalFields = Array.from(document.querySelectorAll(`#${formId} .form-page input`))
-    //     .filter((field, index, self) => {
-    //         if (field.type === 'checkbox' || field.type === 'radio') {
-    //             return self.findIndex(f => f.name === field.name) === index;
-    //         }
-    //         return true;
-    //     }).length;
+const toggleFieldsConfig = [
+    {
+        checkboxId: "visionYes",
+        fieldsToShow: ["defectiveVisionYearInput","defectiveVisionExplanationInput"],
+    },
+    {
+        checkboxId: "visionOtherYes",
+        fieldsToShow: ["visionOtherYearInput","visionOtherExplanationInput"],
+    },
+    {
+        checkboxId: "hearingYes",
+        fieldsToShow: ["hearingLossYearInput","hearingLossExplanationInput"],
+    },
+    {
+        checkboxId: "hearingotherYes",
+        fieldsToShow: ["hearingOtherYearInput","hearingOtherExplanationInput"],
+    },
+    {
+        checkboxId: "migrainesYes",
+        fieldsToShow: ["migrainesYearInput","migrainesExplanationInput"],
+    },
+    {
+        checkboxId: "headachesYes",
+        fieldsToShow: ["headachesYearInput","headachesExplanationInput"],
+    },
+    {
+        checkboxId: "tbiYes",
+        fieldsToShow: ["tbiYearInput","tbiExplanationInput"],
+    },
+    {
+        checkboxId: "thyroidYes",
+        fieldsToShow: ["thyroidYearInput","thyroidExplanationInput"],
+    },
+    {
+        checkboxId: "irregularHeartbeatYes",
+        fieldsToShow: ["irregularHeartbeatYearInput","irregularHeartbeatExplanationInput"],
+    },
+    {
+        checkboxId: "highBpYes",
+        fieldsToShow: ["highBpYearInput", "highBpExplanationInput"],
+    },
+    {
+        checkboxId: "heartDiseaseYes",
+        fieldsToShow: ["heartDiseaseYearInput","heartDiseaseExplanationInput"],
+    },
+    {
+        checkboxId: "heartFailureYes",
+        fieldsToShow: ["heartFailureYearInput","heartFailureExplanationInput"],
+    },
+];
+function toggleFields(formId, config) {
+    config.forEach(({ checkboxId, fieldsToShow }) => {
+        const checkbox = document.getElementById(checkboxId);
 
-    // if (highBpYearInput.style.display !== 'none') {
-    //     totalFields++;  
-    // }
-    // if (highBpExplanationInput.style.display !== 'none') {
-    //     totalFields++;  
-    // }
+        fieldsToShow.forEach(fieldId => {
+            const fieldElement = document.getElementById(fieldId);
+            if (checkbox && checkbox.checked) {
+                fieldElement.style.display = 'block';
+            } else {
+                fieldElement.style.display = 'none';
+            }
+        });
+    });
 
-    updateProgress(formId);
+    updateProgress(formId); 
 }
+// function toggleHighBpFields(formId) {
+//     if (highBpYes.checked) {
+//         highBpYearInput.style.display = 'block';
+//         highBpExplanationInput.style.display = 'block';
+//     }
+//     else {
+//         highBpYearInput.style.display = 'none';
+//         highBpExplanationInput.style.display = 'none';
+//     }
+//     totalFields = Array.from(document.querySelectorAll(`#${formId} .form-page input`))
+//         .filter((field, index, self) => {
+//             if (field.type === 'checkbox' || field.type === 'radio') {
+//                 return self.findIndex(f => f.name === field.name) === index;
+//             }
+//             return true;
+//         }).length;
+
+//     if (highBpYearInput.style.display !== 'none') {
+//         totalFields++;  
+//     }
+//     if (highBpExplanationInput.style.display !== 'none') {
+//         totalFields++;  
+//     }
+
+//     updateProgress(formId);
+// }
 
 
 

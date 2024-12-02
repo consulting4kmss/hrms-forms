@@ -2,11 +2,11 @@ let form1Completed = false;
 let form2Completed = false;
 
 function loadForm1() {
-    fetch('../form1/form1.html')
+    fetch('../form3/form3.html')
         .then(response => response.text())
         .then(html => {
             document.getElementById('form-container').innerHTML = html;
-            loadScript('../form1/form1.js');
+            loadScript('../form3/form3.js');
             addForm1EventListeners();
         })
         .catch(error => console.error('Error loading Form 1:', error));

@@ -1,0 +1,926 @@
+<div class="form-container text-white">
+    <div id="form1" class="form-card ">
+        <div class="col-12">
+            <h3>Pre-Employment Candidate Health Evaluation Questionnaire (HEQ)</h3>
+        </div>
+
+        <div class="page-count  ">
+            <span id="currentPageText">Page 1 of 4</span>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar-container">
+                <div id="progressBar" class="progress-bar"></div>
+                <span id="currentPagePercentage" class="percentage-text">0%</span>
+            </div>
+        </div>
+        <div id="form1-page1" class="form-page">
+            <p>
+                Instructions to Candidate: Please complete the questionnaire in its entirety. Dominion Energy
+                requires
+                all candidates to complete a Health Evaluation Questionnaire (HEQ). The purpose of the HEQ is to
+                assist
+                the Corporate Medical Director (CMD) evaluate the medical history and determine if there are medical
+                conditions or prescription medications prescribed that could affect a person's ability to perform
+                their
+                duties safely and effectively. You may be contacted to provide more information or to request a
+                statement from your physician if the CMD has any concerns after reviewing your medical history.
+            </p>
+            <div class="form-row">
+                <div>
+                    <label>First Name</label>
+                    <input type="text" name="firstName" onchange="updateProgress('form1')">
+                </div>
+                <div>
+                    <label>Last Name</label>
+                    <input type="text" name="lastName" onchange="updateProgress('form1')">
+                </div>
+                <div>
+                    <label>Middle Name</label>
+                    <input type="text" name="middleName" onchange="updateProgress('form1')">
+                </div>
+                <div class="small-field">
+                    <label>Suffix</label>
+                    <input type="text" name="suffix" onchange="updateProgress('form1')">
+                </div>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label>Permanent Home Address(Line1)</label>
+                    <input type="text" name="address1" onchange="updateProgress('form1')">
+                </div>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label>Permanent Home Address(Line2)</label>
+                    <input type="text" name="address2" onchange="updateProgress('form1')">
+                </div>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label>City</label>
+                    <input type="text" name="city" onchange="updateProgress('form1')">
+                </div>
+                <div>
+                    <label>State</label>
+                    <input type="text" name="state" onchange="updateProgress('form1')">
+                </div>
+                <div>
+                    <label>Zip</label>
+                    <input type="text" name="zip" onchange="updateProgress('form1')">
+                </div>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label>Date of Birth</label>
+                    <input type="date" id="dob" name="dob" onchange="convertDateToFormat('dob')">
+                </div>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label>Gender</label>
+                    <input type="text" name="gender" onchange="updateProgress('form1')">
+                </div>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label>Height</label>
+                    <input type="text" name="height" onchange="updateProgress('form1')">
+                </div>
+                <div>
+                    <label>Weight</label>
+                    <input type="text" name="weight" onchange="updateProgress('form1')">
+                </div>
+            </div>
+            <div class="single-button-container">
+                <button onclick="nextPage(2)">Next</button>
+            </div>
+        </div>
+        <div id="form1-page2" class="form-page" style="display: none;">
+            <div>
+                <h3>
+                    <p>Do you have or have you ever had any disease, injury, disorder, or surgery of the following?</p>
+                </h3>
+            </div>
+            <div>
+                <div style="margin-top: 20px;">
+                    <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Eyes</h3>
+                </div>
+
+                <!-- <div class="checkbox-item d-flex align-items-center">
+                            <div class="checkbox">
+                                <input type="checkbox" id="visionYes" name="defectiveVision" value="yes" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="visionYes">Yes</label>
+                            </div>
+                        </div> -->
+
+
+                <!-- <div class="checkbox-item d-flex align-items-center">  -->
+                <!-- <div class="checkbox">
+                                <input type="checkbox" id="visionNo" name="defectiveVision" value="no" onchange="updateProgress('form1')">
+                            </div>
+                            <div class="label">
+                                <label for="visionNo">No</label>
+                            </div> -->
+                <!-- </div> -->
+
+                <div class="col-12">
+                    <div class="col-12">
+                        <label class="question-label">Defective Vision</label>
+                    </div>
+                    <div class="col-12 d-flex flex-column">
+
+
+                        <div class="form-check" d-flex align-items-end>
+                            <input class="form-check-input" type="checkbox" value="no" id="visionNo"
+                                name="defectiveVision" onchange="updateProgress('form1')">
+
+                            <label class="form-check-label label ms-4" for="visionNo">
+                                No
+                            </label>
+                        </div>
+
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="checkbox" value="yes" name="defectiveVision"
+                                id="visionYes" name="defectiveVision" onchange="updateProgress('form1')">
+
+                            <label class="form-check-label ms-4" for="visionYes">
+                                Yes
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="defectiveVisionYearInput" class="col-12 mb-3" style="display: none;">
+                        <label class="question-label">Indicate Year it Occurred</label>
+                        <select name="defectiveVisionYear" id="defectiveVisionYear" class="form-control">
+                            <option value="">Select Year</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                        </select>
+                    </div>
+                    <div id="defectiveVisionExplanationInput" class="col-12 mb-3" style="display: none;">
+                        <label class="question-label">Explain</label>
+                        <textarea name="defectiveVisionExplanation" id="defectiveVisionExplanation" rows="4"
+                            class="form-control"></textarea>
+                    </div>
+                    <div class="col-12">
+                        <div class="col-12">
+                            <label class="question-label mt-3">Other</label>
+                        </div>
+                        <div class="col-12 d-flex ">
+                            <div class="checkbox-item d-flex align-items-center">
+                                <!-- <div class="checkbox">
+                                    <input type="checkbox" id="visionOtherNo" name="visionOther" value="no"
+                                        onchange="updateProgress('form1')">
+                                </div>
+                                <div class="label">
+                                    <label for="visionOtherNo">No</label>
+                                </div>
+                            </div>
+                            <div class="checkbox-item d-flex align-items-center">
+                                <div class="checkbox">
+                                    <input type="checkbox" id="visionOtherYes" name="visionOther" value="yes"
+                                        onchange="updateProgress('form1')">
+                                </div>
+                                <div class="label">
+                                    <label for="visionOtherYes">Yes</label>
+                                </div>
+                            </div> -->
+
+
+
+                                <div class="col-12 d-flex flex-column">
+
+
+                                    <div class="form-check" d-flex align-items-end>
+                                        <input class="form-check-input" type="checkbox" value="no" id="visionOtherNo"
+                                            name="visionOther" onchange="updateProgress('form1')">
+
+                                        <label class="form-check-label label ms-4" for="visionOtherNo">
+                                            No
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check mt-2">
+                                        <input class="form-check-input" type="checkbox" value="yes" name="visionOther"
+                                            id="visionOtherYes" name="defectiveVision"
+                                            onchange="updateProgress('form1')">
+
+                                        <label class="form-check-label ms-4" for="visionYes">
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div id="visionOtherYearInput" class="col-12 mb-3" style="display: none;">
+                            <label class="question-label">Indicate Year it Occurred</label>
+                            <select name="visionOtherYear" id="visionOtherYear" class="form-control">
+                                <option value="">Select Year</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                            </select>
+                        </div>
+                        <div id="visionOtherExplanationInput" class="col-12 mb-3" style="display: none;">
+                            <label class="question-label">Explain</label>
+                            <textarea name="visionOtherExplanation" id="visionOtherExplanation" rows="4"
+                                class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="mt-3">
+                            <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
+                                Ear,Nose,Throat
+                            </h3>
+                        </div>
+                        <div class="col-12">
+                            <div class="col-12">
+                                <label class="question-label">Hearing Loss</label>
+                            </div>
+                            <div class="col-12 d-flex flex-column ">
+                                <div class="checkbox-item d-flex align-items-center">
+                                    <!-- <div class="checkbox">
+                                    <input type="checkbox" id="hearingNo" name="hearingLoss" value="no"
+                                        onchange="updateProgress('form1')">
+                                </div>
+                                <div class="label">
+                                    <label for="hearingNo">No</label>
+                                </div>
+                            </div>
+                            <div class="checkbox-item d-flex align-items-center">
+                                <div class="checkbox">
+                                    <input type="checkbox" id="hearingYes" name="hearingLoss" value="yes"
+                                        onchange="updateProgress('form1')">
+                                </div>
+                                <div class="label">
+                                    <label for="hearingYes">Yes</label>
+                                </div>
+                            </div>
+                        </div> -->
+                                    <div class="col-12 d-flex flex-column">
+
+
+                                        <div class="form-check" d-flex align-items-end>
+                                            <input class="form-check-input" type="checkbox" value="no" id="hearingNo"
+                                                name="hearingLoss" onchange="updateProgress('form1')">
+
+                                            <label class="form-check-label label ms-4" for="hearingNo">
+                                                No
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check mt-2">
+                                            <input class="form-check-input" type="checkbox" value="yes"
+                                                name="hearingLoss" id="hearingYes" onchange="updateProgress('form1')">
+
+                                            <label class="form-check-label ms-4" for="hearingYes">
+                                                Yes
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div id="hearingLossYearInput" class="col-12 mb-3" style="display: none;">
+                                    <label class="question-label">Indicate Year it Occurred</label>
+                                    <select name="hearingLossYear" id="hearingLossYear" class="form-control">
+                                        <option value="">Select Year</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2023">2023</option>
+                                    </select>
+                                </div>
+                                <div id="hearingLossExplanationInput" class="col-12 mb-3" style="display: none;">
+                                    <label class="question-label">Explain</label>
+                                    <textarea name="hearingLossExplanation" id="hearingLossExplanation" rows="4"
+                                        class="form-control"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <div class="col-12">
+                                        <label class="question-label">Other</label>
+                                    </div>
+                                    <!-- <div class="col-12 d-flex "> -->
+                                    <!-- <div class="checkbox-item d-flex align-items-center"> -->
+                                    <!-- <div class="checkbox">
+                                    <input type="checkbox" id="hearingotherNo" name="hearingOther" value="no"
+                                        onchange="updateProgress('form1')">
+                                </div>
+                                <div class="label">
+                                    <label for="hearingotherNo">No</label>
+                                </div>
+                            </div>
+                            <div class="checkbox-item d-flex align-items-center">
+                                <div class="checkbox">
+                                    <input type="checkbox" id="hearingotherYes" name="hearingOther" value="yes"
+                                        onchange="updateProgress('form1')">
+                                </div>
+                                <div class="label">
+                                    <label for="hearingotherYes">Yes</label>
+                                </div>
+                            </div> -->
+
+                                    <div class="col-12 d-flex flex-column">
+
+
+                                        <div class="form-check" d-flex align-items-end>
+                                            <input class="form-check-input" type="checkbox" value="no"
+                                                id="hearingotherNo" name="hearingOther"
+                                                onchange="updateProgress('form1')">
+
+                                            <label class="form-check-label label ms-4" for="hearingotherNo">
+                                                No
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check mt-2">
+                                            <input class="form-check-input" type="checkbox" value="yes"
+                                                name="hearingOther" id="hearingotherYes"
+                                                onchange="updateProgress('form1')">
+
+                                            <label class="form-check-label ms-4" for="hearingotherYes">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <!-- </div> -->
+                                        <!-- </div> -->
+                                    </div>
+                                    <div id="hearingOtherYearInput" class="col-12 mb-3" style="display: none;">
+                                        <label class="question-label">Indicate Year it Occurred</label>
+                                        <select name="hearingOtherYear" id="hearingOtherYear" class="form-control">
+                                            <option value="">Select Year</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2023">2023</option>
+                                        </select>
+                                    </div>
+                                    <div id="hearingOtherExplanationInput" class="col-12 mb-3" style="display: none;">
+                                        <label class="question-label">Explain</label>
+                                        <textarea name="hearingOtherExplanation" id="hearingOtherExplanation" rows="4"
+                                            class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="margin-top: 20px;">
+                                        <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
+                                            Head</h3>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="col-12">
+                                            <label class="question-label">Migraines</label>
+                                        </div>
+                                        <!-- <div class="col-12 d-flex ">
+                                            <div class="checkbox-item d-flex align-items-center">
+                                                <div class="checkbox">
+                                                    <input type="checkbox" id="migrainesNo" name="migraines" value="no"
+                                                        onchange="updateProgress('form1')">
+                                                </div>
+                                                <div class="label">
+                                                    <label for="migrainesNo">No</label>
+                                                </div>
+                                            </div>
+                                            <div class="checkbox-item d-flex align-items-center">
+                                                <div class="checkbox">
+                                                    <input type="checkbox" id="migrainesYes" name="migraines"
+                                                        value="yes" onchange="updateProgress('form1')">
+                                                </div>
+                                                <div class="label">
+                                                    <label for="migrainesYes">Yes</label>
+                                                </div>
+                                            </div>
+                                        </div> -->
+
+
+                                        <div class="col-12 d-flex flex-column">
+
+
+                                            <div class="form-check" d-flex align-items-end>
+                                                <input class="form-check-input" type="checkbox" value="no"
+                                                    id="migrainesNo" name="migraines"
+                                                    onchange="updateProgress('form1')">
+    
+                                                <label class="form-check-label label ms-4" for="migrainesNo">
+                                                    No
+                                                </label>
+                                            </div>
+    
+                                            <div class="form-check mt-2">
+                                                <input class="form-check-input" type="checkbox" value="yes"
+                                                    name="migraines" id="migrainesYes"
+                                                    onchange="updateProgress('form1')">
+    
+                                                <label class="form-check-label ms-4" for="migrainesYes">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <!-- </div> -->
+                                            <!-- </div> -->
+                                        </div>
+                                    </div>
+                                    <div id="migrainesYearInput" class="col-12 mb-3" style="display: none;">
+                                        <label class="question-label">Indicate Year it Occurred</label>
+                                        <select name="migrainesYear" id="migrainesYear" class="form-control">
+                                            <option value="">Select Year</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2023">2023</option>
+                                        </select>
+                                    </div>
+                                    <div id="migrainesExplanationInput" class="col-12 mb-3" style="display: none;">
+                                        <label class="question-label">Explain</label>
+                                        <textarea name="migrainesExplanation" id="migrainesExplanation" rows="4"
+                                            class="form-control"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="col-12">
+                                            <label class="question-label">Headaches</label>
+                                        </div>
+                                        <div class="col-12 d-flex ">
+                                            <!-- <div class="checkbox-item d-flex align-items-center">
+                                                <div class="checkbox">
+                                                    <input type="checkbox" id="headachesNo" name="headaches" value="no"
+                                                        onchange="updateProgress('form1')">
+                                                </div>
+                                                <div class="label">
+                                                    <label for="headachesNo">No</label>
+                                                </div>
+                                            </div>
+                                            <div class="checkbox-item d-flex align-items-center">
+                                                <div class="checkbox">
+                                                    <input type="checkbox" id="headachesYes" name="headaches"
+                                                        value="yes" onchange="updateProgress('form1')">
+                                                </div>
+                                                <div class="label">
+                                                    <label for="headachesYes">Yes</label>
+                                                </div>
+                                            </div> -->
+
+                                            <div class="col-12 d-flex flex-column">
+
+
+                                                <div class="form-check" d-flex align-items-end>
+                                                    <input class="form-check-input" type="checkbox" value="no"
+                                                        id="headachesNo" name="headaches"
+                                                        onchange="updateProgress('form1')">
+        
+                                                    <label class="form-check-label label ms-4" for="headachesNo">
+                                                        No
+                                                    </label>
+                                                </div>
+        
+                                                <div class="form-check mt-2">
+                                                    <input class="form-check-input" type="checkbox" value="yes"
+                                                        name="headaches" id="headachesYes"
+                                                        onchange="updateProgress('form1')">
+        
+                                                    <label class="form-check-label ms-4" for="headachesYes">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <!-- </div> -->
+                                                <!-- </div> -->
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div id="headachesYearInput" class="col-12 mb-3" style="display: none;">
+                                        <label class="question-label">Indicate Year it Occurred</label>
+                                        <select name="headachesYear" id="headachesYear" class="form-control">
+                                            <option value="">Select Year</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2023">2023</option>
+                                        </select>
+                                    </div>
+                                    <div id="headachesExplanationInput" class="col-12 mb-3" style="display: none;">
+                                        <label class="question-label">Explain</label>
+                                        <textarea name="headachesExplanation" id="headachesExplanation" rows="4"
+                                            class="form-control"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="col-12">
+                                            <label class="question-label">TBI</label>
+                                        </div>
+                                        <div class="col-12 d-flex ">
+                                            <!-- <div class="checkbox-item d-flex align-items-center">
+                                                <div class="checkbox">
+                                                    <input type="checkbox" id="tbiNo" name="tbi" value="no"
+                                                        onchange="updateProgress('form1')">
+                                                </div>
+                                                <div class="label">
+                                                    <label for="tbiNo">No</label>
+                                                </div>
+                                            </div>
+                                            <div class="checkbox-item d-flex align-items-center">
+                                                <div class="checkbox">
+                                                    <input type="checkbox" id="tbiYes" name="tbi" value="yes"
+                                                        onchange="updateProgress('form1')">
+                                                </div>
+                                                <div class="label">
+                                                    <label for="tbiYes">Yes</label>
+                                                </div>
+                                            </div> -->
+
+
+
+                                            <div class="col-12 d-flex flex-column">
+                                                <div class="form-check" d-flex align-items-end>
+                                                    <input class="form-check-input" type="checkbox" value="no"
+                                                        id="tbiNo" name="tbi"
+                                                        onchange="updateProgress('form1')">
+        
+                                                    <label class="form-check-label label ms-4" for="headachesNo">
+                                                        No
+                                                    </label>
+                                                </div>
+        
+                                                <div class="form-check mt-2">
+                                                    <input class="form-check-input" type="checkbox" value="yes"
+                                                        name="tbi" id="tbiYes"
+                                                        onchange="updateProgress('form1')">
+        
+                                                    <label class="form-check-label ms-4" for="tbiYes">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <!-- </div> -->
+                                                <!-- </div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="tbiYearInput" class="col-12 mb-3" style="display: none;">
+                                        <label class="question-label">Indicate Year it Occurred</label>
+                                        <select name="tbiYear" id="tbiYear" class="form-control">
+                                            <option value="">Select Year</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2023">2023</option>
+                                        </select>
+                                    </div>
+                                    <div id="tbiExplanationInput" class="col-12 mb-3" style="display: none;">
+                                        <label class="question-label">Explain</label>
+                                        <textarea name="tbiExplanation" id="tbiExplanation" rows="4"
+                                            class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="margin-top: 20px;">
+                                        <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
+                                            Neck</h3>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="col-12">
+                                            <label class="question-label">Thyroid Disorder</label>
+                                        </div>
+                                        <div class="col-12 d-flex ">
+                                            <!-- <div class="checkbox-item d-flex align-items-center">
+                                                <div class="checkbox">
+                                                    <input type="checkbox" id="thyroidNo" name="thyroid" value="no"
+                                                        onchange="updateProgress('form1')">
+                                                </div>
+                                                <div class="label">
+                                                    <label for="thyroidNo">No</label>
+                                                </div>
+                                            </div>
+                                            <div class="checkbox-item d-flex align-items-center">
+                                                <div class="checkbox">
+                                                    <input type="checkbox" id="thyroidYes" name="thyroid" value="yes"
+                                                        onchange="updateProgress('form1')">
+                                                </div>
+                                                <div class="label">
+                                                    <label for="thyroidYes">Yes</label>
+                                                </div>
+                                            </div> -->
+                                            <div class="col-12 d-flex flex-column">
+                                                <div class="form-check" d-flex align-items-end>
+                                                    <input class="form-check-input" type="checkbox" value="no"
+                                                        id="thyroidNo" name="thyroid"
+                                                        onchange="updateProgress('form1')">
+        
+                                                    <label class="form-check-label label ms-4" for="thyroidNo">
+                                                        No
+                                                    </label>
+                                                </div>
+        
+                                                <div class="form-check mt-2">
+                                                    <input class="form-check-input" type="checkbox" value="yes"
+                                                        name="thyroid" id="thyroidYes"
+                                                        onchange="updateProgress('form1')">
+        
+                                                    <label class="form-check-label ms-4" for="thyroidYes">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div id="thyroidYearInput" class="col-12 mb-3" style="display: none;">
+                                        <label class="question-label">Indicate Year it Occurred</label>
+                                        <select name="thyroidYear" id="thyroidYear" class="form-control">
+                                            <option value="">Select Year</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2023">2023</option>
+                                        </select>
+                                    </div>
+                                    <div id="thyroidExplanationInput" class="col-12 mb-3" style="display: none;">
+                                        <label class="question-label">Explain</label>
+                                        <textarea name="thyroidExplanation" id="thyroidExplanation" rows="4"
+                                            class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="margin-top: 20px;">
+                                        <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
+                                            Heart
+                                        </h3>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="col-12">
+                                            <label class="question-label">Irregular Heartbeat</label>
+                                        </div>
+                                        <div class="col-12 d-flex ">
+                                            <!-- <div class="checkbox-item d-flex align-items-center">
+                                                <div class="checkbox">
+                                                    <input type="checkbox" id="irregularHeartbeatNo"
+                                                        name="irregularHeartbeat" value="no"
+                                                        onchange="updateProgress('form1')">
+                                                </div>
+                                                <div class="label">
+                                                    <label for="irregularHeartbeatNo">No</label>
+                                                </div>
+                                            </div>
+                                            <div class="checkbox-item d-flex align-items-center">
+                                                <div class="checkbox">
+                                                    <input type="checkbox" id="irregularHeartbeatYes"
+                                                        name="irregularHeartbeat" value="yes"
+                                                        onchange="updateProgress('form1')">
+                                                </div>
+                                                <div class="label">
+                                                    <label for="irregularHeartbeatYes">Yes</label>
+                                                </div>
+                                            </div> -->
+
+                                            <div class="col-12 d-flex flex-column">
+                                                <div class="form-check" d-flex align-items-end>
+                                                    <input class="form-check-input" type="checkbox" value="no"
+                                                        id="irregularHeartbeatNo" name="irregularHeartbeat"
+                                                        onchange="updateProgress('form1')">
+        
+                                                    <label class="form-check-label label ms-4" for="irregularHeartbeatNo">
+                                                        No
+                                                    </label>
+                                                </div>
+        
+                                                <div class="form-check mt-2">
+                                                    <input class="form-check-input" type="checkbox" value="yes"
+                                                        name="irregularHeartbeat" id="irregularHeartbeatYes"
+                                                        onchange="updateProgress('form1')">
+        
+                                                    <label class="form-check-label ms-4" for="irregularHeartbeatYes">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="irregularHeartbeatYearInput" class="col-12 mb-3" style="display: none;">
+                                        <label class="question-label">Indicate Year it Occurred</label>
+                                        <select name="irregularHeartbeatYear" id="irregularHeartbeatYear"
+                                            class="form-control">
+                                            <option value="">Select Year</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2023">2023</option>
+                                        </select>
+                                    </div>
+                                    <div id="irregularHeartbeatExplanationInput" class="col-12 mb-3"
+                                        style="display: none;">
+                                        <label class="question-label">Explain</label>
+                                        <textarea name="irregularHeartbeatExplanation"
+                                            id="irregularHeartbeatExplanation" rows="4" class="form-control"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="col-12">
+                                            <label class="question-label">High Blood Pressure</label>
+                                        </div>
+                                        <div class="col-12 d-flex ">
+                                            <!-- <div class="checkbox-item d-flex align-items-center">
+                                                <div class="checkbox">
+                                                    <input type="checkbox" id="highBpNo" name="highBp" value="no"
+                                                        onchange="updateProgress('form1')">
+                                                </div>
+                                                <div class="label">
+                                                    <label for="highBpNo">No</label>
+                                                </div>
+                                            </div>
+                                            <div class="checkbox-item d-flex align-items-center">
+                                                <div class="checkbox">
+                                                    <input type="checkbox" id="highBpYes" name="highBp" value="yes"
+                                                        onchange="updateProgress('form1')">
+                                                </div>
+                                                <div class="label">
+                                                    <label for="highBpYes">Yes</label>
+                                                </div>
+                                            </div> -->
+
+                                            <div class="col-12 d-flex flex-column">
+                                                <div class="form-check" d-flex align-items-end>
+                                                    <input class="form-check-input" type="checkbox" value="no"
+                                                        id="highBpNo" name="highBp"
+                                                        onchange="updateProgress('form1')">
+        
+                                                    <label class="form-check-label label ms-4" for="highBpNo">
+                                                        No
+                                                    </label>
+                                                </div>
+        
+                                                <div class="form-check mt-2">
+                                                    <input class="form-check-input" type="checkbox" value="yes"
+                                                        name="highBp" id="highBpYes"
+                                                        onchange="updateProgress('form1')">
+        
+                                                    <label class="form-check-label ms-4" for="highBpYes">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="highBpYearInput" class="col-12 mb-3" style="display: none;">
+                                        <label class="question-label">Indicate Year it Occurred</label>
+                                        <select name="highBpYear" id="highBpYear" class="form-control">
+                                            <option value="">Select Year</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2023">2023</option>
+                                        </select>
+                                    </div>
+                                    <div id="highBpExplanationInput" class="col-12 mb-3" style="display: none;">
+                                        <label class="question-label">Explain</label>
+                                        <textarea name="highBpExplanation" id="highBpExplanation" rows="4"
+                                            class="form-control"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="col-12">
+                                            <label class="question-label">Heart Disease</label>
+                                        </div>
+                                        <div class="col-12 d-flex ">
+                                            <!-- <div class="checkbox-item d-flex align-items-center">
+                                                <div class="checkbox">
+                                                    <input type="checkbox" id="heartDiseaseNo" name="heartDisease"
+                                                        value="no" onchange="updateProgress('form1')">
+                                                </div>
+                                                <div class="label">
+                                                    <label for="heartDiseaseNo">No</label>
+                                                </div>
+                                            </div>
+                                            <div class="checkbox-item d-flex align-items-center">
+                                                <div class="checkbox">
+                                                    <input type="checkbox" id="heartDiseaseYes" name="heartDisease"
+                                                        value="yes" onchange="updateProgress('form1')">
+                                                </div>
+                                                <div class="label">
+                                                    <label for="heartDiseaseYes">Yes</label>
+                                                </div>
+                                            </div> -->
+                                            <div class="col-12 d-flex flex-column">
+                                                <div class="form-check" d-flex align-items-end>
+                                                    <input class="form-check-input" type="checkbox" value="no"
+                                                        id="heartDiseaseNo" name="heartDisease"
+                                                        onchange="updateProgress('form1')">
+        
+                                                    <label class="form-check-label label ms-4" for="heartDiseaseNo">
+                                                        No
+                                                    </label>
+                                                </div>
+        
+                                                <div class="form-check mt-2">
+                                                    <input class="form-check-input" type="checkbox" value="yes"
+                                                        name="heartDisease" id="heartDiseaseYes"
+                                                        onchange="updateProgress('form1')">
+        
+                                                    <label class="form-check-label ms-4" for="heartDiseaseYes">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="heartDiseaseYearInput" class="col-12 mb-3" style="display: none;">
+                                        <label class="question-label">Indicate Year it Occurred</label>
+                                        <select name="heartDiseaseYear" id="heartDiseaseYear" class="form-control">
+                                            <option value="">Select Year</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2023">2023</option>
+                                        </select>
+                                    </div>
+                                    <div id="heartDiseaseExplanationInput" class="col-12 mb-3" style="display: none;">
+                                        <label class="question-label">Explain</label>
+                                        <textarea name="heartDiseaseExplanation" id="heartDiseaseExplanation" rows="4"
+                                            class="form-control"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="col-12">
+                                            <label class="question-label">Heart Failure</label>
+                                        </div>
+                                        <div class="col-12 d-flex ">
+                                            <!-- <div class="checkbox-item d-flex align-items-center">
+                                                <div class="checkbox">
+                                                    <input type="checkbox" id="heartFailureNo" name="heartFailure"
+                                                        value="no" onchange="updateProgress('form1')">
+                                                </div>
+                                                <div class="label">
+                                                    <label for="heartFailureNo">No</label>
+                                                </div>
+                                            </div>
+                                            <div class="checkbox-item d-flex align-items-center">
+                                                <div class="checkbox">
+                                                    <input type="checkbox" id="heartFailureYes" name="heartFailure"
+                                                        value="yes" onchange="updateProgress('form1')">
+                                                </div>
+                                                <div class="label">
+                                                    <label for="heartFailureYes">Yes</label>
+                                                </div>
+                                            </div> -->
+
+                                            <div class="col-12 d-flex flex-column">
+                                                <div class="form-check" d-flex align-items-end>
+                                                    <input class="form-check-input" type="checkbox" value="no"
+                                                        id="heartFailureNo" name="heartFailure"
+                                                        onchange="updateProgress('form1')">
+        
+                                                    <label class="form-check-label label ms-4" for="heartFailureNo">
+                                                        No
+                                                    </label>
+                                                </div>
+        
+                                                <div class="form-check mt-2">
+                                                    <input class="form-check-input" type="checkbox" value="yes"
+                                                        name="heartFailure" id="heartFailureYes"
+                                                        onchange="updateProgress('form1')">
+        
+                                                    <label class="form-check-label ms-4" for="heartFailureYes">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="heartFailureYearInput" class="col-12 mb-3" style="display: none;">
+                                        <label class="question-label">Indicate Year it Occurred</label>
+                                        <select name="heartFailureYear" id="heartFailureYear" class="form-control">
+                                            <option value="">Select Year</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2023">2023</option>
+                                        </select>
+                                    </div>
+                                    <div id="heartFailureExplanationInput" class="col-12 mb-3" style="display: none;">
+                                        <label class="question-label">Explain</label>
+                                        <textarea name="heartFailureExplanation" id="heartFailureExplanation" rows="4"
+                                            class="form-control"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="button-row">
+                                    <button onclick="previousPage(1)" style="background: none;">Back</button>
+                                    <button onclick="nextPage(3)">Next</button>
+                                </div>
+                            </div>
+
+
+                            <div id="form1-page3" class="form-page" style="display: none;">
+                                <label>Email</label>
+                                <input type="email" name="email" onchange="updateProgress('form1')">
+                                <div class="button-row">
+                                    <button onclick="previousPage(2)" style="background: none;">Back</button>
+                                    <button class="submit-btn">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

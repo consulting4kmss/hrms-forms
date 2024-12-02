@@ -6,7 +6,7 @@
 }
 body
 {
-    background-color: #004085;
+    background-color: #004085 !important;
 }
 .tab-link {
     display: inline-block;

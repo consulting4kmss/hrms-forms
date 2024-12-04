@@ -1,4 +1,4 @@
-let totalFields = 0;
+// let totalFields = 0;
 let totalPages = 0;
 
 function initializeForm(formId) {
@@ -167,19 +167,22 @@ function validatePage(formId, pageNumber) {
 
 
 function nextPage(pageNumber) {
+    console.log("pageNumber:  ",pageNumber);
+    if(pageNumber==4){
+        initializeSignatureBox();
+        clearSign();
+    }
 if(validatePage('form1', pageNumber - 1)){
     const form = document.getElementById('form1');
     const currentPage = form.querySelector(`#form1-page${pageNumber - 1}`);
-    console.log(" Current Page",currentPage);
     const nextPage = form.querySelector(`#form1-page${pageNumber}`);
-    console.log(" Next Page",nextPage);
 
     currentPage.style.display = 'none';
     nextPage.style.display = 'block';
 
     updatePageInfo('form1', pageNumber);
     updateProgress('form1');
-}
+ }
 // else{
 //     alert('Please complete all required fields before proceeding.');
 // }
@@ -321,12 +324,71 @@ const toggleFieldsConfig = [
     {
         checkboxId: "substanceYes",
         fieldsToShow: ["substanceYearInput","substanceExplanationInput"],
-    }
-    
-    
+    },
+    {
+        checkboxId: "crohnYes",
+        fieldsToShow: ["crohnYearInput","crohnExplanationInput"],
+    },
+    {
+        checkboxId: "colitisYes",
+        fieldsToShow: ["colitisYearInput","colitisExplanationInput"],
+    },
+    {
+        checkboxId:"hepatisYes",
+        fieldsToShow: ["hepatisYearInput","hepatisExplanationInput"],
+    },
+    {
+        checkboxId:"cirrhosisYes",
+        fieldsToShow: ["cirrhosisYearInput","cirrhosisExplanationInput"],
+    },
+    {
+        checkboxId:"kidneyYes",
+        fieldsToShow: ["kidneyYearInput","kidneyExplanationInput"],
+    },
+    {
+        checkboxId:"skinYes",
+        fieldsToShow: ["skinYearInput","skinExplanationInput"],
+    },
+    {
+        checkboxId:"Yes",
+        fieldsToShow: ["drugYearInput","drugExplanationInput"],
+    },
+    {
+        checkboxId:"otherAlergyYes",
+        fieldsToShow: ["otherAlergyYearInput","otherAlergyExplanationInput"],
+    },
+    {
+        checkboxId:"otherHealthYes",
+        fieldsToShow: ["otherHealthYearInput","otherHealthExplanationInput"],
+    },
+    {
+        checkboxId:"tetanusYes",
+        fieldsToShow: ["tetanusYearInput","tetanusExplanationInput"],
+    },
+    {
+        checkboxId:"hepImmuneYes",
+        fieldsToShow: ["hepImmuneYearInput","hepImmuneExplanationInput"],
+    },
+    {
+        checkboxId:"declineYes",
+        fieldsToShow: ["declineYearInput","declineExplanationInput"],
+    },
+    {
+        checkboxId:"restrictYes",
+        fieldsToShow: ["restrictYearInput","restrictExplanationInput"],
+    },
+    {
+        checkboxId:"disabilityYes",
+        fieldsToShow: ["disabilityYearInput","disabilityExplanationInput"],
+    }, 
+    {
+        checkboxId:"dutiesYes",
+        fieldsToShow: ["dutiesYearInput","dutiesExplanationInput"],
+    }   
     
     
 ];
+
 function toggleFields(formId, config) {
     config.forEach(({ checkboxId, fieldsToShow }) => {
         const checkbox = document.getElementById(checkboxId);
@@ -335,8 +397,10 @@ function toggleFields(formId, config) {
             const fieldElement = document.getElementById(fieldId);
             if (checkbox && checkbox.checked) {
                 fieldElement.style.display = 'block';
+                fieldElement.setAttribute('required', 'required');
             } else {
                 fieldElement.style.display = 'none';
+                fieldElement.removeAttribute('required');
             }
         });
     });
@@ -345,11 +409,99 @@ function toggleFields(formId, config) {
 }
 
 
+
+let canvas, context;
+let isDrawing = false;
+
+// Function to get accurate mouse position
+function getMousePosition(event) {
+    const rect = canvas.getBoundingClientRect(); // Get the canvas's bounding box
+    const scaleX = canvas.width / rect.width;   // Horizontal scaling factor
+    const scaleY = canvas.height / rect.height; // Vertical scaling factor
+    return {
+        x: (event.clientX - rect.left) * scaleX,
+        y: (event.clientY - rect.top) * scaleY
+    };
+}
+
+
+
+function initializeSignatureBox() {
+    // Dynamically fetch the canvas and context
+    canvas = document.getElementById('signatureBox');
+    
+    if (!canvas) {
+        console.error("Canvas element not found. Ensure it's visible in the DOM.");
+        return;
+    }
+
+    context = canvas.getContext('2d');
+    context.lineWidth = 0.3; // Adjust for a thinner line
+    context.lineCap = "round"; // Smooth line ends
+    context.strokeStyle = "white"; // Set the line color to white
+
+    // Attach event listeners
+    canvas.addEventListener('mousedown', (event) => {
+        isDrawing = true;
+        context.beginPath();
+        const pos = getMousePosition(event);
+        context.moveTo(pos.x, pos.y);
+    });
+
+    canvas.addEventListener('mousemove', (event) => {
+        if (isDrawing) {
+            const pos = getMousePosition(event);
+            context.lineTo(pos.x, pos.y);
+            context.stroke();
+        }
+    });
+
+    canvas.addEventListener('mouseup', () => {
+        isDrawing = false;
+    });
+
+    canvas.addEventListener('mouseout', () => {
+        isDrawing = false;
+    });
+
+    console.log("Signature box initialized with white color and thin line.");
+}
+
+
+
+
+// Function to clear the signature
+function clearSign() {
+    const clearButton = document.getElementById('clearButton');
+    clearButton.addEventListener('click', () => {
+        if (context) {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        } else {
+            console.error("Signature box is not initialized.");
+        }
+    });
+}
+
+
+// Save the signature
+
+// document.getElementById('saveButton').addEventListener('click', () => {
+//     if (canvas) {
+//         const signatureData = canvas.toDataURL('image/png');
+//         console.log('Signature saved:', signatureData);
+//         // You can send `signatureData` to a server or save it locally
+//     } else {
+//         console.error("Signature box is not initialized.");
+//     }
+// });
+
+
+
 initializeForm('form1');
 
 
 
-// function toggleHighBpFields(formId) {
+// function toggleHighBpFields(formId) {  colitis
 //     if (highBpYes.checked) {
 //         highBpYearInput.style.display = 'block';
 //         highBpExplanationInput.style.display = 'block';

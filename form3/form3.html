@@ -1,11 +1,11 @@
 <div class="form-container text-white">
     <div id="form1" class="form-card ">
         <div class="col-12">
-            <h3>Pre-Employment Candidate Health Evaluation Questionnaire (HEQ)</h3>
+            <h3 class="heading">Pre-Employment Candidate Health Evaluation Questionnaire (HEQ)</h3>
         </div>
 
         <div class="page-count  ">
-            <span id="currentPageText">Page 1 of 3</span>
+            <span id="currentPageText">Page 1 of 4</span>
         </div>
 
         <div class="progress-container">
@@ -15,7 +15,7 @@
             </div>
         </div>
         <div id="form1-page1" class="form-page">
-            <p>
+            <p class="formtext">
                 Instructions to Candidate: Please complete the questionnaire in its entirety. Dominion Energy
                 requires
                 all candidates to complete a Health Evaluation Questionnaire (HEQ). The purpose of the HEQ is to
@@ -29,45 +29,45 @@
             <div class="form-row">
                 <div>
                     <label>First Name</label>
-                    <input required type="text" name="firstName" onchange="updateProgress('form1')">
+                    <input required type="text" autocomplete="off" name="firstName" onchange="updateProgress('form1')">
                 </div>
                 <div>
                     <label>Last Name</label>
-                    <input required  type="text" name="lastName" onchange="updateProgress('form1')">
+                    <input required type="text" autocomplete="off" name="lastName" onchange="updateProgress('form1')">
                 </div>
                 <div>
                     <label>Middle Name</label>
-                    <input required type="text" name="middleName" onchange="updateProgress('form1')">
+                    <input required type="text" autocomplete="off" name="middleName" onchange="updateProgress('form1')">
                 </div>
                 <div class="small-field">
                     <label>Suffix</label>
-                    <input required type="text" name="suffix" onchange="updateProgress('form1')">
+                    <input required type="text" autocomplete="off" name="suffix" onchange="updateProgress('form1')">
                 </div>
             </div>
             <div class="form-row">
                 <div>
                     <label>Permanent Home Address(Line1)</label>
-                    <input required type="text" name="address1" onchange="updateProgress('form1')">
+                    <input required type="text" autocomplete="off" name="address1" onchange="updateProgress('form1')">
                 </div>
             </div>
             <div class="form-row">
                 <div>
                     <label>Permanent Home Address(Line2)</label>
-                    <input required type="text" name="address2" onchange="updateProgress('form1')">
+                    <input required type="text" autocomplete="off" name="address2" onchange="updateProgress('form1')">
                 </div>
             </div>
             <div class="form-row">
                 <div>
                     <label>City</label>
-                    <input required type="text" name="city" onchange="updateProgress('form1')">
+                    <input required type="text" autocomplete="off" name="city" onchange="updateProgress('form1')">
                 </div>
                 <div>
                     <label>State</label>
-                    <input required type="text" name="state" onchange="updateProgress('form1')">
+                    <input required type="text" autocomplete="off" name="state" onchange="updateProgress('form1')">
                 </div>
                 <div>
                     <label>Zip</label>
-                    <input required type="text" name="zip" onchange="updateProgress('form1')">
+                    <input required type="text" autocomplete="off" name="zip" onchange="updateProgress('form1')">
                 </div>
             </div>
             <div class="form-row">
@@ -79,17 +79,17 @@
             <div class="form-row">
                 <div>
                     <label>Gender</label>
-                    <input required type="text" name="gender" onchange="updateProgress('form1')">
+                    <input required type="text" autocomplete="off" name="gender" onchange="updateProgress('form1')">
                 </div>
             </div>
             <div class="form-row">
                 <div>
                     <label>Height</label>
-                    <input required type="text" name="height" onchange="updateProgress('form1')">
+                    <input required type="text" autocomplete="off" name="height" onchange="updateProgress('form1')">
                 </div>
                 <div>
                     <label>Weight</label>
-                    <input required type="text" name="weight" onchange="updateProgress('form1')">
+                    <input required type="text" autocomplete="off" name="weight" onchange="updateProgress('form1')">
                 </div>
             </div>
             <div class="single-button-container">
@@ -138,7 +138,7 @@
 
                     <div id="defectiveVisionYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="defectiveVisionYear" id="defectiveVisionYear" class="form-control mt-2">
+                        <select name="defectiveVisionYear" id="defectiveVisionYear" class="form-control mt-2 txtfeild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -148,8 +148,8 @@
                     </div>
                     <div id="defectiveVisionExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea  name="defectiveVisionExplanation" id="defectiveVisionExplanation" rows="4"
-                            class="form-control mt-2"></textarea>
+                        <textarea name="defectiveVisionExplanation" id="defectiveVisionExplanation" rows="4"
+                            class="form-control mt-2 txtfeild "></textarea>
                     </div>
                     <div class="col-12 mt-3">
                         <div class="col-12">
@@ -184,7 +184,7 @@
                         </div>
                         <div id="visionOtherYearInput" class="col-12 " style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select name="visionOtherYear" id="visionOtherYear" class="form-control mt-2">
+                            <select name="visionOtherYear" id="visionOtherYear" class="form-control mt-2 txtfeild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
                                 <option value="2021">2021</option>
@@ -194,8 +194,8 @@
                         </div>
                         <div id="visionOtherExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea  name="visionOtherExplanation" id="visionOtherExplanation" rows="4"
-                                class="form-control mt-2"></textarea>
+                            <textarea name="visionOtherExplanation" id="visionOtherExplanation" rows="4"
+                                class="form-control mt-2 txtfeild "></textarea>
                         </div>
                     </div>
                     <div>
@@ -233,7 +233,8 @@
                                 </div>
                                 <div id="hearingLossYearInput" class="col-12" style="display: none;">
                                     <label class="question-label">Indicate Year it Occurred</label>
-                                    <select name="hearingLossYear" id="hearingLossYear" class="form-control mt-2">
+                                    <select name="hearingLossYear" id="hearingLossYear"
+                                        class="form-control mt-2 txtfeild ">
                                         <option value="">Select Year</option>
                                         <option value="2020">2020</option>
                                         <option value="2021">2021</option>
@@ -243,8 +244,8 @@
                                 </div>
                                 <div id="hearingLossExplanationInput" class="col-12 mt-3 mb-2" style="display: none;">
                                     <label class="question-label">Explain</label>
-                                    <textarea  name="hearingLossExplanation" id="hearingLossExplanation" rows="4"
-                                        class="form-control mt-2"></textarea>
+                                    <textarea name="hearingLossExplanation" id="hearingLossExplanation" rows="4"
+                                        class="form-control mt-2 txtfeild "></textarea>
                                 </div>
                                 <div class="col-12 ">
                                     <div class="col-12">
@@ -277,7 +278,8 @@
                                     </div>
                                     <div id="hearingOtherYearInput" class="col-12 mt-2" style="display: none;">
                                         <label class="question-label">Indicate Year it Occurred</label>
-                                        <select name="hearingOtherYear" id="hearingOtherYear" class="form-control mt-2">
+                                        <select name="hearingOtherYear" id="hearingOtherYear"
+                                            class="form-control mt-2 txtfeild ">
                                             <option value="">Select Year</option>
                                             <option value="2020">2020</option>
                                             <option value="2021">2021</option>
@@ -287,8 +289,8 @@
                                     </div>
                                     <div id="hearingOtherExplanationInput" class="col-12 mt-3" style="display: none;">
                                         <label class="question-label">Explain</label>
-                                        <textarea  name="hearingOtherExplanation" id="hearingOtherExplanation" rows="4"
-                                            class="form-control mt-2"></textarea>
+                                        <textarea name="hearingOtherExplanation" id="hearingOtherExplanation" rows="4"
+                                            class="form-control mt-2 txtfeild "></textarea>
                                     </div>
                                 </div>
                                 <div>
@@ -328,7 +330,8 @@
                                     </div>
                                     <div id="migrainesYearInput" class="col-12 mt-2" style="display: none;">
                                         <label class="question-label">Indicate Year it Occurred</label>
-                                        <select name="migrainesYear" id="migrainesYear" class="form-control mt-2">
+                                        <select name="migrainesYear" id="migrainesYear"
+                                            class="form-control mt-2 txtfeild ">
                                             <option value="">Select Year</option>
                                             <option value="2020">2020</option>
                                             <option value="2021">2021</option>
@@ -338,8 +341,8 @@
                                     </div>
                                     <div id="migrainesExplanationInput" class="col-12 mt-3" style="display: none;">
                                         <label class="question-label">Explain</label>
-                                        <textarea  name="migrainesExplanation" id="migrainesExplanation" rows="4"
-                                            class="form-control mt-2"></textarea>
+                                        <textarea name="migrainesExplanation" id="migrainesExplanation" rows="4"
+                                            class="form-control mt-2 txtfeild "></textarea>
                                     </div>
                                     <div class="col-12 mt-3">
                                         <div class="col-12">
@@ -377,7 +380,8 @@
                                     </div>
                                     <div id="headachesYearInput" class="col-12 mt-2" style="display: none;">
                                         <label class="question-label">Indicate Year it Occurred</label>
-                                        <select name="headachesYear" id="headachesYear" class="form-control mt-2">
+                                        <select name="headachesYear" id="headachesYear"
+                                            class="form-control mt-2 txtfeild ">
                                             <option value="">Select Year</option>
                                             <option value="2020">2020</option>
                                             <option value="2021">2021</option>
@@ -387,8 +391,8 @@
                                     </div>
                                     <div id="headachesExplanationInput" class="col-12 mt-3" style="display: none;">
                                         <label class="question-label">Explain</label>
-                                        <textarea  name="headachesExplanation" id="headachesExplanation" rows="4"
-                                            class="form-control mt-2">
+                                        <textarea name="headachesExplanation" id="headachesExplanation" rows="4"
+                                            class="form-control mt-2 txtfeild ">
                                         </textarea>
                                     </div>
                                     <div class="col-12 mt-3">
@@ -421,7 +425,7 @@
                                     </div>
                                     <div id="tbiYearInput" class="col-12  mt-2" style="display: none;">
                                         <label class="question-label">Indicate Year it Occurred</label>
-                                        <select name="tbiYear" id="tbiYear" class="form-control mt-2">
+                                        <select name="tbiYear" id="tbiYear" class="form-control mt-2 txtfeild ">
                                             <option value="">Select Year</option>
                                             <option value="2020">2020</option>
                                             <option value="2021">2021</option>
@@ -431,7 +435,7 @@
                                     </div>
                                     <div id="tbiExplanationInput" class="col-12 mt-3" style="display: none;">
                                         <label class="question-label">Explain</label>
-                                        <textarea  name="tbiExplanation" id="tbiExplanation" rows="4"
+                                        <textarea name="tbiExplanation" id="tbiExplanation" rows="4"
                                             class="form-control"></textarea>
                                     </div>
                                 </div>
@@ -472,7 +476,7 @@
                                     </div>
                                     <div id="thyroidYearInput" class="col-12 mt-2" style="display: none;">
                                         <label class="question-label">Indicate Year it Occurred</label>
-                                        <select name="thyroidYear" id="thyroidYear" class="form-control mt-2">
+                                        <select name="thyroidYear" id="thyroidYear" class="form-control mt-2 txtfeild ">
                                             <option value="">Select Year</option>
                                             <option value="2020">2020</option>
                                             <option value="2021">2021</option>
@@ -482,8 +486,8 @@
                                     </div>
                                     <div id="thyroidExplanationInput" class="col-12 mt-3" style="display: none;">
                                         <label class="question-label">Explain</label>
-                                        <textarea  name="thyroidExplanation" id="thyroidExplanation" rows="4"
-                                            class="form-control mt-2"></textarea>
+                                        <textarea name="thyroidExplanation" id="thyroidExplanation" rows="4"
+                                            class="form-control mt-2 txtfeild "></textarea>
                                     </div>
                                 </div>
                                 <div>
@@ -526,7 +530,7 @@
                                     <div id="irregularHeartbeatYearInput" class="col-12 mt-2" style="display: none;">
                                         <label class="question-label">Indicate Year it Occurred</label>
                                         <select name="irregularHeartbeatYear" id="irregularHeartbeatYear"
-                                            class="form-control mt-2">
+                                            class="form-control mt-2 txtfeild ">
                                             <option value="">Select Year</option>
                                             <option value="2020">2020</option>
                                             <option value="2021">2021</option>
@@ -537,7 +541,7 @@
                                     <div id="irregularHeartbeatExplanationInput" class="col-12 mt-3"
                                         style="display: none;">
                                         <label class="question-label">Explain</label>
-                                        <textarea  name="irregularHeartbeatExplanation"
+                                        <textarea name="irregularHeartbeatExplanation"
                                             id="irregularHeartbeatExplanation" rows="4" class="form-control"></textarea>
                                     </div>
                                     <div class="col-12 mt-3">
@@ -569,7 +573,7 @@
                                     </div>
                                     <div id="highBpYearInput" class="col-12 mt-2" style="display: none;">
                                         <label class="question-label">Indicate Year it Occurred</label>
-                                        <select name="highBpYear" id="highBpYear" class="form-control mt-2">
+                                        <select name="highBpYear" id="highBpYear" class="form-control mt-2 txtfeild ">
                                             <option value="">Select Year</option>
                                             <option value="2020">2020</option>
                                             <option value="2021">2021</option>
@@ -579,8 +583,8 @@
                                     </div>
                                     <div id="highBpExplanationInput" class="col-12 mt-3" style="display: none;">
                                         <label class="question-label">Explain</label>
-                                        <textarea  name="highBpExplanation" id="highBpExplanation" rows="4"
-                                            class="form-control mt-2"></textarea>
+                                        <textarea name="highBpExplanation" id="highBpExplanation" rows="4"
+                                            class="form-control mt-2 txtfeild "></textarea>
                                     </div>
                                     <div class="col-12 mt-3">
                                         <div class="col-12">
@@ -613,7 +617,8 @@
                                     </div>
                                     <div id="heartDiseaseYearInput" class="col-12 mt-2" style="display: none;">
                                         <label class="question-label">Indicate Year it Occurred</label>
-                                        <select name="heartDiseaseYear" id="heartDiseaseYear" class="form-control mt-2">
+                                        <select name="heartDiseaseYear" id="heartDiseaseYear"
+                                            class="form-control mt-2 txtfeild ">
                                             <option value="">Select Year</option>
                                             <option value="2020">2020</option>
                                             <option value="2021">2021</option>
@@ -623,7 +628,7 @@
                                     </div>
                                     <div id="heartDiseaseExplanationInput" class="col-12 mt-3" style="display: none;">
                                         <label class="question-label">Explain</label>
-                                        <textarea  name="heartDiseaseExplanation" id="heartDiseaseExplanation" rows="4"
+                                        <textarea name="heartDiseaseExplanation" id="heartDiseaseExplanation" rows="4"
                                             class="form-control"></textarea>
                                     </div>
                                     <div class="col-12 mt-3">
@@ -658,7 +663,8 @@
                                     </div>
                                     <div id="heartFailureYearInput" class="col-12 mt-2" style="display: none;">
                                         <label class="question-label">Indicate Year it Occurred</label>
-                                        <select name="heartFailureYear" id="heartFailureYear" class="form-control mt-2">
+                                        <select name="heartFailureYear" id="heartFailureYear"
+                                            class="form-control mt-2 txtfeild ">
                                             <option value="">Select Year</option>
                                             <option value="2020">2020</option>
                                             <option value="2021">2021</option>
@@ -668,8 +674,8 @@
                                     </div>
                                     <div id="heartFailureExplanationInput" class="col-12 mt-3" style="display: none;">
                                         <label class="question-label">Explain</label>
-                                        <textarea  name="heartFailureExplanation" id="heartFailureExplanation" rows="4"
-                                            class="form-control mt-2"></textarea>
+                                        <textarea name="heartFailureExplanation" id="heartFailureExplanation" rows="4"
+                                            class="form-control mt-2 txtfeild "></textarea>
                                     </div>
                                 </div>
 
@@ -731,7 +737,7 @@
 
                     <div id="asthmaYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="asthmaYear" id="asthmaYear" class="form-control mt-2">
+                        <select name="asthmaYear" id="asthmaYear" class="form-control mt-2 txtfeild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -741,7 +747,8 @@
                     </div>
                     <div id="asthmaExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea  name="asthmaExplanation" id="asthmaExplanation" rows="4" class="form-control mt-2">
+                        <textarea name="asthmaExplanation" id="asthmaExplanation" rows="4"
+                            class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
                 </div>
@@ -777,7 +784,7 @@
 
                     <div id="copdYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="copdYear" id="copdYear" class="form-control mt-2">
+                        <select name="copdYear" id="copdYear" class="form-control mt-2 txtfeild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -787,7 +794,8 @@
                     </div>
                     <div id="copdExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea  name="copdExplanation" id="copdExplanation" rows="4" class="form-control mt-2">
+                        <textarea name="copdExplanation" id="copdExplanation" rows="4"
+                            class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
                 </div>
@@ -823,7 +831,7 @@
 
                     <div id="tuberYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="tuberYear" id="tuberYear" class="form-control mt-2">
+                        <select name="tuberYear" id="tuberYear" class="form-control mt-2 txtfeild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -833,8 +841,8 @@
                     </div>
                     <div id="tuberExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea  name="tuberExplanation" id="tuberExplanation" rows="4"
-                            class="form-control mt-2"></textarea>
+                        <textarea name="tuberExplanation" id="tuberExplanation" rows="4"
+                            class="form-control mt-2 txtfeild "></textarea>
                     </div>
                 </div>
             </div>
@@ -880,7 +888,7 @@
 
                     <div id="kneeYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="kneeYear" id="kneeYear" class="form-control mt-2">
+                        <select name="kneeYear" id="kneeYear" class="form-control mt-2 txtfeild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -890,7 +898,8 @@
                     </div>
                     <div id="kneeExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea  name="kneeExplanation" id="kneeExplanation" rows="4" class="form-control mt-2">
+                        <textarea name="kneeExplanation" id="kneeExplanation" rows="4"
+                            class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
                 </div>
@@ -926,7 +935,7 @@
 
                     <div id="shoulderYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="shoulderYear" id="shoulderYear" class="form-control mt-2">
+                        <select name="shoulderYear" id="shoulderYear" class="form-control mt-2 txtfeild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -936,8 +945,8 @@
                     </div>
                     <div id="shoulderExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea  name="shoulderExplanation" id="shoulderExplanation" rows="4"
-                            class="form-control mt-2">
+                        <textarea name="shoulderExplanation" id="shoulderExplanation" rows="4"
+                            class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
                 </div>
@@ -973,7 +982,7 @@
 
                     <div id="elbowYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="elbowYear" id="elbowYear" class="form-control mt-2">
+                        <select name="elbowYear" id="elbowYear" class="form-control mt-2 txtfeild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -983,8 +992,8 @@
                     </div>
                     <div id="elbowExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea  name="elbowExplanation" id="elbowExplanation" rows="4"
-                            class="form-control mt-2"></textarea>
+                        <textarea name="elbowExplanation" id="elbowExplanation" rows="4"
+                            class="form-control mt-2 txtfeild "></textarea>
                     </div>
                 </div>
 
@@ -1018,7 +1027,7 @@
 
                     <div id="spineYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="spineYear" id="spineYear" class="form-control mt-2">
+                        <select name="spineYear" id="spineYear" class="form-control mt-2 txtfeild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1028,8 +1037,8 @@
                     </div>
                     <div id="spineExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea  name="spineExplanation" id="spineExplanation" rows="4"
-                            class="form-control mt-2"></textarea>
+                        <textarea name="spineExplanation" id="spineExplanation" rows="4"
+                            class="form-control mt-2 txtfeild "></textarea>
                     </div>
                 </div>
 
@@ -1064,7 +1073,7 @@
 
                     <div id="wristYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="wristYear" id="wristYear" class="form-control mt-2">
+                        <select name="wristYear" id="wristYear" class="form-control mt-2 txtfeild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1074,8 +1083,8 @@
                     </div>
                     <div id="wristExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea  name="wristExplanation" id="wristExplanation" rows="4"
-                            class="form-control mt-2"></textarea>
+                        <textarea name="wristExplanation" id="wristExplanation" rows="4"
+                            class="form-control mt-2 txtfeild "></textarea>
                     </div>
                 </div>
 
@@ -1109,7 +1118,7 @@
 
                     <div id="arthritisYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="arthritisYear" id="arthritisYear" class="form-control mt-2">
+                        <select name="arthritisYear" id="arthritisYear" class="form-control mt-2 txtfeild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1119,8 +1128,8 @@
                     </div>
                     <div id="arthritisExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea  name="arthritisExplanation" id="arthritisExplanation" rows="4"
-                            class="form-control mt-2"></textarea>
+                        <textarea name="arthritisExplanation" id="arthritisExplanation" rows="4"
+                            class="form-control mt-2 txtfeild "></textarea>
                     </div>
                 </div>
 
@@ -1160,7 +1169,7 @@
 
                     <div id="anemiaYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="anemiaYear" id="anemiaYear" class="form-control mt-2">
+                        <select name="anemiaYear" id="anemiaYear" class="form-control mt-2 txtfeild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1170,7 +1179,8 @@
                     </div>
                     <div id="anemiaExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea  name="anemiaExplanation" id="anemiaExplanation" rows="4" class="form-control mt-2">
+                        <textarea name="anemiaExplanation" id="anemiaExplanation" rows="4"
+                            class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
                 </div>
@@ -1206,7 +1216,7 @@
 
                     <div id="sickleYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="sickleYear" id="sickleYear" class="form-control mt-2">
+                        <select name="sickleYear" id="sickleYear" class="form-control mt-2 txtfeild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1216,7 +1226,8 @@
                     </div>
                     <div id="sickleExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea  name="sickleExplanation" id="sickleExplanation" rows="4" class="form-control mt-2">
+                        <textarea name="sickleExplanation" id="sickleExplanation" rows="4"
+                            class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
                 </div>
@@ -1232,8 +1243,8 @@
 
 
                         <div class="form-check" d-flex align-items-end>
-                            <input class="form-check-input" type="checkbox" value="no" id="otherBloodNo" name="otherBlood"
-                                onchange="updateProgress('form1')">
+                            <input class="form-check-input" type="checkbox" value="no" id="otherBloodNo"
+                                name="otherBlood" onchange="updateProgress('form1')">
 
                             <label class="form-check-label label ms-4" for="otherBloodNo">
                                 No
@@ -1241,8 +1252,8 @@
                         </div>
 
                         <div class="form-check mt-2">
-                            <input class="form-check-input" type="checkbox" value="yes" id="otherBloodYes" name="otherBlood"
-                                onchange="updateProgress('form1')">
+                            <input class="form-check-input" type="checkbox" value="yes" id="otherBloodYes"
+                                name="otherBlood" onchange="updateProgress('form1')">
 
                             <label class="form-check-label ms-4" for="otherBloodYes">
                                 Yes
@@ -1252,7 +1263,7 @@
 
                     <div id="otherBloodYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="otherBloodYear" id="otherBloodYear" class="form-control mt-2">
+                        <select name="otherBloodYear" id="otherBloodYear" class="form-control mt-2 txtfeild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1262,8 +1273,8 @@
                     </div>
                     <div id="otherBloodExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea  name="otherBloodExplanation" id="otherBloodExplanation" rows="4"
-                            class="form-control mt-2"></textarea>
+                        <textarea name="otherBloodExplanation" id="otherBloodExplanation" rows="4"
+                            class="form-control mt-2 txtfeild "></textarea>
                     </div>
                 </div>
             </div>
@@ -1303,7 +1314,7 @@
 
                     <div id="diabetesYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="diabetesYear" id="diabetesYear" class="form-control mt-2">
+                        <select name="diabetesYear" id="diabetesYear" class="form-control mt-2 txtfeild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1313,7 +1324,8 @@
                     </div>
                     <div id="diabetesExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea  name="diabetesExplanation" id="diabetesExplanation" rows="4" class="form-control mt-2">
+                        <textarea name="diabetesExplanation" id="diabetesExplanation" rows="4"
+                            class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
                 </div>
@@ -1354,7 +1366,7 @@
 
                     <div id="seizureYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="seizureYear" id="seizureYear" class="form-control mt-2">
+                        <select name="seizureYear" id="seizureYear" class="form-control mt-2 txtfeild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1364,7 +1376,8 @@
                     </div>
                     <div id="seizureExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea  name="seizureExplanation" id="seizureExplanation" rows="4" class="form-control mt-2">
+                        <textarea name="seizureExplanation" id="seizureExplanation" rows="4"
+                            class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
                 </div>
@@ -1405,7 +1418,7 @@
 
                     <div id="faintingYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="faintingYear" id="faintingYear" class="form-control mt-2">
+                        <select name="faintingYear" id="faintingYear" class="form-control mt-2 txtfeild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1415,7 +1428,8 @@
                     </div>
                     <div id="faintingExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea  name="faintingExplanation" id="faintingExplanation" rows="4" class="form-control mt-2">
+                        <textarea name="faintingExplanation" id="faintingExplanation" rows="4"
+                            class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
                 </div>
@@ -1438,8 +1452,8 @@
 
 
                         <div class="form-check" d-flex align-items-end>
-                            <input class="form-check-input" type="checkbox" value="no" id="depressionNo" name="depression"
-                                onchange="updateProgress('form1')">
+                            <input class="form-check-input" type="checkbox" value="no" id="depressionNo"
+                                name="depression" onchange="updateProgress('form1')">
 
                             <label class="form-check-label label ms-4" for="depressionNo">
                                 No
@@ -1447,8 +1461,8 @@
                         </div>
 
                         <div class="form-check mt-2">
-                            <input class="form-check-input" type="checkbox" value="yes" id="depressionYes" name="depression"
-                                onchange="updateProgress('form1')">
+                            <input class="form-check-input" type="checkbox" value="yes" id="depressionYes"
+                                name="depression" onchange="updateProgress('form1')">
 
                             <label class="form-check-label ms-4" for="depressionYes">
                                 Yes
@@ -1458,7 +1472,7 @@
 
                     <div id="depressionYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="depressionYear" id="depressionYear" class="form-control mt-2">
+                        <select name="depressionYear" id="depressionYear" class="form-control mt-2 txtfeild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1468,7 +1482,8 @@
                     </div>
                     <div id="depressionExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea  name="depressionExplanation" id="depressionExplanation" rows="4" class="form-control mt-2">
+                        <textarea name="depressionExplanation" id="depressionExplanation" rows="4"
+                            class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
                 </div>
@@ -1504,7 +1519,7 @@
 
                     <div id="anxietyYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="anxietyYear" id="anxietyYear" class="form-control mt-2">
+                        <select name="anxietyYear" id="anxietyYear" class="form-control mt-2 txtfeild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1514,8 +1529,8 @@
                     </div>
                     <div id="anxietyExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea  name="anxietyExplanation" id="anxietyExplanation" rows="4"
-                            class="form-control mt-2">
+                        <textarea name="anxietyExplanation" id="anxietyExplanation" rows="4"
+                            class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
                 </div>
@@ -1551,7 +1566,7 @@
 
                     <div id="bipolarYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="bipolarYear" id="bipolarYear" class="form-control mt-2">
+                        <select name="bipolarYear" id="bipolarYear" class="form-control mt-2 txtfeild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1561,8 +1576,8 @@
                     </div>
                     <div id="bipolarExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea  name="bipolarExplanation" id="bipolarExplanation" rows="4"
-                            class="form-control mt-2"></textarea>
+                        <textarea name="bipolarExplanation" id="bipolarExplanation" rows="4"
+                            class="form-control mt-2 txtfeild "></textarea>
                     </div>
                 </div>
 
@@ -1585,8 +1600,8 @@
                         </div>
 
                         <div class="form-check mt-2">
-                            <input class="form-check-input" type="checkbox" value="yes" id="substanceYes" name="substance"
-                                onchange="updateProgress('form1')">
+                            <input class="form-check-input" type="checkbox" value="yes" id="substanceYes"
+                                name="substance" onchange="updateProgress('form1')">
 
                             <label class="form-check-label ms-4" for="substanceYes">
                                 Yes
@@ -1596,7 +1611,7 @@
 
                     <div id="substanceYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="substanceYear" id="substanceYear" class="form-control mt-2">
+                        <select name="substanceYear" id="substanceYear" class="form-control mt-2 txtfeild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1606,31 +1621,815 @@
                     </div>
                     <div id="substanceExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea  name="substanceExplanation" id="substanceExplanation" rows="4"
-                            class="form-control mt-2"></textarea>
+                        <textarea name="substanceExplanation" id="substanceExplanation" rows="4"
+                            class="form-control mt-2 txtfeild "></textarea>
                     </div>
                 </div>
             </div>
 
 
-
-
             <div class="button-row">
                 <button onclick="previousPage(2)" style="background: none;">Back</button>
-                <button class="submit-btn">Submit</button>
+                <button onclick="nextPage(4)">Next</button>
             </div>
+
+            <!-- <div class="button-row">
+                <button onclick="previousPage(2)" style="background: none;">Back</button>
+                <button class="submit-btn">Submit</button>
+            </div> -->
 
 
         </div>
+
+        <div id="form1-page4" class="form-page" style="display: none;">
+            <div>
+                <h3>
+                    <p>Do you have or have you ever had any disease, injury, disorder, or surgery of the following?
+                    </p>
+                </h3>
+            </div>
+
+            <div>
+
+                <div style="margin-top: 20px;">
+                    <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Gastrointestinal</h3>
+                </div>
+                <div>
+                    <div class="col-12">
+                        <div class="col-12">
+                            <label class="question-label">Crohn's Disease</label>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex flex-column mt-2">
+
+
+                        <div class="form-check" d-flex align-items-end>
+                            <input class="form-check-input" type="checkbox" value="no" id="crohnNo" name="crohn"
+                                onchange="updateProgress('form1')">
+
+                            <label class="form-check-label label ms-4" for="crohnNo">
+                                No
+                            </label>
+                        </div>
+
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="checkbox" value="yes" id="crohnYes" name="crohn"
+                                onchange="updateProgress('form1')">
+
+                            <label class="form-check-label ms-4" for="crohnYes">
+                                Yes
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="crohnYearInput" class="col-12 mt-2" style="display: none;">
+                        <label class="question-label">Indicate Year it Occurred</label>
+                        <select name="crohnYear" id="crohnYear" class="form-control mt-2 txtfeild ">
+                            <option value="">Select Year</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                        </select>
+                    </div>
+                    <div id="crohnExplanationInput" class="col-12 mt-3" style="display: none;">
+                        <label class="question-label">Explain</label>
+                        <textarea name="crohnExplanation" id="crohnExplanation" rows="4"
+                            class="form-control mt-2 txtfeild ">
+                    </textarea>
+                    </div>
+                </div>
+
+
+                <div class="mt-3">
+                    <div class="col-12">
+                        <div class="col-12">
+                            <label class="question-label">Ulcerative Colitis</label>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex flex-column mt-2">
+
+                        <div class="form-check" d-flex align-items-end>
+                            <input class="form-check-input" type="checkbox" value="no" id="colitisNo" name="colitis"
+                                onchange="updateProgress('form1')">
+
+                            <label class="form-check-label label ms-4" for="colitisNo">
+                                No
+                            </label>
+                        </div>
+
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="checkbox" value="yes" id="colitisYes" name="colitis"
+                                onchange="updateProgress('form1')">
+
+                            <label class="form-check-label ms-4" for="colitisYes">
+                                Yes
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="colitisYearInput" class="col-12 mt-2" style="display: none;">
+                        <label class="question-label">Indicate Year it Occurred</label>
+                        <select name="colitisYear" id="colitisYear" class="form-control mt-2 txtfeild ">
+                            <option value="">Select Year</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                        </select>
+                    </div>
+                    <div id="colitisExplanationInput" class="col-12 mt-3" style="display: none;">
+                        <label class="question-label">Explain</label>
+                        <textarea name="colitisExplanation" id="colitisExplanation" rows="4"
+                            class="form-control mt-2 txtfeild ">
+                    </textarea>
+                    </div>
+                </div>
+
+
+                <div class="mt-3">
+                    <div class="col-12">
+                        <div class="col-12">
+                            <label class="question-label">Hepatitis</label>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex flex-column mt-2">
+
+
+                        <div class="form-check" d-flex align-items-end>
+                            <input class="form-check-input" type="checkbox" value="no" id="hepatisNo" name="hepatis"
+                                onchange="updateProgress('form1')">
+
+                            <label class="form-check-label label ms-4" for="hepatisNo">
+                                No
+                            </label>
+                        </div>
+
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="checkbox" value="yes" id="hepatisYes" name="hepatis"
+                                onchange="updateProgress('form1')">
+
+                            <label class="form-check-label ms-4" for="hepatisYes">
+                                Yes
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="hepatisYearInput" class="col-12 mt-2" style="display: none;">
+                        <label class="question-label">Indicate Year it Occurred</label>
+                        <select name="hepatisYear" id="hepatisYear" class="form-control mt-2 txtfeild ">
+                            <option value="">Select Year</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                        </select>
+                    </div>
+                    <div id="hepatisExplanationInput" class="col-12 mt-3" style="display: none;">
+                        <label class="question-label">Explain</label>
+                        <textarea name="hepatisExplanation" id="hepatisExplanation" rows="4"
+                            class="form-control mt-2 txtfeild ">
+                        </textarea>
+                    </div>
+                </div>
+
+                <div class="mt-3">
+                    <div class="col-12">
+                        <div class="col-12">
+                            <label class="question-label">Cirrhosis</label>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex flex-column mt-2">
+
+
+                        <div class="form-check" d-flex align-items-end>
+                            <input class="form-check-input" type="checkbox" value="no" id="cirrhosisNo" name="cirrhosis"
+                                onchange="updateProgress('form1')">
+
+                            <label class="form-check-label label ms-4" for="cirrhosisNo">
+                                No
+                            </label>
+                        </div>
+
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="checkbox" value="yes" id="cirrhosisYes"
+                                name="cirrhosis" onchange="updateProgress('form1')">
+
+                            <label class="form-check-label ms-4" for="cirrhosisYes">
+                                Yes
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="cirrhosisYearInput" class="col-12 mt-2" style="display: none;">
+                        <label class="question-label">Indicate Year it Occurred</label>
+                        <select name="cirrhosisYear" id="cirrhosisYear" class="form-control mt-2 txtfeild ">
+                            <option value="">Select Year</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                        </select>
+                    </div>
+                    <div id="cirrhosisExplanationInput" class="col-12 mt-3" style="display: none;">
+                        <label class="question-label">Explain</label>
+                        <textarea name="cirrhosisExplanation" id="cirrhosisExplanation" rows="4"
+                            class="form-control mt-2 txtfeild ">
+                        </textarea>
+                    </div>
+                </div>
+
+                <div>
+                    <div style="margin-top: 20px;">
+                        <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Kidney</h3>
+                    </div>
+                    <div>
+                        <div class="col-12">
+                            <div class="col-12">
+                                <label class="question-label">Kidney</label>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex flex-column mt-2">
+
+
+                            <div class="form-check" d-flex align-items-end>
+                                <input class="form-check-input" type="checkbox" value="no" id="kidneyNo" name="kidney"
+                                    onchange="updateProgress('form1')">
+
+                                <label class="form-check-label label ms-4" for="kidneyNo">
+                                    No
+                                </label>
+                            </div>
+
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" value="yes" id="kidneyYes" name="kidney"
+                                    onchange="updateProgress('form1')">
+
+                                <label class="form-check-label ms-4" for="kidneyYes">
+                                    Yes
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="kidneyYearInput" class="col-12 mt-2" style="display: none;">
+                            <label class="question-label">Indicate Year it Occurred</label>
+                            <select name="kidneyYear" id="kidneyYear" class="form-control mt-2 txtfeild ">
+                                <option value="">Select Year</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                            </select>
+                        </div>
+                        <div id="kidneyExplanationInput" class="col-12 mt-3" style="display: none;">
+                            <label class="question-label">Explain</label>
+                            <textarea name="kidneyExplanation" id="kidneyExplanation" rows="4"
+                                class="form-control mt-2 txtfeild ">
+                        </textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div>
+                    <div style="margin-top: 20px;">
+                        <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Skin</h3>
+                    </div>
+                    <div>
+                        <div class="col-12">
+                            <div class="col-12">
+                                <label class="question-label">Skin</label>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex flex-column mt-2">
+
+
+                            <div class="form-check" d-flex align-items-end>
+                                <input class="form-check-input" type="checkbox" value="no" id="skinNo" name="skin"
+                                    onchange="updateProgress('form1')">
+
+                                <label class="form-check-label label ms-4" for="skinNo">
+                                    No
+                                </label>
+                            </div>
+
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" value="yes" id="skinYes" name="skin"
+                                    onchange="updateProgress('form1')">
+
+                                <label class="form-check-label ms-4" for="skinYes">
+                                    Yes
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="skinYearInput" class="col-12 mt-2" style="display: none;">
+                            <label class="question-label">Indicate Year it Occurred</label>
+                            <select name="skinYear" id="skinYear" class="form-control mt-2 txtfeild ">
+                                <option value="">Select Year</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                            </select>
+                        </div>
+                        <div id="skinExplanationInput" class="col-12 mt-3" style="display: none;">
+                            <label class="question-label">Explain</label>
+                            <textarea name="skinExplanation" id="skinExplanation" rows="4"
+                                class="form-control mt-2 txtfeild ">
+                        </textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div>
+                    <div style="margin-top: 20px;">
+                        <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Allergies</h3>
+                    </div>
+                    <div>
+                        <div class="col-12">
+                            <div class="col-12">
+                                <label class="question-label">Drug Allergies</label>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex flex-column mt-2">
+
+
+                            <div class="form-check" d-flex align-items-end>
+                                <input class="form-check-input" type="checkbox" value="no" id="drugNo" name="drug"
+                                    onchange="updateProgress('form1')">
+
+                                <label class="form-check-label label ms-4" for="drugNo">
+                                    No
+                                </label>
+                            </div>
+
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" value="yes" id="drugYes" name="drug"
+                                    onchange="updateProgress('form1')">
+
+                                <label class="form-check-label ms-4" for="drugYes">
+                                    Yes
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="drugYearInput" class="col-12 mt-2" style="display: none;">
+                            <label class="question-label">Indicate Year it Occurred</label>
+                            <select name="drugYear" id="drugYear" class="form-control mt-2 txtfeild ">
+                                <option value="">Select Year</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                            </select>
+                        </div>
+                        <div id="drugExplanationInput" class="col-12 mt-3" style="display: none;">
+                            <label class="question-label">Explain</label>
+                            <textarea name="drugExplanation" id="drugExplanation" rows="4"
+                                class="form-control mt-2 txtfeild ">
+                        </textarea>
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <div class="col-12">
+                            <div class="col-12">
+                                <label class="question-label">Other</label>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex flex-column mt-2">
+
+
+                            <div class="form-check" d-flex align-items-end>
+                                <input class="form-check-input" type="checkbox" value="no" id="otherAlergyNo"
+                                    name="otherAlergy" onchange="updateProgress('form1')">
+
+                                <label class="form-check-label label ms-4" for="otherAlergyNo">
+                                    No
+                                </label>
+                            </div>
+
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" value="yes" id="otherAlergyYes"
+                                    name="otherAlergy" onchange="updateProgress('form1')">
+
+                                <label class="form-check-label ms-4" for="otherAlergyYes">
+                                    Yes
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="otherAlergyYearInput" class="col-12 mt-2" style="display: none;">
+                            <label class="question-label">Indicate Year it Occurred</label>
+                            <select name="otherAlergyYear" id="otherAlergyYear" class="form-control mt-2 txtfeild ">
+                                <option value="">Select Year</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                            </select>
+                        </div>
+                        <div id="otherAlergyExplanationInput" class="col-12 mt-3" style="display: none;">
+                            <label class="question-label">Explain</label>
+                            <textarea name="otherAlergyExplanation" id="otherAlergyExplanation" rows="4"
+                                class="form-control mt-2 txtfeild ">
+                        </textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div style="margin-top: 20px;">
+                        <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Other Health
+                            Conditions Not Listed</h3>
+                    </div>
+                    <div>
+                        <div class="col-12">
+                            <div class="col-12">
+                                <label class="question-label">Other Health Conditions</label>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex flex-column mt-2">
+
+
+                            <div class="form-check" d-flex align-items-end>
+                                <input class="form-check-input" type="checkbox" value="no" id="otherHealthNo"
+                                    name="otherHealth" onchange="updateProgress('form1')">
+
+                                <label class="form-check-label label ms-4" for="otherHealthNo">
+                                    No
+                                </label>
+                            </div>
+
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" value="yes" id="otherHealthYes"
+                                    name="otherHealth" onchange="updateProgress('form1')">
+
+                                <label class="form-check-label ms-4" for="otherHealthYes">
+                                    Yes
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="otherHealthYearInput" class="col-12 mt-2" style="display: none;">
+                            <label class="question-label">Indicate Year it Occurred</label>
+                            <select name="otherHealthYear" id="otherHealthYear" class="form-control mt-2 txtfeild ">
+                                <option value="">Select Year</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                            </select>
+                        </div>
+                        <div id="otherHealthExplanationInput" class="col-12 mt-3" style="display: none;">
+                            <label class="question-label">Explain</label>
+                            <textarea name="otherHealthExplanation" id="otherHealthExplanation" rows="4"
+                                class="form-control mt-2 txtfeild ">
+                        </textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div>
+                    <div style="margin-top: 20px;">
+                        <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">When was your last
+                        </h3>
+                    </div>
+                    <div>
+                        <div class="col-12">
+                            <div class="col-12">
+                                <label class="question-label">Tetanus Immunization</label>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex flex-column mt-2">
+
+
+                            <div class="form-check" d-flex align-items-end>
+                                <input class="form-check-input" type="checkbox" value="no" id="tetanusNo" name="tetanus"
+                                    onchange="updateProgress('form1')">
+
+                                <label class="form-check-label label ms-4" for="tetanusNo">
+                                    No
+                                </label>
+                            </div>
+
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" value="yes" id="tetanusYes"
+                                    name="tetanus" onchange="updateProgress('form1')">
+
+                                <label class="form-check-label ms-4" for="tetanusYes">
+                                    Yes
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="tetanusYearInput" class="col-12 mt-2" style="display: none;">
+                            <label class="question-label">Indicate Year it Occurred</label>
+                            <select name="tetanusYear" id="tetanusYear" class="form-control mt-2 txtfeild ">
+                                <option value="">Select Year</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                            </select>
+                        </div>
+                        <div id="tetanusExplanationInput" class="col-12 mt-3" style="display: none;">
+                            <label class="question-label">Explain</label>
+                            <textarea name="tetanusExplanation" id="tetanusExplanation" rows="4"
+                                class="form-control mt-2 txtfeild "></textarea>
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <div class="col-12">
+                            <div class="col-12">
+                                <label class="question-label">Hepatits Immunization (3-shot series)</label>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex flex-column mt-2">
+
+
+                            <div class="form-check" d-flex align-items-end>
+                                <input class="form-check-input" type="checkbox" value="no" id="hepImmuneNo"
+                                    name="hepImmune" onchange="updateProgress('form1')">
+
+                                <label class="form-check-label label ms-4" for="hepImmuneNo">
+                                    No
+                                </label>
+                            </div>
+
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" value="yes" id="hepImmuneYes"
+                                    name="hepImmune" onchange="updateProgress('form1')">
+
+                                <label class="form-check-label ms-4" for="hepImmuneYes">
+                                    Yes
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="hepImmuneYearInput" class="col-12 mt-2" style="display: none;">
+                            <label class="question-label">Indicate Year it Occurred</label>
+                            <select name="hepImmuneYear" id="hepImmuneYear" class="form-control mt-2 txtfeild ">
+                                <option value="">Select Year</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                            </select>
+                        </div>
+                        <div id="hepImmuneExplanationInput" class="col-12 mt-3" style="display: none;">
+                            <label class="question-label">Explain</label>
+                            <textarea name="hepImmuneExplanation" id="hepImmuneExplanation" rows="4"
+                                class="form-control mt-2 txtfeild ">
+                        </textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+
+                    <div style="margin-top: 20px;">
+                        <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Check the
+                            Appropriate Box
+                        </h3>
+                    </div>
+                    <div class="mt-2">
+                        <div class="col-12">
+                            <div class="col-12">
+                                <label class="question-label">Have you ever recieved or now recieving any compensation
+                                    for a medical disability ?</label>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex flex-column mt-2">
+
+
+                            <div class="form-check" d-flex align-items-end>
+                                <input class="form-check-input" type="checkbox" value="no" id="disabilityNo"
+                                    name="disability" onchange="updateProgress('form1')">
+
+                                <label class="form-check-label label ms-4" for="disabilityNo">
+                                    No
+                                </label>
+                            </div>
+
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" value="yes" id="disabilityYes"
+                                    name="disability" onchange="updateProgress('form1')">
+
+                                <label class="form-check-label ms-4" for="disabilityYes">
+                                    Yes
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="disabilityYearInput" class="col-12 mt-2" style="display: none;">
+                            <label class="question-label">Indicate Year it Occurred</label>
+                            <select name="disabilityYear" id="disabilityYear" class="form-control mt-2 txtfeild ">
+                                <option value="">Select Year</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                            </select>
+                        </div>
+                        <div id="disabilityExplanationInput" class="col-12 mt-3" style="display: none;">
+                            <label class="question-label">Explain</label>
+                            <textarea name="disabilityExplanation" id="disabilityExplanation" rows="4"
+                                class="form-control mt-2 txtfeild "></textarea>
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <div class="col-12">
+                            <div class="col-12">
+                                <label class="question-label">Have you ever been declined employment, military service,
+                                    or life insurance due to medical reasons?</label>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex flex-column mt-2">
+
+
+                            <div class="form-check" d-flex align-items-end>
+                                <input class="form-check-input" type="checkbox" value="no" id="declineNo" name="decline"
+                                    onchange="updateProgress('form1')">
+
+                                <label class="form-check-label label ms-4" for="declineNo">
+                                    No
+                                </label>
+                            </div>
+
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" value="yes" id="declineYes"
+                                    name="decline" onchange="updateProgress('form1')">
+
+                                <label class="form-check-label ms-4" for="declineYes">
+                                    Yes
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="declineYearInput" class="col-12 mt-2" style="display: none;">
+                            <label class="question-label">Indicate Year it Occurred</label>
+                            <select name="declineYear" id="declineYear" class="form-control mt-2 txtfeild ">
+                                <option value="">Select Year</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                            </select>
+                        </div>
+                        <div id="declineExplanationInput" class="col-12 mt-3" style="display: none;">
+                            <label class="question-label">Explain</label>
+                            <textarea name="declineExplanation" id="declineExplanation" rows="4"
+                                class="form-control mt-2 txtfeild ">
+                            </textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="mt-3">
+                        <div class="col-12">
+                            <div class="col-12">
+                                <label class="question-label">Have your job duties ever been restricted or limited for
+                                    health reasons?</label>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex flex-column mt-2">
+
+
+                            <div class="form-check" d-flex align-items-end>
+                                <input class="form-check-input" type="checkbox" value="no" id="restrictNo"
+                                    name="restrict" onchange="updateProgress('form1')">
+
+                                <label class="form-check-label label ms-4" for="restrictNo">
+                                    No
+                                </label>
+                            </div>
+
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" value="yes" id="restrictYes"
+                                    name="restrict" onchange="updateProgress('form1')">
+
+                                <label class="form-check-label ms-4" for="restrictYes">
+                                    Yes
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="restrictYearInput" class="col-12 mt-2" style="display: none;">
+                            <label class="question-label">Indicate Year it Occurred</label>
+                            <select name="restrictYear" id="restrictYear" class="form-control mt-2 txtfeild ">
+                                <option value="">Select Year</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                            </select>
+                        </div>
+                        <div id="restrictExplanationInput" class="col-12 mt-3" style="display: none;">
+                            <label class="question-label">Explain</label>
+                            <textarea name="restrictExplanation" id="restrictExplanation" rows="4"
+                                class="form-control mt-2 txtfeild ">
+                            </textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="mt-3">
+                        <div class="col-12">
+                            <div class="col-12">
+                                <label class="question-label">Have you ever had any serious health effects related to
+                                    your workplace and/or job duties ?</label>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex flex-column mt-2">
+
+
+                            <div class="form-check" d-flex align-items-end>
+                                <input class="form-check-input" type="checkbox" value="no" id="dutiesNo" name="restrict"
+                                    onchange="updateProgress('form1')">
+
+                                <label class="form-check-label label ms-4" for="dutiesNo">
+                                    No
+                                </label>
+                            </div>
+
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" value="yes" id="dutiesYes"
+                                    name="restrict" onchange="updateProgress('form1')">
+
+                                <label class="form-check-label ms-4" for="dutiesYes">
+                                    Yes
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="dutiesYearInput" class="col-12 mt-2" style="display: none;">
+                            <label class="question-label">Indicate Year it Occurred</label>
+                            <select name="dutiesYear" id="dutiesYear" class="form-control mt-2 txtfeild ">
+                                <option value="">Select Year</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                            </select>
+                        </div>
+                        <div id="dutiesExplanationInput" class="col-12 mt-3" style="display: none;">
+                            <label class="question-label">Explain</label>
+                            <textarea name="dutiesExplanation" id="dutiesExplanation" rows="4"
+                                class="form-control mt-2 txtfeild ">
+                            </textarea>
+                        </div>
+
+                    </div>
+
+                    <div id="currentMedications" class="col-12 mt-3">
+                        <label class="question-label">Please list all prescription medications you are currently
+                            taking</label>
+                        <textarea name="medicationsList" id="medicationsList" rows="4"
+                            class="form-control mt-2 txtfeild meditxt"> I do not take any prescription medications </textarea>
+                    </div>
+
+                    <div class="form-check mt-3" d-flex align-items-end>
+                        <input class="form-check-input mt-1" type="checkbox" value="no" id="certify"
+                            name="certification" onchange="updateProgress('form1')">
+
+                        <label class="form-check-label label ms-2" for="certify">
+                            I certify that the answers and statements in this Health Evalution Questionnaire are true
+                            and complete.I understand that evidence of omission or falsification of information may
+                            result in my disqualification for or termination of employment.
+                        </label>
+                    </div>
+
+                    <div class="form-row mt-3">
+                        <div class="d-flex flex-column">
+                            <label>Date of Application</label>
+                            <input required class="appDate" type="date" id="doa" name="doa"
+                                onchange="convertDateToFormat('doa')">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="signatureBox">Applicant Signature</label>
+                        <canvas id="signatureBox" width="400" height="200" style="border: 1px solid #ccc;"></canvas>
+                        <br>
+                        <p id="clearButton" type="text" class="clearSign">Clear Signature</p>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="button-row">
+                <button onclick="previousPage(3)" style="background: none;">Back</button>
+                <button class="submit-btn">Submit</button>
+            </div>
+        </div>
     </div>
-
-
-
-
-
-
-
-    <!--  -->
-</div>
 </div>
 </div>

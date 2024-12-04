@@ -1,3 +1,11 @@
+.heading{
+    color:white !important;
+}
+.formtext{
+    color:white !important;
+}
+
+
 .form-container {
     width: 100%;
    
@@ -11,8 +19,8 @@
 
 .form-card {
     background-color: #1d4f91 !important;
-    width: 70%;
-    max-width: 70% !important;
+    width: 73%;
+    max-width: 73% !important;
     color: inherit;
     padding: 30px;
     border-radius: 8px;
@@ -24,7 +32,9 @@
     max-width: 100%;
 }
 
-
+.meditxt{
+    color:white !important;
+}
 
 .form-row {
     display: flex;
@@ -66,6 +76,7 @@ input {
 
 input:focus {
     border-bottom: 2px solid #66b2ff !important;
+    box-shadow: none !important;
     outline: none;
 }
 
@@ -264,38 +275,126 @@ input {
     transition: border-bottom 0.3s ease;
 }
 
-input:focus {
+/* input:focus {
     border-bottom: 2px solid #66b2ff !important;
     outline: none;
-}
+} */
 
-select {
+/* select {
     width: 30% !important;
     padding: 5px 0;
     background-color: #4A72A7 !important; 
     border: none;
     border-bottom: 2px solid white !important;
-    color: inherit;
+    color: white !important;
     font-size: 14px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
 select:focus {
-    background-color: #66b2ff !important;
+  
     border-bottom: 2px solid #66b2ff !important;
-    outline: none;
+    outline: none !important;
+} */
+
+/* select {
+    width: 35% !important;
+    color: white !important;
+    padding: 5px;
+    padding-right: 5px !important;
+    background-color: #4A72A7;
+    color: white;
+    border: none !important;
+    border-bottom: 2px solid white !important;
+    border-radius: 5px;
+    font-size: 14px;
+    appearance: auto !important;       
+    -webkit-appearance: auto !important;
+   
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+} */
+
+select {
+    width: 35% !important;
+    color: white !important;
+    padding: 5px;
+    padding-right: 25px !important; /* Increase the padding to give space for the icon */
+    background-color: #4A72A7;
+    border: none !important;
+    border-bottom: 2px solid white !important;
+    border-radius: 5px;
+    font-size: 14px;
+    appearance: none !important; /* Remove default appearance */
+    -webkit-appearance: none !important; /* WebKit-specific */
+    -moz-appearance: none !important;    /* Firefox-specific */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px; /* Adjust size of the icon */
+    background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns%3D%22http%3A//www.w3.org/2000/svg%22 width%3D%2212%22 height%3D%2212%22 viewBox%3D%220 0 12 12%22%3E%3Cpath d%3D%22M2 4l4 5 4-5%22 fill%3D%22none%22 stroke%3D%22%23fff%22 stroke-width%3D%221%22/%3E%3C/svg%3E');
 }
+
+
+select:focus {
+    outline: none !important; /* Remove focus outline */
+    box-shadow: none !important;
+    border-bottom: 2px solid #66b2ff !important;/* Optional: Add a highlight for focus */
+}
+
+
+
+
+
+  /* background-color: #66b2ff !important; */
 
 select option {
     background-color: white !important; 
-    color: black;
+    color:white !important;
 }
 
 select option:hover {
+    outline: none !important;
     background-color: #66b2ff !important; 
 }
 textarea {
+    width: 100%;
+    padding: 5px 0;
+    background-color: #4A72A7 !important; 
+    border: none !important;
+    color:white !important;
+    border-bottom: 2px solid white !important;
+    /* color: white; */
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+textarea:focus {
+    /* background-color: #66b2ff !important; */
+    border-bottom: 2px solid #66b2ff !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.form-check-label {
+    font-size: 1rem; 
+}
+
+.txtfeild{
+    background-color:#4A72A7 !important;
+}
+.appDate{
+    width:30% !important;
+}
+
+.clearSign{
+    cursor:pointer;
+}
+
+canvas {
+    height:7rem;
     width: 100%;
     padding: 5px 0;
     background-color: #4A72A7 !important; 
@@ -305,15 +404,4 @@ textarea {
     font-size: 14px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
-}
-
-textarea:focus {
-    background-color: #66b2ff !important;
-    border-bottom: 2px solid #66b2ff !important;
-    outline: none;
-}
-
-.form-check-label {
-    font-size: 1rem; 
-}
- 
+} 

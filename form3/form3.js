@@ -135,109 +135,82 @@ function updateProgress(formId) {
 }
 
 
-
-
-// function validatePage(formId, pageNumber) {
-//     const form = document.getElementById(formId);
-//     const currentPage = form.querySelector(`#form1-page${pageNumber}`);
-//     const inputs = currentPage.querySelectorAll('input, select, textarea');
-//     let isValid = true;
-
-   
-//     inputs.forEach(input => {
-//         if (input.type === 'checkbox') {
-            
-//             const checkboxes = currentPage.querySelectorAll(`input[name="${input.name}"]`);
-//             const isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-
-//             if (!isAnyChecked) {
-//                 isValid = false;
-//                 checkboxes.forEach(checkbox => checkbox.classList.add('highlight')); // Highlight all related checkboxes
-//             } else {
-//                 checkboxes.forEach(checkbox => checkbox.classList.remove('highlight')); // Remove invalid styling
-//             }
-//         } else if (input.required) {
-//             if (input.tagName === 'SELECT' && !input.value) {
-               
-//                 isValid = false;
-//                 input.classList.add('highlight'); 
-//             } else if (input.tagName === 'TEXTAREA' && !input.value.trim()) {
-                
-//                 isValid = false;
-//                 input.classList.add('highlight'); // Highlight invalid textarea field
-//             } else if (input.type !== 'checkbox' && !input.value.trim()) {
-               
-//                 isValid = false;
-//                 input.classList.add('highlight'); 
-//             } else {
-                
-//                 input.classList.remove('highlight');
-//             }
-//         } else {
-//             input.classList.remove('highlight'); 
-//         }
-//     });
-
-//     return isValid;
-// }
-
-
 // function validatePage(formId, pageNumber) {
 //     const form = document.getElementById(formId);
 //     const currentPage = form.querySelector(`#form1-page${pageNumber}`);
 //     const inputs = currentPage.querySelectorAll('input, select, textarea, canvas');
 //     let isValid = true;
-
+//     console.log()
 //     inputs.forEach(input => {
-//         if (input.type === 'checkbox') {
-//             const checkboxes = currentPage.querySelectorAll(`input[name="${input.name}"]`);
-//             const isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+//         const validateInput = () => {
+//             if (input.type === 'checkbox') {
+//                 const checkboxes = currentPage.querySelectorAll(`input[name="${input.name}"]`);
+//                 const isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
 
-//             if (!isAnyChecked) {
-//                 isValid = false;
-//                 checkboxes.forEach(checkbox => checkbox.classList.add('highlight')); // Highlight all related checkboxes
-//             } else {
-//                 checkboxes.forEach(checkbox => checkbox.classList.remove('highlight')); // Remove invalid styling
-//             }
-//         } else if (input.required) {
-//             if (input.tagName === 'SELECT' && !input.value) {
-//                 isValid = false;
-//                 input.classList.add('highlight');
-//             } else if (input.tagName === 'TEXTAREA' && !input.value.trim()) {
-//                 isValid = false;
-//                 input.classList.add('highlight'); // Highlight invalid textarea field
-//             } else if (input.type !== 'checkbox' && input.tagName !== 'CANVAS' && !input.value.trim()) {
-//                 isValid = false;
-//                 input.classList.add('highlight');
-//             } else if (input.tagName === 'CANVAS') {
-//                 // Canvas validation
-//                 const context = input.getContext('2d');
-//                 const pixelData = context.getImageData(0, 0, input.width, input.height).data;
-//                 const isCanvasEmpty = !pixelData.some(value => value !== 0); // Check if any pixel is non-zero
-
-//                 if (isCanvasEmpty) {
+//                 if (!isAnyChecked) {
 //                     isValid = false;
-//                     input.classList.add('highlight'); // Highlight invalid canvas
+//                     checkboxes.forEach(checkbox => checkbox.classList.add('highlight-feedback'));
 //                 } else {
-//                     input.classList.remove('highlight'); // Remove invalid styling
+//                     checkboxes.forEach(checkbox => checkbox.classList.remove('highlight-feedback'));
+//                 }
+//             } else if (input.required) {
+//                 if (input.tagName === 'SELECT' && !input.value) {
+//                     isValid = false;
+//                     input.classList.add('highlight');
+//                 } else if (input.tagName === 'TEXTAREA' && !input.value.trim()) {
+//                     console.log("entered in text Area");
+//                     isValid = false;
+//                     input.classList.add('highlight');
+//                 } 
+//             if (input.tagName === 'CANVAS') {
+//                     console.log("printing Sign ",context);
+//                     const context = input.getContext('2d');
+                    
+//                     const pixelData = context.getImageData(0, 0, input.width, input.height).data;
+//                     const isCanvasEmpty = !pixelData.some(value => value !== 0);
+
+//                     if (isCanvasEmpty) {
+//                         isValid = false;
+//                         input.classList.add('highlight');
+//                     } else {
+//                         input.classList.remove('highlight');
+//                     }
+//                 } else if (input.value.trim()) {
+//                     input.classList.remove('highlight');
+//                 } else {
+//                     isValid = false;
+//                     input.classList.add('highlight');
 //                 }
 //             } else {
 //                 input.classList.remove('highlight');
 //             }
-//         } else {
-//             input.classList.remove('highlight');
+//         };
+
+//         // Attach event listeners to update validation dynamically
+//         input.addEventListener('input', validateInput);
+//         if (input.tagName === 'SELECT' || input.tagName === 'CANVAS') {
+//             input.addEventListener('change', validateInput); // For select and canvas
 //         }
+
+//         // Initial validation
+//         validateInput();
 //     });
 
 //     return isValid;
 // }
 
+
+
+
+
 function validatePage(formId, pageNumber) {
     const form = document.getElementById(formId);
     const currentPage = form.querySelector(`#form1-page${pageNumber}`);
-    const inputs = currentPage.querySelectorAll('input, select, textarea, canvas');
+    const inputs = currentPage.querySelectorAll('input, select, textarea');
+    const canvases = currentPage.querySelectorAll('canvas');
     let isValid = true;
 
+    // Handle input, select, and textarea validation
     inputs.forEach(input => {
         const validateInput = () => {
             if (input.type === 'checkbox') {
@@ -257,19 +230,6 @@ function validatePage(formId, pageNumber) {
                 } else if (input.tagName === 'TEXTAREA' && !input.value.trim()) {
                     isValid = false;
                     input.classList.add('highlight');
-                } else if (input.tagName === 'CANVAS') {
-                    console.log("printing Sign ",context);
-                    const context = input.getContext('2d');
-                    
-                    const pixelData = context.getImageData(0, 0, input.width, input.height).data;
-                    const isCanvasEmpty = !pixelData.some(value => value !== 0);
-
-                    if (isCanvasEmpty) {
-                        isValid = false;
-                        input.classList.add('highlight');
-                    } else {
-                        input.classList.remove('highlight');
-                    }
                 } else if (input.value.trim()) {
                     input.classList.remove('highlight');
                 } else {
@@ -281,14 +241,38 @@ function validatePage(formId, pageNumber) {
             }
         };
 
-        // Attach event listeners to update validation dynamically
+        // Attach dynamic validation
         input.addEventListener('input', validateInput);
-        if (input.tagName === 'SELECT' || input.tagName === 'CANVAS') {
-            input.addEventListener('change', validateInput); // For select and canvas
+        if (input.tagName === 'SELECT') {
+            input.addEventListener('change', validateInput);
         }
 
         // Initial validation
         validateInput();
+    });
+
+    // Handle canvas validation separately
+    canvases.forEach(canvas => {
+        const validateCanvas = () => {
+            console.log("entered into canvas");
+            const context = canvas.getContext('2d');
+            const pixelData = context.getImageData(0, 0, canvas.width, canvas.height).data;
+            const isCanvasEmpty = !pixelData.some(value => value !== 0);
+
+            if (isCanvasEmpty) {
+                isValid = false;
+                canvas.classList.add('highlight');
+            } else {
+                canvas.classList.remove('highlight');
+            }
+        };
+
+        // Attach event listener for canvas interaction
+        canvas.addEventListener('mouseup', validateCanvas);
+        canvas.addEventListener('touchend', validateCanvas);
+
+        // Initial validation
+        validateCanvas();
     });
 
     return isValid;
@@ -298,9 +282,10 @@ function validatePage(formId, pageNumber) {
 
 
 
+
 function nextPage(pageNumber) {
 
- if(validatePage('form1', pageNumber - 1)){
+  if(validatePage('form1', pageNumber - 1)){
     console.log("pageNumber:  ",pageNumber);
     if(pageNumber==4){
         console
@@ -319,9 +304,9 @@ function nextPage(pageNumber) {
     updateProgress('form1');
  }
 else{
-//     //alert('Please complete all required fields before proceeding.');
-  showInvalidModal();
- }
+// //alert('Please complete all required fields before proceeding.');
+ showInvalidModal();
+}
 }
 
 function previousPage(pageNumber) {

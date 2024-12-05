@@ -5,12 +5,13 @@
     margin-bottom: 20px;
 }
 body
-{
+{   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
     background-color: #004085 !important;
+    color: white !important;
 }
 .tab-link {
     display: inline-block;
-    padding: 10px 20px;
+    padding-top: 10px;
     margin: 0 5px;
     background-color: #007bff;
     color: white;
@@ -124,9 +125,7 @@ body
     cursor: pointer;
 }
 
-.close-btn:hover {
-    color: #ff0000;
-}
+
 
 .icon-container {
     width: 80px;
@@ -164,4 +163,49 @@ body
 
 .continue-btn:hover {
     background-color: #003d7a;
+}
+
+@media (max-width:1440px) {
+    .tab-link {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 0 5px;
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+}
+
+@media (max-width:576px) {
+    .tab-link{
+        font-size: small;
+    }
+
+}
+
+
+@media (max-width:415px) {
+    .tab-link{
+        font-size: smaller;
+    }
+
+}
+
+@media(max-width:380px){
+    .tab-link {
+        display: inline-block;
+        padding:0px;
+        margin: 0 5px;
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
 }

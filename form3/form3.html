@@ -26,25 +26,30 @@
                 duties safely and effectively. You may be contacted to provide more information or to request a
                 statement from your physician if the CMD has any concerns after reviewing your medical history.
             </p>
-            <div class="form-row">
-                <div>
-                    <label>First Name</label>
-                    <input required type="text" autocomplete="off" name="firstName" onchange="updateProgress('form1')">
-                </div>
-                <div>
-                    <label>Last Name</label>
-                    <input required type="text" autocomplete="off" name="lastName" onchange="updateProgress('form1')">
-                </div>
-                <div>
-                    <label>Middle Name</label>
-                    <input required type="text" autocomplete="off" name="middleName" onchange="updateProgress('form1')">
-                </div>
-                <div class="small-field">
-                    <label>Suffix</label>
-                    <input required type="text" autocomplete="off" name="suffix" onchange="updateProgress('form1')">
+            <div>
+                <div class="row">
+                    <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                        <label>First Name</label>
+                        <input required type="text" autocomplete="off" name="firstName"
+                            onchange="updateProgress('form1')">
+                    </div>
+                    <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                        <label>Last Name</label>
+                        <input required type="text" autocomplete="off" name="lastName"
+                            onchange="updateProgress('form1')">
+                    </div>
+                    <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                        <label>Middle Name</label>
+                        <input required type="text" autocomplete="off" name="middleName"
+                            onchange="updateProgress('form1')">
+                    </div>
+                    <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                        <label>Suffix</label>
+                        <input required type="text" autocomplete="off" name="suffix" onchange="updateProgress('form1')">
+                    </div>
                 </div>
             </div>
-            <div class="form-row">
+            <div class="form-row mt-3">
                 <div>
                     <label>Permanent Home Address(Line1)</label>
                     <input required type="text" autocomplete="off" name="address1" onchange="updateProgress('form1')">
@@ -73,7 +78,7 @@
             <div class="form-row">
                 <div>
                     <label>Date of Birth</label>
-                    <input required type="date" id="dob" name="dob" onchange="convertDateToFormat('dob')">
+                    <input required type="date" class="dab" id="dob" name="dob" onchange="convertDateToFormat('dob')">
                 </div>
             </div>
             <div class="form-row">
@@ -138,12 +143,13 @@
 
                     <div id="defectiveVisionYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="defectiveVisionYear" id="defectiveVisionYear" class="form-control mt-2 txtfeild ">
-                            <option value="">Select Year</option>
-                            <option value="2020">2020</option>
-                            <option value="2021">2021</option>
-                            <option value="2022">2022</option>
-                            <option value="2023">2023</option>
+                        <select name="defectiveVisionYear" id="defectiveVisionYear"
+                            class="form-control mt-2 select-feild ">
+                            <option class="opt" value="">Select Year</option>
+                            <option class="opt" value="2020">2020</option>
+                            <option class="opt" value="2021">2021</option>
+                            <option class="opt" value="2022">2022</option>
+                            <option class="opt" value="2023">2023</option>
                         </select>
                     </div>
                     <div id="defectiveVisionExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -184,7 +190,7 @@
                         </div>
                         <div id="visionOtherYearInput" class="col-12 " style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select name="visionOtherYear" id="visionOtherYear" class="form-control mt-2 txtfeild ">
+                            <select name="visionOtherYear" id="visionOtherYear" class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
                                 <option value="2021">2021</option>
@@ -234,7 +240,7 @@
                                 <div id="hearingLossYearInput" class="col-12" style="display: none;">
                                     <label class="question-label">Indicate Year it Occurred</label>
                                     <select name="hearingLossYear" id="hearingLossYear"
-                                        class="form-control mt-2 txtfeild ">
+                                        class="form-control mt-2 select-feild ">
                                         <option value="">Select Year</option>
                                         <option value="2020">2020</option>
                                         <option value="2021">2021</option>
@@ -279,7 +285,7 @@
                                     <div id="hearingOtherYearInput" class="col-12 mt-2" style="display: none;">
                                         <label class="question-label">Indicate Year it Occurred</label>
                                         <select name="hearingOtherYear" id="hearingOtherYear"
-                                            class="form-control mt-2 txtfeild ">
+                                            class="form-control mt-2 select-feild ">
                                             <option value="">Select Year</option>
                                             <option value="2020">2020</option>
                                             <option value="2021">2021</option>
@@ -331,7 +337,7 @@
                                     <div id="migrainesYearInput" class="col-12 mt-2" style="display: none;">
                                         <label class="question-label">Indicate Year it Occurred</label>
                                         <select name="migrainesYear" id="migrainesYear"
-                                            class="form-control mt-2 txtfeild ">
+                                            class="form-control mt-2 select-feild ">
                                             <option value="">Select Year</option>
                                             <option value="2020">2020</option>
                                             <option value="2021">2021</option>
@@ -381,7 +387,7 @@
                                     <div id="headachesYearInput" class="col-12 mt-2" style="display: none;">
                                         <label class="question-label">Indicate Year it Occurred</label>
                                         <select name="headachesYear" id="headachesYear"
-                                            class="form-control mt-2 txtfeild ">
+                                            class="form-control mt-2 select-feild ">
                                             <option value="">Select Year</option>
                                             <option value="2020">2020</option>
                                             <option value="2021">2021</option>
@@ -425,7 +431,7 @@
                                     </div>
                                     <div id="tbiYearInput" class="col-12  mt-2" style="display: none;">
                                         <label class="question-label">Indicate Year it Occurred</label>
-                                        <select name="tbiYear" id="tbiYear" class="form-control mt-2 txtfeild ">
+                                        <select name="tbiYear" id="tbiYear" class="form-control mt-2 select-feild ">
                                             <option value="">Select Year</option>
                                             <option value="2020">2020</option>
                                             <option value="2021">2021</option>
@@ -436,7 +442,7 @@
                                     <div id="tbiExplanationInput" class="col-12 mt-3" style="display: none;">
                                         <label class="question-label">Explain</label>
                                         <textarea name="tbiExplanation" id="tbiExplanation" rows="4"
-                                            class="form-control"></textarea>
+                                            class="form-control txtfeild"></textarea>
                                     </div>
                                 </div>
                                 <div>
@@ -476,7 +482,8 @@
                                     </div>
                                     <div id="thyroidYearInput" class="col-12 mt-2" style="display: none;">
                                         <label class="question-label">Indicate Year it Occurred</label>
-                                        <select name="thyroidYear" id="thyroidYear" class="form-control mt-2 txtfeild ">
+                                        <select name="thyroidYear" id="thyroidYear"
+                                            class="form-control mt-2 select-feild ">
                                             <option value="">Select Year</option>
                                             <option value="2020">2020</option>
                                             <option value="2021">2021</option>
@@ -530,7 +537,7 @@
                                     <div id="irregularHeartbeatYearInput" class="col-12 mt-2" style="display: none;">
                                         <label class="question-label">Indicate Year it Occurred</label>
                                         <select name="irregularHeartbeatYear" id="irregularHeartbeatYear"
-                                            class="form-control mt-2 txtfeild ">
+                                            class="form-control mt-2 select-feild ">
                                             <option value="">Select Year</option>
                                             <option value="2020">2020</option>
                                             <option value="2021">2021</option>
@@ -573,7 +580,8 @@
                                     </div>
                                     <div id="highBpYearInput" class="col-12 mt-2" style="display: none;">
                                         <label class="question-label">Indicate Year it Occurred</label>
-                                        <select name="highBpYear" id="highBpYear" class="form-control mt-2 txtfeild ">
+                                        <select name="highBpYear" id="highBpYear"
+                                            class="form-control mt-2 select-feild ">
                                             <option value="">Select Year</option>
                                             <option value="2020">2020</option>
                                             <option value="2021">2021</option>
@@ -618,7 +626,7 @@
                                     <div id="heartDiseaseYearInput" class="col-12 mt-2" style="display: none;">
                                         <label class="question-label">Indicate Year it Occurred</label>
                                         <select name="heartDiseaseYear" id="heartDiseaseYear"
-                                            class="form-control mt-2 txtfeild ">
+                                            class="form-control mt-2 select-feild ">
                                             <option value="">Select Year</option>
                                             <option value="2020">2020</option>
                                             <option value="2021">2021</option>
@@ -664,7 +672,7 @@
                                     <div id="heartFailureYearInput" class="col-12 mt-2" style="display: none;">
                                         <label class="question-label">Indicate Year it Occurred</label>
                                         <select name="heartFailureYear" id="heartFailureYear"
-                                            class="form-control mt-2 txtfeild ">
+                                            class="form-control mt-2 select-feild ">
                                             <option value="">Select Year</option>
                                             <option value="2020">2020</option>
                                             <option value="2021">2021</option>
@@ -737,7 +745,7 @@
 
                     <div id="asthmaYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="asthmaYear" id="asthmaYear" class="form-control mt-2 txtfeild ">
+                        <select name="asthmaYear" id="asthmaYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -784,7 +792,7 @@
 
                     <div id="copdYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="copdYear" id="copdYear" class="form-control mt-2 txtfeild ">
+                        <select name="copdYear" id="copdYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -831,7 +839,7 @@
 
                     <div id="tuberYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="tuberYear" id="tuberYear" class="form-control mt-2 txtfeild ">
+                        <select name="tuberYear" id="tuberYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -888,7 +896,7 @@
 
                     <div id="kneeYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="kneeYear" id="kneeYear" class="form-control mt-2 txtfeild ">
+                        <select name="kneeYear" id="kneeYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -935,7 +943,7 @@
 
                     <div id="shoulderYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="shoulderYear" id="shoulderYear" class="form-control mt-2 txtfeild ">
+                        <select name="shoulderYear" id="shoulderYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -982,7 +990,7 @@
 
                     <div id="elbowYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="elbowYear" id="elbowYear" class="form-control mt-2 txtfeild ">
+                        <select name="elbowYear" id="elbowYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1027,7 +1035,7 @@
 
                     <div id="spineYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="spineYear" id="spineYear" class="form-control mt-2 txtfeild ">
+                        <select name="spineYear" id="spineYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1073,7 +1081,7 @@
 
                     <div id="wristYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="wristYear" id="wristYear" class="form-control mt-2 txtfeild ">
+                        <select name="wristYear" id="wristYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1118,7 +1126,7 @@
 
                     <div id="arthritisYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="arthritisYear" id="arthritisYear" class="form-control mt-2 txtfeild ">
+                        <select name="arthritisYear" id="arthritisYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1169,7 +1177,7 @@
 
                     <div id="anemiaYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="anemiaYear" id="anemiaYear" class="form-control mt-2 txtfeild ">
+                        <select name="anemiaYear" id="anemiaYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1216,7 +1224,7 @@
 
                     <div id="sickleYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="sickleYear" id="sickleYear" class="form-control mt-2 txtfeild ">
+                        <select name="sickleYear" id="sickleYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1263,7 +1271,7 @@
 
                     <div id="otherBloodYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="otherBloodYear" id="otherBloodYear" class="form-control mt-2 txtfeild ">
+                        <select name="otherBloodYear" id="otherBloodYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1314,7 +1322,7 @@
 
                     <div id="diabetesYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="diabetesYear" id="diabetesYear" class="form-control mt-2 txtfeild ">
+                        <select name="diabetesYear" id="diabetesYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1366,7 +1374,7 @@
 
                     <div id="seizureYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="seizureYear" id="seizureYear" class="form-control mt-2 txtfeild ">
+                        <select name="seizureYear" id="seizureYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1418,7 +1426,7 @@
 
                     <div id="faintingYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="faintingYear" id="faintingYear" class="form-control mt-2 txtfeild ">
+                        <select name="faintingYear" id="faintingYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1472,7 +1480,7 @@
 
                     <div id="depressionYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="depressionYear" id="depressionYear" class="form-control mt-2 txtfeild ">
+                        <select name="depressionYear" id="depressionYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1519,7 +1527,7 @@
 
                     <div id="anxietyYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="anxietyYear" id="anxietyYear" class="form-control mt-2 txtfeild ">
+                        <select name="anxietyYear" id="anxietyYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1566,7 +1574,7 @@
 
                     <div id="bipolarYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="bipolarYear" id="bipolarYear" class="form-control mt-2 txtfeild ">
+                        <select name="bipolarYear" id="bipolarYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1611,7 +1619,7 @@
 
                     <div id="substanceYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="substanceYear" id="substanceYear" class="form-control mt-2 txtfeild ">
+                        <select name="substanceYear" id="substanceYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1684,7 +1692,7 @@
 
                     <div id="crohnYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="crohnYear" id="crohnYear" class="form-control mt-2 txtfeild ">
+                        <select name="crohnYear" id="crohnYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1730,7 +1738,7 @@
 
                     <div id="colitisYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="colitisYear" id="colitisYear" class="form-control mt-2 txtfeild ">
+                        <select name="colitisYear" id="colitisYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1777,7 +1785,7 @@
 
                     <div id="hepatisYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="hepatisYear" id="hepatisYear" class="form-control mt-2 txtfeild ">
+                        <select name="hepatisYear" id="hepatisYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1823,7 +1831,7 @@
 
                     <div id="cirrhosisYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="cirrhosisYear" id="cirrhosisYear" class="form-control mt-2 txtfeild ">
+                        <select name="cirrhosisYear" id="cirrhosisYear" class="form-control mt-2 select-feild ">
                             <option value="">Select Year</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -1873,7 +1881,7 @@
 
                         <div id="kidneyYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select name="kidneyYear" id="kidneyYear" class="form-control mt-2 txtfeild ">
+                            <select name="kidneyYear" id="kidneyYear" class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
                                 <option value="2021">2021</option>
@@ -1925,7 +1933,7 @@
 
                         <div id="skinYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select name="skinYear" id="skinYear" class="form-control mt-2 txtfeild ">
+                            <select name="skinYear" id="skinYear" class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
                                 <option value="2021">2021</option>
@@ -1977,7 +1985,7 @@
 
                         <div id="drugYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select name="drugYear" id="drugYear" class="form-control mt-2 txtfeild ">
+                            <select name="drugYear" id="drugYear" class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
                                 <option value="2021">2021</option>
@@ -2023,7 +2031,7 @@
 
                         <div id="otherAlergyYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select name="otherAlergyYear" id="otherAlergyYear" class="form-control mt-2 txtfeild ">
+                            <select name="otherAlergyYear" id="otherAlergyYear" class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
                                 <option value="2021">2021</option>
@@ -2075,7 +2083,7 @@
 
                         <div id="otherHealthYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select name="otherHealthYear" id="otherHealthYear" class="form-control mt-2 txtfeild ">
+                            <select name="otherHealthYear" id="otherHealthYear" class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
                                 <option value="2021">2021</option>
@@ -2128,7 +2136,7 @@
 
                         <div id="tetanusYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select name="tetanusYear" id="tetanusYear" class="form-control mt-2 txtfeild ">
+                            <select name="tetanusYear" id="tetanusYear" class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
                                 <option value="2021">2021</option>
@@ -2173,7 +2181,7 @@
 
                         <div id="hepImmuneYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select name="hepImmuneYear" id="hepImmuneYear" class="form-control mt-2 txtfeild ">
+                            <select name="hepImmuneYear" id="hepImmuneYear" class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
                                 <option value="2021">2021</option>
@@ -2228,7 +2236,7 @@
 
                         <div id="disabilityYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select name="disabilityYear" id="disabilityYear" class="form-control mt-2 txtfeild ">
+                            <select name="disabilityYear" id="disabilityYear" class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
                                 <option value="2021">2021</option>
@@ -2274,7 +2282,7 @@
 
                         <div id="declineYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select name="declineYear" id="declineYear" class="form-control mt-2 txtfeild ">
+                            <select name="declineYear" id="declineYear" class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
                                 <option value="2021">2021</option>
@@ -2322,7 +2330,7 @@
 
                         <div id="restrictYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select name="restrictYear" id="restrictYear" class="form-control mt-2 txtfeild ">
+                            <select name="restrictYear" id="restrictYear" class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
                                 <option value="2021">2021</option>
@@ -2350,7 +2358,7 @@
 
 
                             <div class="form-check" d-flex align-items-end>
-                                <input class="form-check-input" type="checkbox" value="no" id="dutiesNo" name="restrict"
+                                <input class="form-check-input" type="checkbox" value="no" id="dutiesNo" name="duties"
                                     onchange="updateProgress('form1')">
 
                                 <label class="form-check-label label ms-4" for="dutiesNo">
@@ -2359,8 +2367,8 @@
                             </div>
 
                             <div class="form-check mt-2">
-                                <input class="form-check-input" type="checkbox" value="yes" id="dutiesYes"
-                                    name="restrict" onchange="updateProgress('form1')">
+                                <input class="form-check-input" type="checkbox" value="yes" id="dutiesYes" name="duties"
+                                    onchange="updateProgress('form1')">
 
                                 <label class="form-check-label ms-4" for="dutiesYes">
                                     Yes
@@ -2370,7 +2378,7 @@
 
                         <div id="dutiesYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select name="dutiesYear" id="dutiesYear" class="form-control mt-2 txtfeild ">
+                            <select name="dutiesYear" id="dutiesYear" class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
                                 <option value="2021">2021</option>
@@ -2431,5 +2439,42 @@
             </div>
         </div>
     </div>
+
+
+
+    <div id="invalidModal" class="invalid-modal">
+        <div class="invalid-modal-content">
+            <div class="modal-header">
+                <h3 class="modal-heading">Invalid!</h3>
+                <span id="closeBtn" class="close-btn" onclick="closeModal()">&#10006;</span>
+            </div>
+
+            <!-- <div class="icon-container">
+                <span class="modal-checkmark">&#10004;</span> 
+            </div> -->
+
+            <p class="modal-message">Please complete all required fields before proceeding.</p>
+
+            <button id="colseBtn" class="colse-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <div id="successModal" class="success-modal">
+        <div class="success-modal-content">
+            <div class="modal-header">
+                <h3 class="modal-heading">Successful!</h3>
+                <span id="closeBtn" class="close-btn" onclick="closeDialog()">&#10006;</span>
+            </div>
+
+            <div class="icon-container">
+                <span class="modal-checkmark">&#10004;</span>
+            </div>
+
+            <p class="modal-message">You have successfully submitted this form. Please proceed to the next form.</p>
+
+            <button id="continueBtn" class="continue-btn" onclick="closeDialog()">Continue</button>
+        </div>
+    </div>
+
 </div>
 </div>

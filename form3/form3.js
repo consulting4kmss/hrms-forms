@@ -1,4 +1,4 @@
-// let totalFields = 0;
+let totalFields = 0;
 let totalPages = 0;
 
 function initializeForm(formId) {
@@ -130,35 +130,165 @@ function updateProgress(formId) {
 
     const percentageText = document.getElementById('currentPagePercentage');
     percentageText.textContent = `${Math.round(percentage)}%`;
-    const offset = Math.max(0, percentage - 5);
+    const offset = Math.max(0, percentage - 7);
     percentageText.style.left = `${offset}%`;
 }
 
 
+
+
+// function validatePage(formId, pageNumber) {
+//     const form = document.getElementById(formId);
+//     const currentPage = form.querySelector(`#form1-page${pageNumber}`);
+//     const inputs = currentPage.querySelectorAll('input, select, textarea');
+//     let isValid = true;
+
+   
+//     inputs.forEach(input => {
+//         if (input.type === 'checkbox') {
+            
+//             const checkboxes = currentPage.querySelectorAll(`input[name="${input.name}"]`);
+//             const isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+//             if (!isAnyChecked) {
+//                 isValid = false;
+//                 checkboxes.forEach(checkbox => checkbox.classList.add('highlight')); // Highlight all related checkboxes
+//             } else {
+//                 checkboxes.forEach(checkbox => checkbox.classList.remove('highlight')); // Remove invalid styling
+//             }
+//         } else if (input.required) {
+//             if (input.tagName === 'SELECT' && !input.value) {
+               
+//                 isValid = false;
+//                 input.classList.add('highlight'); 
+//             } else if (input.tagName === 'TEXTAREA' && !input.value.trim()) {
+                
+//                 isValid = false;
+//                 input.classList.add('highlight'); // Highlight invalid textarea field
+//             } else if (input.type !== 'checkbox' && !input.value.trim()) {
+               
+//                 isValid = false;
+//                 input.classList.add('highlight'); 
+//             } else {
+                
+//                 input.classList.remove('highlight');
+//             }
+//         } else {
+//             input.classList.remove('highlight'); 
+//         }
+//     });
+
+//     return isValid;
+// }
+
+
+// function validatePage(formId, pageNumber) {
+//     const form = document.getElementById(formId);
+//     const currentPage = form.querySelector(`#form1-page${pageNumber}`);
+//     const inputs = currentPage.querySelectorAll('input, select, textarea, canvas');
+//     let isValid = true;
+
+//     inputs.forEach(input => {
+//         if (input.type === 'checkbox') {
+//             const checkboxes = currentPage.querySelectorAll(`input[name="${input.name}"]`);
+//             const isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+//             if (!isAnyChecked) {
+//                 isValid = false;
+//                 checkboxes.forEach(checkbox => checkbox.classList.add('highlight')); // Highlight all related checkboxes
+//             } else {
+//                 checkboxes.forEach(checkbox => checkbox.classList.remove('highlight')); // Remove invalid styling
+//             }
+//         } else if (input.required) {
+//             if (input.tagName === 'SELECT' && !input.value) {
+//                 isValid = false;
+//                 input.classList.add('highlight');
+//             } else if (input.tagName === 'TEXTAREA' && !input.value.trim()) {
+//                 isValid = false;
+//                 input.classList.add('highlight'); // Highlight invalid textarea field
+//             } else if (input.type !== 'checkbox' && input.tagName !== 'CANVAS' && !input.value.trim()) {
+//                 isValid = false;
+//                 input.classList.add('highlight');
+//             } else if (input.tagName === 'CANVAS') {
+//                 // Canvas validation
+//                 const context = input.getContext('2d');
+//                 const pixelData = context.getImageData(0, 0, input.width, input.height).data;
+//                 const isCanvasEmpty = !pixelData.some(value => value !== 0); // Check if any pixel is non-zero
+
+//                 if (isCanvasEmpty) {
+//                     isValid = false;
+//                     input.classList.add('highlight'); // Highlight invalid canvas
+//                 } else {
+//                     input.classList.remove('highlight'); // Remove invalid styling
+//                 }
+//             } else {
+//                 input.classList.remove('highlight');
+//             }
+//         } else {
+//             input.classList.remove('highlight');
+//         }
+//     });
+
+//     return isValid;
+// }
+
 function validatePage(formId, pageNumber) {
     const form = document.getElementById(formId);
     const currentPage = form.querySelector(`#form1-page${pageNumber}`);
-    const inputs = currentPage.querySelectorAll('input, select, textarea');
+    const inputs = currentPage.querySelectorAll('input, select, textarea, canvas');
     let isValid = true;
 
-    // Loop through all inputs
     inputs.forEach(input => {
-        if (input.type === 'checkbox') {
-            const checkboxes = currentPage.querySelectorAll(`input[name="${input.name}"]`);
-            const isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+        const validateInput = () => {
+            if (input.type === 'checkbox') {
+                const checkboxes = currentPage.querySelectorAll(`input[name="${input.name}"]`);
+                const isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
 
-            if (!isAnyChecked) {
-                isValid = false;
-                // checkboxes.forEach(checkbox => checkbox.classList.add('is-invalid')); // Highlight all related checkboxes
+                if (!isAnyChecked) {
+                    isValid = false;
+                    checkboxes.forEach(checkbox => checkbox.classList.add('highlight-feedback'));
+                } else {
+                    checkboxes.forEach(checkbox => checkbox.classList.remove('highlight-feedback'));
+                }
+            } else if (input.required) {
+                if (input.tagName === 'SELECT' && !input.value) {
+                    isValid = false;
+                    input.classList.add('highlight');
+                } else if (input.tagName === 'TEXTAREA' && !input.value.trim()) {
+                    isValid = false;
+                    input.classList.add('highlight');
+                } else if (input.tagName === 'CANVAS') {
+                    console.log("printing Sign ",context);
+                    const context = input.getContext('2d');
+                    
+                    const pixelData = context.getImageData(0, 0, input.width, input.height).data;
+                    const isCanvasEmpty = !pixelData.some(value => value !== 0);
+
+                    if (isCanvasEmpty) {
+                        isValid = false;
+                        input.classList.add('highlight');
+                    } else {
+                        input.classList.remove('highlight');
+                    }
+                } else if (input.value.trim()) {
+                    input.classList.remove('highlight');
+                } else {
+                    isValid = false;
+                    input.classList.add('highlight');
+                }
             } else {
-                checkboxes.forEach(checkbox => checkbox.classList.remove('is-invalid')); // Remove invalid styling
+                input.classList.remove('highlight');
             }
-        } else if (input.required && !input.value.trim()) {
-            isValid = false;
-            // input.classList.add('is-invalid'); // Highlight invalid fields
-        } else {
-            input.classList.remove('is-invalid'); // Remove invalid styling
+        };
+
+        // Attach event listeners to update validation dynamically
+        input.addEventListener('input', validateInput);
+        if (input.tagName === 'SELECT' || input.tagName === 'CANVAS') {
+            input.addEventListener('change', validateInput); // For select and canvas
         }
+
+        // Initial validation
+        validateInput();
     });
 
     return isValid;
@@ -166,13 +296,18 @@ function validatePage(formId, pageNumber) {
 
 
 
+
+
 function nextPage(pageNumber) {
+
+ if(validatePage('form1', pageNumber - 1)){
     console.log("pageNumber:  ",pageNumber);
     if(pageNumber==4){
+        console
         initializeSignatureBox();
         clearSign();
+        addForm1EventListeners();
     }
-if(validatePage('form1', pageNumber - 1)){
     const form = document.getElementById('form1');
     const currentPage = form.querySelector(`#form1-page${pageNumber - 1}`);
     const nextPage = form.querySelector(`#form1-page${pageNumber}`);
@@ -183,9 +318,10 @@ if(validatePage('form1', pageNumber - 1)){
     updatePageInfo('form1', pageNumber);
     updateProgress('form1');
  }
-// else{
-//     alert('Please complete all required fields before proceeding.');
-// }
+else{
+//     //alert('Please complete all required fields before proceeding.');
+  showInvalidModal();
+ }
 }
 
 function previousPage(pageNumber) {
@@ -395,12 +531,20 @@ function toggleFields(formId, config) {
 
         fieldsToShow.forEach(fieldId => {
             const fieldElement = document.getElementById(fieldId);
+            const childElements = fieldElement.querySelectorAll('*');
+            const childIds = Array.from(childElements)
+            .filter(element => element.id) 
+            .map(element => element.id); 
+
             if (checkbox && checkbox.checked) {
                 fieldElement.style.display = 'block';
-                fieldElement.setAttribute('required', 'required');
-            } else {
+                document.getElementById(childIds[0]).required=true;             
+            } 
+            else {
                 fieldElement.style.display = 'none';
-                fieldElement.removeAttribute('required');
+                document.getElementById(childIds[0]).required=false;
+           
+
             }
         });
     });
@@ -413,11 +557,11 @@ function toggleFields(formId, config) {
 let canvas, context;
 let isDrawing = false;
 
-// Function to get accurate mouse position
+
 function getMousePosition(event) {
-    const rect = canvas.getBoundingClientRect(); // Get the canvas's bounding box
-    const scaleX = canvas.width / rect.width;   // Horizontal scaling factor
-    const scaleY = canvas.height / rect.height; // Vertical scaling factor
+    const rect = canvas.getBoundingClientRect(); 
+    const scaleX = canvas.width / rect.width;  
+    const scaleY = canvas.height / rect.height; 
     return {
         x: (event.clientX - rect.left) * scaleX,
         y: (event.clientY - rect.top) * scaleY
@@ -468,6 +612,17 @@ function initializeSignatureBox() {
 }
 
 
+function showInvalidModal() {
+    const invalidModal = document.getElementById('invalidModal');
+    invalidModal.style.display = 'block';  
+}
+
+function closeModal() {
+    const invalidModal = document.getElementById('invalidModal');
+    invalidModal.style.display = 'none';  
+}
+
+
 
 
 // Function to clear the signature
@@ -481,6 +636,47 @@ function clearSign() {
         }
     });
 }
+function addForm1EventListeners() {
+    const form1SubmitButton = document.querySelector('.submit-btn');
+    if (form1SubmitButton) {
+        form1SubmitButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            if(validatePage('form1',4)){
+
+            showCheckmark('form1Tick');
+            showSuccessModal();
+        }
+        else{
+            showInvalidModal(); 
+        }
+        });
+    }
+}
+
+function showSuccessModal() {
+    const successModal = document.getElementById('successModal');
+    if (successModal) {
+        successModal.style.display = 'block';
+    }
+}
+
+
+function closeDialog() {
+    const successModal = document.getElementById('successModal');
+    if (successModal) {
+        successModal.style.display = 'none';
+    }
+}
+
+function showCheckmark(formId) {
+    const checkmark = document.getElementById(formId);
+    if (checkmark) {
+        checkmark.classList.add('visible');
+    }
+}
+
+
+
 
 
 // Save the signature
@@ -500,33 +696,6 @@ function clearSign() {
 initializeForm('form1');
 
 
-
-// function toggleHighBpFields(formId) {  colitis
-//     if (highBpYes.checked) {
-//         highBpYearInput.style.display = 'block';
-//         highBpExplanationInput.style.display = 'block';
-//     }
-//     else {
-//         highBpYearInput.style.display = 'none';
-//         highBpExplanationInput.style.display = 'none';
-//     }
-//     totalFields = Array.from(document.querySelectorAll(`#${formId} .form-page input`))
-//         .filter((field, index, self) => {
-//             if (field.type === 'checkbox' || field.type === 'radio') {
-//                 return self.findIndex(f => f.name === field.name) === index;
-//             }
-//             return true;
-//         }).length;
-
-//     if (highBpYearInput.style.display !== 'none') {
-//         totalFields++;  
-//     }
-//     if (highBpExplanationInput.style.display !== 'none') {
-//         totalFields++;  
-//     }
-
-//     updateProgress(formId);
-// }
 
 
 

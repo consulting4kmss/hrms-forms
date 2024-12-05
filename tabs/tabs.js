@@ -7,7 +7,7 @@ function loadForm1() {
         .then(html => {
             document.getElementById('form-container').innerHTML = html;
             loadScript('../form3/form3.js');
-            addForm1EventListeners();
+            // addForm1EventListeners();
         })
         .catch(error => console.error('Error loading Form 1:', error));
 }
@@ -18,24 +18,7 @@ function loadScript(scriptUrl) {
     document.body.appendChild(script);
 }
 
-function addForm1EventListeners() {
-    const form1SubmitButton = document.querySelector('.submit-btn');
-    if (form1SubmitButton) {
-        form1SubmitButton.addEventListener('click', function (event) {
-            event.preventDefault();
-            form1Completed = true;
-            showCheckmark('form1Tick');
-            showSuccessModal();
-        });
-    }
-}
 
-function showCheckmark(formId) {
-    const checkmark = document.getElementById(formId);
-    if (checkmark) {
-        checkmark.classList.add('visible');
-    }
-}
 
 function showSuccessModal() {
     const successModal = document.getElementById('successModal');

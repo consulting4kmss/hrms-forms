@@ -30,71 +30,93 @@
                 <div class="row">
                     <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                         <label>First Name</label>
-                        <input required type="text" autocomplete="off" name="firstName"
-                            onchange="updateProgress('form1')">
+                        <!-- <input required type="text" data-validate="text" autocomplete="off" name="firstName"
+                            onchange="updateProgress('form1')"> -->
+                        <input required type="text" data-validate="text" name="firstName"  autocomplete="off" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  onchange="updateProgress('form1')" />
+                        <small class="error-message"></small>
                     </div>
                     <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                         <label>Last Name</label>
-                        <input required type="text" autocomplete="off" name="lastName"
-                            onchange="updateProgress('form1')">
+                        <input required type="text" data-validate="text" autocomplete="off" name="lastName"  autocomplete="off" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  onchange="updateProgress('form1')" />
+                        <small class="error-message"></small>
+
+                        <!-- <input required type="text" data-validate="text" autocomplete="off" name="lastName"onchange="updateProgress('form1')"> -->
+
                     </div>
                     <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                         <label>Middle Name</label>
-                        <input required type="text" autocomplete="off" name="middleName"
-                            onchange="updateProgress('form1')">
+                        <input required type="text" data-validate="text" autocomplete="off" name="middleName"  autocomplete="off" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  onchange="updateProgress('form1')" />
+                        <small class="error-message"></small>
+                        <!-- <input required type="text" data-validate="text" autocomplete="off" name="middleName" onchange="updateProgress('form1')"> -->
                     </div>
                     <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                         <label>Suffix</label>
-                        <input required type="text" autocomplete="off" name="suffix" onchange="updateProgress('form1')">
+                        <input required type="text" data-validate="text" autocomplete="off" name="suffix"  autocomplete="off" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  onchange="updateProgress('form1')" />
+                        <small class="error-message"></small>
+                        <!-- <input required type="text" data-validate="text" autocomplete="off" name="suffix" onchange="updateProgress('form1')"> -->
                     </div>
                 </div>
             </div>
             <div class="form-row mt-3">
                 <div>
                     <label>Permanent Home Address(Line1)</label>
-                    <input required type="text" autocomplete="off" name="address1" onchange="updateProgress('form1')">
+                    <input required type="text" data-validate="text" autocomplete="off" name="address1" onchange="updateProgress('form1')">
                 </div>
             </div>
             <div class="form-row">
                 <div>
                     <label>Permanent Home Address(Line2)</label>
-                    <input required type="text" autocomplete="off" name="address2" onchange="updateProgress('form1')">
+                    <input required type="text" data-validate="text" autocomplete="off" name="address2" onchange="updateProgress('form1')">
                 </div>
             </div>
             <div class="form-row">
                 <div>
                     <label>City</label>
-                    <input required type="text" autocomplete="off" name="city" onchange="updateProgress('form1')">
+                    <!-- <input required type="text" data-validate="text" autocomplete="off" name="city" onchange="updateProgress('form1')"> -->
+                    <input required type="text" data-validate="text" name="city" maxlength="50" autocomplete="off" oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" onchange="updateProgress('form1')"/>
+                    <small class="error-message"></small>
                 </div>
                 <div>
                     <label>State</label>
-                    <input required type="text" autocomplete="off" name="state" onchange="updateProgress('form1')">
+                    <!-- <input required type="text" data-validate="text" autocomplete="off" name="state" onchange="updateProgress('form1')"> -->
+                    <input required type="text" data-validate="text" name="state" maxlength="50" autocomplete="off" oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" onchange="updateProgress('form1')"/>
+                    <small class="error-message"></small>
                 </div>
                 <div>
                     <label>Zip</label>
-                    <input required type="text" autocomplete="off" name="zip" onchange="updateProgress('form1')">
+                    <!-- <input required type="text" data-validate="text" autocomplete="off" name="zip" onchange="updateProgress('form1')"> -->
+                    <input required type="number" name="zip" autocomplete="off" maxlength="6" data-validate="number" onchange="updateProgress('form1')" oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')"  />
+                    <small class="error-message"></small>
                 </div>
             </div>
             <div class="form-row">
                 <div>
                     <label>Date of Birth</label>
-                    <input required type="date" class="dab" id="dob" name="dob" onchange="convertDateToFormat('dob')">
+                    <!-- <input required type="date" class="dab" id="dob" name="dob" onchange="convertDateToFormat('dob')"> -->
+                    <input required type="date" class="dab" id="dob" name="dob" onchange="handleDateChange(event)">
+                    <small class="error-message"></small>
                 </div>
             </div>
             <div class="form-row">
                 <div>
                     <label>Gender</label>
-                    <input required type="text" autocomplete="off" name="gender" onchange="updateProgress('form1')">
+                    <!-- <input required type="text" data-validate="text"  maxlength="15" autocomplete="off" name="gender" onchange="updateProgress('form1')"> -->
+                    <input required type="text" data-validate="text" name="gender" maxlength="20" autocomplete="off" oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" onchange="updateProgress('form1')"/>
+                    <small class="error-message"></small>
                 </div>
             </div>
             <div class="form-row">
                 <div>
                     <label>Height</label>
-                    <input required type="text" autocomplete="off" name="height" onchange="updateProgress('form1')">
+                    <!-- <input required type="text" data-validate="text" autocomplete="off" name="height" onchange="updateProgress('form1')"> -->
+                    <input required type="number" step="000.01" min="0" max="249.99" name="height" data-validate="number" autocomplete="off" maxlength="6" oninput="this.value = this.value.slice(0, 3); validInput(validInput(this, /^\d*(\.\d{0,2})?$/, 'Only numbers with up to 2 decimals are allowed'));" />
+                    <small class="error-message"></small>
                 </div>
                 <div>
                     <label>Weight</label>
-                    <input required type="text" autocomplete="off" name="weight" onchange="updateProgress('form1')">
+                    <!-- <input required type="text" data-validate="text" autocomplete="off" name="weight" onchange="updateProgress('form1')"> -->
+                    <input required type="number"name="weight" autocomplete="off" maxlength="4" data-validate="number" oninput="this.value = this.value.slice(0, 3); validInput(this, /^[0-9]*$/, 'Only numbers are allowed');" />
+                    <small class="error-message"></small>
                 </div>
             </div>
             <div class="single-button-container">
@@ -2416,8 +2438,7 @@
                     <div class="form-row mt-3">
                         <div class="d-flex flex-column">
                             <label>Date of Application</label>
-                            <input required class="appDate" type="date" id="doa" name="doa"
-                                onchange="convertDateToFormat('doa')">
+                            <input required class="appDate" type="date" id="doa" name="doa" onchange="handleDateChange(event)">
                         </div>
                     </div>
 
@@ -2425,7 +2446,7 @@
                         <label for="signatureBox">Applicant Signature</label>
                         <canvas id="signatureBox" width="400" height="200" style="border: 1px solid #ccc;"></canvas>
                         <br>
-                        <p id="clearButton" type="text" class="clearSign">Clear Signature</p>
+                        <p id="clearButton" type="text" data-validate="text" class="clearSign">Clear Signature</p>
 
                     </div>
 
@@ -2458,6 +2479,7 @@
             <button id="colseBtn" class="colse-btn" onclick="closeModal()">Close</button>
         </div>
     </div>
+    <div id="overlay" class="overlay"></div>
 
     <div id="successModal" class="success-modal">
         <div class="success-modal-content">

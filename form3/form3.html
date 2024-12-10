@@ -32,12 +32,12 @@
                         <label>First Name</label>
                         <!-- <input required type="text" data-validate="text" autocomplete="off" name="firstName"
                             onchange="updateProgress('form1')"> -->
-                        <input required type="text" data-validate="text" name="firstName"  autocomplete="off" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  onchange="updateProgress('form1')" />
+                        <input required type="text" data-validate="text" name="firstName"  autocomplete="off" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  class="form-control" onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
                     </div>
                     <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                         <label>Last Name</label>
-                        <input required type="text" data-validate="text" autocomplete="off" name="lastName"  autocomplete="off" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  onchange="updateProgress('form1')" />
+                        <input required type="text" data-validate="text" autocomplete="off" name="lastName"  autocomplete="off" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  class="form-control" onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
 
                         <!-- <input required type="text" data-validate="text" autocomplete="off" name="lastName"onchange="updateProgress('form1')"> -->
@@ -45,13 +45,13 @@
                     </div>
                     <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                         <label>Middle Name</label>
-                        <input required type="text" data-validate="text" autocomplete="off" name="middleName"  autocomplete="off" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  onchange="updateProgress('form1')" />
+                        <input type="text" name="middleName"  autocomplete="off" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  class="form-control" onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
                         <!-- <input required type="text" data-validate="text" autocomplete="off" name="middleName" onchange="updateProgress('form1')"> -->
                     </div>
                     <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                         <label>Suffix</label>
-                        <input required type="text" data-validate="text" autocomplete="off" name="suffix"  autocomplete="off" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  onchange="updateProgress('form1')" />
+                        <input required type="text" data-validate="text" autocomplete="off" name="suffix" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  class="form-control" onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
                         <!-- <input required type="text" data-validate="text" autocomplete="off" name="suffix" onchange="updateProgress('form1')"> -->
                     </div>
@@ -60,35 +60,62 @@
             <div class="form-row mt-3">
                 <div>
                     <label>Permanent Home Address(Line1)</label>
-                    <input required type="text" data-validate="text" autocomplete="off" name="address1" onchange="updateProgress('form1')">
+                    <input required type="text" data-validate="text" autocomplete="off" name="address1" class="form-control" onchange="updateProgress('form1')">
                 </div>
             </div>
             <div class="form-row">
                 <div>
                     <label>Permanent Home Address(Line2)</label>
-                    <input required type="text" data-validate="text" autocomplete="off" name="address2" onchange="updateProgress('form1')">
+                    <input  type="text"  autocomplete="off" name="address2" class="form-control" onchange="updateProgress('form1')">
                 </div>
             </div>
             <div class="form-row">
                 <div>
                     <label>City</label>
                     <!-- <input required type="text" data-validate="text" autocomplete="off" name="city" onchange="updateProgress('form1')"> -->
-                    <input required type="text" data-validate="text" name="city" maxlength="50" autocomplete="off" oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" onchange="updateProgress('form1')"/>
+                    <input required type="text" data-validate="text" name="city" maxlength="50" autocomplete="off" oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" class="form-control" onchange="updateProgress('form1')"/>
                     <small class="error-message"></small>
                 </div>
                 <div>
                     <label>State</label>
                     <!-- <input required type="text" data-validate="text" autocomplete="off" name="state" onchange="updateProgress('form1')"> -->
-                    <input required type="text" data-validate="text" name="state" maxlength="50" autocomplete="off" oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" onchange="updateProgress('form1')"/>
+                    <input required type="text" data-validate="text" name="state" maxlength="50" autocomplete="off" oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" class="form-control" onchange="updateProgress('form1')"/>
                     <small class="error-message"></small>
                 </div>
                 <div>
                     <label>Zip</label>
-                    <!-- <input required type="text" data-validate="text" autocomplete="off" name="zip" onchange="updateProgress('form1')"> -->
-                    <input required type="number" name="zip" autocomplete="off" maxlength="6" data-validate="number" onchange="updateProgress('form1')" oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')"  />
+                    <!-- <input required type="text" data-validate="text" autocomplete="off" name="zip" class="form-control" onchange="updateProgress('form1')"> -->
+                    <input required type="number" name="zip" autocomplete="off" maxlength="6" data-validate="number" class="form-control" onchange="updateProgress('form1')" oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')"  />
                     <small class="error-message"></small>
                 </div>
             </div>
+            <div class="form-row">
+                <div>
+                    <label>Home Phone No.</label>
+                    
+                    <input required type="text" name="home" autocomplete="off"     oninput="validateAndFormatPhoneNumber(this);"  class="form-control" onchange="updateProgress('form1')" />
+                    <small class="error-message"></small>
+                </div>
+                <div>
+                    <label>Cell Phone No.</label>
+                    <input required type="text" name="cell" autocomplete="off"  oninput="validateAndFormatPhoneNumber(this);"  class="form-control" onchange="updateProgress('form1')"/>
+                    <small class="error-message"></small>
+                    
+                </div>
+            </div>
+                    <!-- <div>
+                    <label>Cell Phone No.</label>
+                    <div style="display: flex; align-items: center;">
+                       
+                        <input type="text" id="countryCode" value="(808)" class="form-control code" readonly 
+                            style="width: 60px; text-align: center;">
+                      
+                        <input required type="number" name="cell" data-validate="number" autocomplete="off" 
+                            oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')" 
+                            class="form-control" onchange="updateProgress('form1')" class="form-control phone">
+                    </div>
+                    <small class="error-message"></small>
+                </div> -->
             <div class="form-row">
                 <div>
                     <label>Date of Birth</label>
@@ -100,21 +127,21 @@
             <div class="form-row">
                 <div>
                     <label>Gender</label>
-                    <!-- <input required type="text" data-validate="text"  maxlength="15" autocomplete="off" name="gender" onchange="updateProgress('form1')"> -->
-                    <input required type="text" data-validate="text" name="gender" maxlength="20" autocomplete="off" oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" onchange="updateProgress('form1')"/>
+                    <!-- <input required type="text" data-validate="text"  maxlength="15" autocomplete="off" name="gender" class="form-control" onchange="updateProgress('form1')"> -->
+                    <input required type="text" data-validate="text" name="gender" maxlength="20" autocomplete="off" oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" class="form-control" onchange="updateProgress('form1')"/>
                     <small class="error-message"></small>
                 </div>
             </div>
             <div class="form-row">
                 <div>
                     <label>Height</label>
-                    <!-- <input required type="text" data-validate="text" autocomplete="off" name="height" onchange="updateProgress('form1')"> -->
+                    <!-- <input required type="text" data-validate="text" autocomplete="off" name="height" class="form-control" onchange="updateProgress('form1')"> -->
                     <input required type="number" step="000.01" min="0" max="249.99" name="height" data-validate="number" autocomplete="off" maxlength="6" oninput="this.value = this.value.slice(0, 3); validInput(validInput(this, /^\d*(\.\d{0,2})?$/, 'Only numbers with up to 2 decimals are allowed'));" />
                     <small class="error-message"></small>
                 </div>
                 <div>
                     <label>Weight</label>
-                    <!-- <input required type="text" data-validate="text" autocomplete="off" name="weight" onchange="updateProgress('form1')"> -->
+                    <!-- <input required type="text" data-validate="text" autocomplete="off" name="weight" class="form-control" onchange="updateProgress('form1')"> -->
                     <input required type="number"name="weight" autocomplete="off" maxlength="4" data-validate="number" oninput="this.value = this.value.slice(0, 3); validInput(this, /^[0-9]*$/, 'Only numbers are allowed');" />
                     <small class="error-message"></small>
                 </div>
@@ -128,13 +155,13 @@
 
         <div id="form1-page2" class="form-page" style="display: none;">
             <div>
-                <h3>
+                <h3 class="heading">
                     <p>Do you have or have you ever had any disease, injury, disorder, or surgery of the following?</p>
                 </h3>
             </div>
             <div>
                 <div style="margin-top: 20px;">
-                    <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Eyes</h3>
+                    <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Eyes</h3>
                 </div>
 
                 <div class="col-12">
@@ -142,8 +169,6 @@
                         <label class="question-label">Defective Vision</label>
                     </div>
                     <div class="col-12 d-flex flex-column mt-2">
-
-
                         <div class="form-check" d-flex align-items-end>
                             <input class="form-check-input" type="checkbox" value="no" id="visionNo"
                                 name="defectiveVision" onchange="updateProgress('form1')">
@@ -186,8 +211,6 @@
                         <div class="col-12 d-flex mt-2 ">
                             <div class="checkbox-item d-flex align-items-center">
                                 <div class="col-12 d-flex flex-column">
-
-
                                     <div class="form-check" d-flex align-items-end>
                                         <input class="form-check-input" type="checkbox" value="no" id="visionOtherNo"
                                             name="visionOther" onchange="updateProgress('form1')">
@@ -207,7 +230,6 @@
                                         </label>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                         <div id="visionOtherYearInput" class="col-12 " style="display: none;">
@@ -228,7 +250,7 @@
                     </div>
                     <div>
                         <div class="mt-3">
-                            <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
+                            <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
                                 Ear,Nose,Throat
                             </h3>
                         </div>
@@ -323,7 +345,7 @@
                                 </div>
                                 <div>
                                     <div class="mt-3">
-                                        <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
+                                        <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
                                             Head</h3>
                                     </div>
                                     <div class="col-12 mt-2">
@@ -469,7 +491,7 @@
                                 </div>
                                 <div>
                                     <div class="mt-3">
-                                        <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
+                                        <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
                                             Neck</h3>
                                     </div>
                                     <div class="col-12 mt-2">
@@ -521,7 +543,7 @@
                                 </div>
                                 <div>
                                     <div class="mt-3">
-                                        <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
+                                        <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
                                             Heart
                                         </h3>
                                     </div>
@@ -726,7 +748,7 @@
         <div id="form1-page3" class="form-page" style="display: none;">
 
             <div>
-                <h3>
+                <h3 class="heading">
                     <p>Do you have or have you ever had any disease, injury, disorder, or surgery of the following?
                     </p>
                 </h3>
@@ -735,7 +757,7 @@
             <div>
 
                 <div style="margin-top: 20px;">
-                    <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Lungs</h3>
+                    <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Lungs</h3>
                 </div>
                 <div>
                     <div class="col-12">
@@ -886,7 +908,7 @@
             <div>
 
                 <div style="margin-top: 20px;">
-                    <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Bones/Joints</h3>
+                    <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Bones/Joints</h3>
                 </div>
                 <div>
                     <div class="col-12 mt-3">
@@ -1167,7 +1189,7 @@
             <div>
 
                 <div style="margin-top: 20px;">
-                    <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Blood Diseases</h3>
+                    <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Blood Diseases</h3>
                 </div>
                 <div>
                     <div class="col-12">
@@ -1312,7 +1334,7 @@
 
             <div>
                 <div style="margin-top: 20px;">
-                    <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Diabetes</h3>
+                    <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Diabetes</h3>
                 </div>
                 <div>
                     <div class="col-12">
@@ -1364,7 +1386,7 @@
             <div>
 
                 <div style="margin-top: 20px;">
-                    <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Epilepsy/Seizures</h3>
+                    <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Epilepsy/Seizures</h3>
                 </div>
                 <div>
                     <div class="col-12">
@@ -1416,7 +1438,7 @@
             <div>
 
                 <div style="margin-top: 20px;">
-                    <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Fainting Spells</h3>
+                    <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Fainting Spells</h3>
                 </div>
                 <div>
                     <div class="col-12">
@@ -1470,7 +1492,7 @@
             <div>
 
                 <div style="margin-top: 20px;">
-                    <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Mental Health</h3>
+                    <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Mental Health</h3>
                 </div>
                 <div>
                     <div class="col-12 mt-3">
@@ -1673,7 +1695,7 @@
 
         <div id="form1-page4" class="form-page" style="display: none;">
             <div>
-                <h3>
+                <h3 class="heading">
                     <p>Do you have or have you ever had any disease, injury, disorder, or surgery of the following?
                     </p>
                 </h3>
@@ -1682,7 +1704,7 @@
             <div>
 
                 <div style="margin-top: 20px;">
-                    <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Gastrointestinal</h3>
+                    <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Gastrointestinal</h3>
                 </div>
                 <div>
                     <div class="col-12">
@@ -1871,7 +1893,7 @@
 
                 <div>
                     <div style="margin-top: 20px;">
-                        <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Kidney</h3>
+                        <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Kidney</h3>
                     </div>
                     <div>
                         <div class="col-12">
@@ -1923,7 +1945,7 @@
 
                 <div>
                     <div style="margin-top: 20px;">
-                        <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Skin</h3>
+                        <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Skin</h3>
                     </div>
                     <div>
                         <div class="col-12">
@@ -1975,7 +1997,7 @@
 
                 <div>
                     <div style="margin-top: 20px;">
-                        <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Allergies</h3>
+                        <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Allergies</h3>
                     </div>
                     <div>
                         <div class="col-12">
@@ -2072,7 +2094,7 @@
 
                 <div>
                     <div style="margin-top: 20px;">
-                        <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Other Health
+                        <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Other Health
                             Conditions Not Listed</h3>
                     </div>
                     <div>
@@ -2125,7 +2147,7 @@
 
                 <div>
                     <div style="margin-top: 20px;">
-                        <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">When was your last
+                        <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">When was your last
                         </h3>
                     </div>
                     <div>
@@ -2223,7 +2245,7 @@
                 <div>
 
                     <div style="margin-top: 20px;">
-                        <h3 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Check the
+                        <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Check the
                             Appropriate Box
                         </h3>
                     </div>
@@ -2466,7 +2488,7 @@
     <div id="invalidModal" class="invalid-modal">
         <div class="invalid-modal-content">
             <div class="modal-header">
-                <h3 class="modal-heading">Invalid!</h3>
+                <h3 class="heading" class="modal-heading">Invalid!</h3>
                 <span id="closeBtn" class="close-btn" onclick="closeModal()">&#10006;</span>
             </div>
 
@@ -2484,7 +2506,7 @@
     <div id="successModal" class="success-modal">
         <div class="success-modal-content">
             <div class="modal-header">
-                <h3 class="modal-heading">Successful!</h3>
+                <h3 class="heading" class="modal-heading">Successful!</h3>
                 <span id="closeBtn" class="close-btn" onclick="closeDialog()">&#10006;</span>
             </div>
 

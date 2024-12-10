@@ -59,6 +59,15 @@ label {
     color: white !important;
     
 } 
+.form-control{
+    border: none !important;
+    background-color: #4A72A7 !important;
+    border-bottom: 2px solid white !important;
+    color: white !important;
+    border-bottom: 2px solid white !important;
+
+
+}
 
 input {
     width: 100%;
@@ -632,6 +641,21 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.phone{
+    padding-left: 0px !important ;
+    border: none !important;
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius:0px !important ;
+    border-bottom: 2px solid white !important;
+}
+.code{
+    padding-right: 0px !important ;
+    border: none !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius:0px !important ;
+    border-bottom: 2px solid white !important;
 }
 
 /* For Firefox

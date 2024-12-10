@@ -1,5 +1,6 @@
 let totalFields = 0;
 let totalPages = 0;
+let signatureData;
 
 function initializeForm(formId) {
     totalPages = document.querySelectorAll(`#${formId} .form-page`).length;
@@ -111,6 +112,7 @@ function updateProgress(formId) {
     fields.forEach(field => {
         if ((field.type === 'text' || field.type === 'email' || field.type === 'date' || field.type ==='number') && field.value.trim()) {
             filledFields++;
+            
         }
         if ((field.type === 'checkbox' || field.type === 'radio') && field.checked) {
             const groupName = field.name;
@@ -119,7 +121,8 @@ function updateProgress(formId) {
                 processedGroups.add(groupName);
             }
         }
-    });
+    }); 
+    // totalFields=totalFields-2;
     const percentage = ((filledFields / totalFields) * 100);
     console.log("Total Fields:", totalFields);
     console.log("Filled Fields:", filledFields);
@@ -133,182 +136,6 @@ function updateProgress(formId) {
     const offset = Math.max(0, percentage - 7);
     percentageText.style.left = `${offset}%`;
 }
-
-
-// function validatePage(formId, pageNumber) {
-//     const form = document.getElementById(formId);
-//     const currentPage = form.querySelector(`#form1-page${pageNumber}`);
-//     const inputs = currentPage.querySelectorAll('input, select, textarea');
-//     const canvases = currentPage.querySelectorAll('canvas');
-//     let isValid = true;
-
-//     // Handle input, select, and textarea validation
-//     inputs.forEach(input => {
-//         const validateInput = () => {
-//             if (input.type === 'checkbox') {
-//                 const checkboxes = currentPage.querySelectorAll(`input[name="${input.name}"]`);
-//                 const isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-
-//                 if (!isAnyChecked) {
-//                     isValid = false;
-//                     checkboxes.forEach(checkbox => checkbox.classList.add('highlight-feedback'));
-//                 } else {
-//                     checkboxes.forEach(checkbox => checkbox.classList.remove('highlight-feedback'));
-//                 }
-//             } else if (input.required) {
-//                 if (input.tagName === 'SELECT' && !input.value) {
-//                     isValid = false;
-//                     input.classList.add('highlight');
-//                 } else if (input.tagName === 'TEXTAREA' && !input.value.trim()) {
-//                     isValid = false;
-//                     input.classList.add('highlight');
-//                 } else if (input.value.trim()) {
-//                     input.classList.remove('highlight');
-//                 } else {
-//                     isValid = false;
-//                     input.classList.add('highlight');
-//                 }
-//             } else {
-//                 input.classList.remove('highlight');
-//             }
-//         };
-
-//         // Attach dynamic validation
-//         input.addEventListener('input', validateInput);
-//         if (input.tagName === 'SELECT') {
-//             input.addEventListener('change', validateInput);
-//         }
-
-//         // Initial validation
-//         validateInput();
-//     });
-//       if(validInput()){
-//         isValid = false;
-//       }
-//       else{
-//         isValid=true;
-//       }
-//     // Handle canvas validation separately
-//     canvases.forEach(canvas => {
-//         const validateCanvas = () => {
-//             console.log("entered into canvas");
-//             const context = canvas.getContext('2d');
-//             const pixelData = context.getImageData(0, 0, canvas.width, canvas.height).data;
-//             const isCanvasEmpty = !pixelData.some(value => value !== 0);
-
-//             if (isCanvasEmpty) {
-//                 isValid = false;
-//                 canvas.classList.add('highlight');
-//             } else {
-//                 canvas.classList.remove('highlight');
-//             }
-//         };
-
-//         // Attach event listener for canvas interaction
-//         canvas.addEventListener('mouseup', validateCanvas);
-//         canvas.addEventListener('touchend', validateCanvas);
-
-//         // Initial validation
-//         validateCanvas();
-//     });
-
-//     return isValid;
-// }
-
-// function validatePage(formId, pageNumber) {
-//     const form = document.getElementById(formId);
-//     const currentPage = form.querySelector(`#form1-page${pageNumber}`);
-//     const inputs = currentPage.querySelectorAll('input, select, textarea');
-//     const canvases = currentPage.querySelectorAll('canvas');
-//     let isValid = true;
-
-//     // Validation rules
-//     const validationRules = {
-//         text: { regex: /^[a-zA-Z\s]*$/, errorMessage: 'Only letters are allowed' },
-//         number: { regex: /^[0-9]*$/, errorMessage: 'Only numbers are allowed' }
-//         // email: { regex: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, errorMessage: 'Enter a valid email' },
-//         // Add more rules as needed
-//     };
-
-//     // Handle input, select, and textarea validation
-//     inputs.forEach(input => {
-//         const validateInput = () => {
-//             const type = input.getAttribute('data-validate') || input.type;
-//             const rule = validationRules[type];
-
-//             if (rule && !validInput(input, rule.regex, rule.errorMessage)) {
-//                 isValid = false;
-//             } else if (input.required && input.tagName === 'SELECT' && !input.value) {
-//                 isValid = false;
-//                 input.classList.add('highlight');
-//             } else if (input.required && input.tagName === 'TEXTAREA' && !input.value.trim()) {
-//                 isValid = false;
-//                 input.classList.add('highlight');
-//             } else if (input.required && input.value.trim()) {
-//                 input.classList.remove('highlight');
-//             }
-//         };
-
-//         // Attach dynamic validation
-//         input.addEventListener('input', validateInput);
-//         if (input.tagName === 'SELECT') {
-//             input.addEventListener('change', validateInput);
-//         }
-
-//         // Initial validation
-   //     validateInput();
-//     });
-
-//     // Handle canvas validation separately
-//     canvases.forEach(canvas => {
-//         const validateCanvas = () => {
-//             const context = canvas.getContext('2d');
-//             const pixelData = context.getImageData(0, 0, canvas.width, canvas.height).data;
-//             const isCanvasEmpty = !pixelData.some(value => value !== 0);
-
-//             if (isCanvasEmpty) {
-//                 isValid = false;
-//                 canvas.classList.add('highlight');
-//             } else {
-//                 canvas.classList.remove('highlight');
-//             }
-//         };
-
-//         // Attach event listener for canvas interaction
-//         canvas.addEventListener('mouseup', validateCanvas);
-//         canvas.addEventListener('touchend', validateCanvas);
-
-//         // Initial validation
-//         validateCanvas();
-//     });
-
-//     return isValid;
-// }
-
-// function validInput(input, regex, errorMessage) {
-//     const value = input.value;
-//     const errorField = input.nextElementSibling;
-
-//     if (!regex.test(value)) {
-//         // Add error styles and message
-//         input.classList.add('highlight');
-//         if (errorField) {
-//             errorField.style.display = 'block';
-//             errorField.textContent = errorMessage;
-//         }
-
-//         // Remove invalid characters
-//         input.value = value.replace(new RegExp(`[^${regex.source.slice(1, -1)}]`, 'g'), '');
-//         return false;
-//     } else {
-//         // Remove error styles and message
-//         input.classList.remove('highlight');
-//         if (errorField) {
-//             errorField.style.display = 'none';
-//         }
-//         return true;
-//     }
-// }
 
 
 function validatePage(formId, pageNumber) {
@@ -726,6 +553,7 @@ function initializeSignatureBox() {
 
     canvas.addEventListener('mouseout', () => {
         isDrawing = false;
+        saveSign();
     });
 
     console.log("Signature box initialized with white color and thin line.");
@@ -800,6 +628,7 @@ function addForm1EventListeners() {
             }
             else {
                 showInvalidModal();
+                hideCheckmark('form1Tick');
             }
         });
     }
@@ -855,19 +684,30 @@ function showCheckmark(formId) {
 }
 
 
+function hideCheckmark(formId) {
+    const checkmark = document.getElementById(formId);
+    if (checkmark) {
+        checkmark.classList.remove('visible');
+    }
+}
+
+
 
 
 
 // Save the signature
 
 // document.getElementById('saveButton').addEventListener('click', () => {
-//     if (canvas) {
-//         const signatureData = canvas.toDataURL('image/png');
-//         console.log('Signature saved:', signatureData);
-//         // You can send `signatureData` to a server or save it locally
-//     } else {
-//         console.error("Signature box is not initialized.");
-//     }
+
+    function saveSign(){
+    if (canvas) {
+        signatureData = canvas.toDataURL('image/png');
+        console.log('Signature saved:', signatureData);
+        // You can send `signatureData` to a server or save it locally
+    } else {
+        console.error("Signature box is not initialized.");
+    }
+}
 // });
 
 
@@ -915,6 +755,40 @@ function handleDateChange(event) {
     const formattedDate = formatDateToDDMMYYYY(selectedDate);
     document.getElementById('formattedDate').textContent = `Selected Date: ${formattedDate}`;
 }
+
+function validateAndFormatPhoneNumber(input) {
+    const rawValue = input.value.replace(/\D/g, ''); // Remove non-numeric characters
+
+    // Handle empty input (allows clearing)
+    if (rawValue.length === 0) {
+        input.value = '';
+        const errorField = input.nextElementSibling;
+        errorField.textContent = '';
+        errorField.style.display = 'none';
+        return;
+    }
+
+    // Validate that only numbers are allowed
+    if (rawValue.length > 10) {
+        input.value = formatPhoneNumber(rawValue.substring(0, 10)); // Format first 10 digits only
+        return;
+    } 
+
+    // Format the phone number dynamically
+    input.value = formatPhoneNumber(rawValue);
+}
+
+function formatPhoneNumber(value) {
+    if (value.length <= 3) {
+        return `(${value}`;
+    } else if (value.length <= 6) {
+        return `(${value.substring(0, 3)}) ${value.substring(3)}`;
+    } else {
+        return `(${value.substring(0, 3)}) ${value.substring(3, 6)}-${value.substring(6)}`;
+    }
+}
+
+
 
 
 initializeForm('form1');

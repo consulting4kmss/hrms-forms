@@ -1,20 +1,544 @@
 <div id="form2" class="form-card">
     <h3>Employment Application Supplement - CMV Driver</h3>
-    <div id="form2-page1" class="form-page">
-        <label>Height</label>
-        <input type="text" name="height">
-        <button onclick="nextPage(2)">Next</button>
+    <div class="page-count  ">
+        <span id="currentPageText2">Page 1 of 9</span>
     </div>
-    <div id="form2-page2" class="form-page" style="display: none;">
-        <label>Known Medical Conditions</label>
-        <input type="text" name="conditions">
-        <button onclick="previousPage(1)">Previous</button>
-        <button onclick="nextPage(3)">Next</button>
+
+    <div class="progress-container">
+        <div class="progress-bar-container">
+            <div id="progressBar2" class="progress-bar2"></div>
+            <span id="currentPagePercentage2" class="percentage-text">0%</span>
+        </div>
     </div>
-    <div id="form2-page3" class="form-page" style="display: none;">
-        <label>Emergency Contact</label>
-        <input type="text" name="contact">
-        <button onclick="previousPage(2)">Previous</button>
-        <button class="submit-btn">Submit</button>
+    <div id="form2-page1" class="form-page2">
+        <h4> Dominion Energy - 600 Canal Place, Richmond, VA 23219</h4>
+        <p class="formtext">
+            As required under Federal Motor Carrier Safety Administration (FMCSA) rules, applicants for positions which
+            require that they drive a company commercial motor vehicle to perform their job duties must complete a
+            "supplement" to the Employment Application.
+
+            The information you provide in accordance with 49 CFR 391.21 paragraph (b) (10) and (11) may be used and
+            your
+            prior employers will be contacted for the purpose of investigating your background history related to
+            driving.
+        </p>
+        <div>
+            <div class="row">
+                <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <label>Applicant Name</label>
+
+                    <input required type="text" data-validate="text" name="firstName" autocomplete="off" maxlength="30"
+                        oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')" class="form-control"
+                        onchange="updateProgress2('form2')" />
+                    <small class="error-message"></small>
+                </div>
+                <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
+                    <label>Date of Birth</label>
+                    <input required type="date" class="dab" name="applicantdob" id="applicantDob"
+                        oninput="handleDateChange2(event)" placeholder="MM/DD/YYYY" onchange="updateProgress2('form2')">
+                    <small class="error-message"></small>
+
+                </div>
+                <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
+                    <label>Social Security Number (SSN)</label>
+                    <input type="text" name="middleName" autocomplete="off" maxlength="30"
+                        oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')" class="form-control"
+                        onchange="updateProgress2('form2')" />
+                    <small class="error-message"></small>
+                </div>
+                <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
+                    <label>Phone</label>
+                    <input required type="text" name="home" autocomplete="off"
+                        oninput="validateAndFormatPhoneNumber(this);" class="form-control"
+                        onchange="updateProgress2('form2')" />
+                    <small class="error-message"></small>
+                </div>
+            </div>
+            <div style="margin-top: 20px;">
+                <h4 class="heading" style="border-bottom: 2px solid #8bafdf; width: 100%; padding-bottom: 5px;">Current
+                    Driver's Address</h4>
+            </div>
+        </div>
+        <div class="form-row mt-3">
+            <div>
+                <label>Number and Street (NO PO BOX)</label>
+                <input required type="text" data-validate="text" autocomplete="off" name="address" class="form-control"
+                    onchange="updateProgress2('form2')" placeholder="Enter Text">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col">
+                <label>City</label>
+                <!-- <input required type="text" data-validate="text" autocomplete="off" name="city" onchange="updateProgress2('form2')"> -->
+                <input required type="text" data-validate="text" name="city" maxlength="50" autocomplete="off"
+                    oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" class="form-control"
+                    onchange="updateProgress2('form2')" placeholder="Enter Text" />
+                <small class="error-message"></small>
+            </div>
+            <div class="col">
+                <label>State</label>
+                <select required name="asthmaYear" id="asthmaYear" class="form-control state-feild"
+                    placeholder="Select One">
+                    <option value="state1"></option>
+                    <option value="state2"></option>
+                    <option value="state3"></option>=
+                </select>
+            </div>
+            <div class="col">
+                <label>Zip</label>
+                <input required type="number" name="zip" autocomplete="off" maxlength="6" data-validate="number"
+                    class="form-control" onchange="updateProgress2('form2')"
+                    oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')" placeholder="Enter Number" />
+                <small class="error-message"></small>
+            </div>
+        </div>
+        <div class="form-row">
+            <div>
+                <label>From</label>
+
+                <input required type="date" class="dab form-control " id="from" name="dob"
+                    onchange="handleDateChange2(event)">
+                <small class="error-message"></small>
+            </div>
+            <div>
+                <label>To</label>
+                <input required type="date" class="to form-control" id="dab form-control " name="to"
+                    onchange="handleDateChange2(event)">
+                <small class="error-message"></small>
+            </div>
+        </div>
+
+
+        <div>
+            <h6 class="heading">
+                <p>Did you reside in any prior address in the THREE (3)years preceding the date of this application ?(NO
+                    PO BOXES)
+                </p>
+            </h6>
+        </div>
+
+        <div class="col-12 d-flex flex-column mt-2">
+
+
+            <div class="form-check" d-flex align-items-end>
+                <input class="form-check-input" type="radio" value="no" id="addressNo" name="priorAdress"
+                    onchange="updateProgress2('form2')">
+                <label class="form-check-label label ms-4" for="addressNo">
+                    No
+                </label>
+            </div>
+
+            <div class="form-check mt-2">
+                <input class="form-check-input" type="radio" value="yes" id="addressYes" name="priorAdress"
+                    onchange="updateProgress2('form2')">
+                <label class="form-check-label ms-4" for="addressYes">
+                    Yes
+                </label>
+            </div>
+        </div>
+        <div style="display:none" id="Address1">
+            <div class="mt-3">
+                <h4 class="heading" style="border-bottom: 2px solid #8bafdf; width: 100%; padding-bottom: 5px;">
+                    Address History Continued
+                </h4>
+            </div>
+
+            <div>
+                <h6 class="heading">
+                    <p>List any prior address in the THREE (3) years preceding the date of this application, include
+                        street, city, state, and zip (NO PO BOXES)
+                    </p>
+                </h6>
+            </div>
+            <div class="mt-2">
+                <div class="address-container">
+                    <div class="form-row ">
+                        <div>
+                            <label>Additional Address #1</label>
+                            <input required type="text" data-validate="text" autocomplete="off" name="address1"
+                                class="form-control" onchange="updateProgress2('form2')" placeholder="Enter Text">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col">
+                            <label>City</label>
+                            <!-- <input required type="text" data-validate="text" autocomplete="off" name="city" onchange="updateProgress2('form2')"> -->
+                            <input required type="text" data-validate="text" name="city" maxlength="50"
+                                autocomplete="off"
+                                oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')"
+                                class="form-control" onchange="updateProgress2('form2')" placeholder="Enter Text" />
+                            <small class="error-message"></small>
+                        </div>
+                        <div class="col">
+                            <label>State</label>
+                            <select required name="asthmaYear" id="asthmaYear" class="form-control state-feild"
+                                placeholder="Select One">
+                                <option value="state1"></option>
+                                <option value="state2"></option>
+                                <option value="state3"></option>=
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label>Zip</label>
+                            <input required type="number" name="zip" autocomplete="off" maxlength="6"
+                                data-validate="number" class="form-control" onchange="updateProgress2('form2')"
+                                oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')"
+                                placeholder="Enter Number" />
+                            <small class="error-message"></small>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div>
+                            <label>From</label>
+
+                            <input required type="date" class="dab form-control" id="from1" name="dob"
+                                onchange="handleDateChange2(event)">
+                            <small class="error-message"></small>
+                        </div>
+                        <div>
+                            <label>To</label>
+                            <input required type="date" class="dab form-control " id="to1" name="dob"
+                                onchange="handleDateChange2(event)">
+                            <small class="error-message"></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <h6 class="heading">
+                        <p>Did you have additional prior address to add</p>
+                    </h6>
+                </div>
+                <div class="col-12 d-flex flex-column mt-2">
+                    <div class="form-check" d-flex align-items-end>
+                        <input class="form-check-input" type="radio" value="no" id="addressNo1" name="Adress1"
+                            onchange="updateProgress2('form2')">
+                        <label class="form-check-label label ms-4" for="addressNo1">
+                            No
+                        </label>
+                    </div>
+
+                    <div class="form-check mt-2">
+                        <input class="form-check-input" type="radio" value="yes" id="addressYes1" name="Adress1"
+                            onchange="updateProgress2('form2')">
+                        <label class="form-check-label ms-4" for="addressYes1">
+                            Yes
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="address-container mt-2" id="Address2">
+            <div class="form-row ">
+                <div>
+                    <label>Additional Address #2</label>
+                    <input required type="text" data-validate="text" autocomplete="off" name="Address2"
+                        class="form-control" onchange="updateProgress2('form2')" placeholder="Enter Text">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col">
+                    <label>City</label>
+                    <!-- <input required type="text" data-validate="text" autocomplete="off" name="city" onchange="updateProgress2('form2')"> -->
+                    <input required type="text" data-validate="text" name="city" maxlength="50" autocomplete="off"
+                        oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" class="form-control"
+                        onchange="updateProgress2('form2')" placeholder="Enter Text" />
+                    <small class="error-message"></small>
+                </div>
+                <div class="col">
+                    <label>State</label>
+                    <select required name="asthmaYear" id="asthmaYear" class="form-control state-feild"
+                        placeholder="Select One">
+                        <option value="state1"></option>
+                        <option value="state2"></option>
+                        <option value="state3"></option>=
+                    </select>
+                </div>
+                <div class="col">
+                    <label>Zip</label>
+                    <input required type="number" name="zip" autocomplete="off" maxlength="6" data-validate="number"
+                        class="form-control" onchange="updateProgress2('form2')"
+                        oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')" placeholder="Enter Number" />
+                    <small class="error-message"></small>
+                </div>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label>From</label>
+
+                    <input required type="date" class="dab form-control" id="from1" name="dob"
+                        onchange="handleDateChange2(event)">
+                    <small class="error-message"></small>
+                </div>
+                <div>
+                    <label>To</label>
+                    <input required type="date" class="dab form-control " id="to1" name="dob"
+                        onchange="handleDateChange2(event)">
+                    <small class="error-message"></small>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="single-button-container">
+            <button onclick="nextPage2(2)">Next</button>
+        </div>
+
     </div>
+
+
+    <div id="form2-page2" class="form-page2" style="display: none;">
+        <div style="margin-top: 20px;">
+            <h4 class="heading" style="border-bottom: 2px solid #8bafdf; width: 100%; padding-bottom: 5px;">Motor
+                Vehicle Operator's License</h4>
+        </div>
+        <div class="address-container mt-2" id="dl">
+            <div class="col-12 ">
+                <label>Current DL Issuing State</label>
+                <select required name="asthmaYear" id="dlState" class="form-control state-feild"
+                    placeholder="Select One">
+                    <option value="state1"></option>
+                    <option value="state2"></option>
+                    <option value="state3"></option>=
+                </select>
+            </div>
+
+            <div class="col-12 mt-3">
+                <label>Current DL Number</label>
+                <input required type="number" name="dlNumber" autocomplete="off" data-validate="number"
+                    class="form-control" onchange="updateProgress2('form2')"
+                    oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')" placeholder="Enter Number" />
+                <small class="error-message"></small>
+            </div>
+
+            <div class="col-12 mt-3 mb-3">
+                <label>Current DL Expiration Date </label>
+                <input required type="date" class="dab form-control" name="dlExpiry" id="dlExpiry"
+                    onchange="handleDateChange2(event)" placeholder="MM/DD/YYYY">
+                <small class="error-message"></small>
+            </div>
+
+        </div>
+
+
+        <div class="address-container mt-3" id="dl1">
+            <div class="col-12 ">
+                <label>Previous DL Issuing State</label>
+                <select required name="state" id="preDlState" class="form-control state-feild" placeholder="Select One">
+                    <option value="state1"></option>
+                    <option value="state2"></option>
+                    <option value="state3"></option>=
+                </select>
+            </div>
+
+            <div class="col-12 mt-3">
+                <label>Previous DL Number</label>
+                <input required type="number" name="preDlNumber" autocomplete="off" data-validate="number"
+                    class="form-control" onchange="updateProgress2('form2')"
+                    oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')" placeholder="Enter Number" />
+                <small class="error-message"></small>
+            </div>
+
+            <div class="col-12 mt-3 mb-3">
+                <label>Previous DL Expiration Date </label>
+                <input required type="date" class="dab form-control " name="preDlExpiry" id="preDlExpiry"
+                    onchange="handleDateChange2(event)" placeholder="MM/DD/YYYY">
+                <small class="error-message"></small>
+            </div>
+
+        </div>
+
+        <div class="col-12 mt-3">
+            <div class="col-12">
+                <label class="question-label">Current DL Type & Class</label>
+
+                <div>
+                    <div class=" form-check col-12 mt-2">
+                        <div class="checkbox">
+                            <input class="form-check-input" type="checkbox" id="non-commercial" name="cDlType"
+                                value="Non-Commercial" onchange="updateProgress2('form2')">
+                        </div>
+                        <div class="label ms-3">
+                            <label for="non-commercial">Non-Commercial</label>
+                        </div>
+                    </div>
+                    <div class=" form-check col-12 mt-2">
+                        <div class="checkbox">
+                            <input class="form-check-input" type="checkbox" id="commercial" name="cDlType"
+                                value="Commercial: CDL A, B or C" onchange="updateProgress2('form2')">
+                        </div>
+                        <div class="label ms-3">
+                            <label for="commercial">Commercial: CDL A, B or C</label>
+                        </div>
+                    </div>
+
+                    <div class=" form-check col-12 mt-2">
+                        <div class="checkbox">
+                            <input class="form-check-input" type="checkbox" id="commercialLearner" name="cDlType"
+                                value="Commercial Learner" onchange="updateProgress2('form2')">
+                        </div>
+                        <div class="label ms-3">
+                            <label for="commercialLearner">Commercial Learner's (CLP)</label>
+                        </div>
+                    </div>
+
+                    <div class=" form-check col-12 mt-2">
+                        <div class="checkbox">
+                            <input class="form-check-input" type="checkbox" id="nonInState" name="cDlType"
+                                value="nonInState" onchange="updateProgress2('form2')">
+                        </div>
+                        <div class="label ms-3">
+                            <label for="nonInState">Non-In-state only commercial, limited to 10-26k lbs</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 mt-3">
+            <div class="col-12">
+                <label class="question-label">Current DL Endorsements</label>
+
+                <div>
+                    <div class=" form-check col-12 mt-2">
+                        <div class="checkbox">
+                            <input class="form-check-input" type="checkbox" id="noDlEndorsements" name="endorsements"
+                                value="None" onchange="updateProgress2('form2')">
+                        </div>
+                        <div class="label ms-3">
+                            <label for="non-commercial">None</label>
+                        </div>
+                    </div>
+                    <div class=" form-check col-12 mt-2">
+                        <div class="checkbox">
+                            <input class="form-check-input" type="checkbox" id="commercial" name="endorsements"
+                                value="Tank Vechile" onchange="updateProgress2('form2')">
+                        </div>
+                        <div class="label ms-3">
+                            <label for="commercial">Tank Vechile</label>
+                        </div>
+                    </div>
+
+                    <div class=" form-check col-12 mt-2">
+                        <div class="checkbox">
+                            <input class="form-check-input" type="checkbox" id="hazardous" name="endorsements"
+                                value="Hazardous Materials" onchange="updateProgress2('form2')">
+                        </div>
+                        <div class="label ms-3">
+                            <label for="commercialLearner">Hazardous Materials</label>
+                        </div>
+                    </div>
+
+                    <div class=" form-check col-12 mt-2">
+                        <div class="checkbox">
+                            <input class="form-check-input" type="checkbox" id="otherEndorsements" name="endorsements"
+                                value="Other" onchange="updateProgress2('form2')">
+                        </div>
+                        <div class="label ms-3">
+                            <label for="nonInState">Other</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-row">
+            <button onclick="previousPage2(1)" style="background: none;">Back</button>
+            <button onclick="nextPage2(3)">Next</button>
+        </div>
+    </div>
+
 </div>
+
+
+
+
+
+
+<!-- 
+
+
+
+
+
+
+<div id="form2-page3" class="form-page" style="display: none;">
+    <label>Emergency Contact</label>
+    <input type="text" name="contact">
+    <button onclick="previousPage2(2)">Previous</button>
+    <button onclick="nextPage2(4)">Next</button>
+</div>
+
+
+
+<div id="form2-page4" class="form-page" style="display: none;">
+    <label>Emergency Contact</label>
+    <input type="text" name="contact">
+    <button onclick="previousPage2(3)">Previous</button>
+    <button onclick="nextPage2(5)">Next</button>
+</div>
+
+
+
+
+<div id="form2-page5" class="form-page" style="display: none;">
+    <label>Emergency Contact</label>
+    <input type="text" name="contact">
+    <button onclick="previousPage2(4)">Previous</button>
+    <button onclick="nextPage2(6)">Next</button>
+</div>
+
+
+
+
+
+
+<div id="form2-page6" class="form-page" style="display: none;">
+    <label>Emergency Contact</label>
+    <input type="text" name="contact">
+    <button onclick="previousPage2(5)">Previous</button>
+    <button onclick="nextPage2(7)">Next</button>
+</div>
+
+
+
+
+
+
+<div id="form2-page7" class="form-page" style="display: none;">
+    <label>Emergency Contact</label>
+    <input type="text" name="contact">
+    <button onclick="previousPage2(6)">Previous</button>
+    <button onclick="nextPage2(8)">Next</button>
+</div>
+
+
+
+
+
+
+
+<div id="form2-page8" class="form-page" style="display: none;">
+    <label>Emergency Contact</label>
+    <input type="text" name="contact">
+    <button onclick="previousPage2(7)">Previous</button>
+    <button onclick="nextPage2(9)">Next</button>
+</div>
+
+
+
+
+
+
+
+<div id="form2-page9" class="form-page" style="display: none;">
+    <label>Emergency Contact</label>
+    <input type="text" name="contact">
+    <button onclick="previousPage2(8)">Previous</button>
+    <button class="submit-btn">Submit</button>
+</div>
+</div> -->

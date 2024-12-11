@@ -1,6 +1,6 @@
-let totalFields = 0;
-let totalPages = 0;
-let signatureData;
+var totalFields = 0;
+var totalPages = 0;
+var signatureData;
 
 function initializeForm(formId) {
     totalPages = document.querySelectorAll(`#${formId} .form-page`).length;
@@ -82,26 +82,6 @@ function updatePageInfo(formId, currentPage) {
 
     percentageText.style.left = `${percentage}%`;
 }
-function convertDateToFormat(inputId) {
-    const dateInput = document.getElementById(inputId);
-    if (!dateInput) {
-        console.error(`Element with id "${inputId}" not found.`);
-        return;
-    }
-
-    const selectedDate = new Date(dateInput.value);
-    if (!dateInput.value) return;
-
-    const year = selectedDate.getFullYear();
-    const month = (selectedDate.getMonth() + 1).toString().padStart(2, '0');
-    const day = selectedDate.getDate().toString().padStart(2, '0');
-
-    const formattedDate = `${year}-${month}-${day}`;
-
-    dateInput.value = formattedDate;
-    updateProgress('form1');
-}
-
 
 function updateProgress(formId) {
     const form = document.getElementById(formId);
@@ -139,8 +119,9 @@ function updateProgress(formId) {
 
 
 function validatePage(formId, pageNumber) {
+
     const form = document.getElementById(formId);
-    const currentPage = form.querySelector(`#form1-page${pageNumber}`);
+    const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
     const inputs = currentPage.querySelectorAll('input, select, textarea');
     const canvases = currentPage.querySelectorAll('canvas');
     let isValid = true;
@@ -245,9 +226,10 @@ function getValidationRule(input) {
     return rules[validationType] || null; // Return null if no matching rule
 }
 
-function nextPage(pageNumber) {
+function nextPage(formId,pageNumber) {
+    console.log('next Page',formId,pageNumber);
 
-    if (validatePage('form1', pageNumber - 1)) {
+    if (validatePage(formId, pageNumber - 1)) {
         console.log("pageNumber:  ", pageNumber);
         if (pageNumber == 4) {
             console
@@ -255,15 +237,15 @@ function nextPage(pageNumber) {
             clearSign();
             addForm1EventListeners();
         }
-        const form = document.getElementById('form1');
-        const currentPage = form.querySelector(`#form1-page${pageNumber - 1}`);
-        const nextPage = form.querySelector(`#form1-page${pageNumber}`);
+        const form = document.getElementById(formId);
+        const currentPage = form.querySelector(`#${formId}-page${pageNumber - 1}`);
+        const nextPage = form.querySelector(`#${formId}-page${pageNumber}`);
 
         currentPage.style.display = 'none';
         nextPage.style.display = 'block';
 
-        updatePageInfo('form1', pageNumber);
-        updateProgress('form1');
+        updatePageInfo(formId, pageNumber);
+        updateProgress(formId);
     }
     else {
         //alert('Please complete all required fields before proceeding.');
@@ -271,18 +253,19 @@ function nextPage(pageNumber) {
     }
 }
 
-function previousPage(pageNumber) {
-    const form = document.getElementById('form1');
-    const currentPage = form.querySelector(`#form1-page${pageNumber + 1}`);
-    const previousPage = form.querySelector(`#form1-page${pageNumber}`);
+function previousPage(formId,pageNumber) {
+    console.log('previous Page',formId,pageNumber);
+    const form = document.getElementById(formId);
+    const currentPage = form.querySelector(`#${formId}-page${pageNumber + 1}`);
+    const previousPage = form.querySelector(`#${formId}-page${pageNumber}`);
 
     currentPage.style.display = 'none';
     previousPage.style.display = 'block';
 
-    updatePageInfo('form1', pageNumber);
-    updateProgress('form1');
+    updatePageInfo(formId, pageNumber);
+    updateProgress(formId);
 }
-const toggleFieldsConfig = [
+var toggleFieldsConfig = [
     {
         checkboxId: "visionYes",
         fieldsToShow: ["defectiveVisionYearInput", "defectiveVisionExplanationInput"],
@@ -501,8 +484,8 @@ function toggleFields(formId, config) {
 
 
 
-let canvas, context;
-let isDrawing = false;
+var canvas, context;
+var isDrawing = false;
 
 
 function getMousePosition(event) {
@@ -625,6 +608,7 @@ function addForm1EventListeners() {
 
                 showCheckmark('form1Tick');
                 showSuccessModal();
+                form1Completed=true;
             }
             else {
                 showInvalidModal();
@@ -740,7 +724,7 @@ function formatDateToDDMMYYYY(date) {
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
     const year = date.getFullYear();
-    return `${day}-${month}-${year}`;
+    return `${month}-${day}-${year}`;
 }
 
 // Set min date for input in yyyy-mm-dd format

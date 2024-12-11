@@ -233,8 +233,8 @@ button:disabled {
 }
 
 input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
+    width: 20px !important;
+    height: 20px !important;
     appearance: none;
     border: 2px solid white;
     border-radius: 4px;
@@ -289,6 +289,15 @@ input {
     /* color: white; */
     font-size: 14px;
     transition: border-bottom 0.3s ease;
+}
+
+input[type="date"] {
+    background-color: transparent; /* Make the background transparent */
+    color: white; /* Make text color inside the input box white */
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Invert the color of the calendar icon to make it white */
 }
 /* input:focus {
     border-bottom: 2px solid #66b2ff !important;

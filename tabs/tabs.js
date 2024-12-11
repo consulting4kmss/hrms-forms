@@ -46,9 +46,9 @@ function enableForm2() {
 }
 
 function loadForm2() {
-    if (!form1Completed) {
-        return;  
-    }
+    // if (!form1Completed) {
+    //     return;  
+    // }
 
     fetch('../form2/form2.html')
         .then(response => response.text())
@@ -114,3 +114,64 @@ function closeModal() {
     successModal.style.display = 'none';  
 }
 
+
+
+function validateAndFormatPhoneNumber(input) {
+    const rawValue = input.value.replace(/\D/g, ''); // Remove non-numeric characters
+
+    // Handle empty input (allows clearing)
+    if (rawValue.length === 0) {
+        input.value = '';
+        const errorField = input.nextElementSibling;
+        errorField.textContent = '';
+        errorField.style.display = 'none';
+        return;
+    }
+
+    // Validate that only numbers are allowed
+    if (rawValue.length > 10) {
+        input.value = formatPhoneNumber(rawValue.substring(0, 10)); // Format first 10 digits only
+        return;
+    } 
+
+    // Format the phone number dynamically
+    input.value = formatPhoneNumber(rawValue);
+}
+
+function formatPhoneNumber(value) {
+    if (value.length <= 3) {
+        return `(${value}`;
+    } else if (value.length <= 6) {
+        return `(${value.substring(0, 3)}) ${value.substring(3)}`;
+    } else {
+        return `(${value.substring(0, 3)}) ${value.substring(3, 6)}-${value.substring(6)}`;
+    }
+}
+
+
+
+
+function validInput(input, regex, errorMessage) {
+    const value = input.value;
+    const errorField = input.nextElementSibling;
+
+    if (!regex.test(value)) {
+        // Add error styles and message
+        input.classList.add('highlight');
+        if (errorField) {
+            errorField.style.display = 'block';
+            errorField.textContent = errorMessage;
+        }
+
+        // Remove invalid characters
+        input.value = value.replace(new RegExp(`[^${regex.source.slice(1, -1)}]`, 'g'), '');
+        return false;
+    } else {
+        // Remove error styles and message
+        input.classList.remove('highlight');
+        if (errorField) {
+            errorField.style.display = 'none';
+        }
+        return true;
+    }
+}

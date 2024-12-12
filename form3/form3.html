@@ -1,4 +1,4 @@
-<div class="form-container text-white">
+<!-- <div class="form-container text-white">
     <div id="form1" class="form-card ">
         <div class="col-12">
             <h3 class="heading">Pre-Employment Candidate Health Evaluation Questionnaire (HEQ)</h3>
@@ -30,8 +30,7 @@
                 <div class="row">
                     <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                         <label>First Name</label>
-                        <!-- <input required type="text" data-validate="text" autocomplete="off" name="firstName"
-                            onchange="updateProgress('form1')"> -->
+
                         <input required type="text" data-validate="text" name="firstName"  autocomplete="off" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  class="form-control" onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
                     </div>
@@ -40,20 +39,18 @@
                         <input required type="text" data-validate="text" autocomplete="off" name="lastName"  autocomplete="off" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  class="form-control" onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
 
-                        <!-- <input required type="text" data-validate="text" autocomplete="off" name="lastName"onchange="updateProgress('form1')"> -->
+  
 
                     </div>
                     <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                         <label>Middle Name</label>
                         <input type="text" name="middleName"  autocomplete="off" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  class="form-control" onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
-                        <!-- <input required type="text" data-validate="text" autocomplete="off" name="middleName" onchange="updateProgress('form1')"> -->
                     </div>
                     <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                         <label>Suffix</label>
                         <input required type="text" data-validate="text" autocomplete="off" name="suffix" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  class="form-control" onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
-                        <!-- <input required type="text" data-validate="text" autocomplete="off" name="suffix" onchange="updateProgress('form1')"> -->
                     </div>
                 </div>
             </div>
@@ -72,19 +69,18 @@
             <div class="form-row">
                 <div>
                     <label>City</label>
-                    <!-- <input required type="text" data-validate="text" autocomplete="off" name="city" onchange="updateProgress('form1')"> -->
+
                     <input required type="text" data-validate="text" name="city" maxlength="50" autocomplete="off" oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" class="form-control" onchange="updateProgress('form1')"/>
                     <small class="error-message"></small>
                 </div>
                 <div>
                     <label>State</label>
-                    <!-- <input required type="text" data-validate="text" autocomplete="off" name="state" onchange="updateProgress('form1')"> -->
                     <input required type="text" data-validate="text" name="state" maxlength="50" autocomplete="off" oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" class="form-control" onchange="updateProgress('form1')"/>
                     <small class="error-message"></small>
                 </div>
                 <div>
                     <label>Zip</label>
-                    <!-- <input required type="text" data-validate="text" autocomplete="off" name="zip" class="form-control" onchange="updateProgress('form1')"> -->
+                  
                     <input required type="number" name="zip" autocomplete="off" maxlength="6" data-validate="number" class="form-control" onchange="updateProgress('form1')" oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')"  />
                     <small class="error-message"></small>
                 </div>
@@ -103,23 +99,11 @@
                     
                 </div>
             </div>
-                    <!-- <div>
-                    <label>Cell Phone No.</label>
-                    <div style="display: flex; align-items: center;">
-                       
-                        <input type="text" id="countryCode" value="(808)" class="form-control code" readonly 
-                            style="width: 60px; text-align: center;">
-                      
-                        <input required type="number" name="cell" data-validate="number" autocomplete="off" 
-                            oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')" 
-                            class="form-control" onchange="updateProgress('form1')" class="form-control phone">
-                    </div>
-                    <small class="error-message"></small>
-                </div> -->
+
             <div class="form-row">
                 <div>
                     <label>Date of Birth</label>
-                    <!-- <input required type="date" class="dab" id="dob" name="dob" onchange="convertDateToFormat('dob')"> -->
+                    
                     <input required type="date" class="dab" id="dob" name="dob" onchange="handleDateChange(event)">
                     <small class="error-message"></small>
                 </div>
@@ -127,7 +111,7 @@
             <div class="form-row">
                 <div>
                     <label>Gender</label>
-                    <!-- <input required type="text" data-validate="text"  maxlength="15" autocomplete="off" name="gender" class="form-control" onchange="updateProgress('form1')"> -->
+                   
                     <input required type="text" data-validate="text" name="gender" maxlength="20" autocomplete="off" oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" class="form-control" onchange="updateProgress('form1')"/>
                     <small class="error-message"></small>
                 </div>
@@ -135,13 +119,11 @@
             <div class="form-row">
                 <div>
                     <label>Height</label>
-                    <!-- <input required type="text" data-validate="text" autocomplete="off" name="height" class="form-control" onchange="updateProgress('form1')"> -->
                     <input required type="number" step="000.01" min="0" max="249.99" name="height" data-validate="number" autocomplete="off" maxlength="6" oninput="this.value = this.value.slice(0, 3); validInput(validInput(this, /^\d*(\.\d{0,2})?$/, 'Only numbers with up to 2 decimals are allowed'));" />
                     <small class="error-message"></small>
                 </div>
                 <div>
                     <label>Weight</label>
-                    <!-- <input required type="text" data-validate="text" autocomplete="off" name="weight" class="form-control" onchange="updateProgress('form1')"> -->
                     <input required type="number"name="weight" autocomplete="off" maxlength="4" data-validate="number" oninput="this.value = this.value.slice(0, 3); validInput(this, /^[0-9]*$/, 'Only numbers are allowed');" />
                     <small class="error-message"></small>
                 </div>
@@ -1685,10 +1667,7 @@
                 <button onclick="nextPage('form1',4)">Next</button>
             </div>
 
-            <!-- <div class="button-row">
-                <button onclick="previousPage(2)" style="background: none;">Back</button>
-                <button class="submit-btn">Submit</button>
-            </div> -->
+
 
 
         </div>
@@ -2492,10 +2471,6 @@
                 <span id="closeBtn" class="close-btn" onclick="closeModal()">&#10006;</span>
             </div>
 
-            <!-- <div class="icon-container">
-                <span class="modal-checkmark">&#10004;</span> 
-            </div> -->
-
             <p class="modal-message">Please complete all required fields before proceeding.</p>
 
             <button id="colseBtn" class="colse-btn" onclick="closeModal()">Close</button>
@@ -2521,4 +2496,4 @@
     </div>
 
 </div>
-</div>
+</div> -->

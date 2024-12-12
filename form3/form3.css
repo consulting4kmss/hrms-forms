@@ -1,4 +1,4 @@
-.heading{
+/* .heading{
     color:white !important;
 }
 .formtext{
@@ -50,9 +50,7 @@
     flex: 0.5;
 } 
 
-/* .text-white p{
-    color: white !important;
-} */
+
 
 label {
 
@@ -94,9 +92,9 @@ input::placeholder {
 
 
 h3 {
-    /* text-align: center; */
+
     font-size: 20px;
-    /* color: white; */
+ 
     margin-bottom: 20px;
 }
 
@@ -131,7 +129,7 @@ h3 {
 .percentage-text {
     position: absolute;
     top: 50%;
-    /* left:-3%; */
+  
     transform: translateY(-50%);
     color:white !important;
     font-weight: bold; 
@@ -148,13 +146,7 @@ h3 {
     display: flex;
 }
 
-/* .form-page label {
-    display: block;
-    margin: 10px 0 5px;
-    font-size: 14px;
-    font-weight: 600;
-    color: white;
-} */
+
 
 .form-page input {
     width: 100%;
@@ -261,12 +253,12 @@ input[type="checkbox"]:checked::before {
     position: absolute;
     top: -2px;
     left: 4px;
-    /* color: white; */
+  
     font-weight: bold;
 }
 
 .checkbox-item .label {
-    /* color: white; */
+  
     cursor: pointer;
     font-weight: 500;
 }
@@ -276,7 +268,7 @@ input {
     background-color: #4A72A7 !important;
     border: none;
     border-bottom: 2px solid white !important;
-    /* color: white; */
+
     font-size: 14px;
     transition: border-bottom 0.3s ease;
 }
@@ -286,85 +278,45 @@ input {
     background-color: #4A72A7 !important;
     border: none;
     border-bottom: 2px solid white !important;
-    /* color: white; */
+  
     font-size: 14px;
     transition: border-bottom 0.3s ease;
 }
 
 input[type="date"] {
-    background-color: transparent; /* Make the background transparent */
-    color: white; /* Make text color inside the input box white */
+    background-color: transparent;
+    color: white; 
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1); /* Invert the color of the calendar icon to make it white */
-}
-/* input:focus {
-    border-bottom: 2px solid #66b2ff !important;
-    outline: none;
-} */
-
-/* select {
-    width: 30% !important;
-    padding: 5px 0;
-    background-color: #4A72A7 !important; 
-    border: none;
-    border-bottom: 2px solid white !important;
-    color: white !important;
-    font-size: 14px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    filter: invert(1); 
 }
 
-select:focus {
-  
-    border-bottom: 2px solid #66b2ff !important;
-    outline: none !important;
-} */
-
-/* select {
-    width: 35% !important;
-    color: white !important;
-    padding: 5px;
-    padding-right: 5px !important;
-    background-color: #4A72A7;
-    color: white;
-    border: none !important;
-    border-bottom: 2px solid white !important;
-    border-radius: 5px;
-    font-size: 14px;
-    appearance: auto !important;       
-    -webkit-appearance: auto !important;
-   
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 10px;
-} */
 
 .select-feild {
     width: 35% !important;
     color: white !important;
     padding: 5px;
-    padding-right: 25px !important; /* Increase the padding to give space for the icon */
+    padding-right: 25px !important;
     background-color: #4A72A7 !important;
     border: none !important;
     border-bottom: 2px solid white !important;
     border-radius: 5px;
     font-size: 14px;
-    appearance: none !important; /* Remove default appearance */
-    -webkit-appearance: none !important; /* WebKit-specific */
-    -moz-appearance: none !important;    /* Firefox-specific */
+    appearance: none !important; 
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;   
     background-repeat: no-repeat;
     background-position: right 15px center;
-    background-size: 18px; /* Adjust size of the icon */
+    background-size: 18px;
     background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns%3D%22http%3A//www.w3.org/2000/svg%22 width%3D%2212%22 height%3D%2212%22 viewBox%3D%220 0 12 12%22%3E%3Cpath d%3D%22M2 4l4 5 4-5%22 fill%3D%22none%22 stroke%3D%22%23fff%22 stroke-width%3D%221%22/%3E%3C/svg%3E');
 }
 
 
 .select-feild:focus {
-    outline: none !important; /* Remove focus outline */
+    outline: none !important; 
     box-shadow: none !important;
-    border-bottom: 2px solid #66b2ff !important;/* Optional: Add a highlight for focus */
+    border-bottom: 2px solid #66b2ff !important;
 }
 
 
@@ -384,14 +336,12 @@ textarea {
     border: none !important;
     color:white !important;
     border-bottom: 2px solid white !important;
-    /* color: white; */
     font-size: 14px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
 textarea:focus {
-    /* background-color: #66b2ff !important; */
     border-bottom: 2px solid #66b2ff !important;
     box-shadow: none !important;
     outline: none !important;
@@ -420,7 +370,6 @@ canvas {
     background-color: #4A72A7 !important; 
     border: none;
     border-bottom: 2px solid white;
-    /* color: white; */
     font-size: 14px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
@@ -432,9 +381,7 @@ canvas {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* background-color: white; */
     border-radius: 8px;
-    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
     z-index: 1001;
     width: 90%;
     max-width: 400px;
@@ -443,13 +390,7 @@ canvas {
     box-sizing: border-box;
 }
 
-/* .success-modal-content {
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-} */
 
 .invalid-modal-content {
     background-color: #1d4f91;
@@ -480,9 +421,6 @@ canvas {
     cursor: pointer;
 }
 
-/* .close-btn:hover {
-    color: #ff0000;
-} */
 
 .icon-container {
     width: 80px;
@@ -528,7 +466,6 @@ canvas {
 } 
 .highlight-feedback {
     border: 2px solid #f74f4f!important;
-    /* border-color: #dc3545 !important ; */
 } 
 .opt{
     background-color:#4A72A7 !important;
@@ -540,27 +477,18 @@ canvas {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-    z-index: 1000; /* Ensure it is above other content */
-    display: none; /* Initially hidden */
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000; 
+    display: none; 
 }
-/* .success-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1001;
-    display: none;
-} */
+
 .success-modal {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* background-color: white; */
     border-radius: 8px;
-    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
     z-index: 1001;
     width: 90%;
     max-width: 400px;
@@ -642,10 +570,10 @@ canvas {
 .error-message {
     color: #f74f4f ;
     font-size: 12px;
-    display: none; /* Initially hidden */
+    display: none; 
     margin-top: 4px;
 }
-/* For Chrome, Edge, Safari */
+
 input[type="number"]::-webkit-inner-spin-button, 
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -667,7 +595,4 @@ input[type="number"]::-webkit-outer-spin-button {
     border-bottom: 2px solid white !important;
 }
 
-/* For Firefox
-input[type="number"] {
--moz-appearance: textfield;
-} */
+ */

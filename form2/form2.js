@@ -1,14 +1,35 @@
 var totalFields2 = 0;
 var totalPages2 = 0;
-
+let render=true;
 function nextPage2(pageNumber) {
     // if (validatePage('form2', pageNumber - 1)) {
+       if(pageNumber==9){
+            initializeSignatureBox();
+            clearSign();
+            addForm2EventListeners();
+
+       }
+       if(pageNumber-1==7){
+        if(formCounter>=10){
         const currentPage = document.querySelector(`#form2-page${pageNumber - 1}`);
         const nextPage = document.querySelector(`#form2-page${pageNumber}`);
         currentPage.style.display = 'none';
         nextPage.style.display = 'block';
         updatePageInfo2('form2',pageNumber);
-        updateProgress2('form2');
+        updateProgress2('form2');}
+        else{ if(render){
+            addEmploymentValidation();
+            render=false;
+        }
+        }
+       }
+       else{
+        const currentPage = document.querySelector(`#form2-page${pageNumber - 1}`);
+        const nextPage = document.querySelector(`#form2-page${pageNumber}`);
+        currentPage.style.display = 'none';
+        nextPage.style.display = 'block';
+        updatePageInfo2('form2',pageNumber);
+        updateProgress2('form2');}
     // }else{
     //     console.log("Validation Failed");
     // }
@@ -21,6 +42,7 @@ function previousPage2(pageNumber) {
     previousPage.style.display = 'block';
     updatePageInfo2('form2', pageNumber);
     updateProgress2('form2');
+    
 }
 
 
@@ -521,7 +543,7 @@ function handleRadioChange(event) {
                     </div>
                 </div>
                 <div class="col-12 d-flex flex-column mt-2">
-                    <label>Do you have additional traffic violations to add?</label>
+                    <label class="question-label">Do you have additional traffic violations to add?</label>
                     <div class="form-check d-flex align-items-end">
                         <input class="form-check-input" type="radio" value="no" id="violationNo-${violationCount}" name="trafficVoilation-${violationCount}" onchange="handleRadioChange(event)">
                         <label class="form-check-label label ms-4" for="violationNo-${violationCount}">No</label>
@@ -586,7 +608,7 @@ function handleAccidentChange(event) {
                         <input type="date" class="dab" name="accidentDate-${accidentCount}" id="accidentDate-${accidentCount}" oninput="handleDateChange2(event)" placeholder="MM/DD/YYYY" onchange="updateProgress2('form2')">
                     </div>
 
-                    <div class="col-12 d-flex flex-column mt-2">
+                    <div class="col-12 d-flex flex-column mt-4">
                         <div>
                             <label class="question-label">Fatalities or Personal Injuries</label>
                         </div>
@@ -598,11 +620,11 @@ function handleAccidentChange(event) {
                             <input class="form-check-input" type="radio" value="yes" id="injuries-${accidentCount}" name="fatalities-${accidentCount}" onchange="updateProgress2('form2')">
                             <label class="form-check-label ms-4" for="injuries-${accidentCount}">Personal Injuries</label>
                         </div>
-                        <div class="col-12 mt-2">
+                        <div class="col-12 mt-4">
                             <label class="question-label">Circumstances of Accident</label>
                             <textarea name="circumstances-${accidentCount}" id="accidentExplanation-${accidentCount}" rows="4" class="form-control mt-2 txtfeild"></textarea>
                         </div>
-                        <div class="mb-3 mt-3">
+                        <div class="mb-3 mt-4">
                             <label class="question-label">Attachment (Optional)</label>
                             <input type="file" id="fileInput-${accidentCount}" class="form-control mt-2" />
                         </div>
@@ -651,6 +673,272 @@ function handleAccidentChange(event) {
         accidentCount = currentAccidentIndex;
     }
 }
+
+
+var canvas, context;
+var isDrawing = false;
+var signatureData;
+
+
+function getMousePosition(event) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    return {
+        x: (event.clientX - rect.left) * scaleX,
+        y: (event.clientY - rect.top) * scaleY
+    };
+}
+
+
+
+function initializeSignatureBox() {
+   
+    canvas = document.getElementById('signBox');
+
+    if (!canvas) {
+        console.error("Canvas element not found. Ensure it's visible in the DOM.");
+        return;
+    }
+
+    context = canvas.getContext('2d');
+    context.lineWidth = 0.3; 
+    context.lineCap = "round"; 
+    context.strokeStyle = "white"; 
+
+    
+    canvas.addEventListener('mousedown', (event) => {
+        isDrawing = true;
+        context.beginPath();
+        const pos = getMousePosition(event);
+        context.moveTo(pos.x, pos.y);
+    });
+
+    canvas.addEventListener('mousemove', (event) => {
+        if (isDrawing) {
+            const pos = getMousePosition(event);
+            context.lineTo(pos.x, pos.y);
+            context.stroke();
+        }
+    });
+
+    canvas.addEventListener('mouseup', () => {
+        isDrawing = false;
+    });
+
+    canvas.addEventListener('mouseout', () => {
+        isDrawing = false;
+        saveSign();
+    });
+
+    console.log("Signature box initialized with white color and thin line.");
+}
+
+
+function clearSign() {
+    const clearButton = document.getElementById('clearButton');
+    clearButton.addEventListener('click', () => {
+        if (context) {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        } else {
+            console.error("Signature box is not initialized.");
+        }
+    });
+}
+
+    function saveSign(){
+    if (canvas) {
+        signatureData = canvas.toDataURL('image/png');
+        console.log('Signature saved:', signatureData);
+       
+    } else {
+        console.error("Signature box is not initialized.");
+    }
+}
+
+function showInvalidModal() {
+    const invalidModal = document.getElementById('invalidModal');
+    const overlay=document.getElementById('overlay');
+    if (invalidModal && overlay){
+    invalidModal.style.display = 'block';
+    overlay.style.display='block';
+    document.body.style.overflow='hidden';
+    }
+}
+
+function closeModal() {
+    const overlay=document.getElementById('overlay');
+    console.log("printing overlay", overlay);
+    const invalidModal = document.getElementById('invalidModal');
+   if( invalidModal && overlay){
+    invalidModal.style.display = 'none';
+    overlay.style.display='none';
+    document.body.style.overflow='auto';
+   }
+}
+
+function addForm2EventListeners() {
+    const form1SubmitButton = document.querySelector('.submit-btn');
+    if (form1SubmitButton) {
+        form1SubmitButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            // if (validatePage('form2', 9)) {
+
+                showCheckmark('form2Tick');
+                showSuccessModal();
+                form1Completed=true;
+            // }
+            // else {
+            //     showInvalidModal();
+            //     hideCheckmark('form2Tick');
+            // }
+        });
+    }
+}
+
+function showSuccessModal() {
+    const successModal = document.getElementById('successModal');
+    const overlay =document.getElementById('overlay');
+    if (successModal && overlay) {
+        successModal.style.display = 'block';
+        overlay.style.display = 'block';
+        document.body.style.overflow='hidden';
+    }
+}
+
+
+
+
+function closeDialog() {
+    console.log("entered into console.log");
+    const successModal = document.getElementById('successModal');
+    const overlay=document.getElementById('overlay');
+    if (successModal && overlay) {
+        successModal.style.display = 'none';
+        overlay.style.display='none';
+        document.body.style.overflow='auto';
+    }
+}
+
+
+
+function showCheckmark(formId) {
+    const checkmark = document.getElementById(formId);
+    if (checkmark) {
+        checkmark.classList.add('visible');
+    }
+}
+
+
+function hideCheckmark(formId) {
+    const checkmark = document.getElementById(formId);
+    if (checkmark) {
+        checkmark.classList.remove('visible');
+    }
+}
+
+
+
+
+
+
+let formCounter = 1;
+function addNewEmploymentForm() {
+    if(!render){
+    const reasonbx=document.getElementById('reasonBox');
+    reasonbx.remove();
+    render=true;}
+    
+    formCounter++; // Increment the counter for new forms
+
+    // Find the template form
+    const template = document.getElementById('employmentForm_1');
+
+    // Clone the form
+    const newForm = template.cloneNode(true);
+
+    // Update the ID of the cloned form
+    newForm.id = `employmentForm_${formCounter}`;
+    console.log("new Form Id",newForm.id);
+
+    // Update IDs, names, and 'for' attributes
+    const inputs = newForm.querySelectorAll('input, textarea, select, label');
+    inputs.forEach((input) => {
+        if (input.id) {
+            input.id = `${input.id}_${formCounter}`;
+        }
+
+        if (input.name) {
+            input.name = `${input.name}_${formCounter}`;
+        }
+
+        if (input.tagName === "LABEL" && input.getAttribute("for")) {
+            input.setAttribute("for", `${input.getAttribute("for")}_${formCounter}`);
+        }
+    });
+
+    // Clear values for inputs and textareas
+    newForm.querySelectorAll('input, textarea').forEach((field) => {
+        if (field.type !== "radio" && field.type !== "checkbox") {
+            field.value = '';
+        } else {
+            field.checked = false; // Uncheck radios and checkboxes
+        }
+    });
+
+    // Append the new form to the container
+    const container = document.getElementById('employmentFormsContainer');
+    container.appendChild(newForm);
+}
+
+
+function clearAdditionalForms(currentFormId) {
+    const container = document.getElementById('employmentFormsContainer');
+console.log("present form Id",currentFormId);
+    // Extract the form number from the current form's ID
+    const currentFormNumber = parseInt(currentFormId.split('_')[1]);
+
+    // Find all dynamically added forms
+    const forms = container.querySelectorAll('[id^="employmentForm"]');
+
+    // Loop through forms and delete those with a higher index
+    forms.forEach((form) => {
+        const formNumber = parseInt(form.id.split('_')[1]);
+        console.log("getting Form Number",formNumber);
+
+        if (formNumber > currentFormNumber) {
+            form.remove();
+        }
+    });
+
+    // Update the form counter to reflect remaining forms
+    formCounter = currentFormNumber + 1;
+}
+
+function addEmploymentValidation(){
+    const reasonForm=document.createElement('div');
+            reasonForm.classList.add('reasonDiv','mt-3');
+            reasonForm.id='reasonBox';
+            reasonForm.innerHTML=`                
+                <div class="warnDiv">
+                    <p class="warning">
+                        you have not provided TEN (10) years of employment history please provide the reason below
+                    </p>
+                </div>
+                <div class="col-12 mt-4">
+                    <label class="question-label">Reason for not meeting the TEN (10) years of employment history
+                        requirement.</label>
+                    <textarea name="employHistoryReason" id="employHistroy" placeholder="Enter Text" rows="4"
+                        class="form-control mt-2 txtfeild"></textarea>
+                </div>`
+            const mainContainer = document.getElementById('histroyValidator');
+            mainContainer.appendChild(reasonForm);
+
+}
+
+
+
+
 
 
 initializeForm2('form2');

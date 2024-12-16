@@ -55,35 +55,35 @@ function loadForm2() {
         .then(html => {
             document.getElementById('form-container').innerHTML = html;
             loadScript('../form2/form2.js');
-            addForm2EventListeners();  
+            // addForm2EventListeners();  
         })
         .catch(error => console.error('Error loading Form 2:', error));
 }
 
-function addForm2EventListeners() {
-    const form2SubmitButton = document.querySelector('.submit-btn');
-    if (form2SubmitButton) {
-        form2SubmitButton.addEventListener('click', function (event) {
-            event.preventDefault();  
+// function addForm2EventListeners() {
+//     const form2SubmitButton = document.querySelector('.submit-btn');
+//     if (form2SubmitButton) {
+//         form2SubmitButton.addEventListener('click', function (event) {
+//             event.preventDefault();  
 
            
-            const height = document.querySelector('input[name="height"]').value;
-            const conditions = document.querySelector('input[name="conditions"]').value;
-            const contact = document.querySelector('input[name="contact"]').value;
+//             const height = document.querySelector('input[name="height"]').value;
+//             const conditions = document.querySelector('input[name="conditions"]').value;
+//             const contact = document.querySelector('input[name="contact"]').value;
 
-            if (height && conditions && contact) {
+//             if (height && conditions && contact) {
                 
 
-                form2Completed = true;
-                showCheckmark('form2Tick');  
-                showSuccessModal();  
-            } else {
-                console.error("Some form fields are missing in Form 2!");
-                return;
-            }
-        });
-    }
-}
+//                 form2Completed = true;
+//                 showCheckmark('form2Tick');  
+//                 showSuccessModal();  
+//             } else {
+//                 console.error("Some form fields are missing in Form 2!");
+//                 return;
+//             }
+//         });
+//     }
+// }
 
 function showCheckmark(formId) {
     const checkmark = document.getElementById(formId);

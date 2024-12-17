@@ -1,6 +1,8 @@
 var totalFields2 = 0;
 var totalPages2 = 0;
-let render=true;
+let formCounter=1;
+let years=0;
+let totalYears=0; 
 function nextPage2(pageNumber) {
     // if (validatePage('form2', pageNumber - 1)) {
        if(pageNumber==9){
@@ -9,19 +11,17 @@ function nextPage2(pageNumber) {
             addForm2EventListeners();
 
        }
+       if(pageNumber==7){
+        validateEmploymentHistory();
+       }
        if(pageNumber-1==7){
-        if(formCounter>=10){
+        if(totalYears>=10){
         const currentPage = document.querySelector(`#form2-page${pageNumber - 1}`);
         const nextPage = document.querySelector(`#form2-page${pageNumber}`);
         currentPage.style.display = 'none';
         nextPage.style.display = 'block';
         updatePageInfo2('form2',pageNumber);
         updateProgress2('form2');}
-        else{ if(render){
-            addEmploymentValidation();
-            render=false;
-        }
-        }
        }
        else{
         const currentPage = document.querySelector(`#form2-page${pageNumber - 1}`);
@@ -181,6 +181,350 @@ function initializeForm2(formId) {
 //     return `${month}/${day}/${year}`;
 // }
 
+
+// function addressHistory(value){
+//     if(value=='yes'){
+//         const addressHistory=document.createElement('div');
+//         addressHistory.id='Address1';
+//         addressHistory.innerHTML=`
+//                 <div class="mt-3">
+//                     <h4 class="just-color" style="border-bottom: 2px solid #8bafdf; width: 100%; padding-bottom: 5px;">
+//                         Address History Continued
+//                     </h4>
+//                 </div>
+
+//                 <div>
+//                     <h6 class="just-color">
+//                         <p class="question-label">List any prior address in the THREE (3) years preceding the date of
+//                             this
+//                             application, include
+//                             street, city, state, and zip (NO PO BOXES)
+//                         </p>
+//                     </h6>
+//                 </div>
+//              <div id="addressSection">
+//                 <div  id="addressSon" class="mt-2">
+//                     <div class="address-container">
+//                         <div class="form-row ">
+//                             <div>
+//                                 <label class="question-label">Additional Address #1</label>
+//                                 <input type="text" autocomplete="off" name="address1" id="additionalAddress1"
+//                                     class="form-control" onchange="updateProgress2('form2')" placeholder="Enter Text">
+//                             </div>
+//                         </div>
+
+//                         <div class="form-row">
+//                             <div class="col">
+//                                 <label class="question-label">City</label>
+//                                 <!-- <input required type="text" data-validate="text" autocomplete="off" name="city" onchange="updateProgress2('form2')"> -->
+//                                 <input type="text" name="city" maxlength="50" autocomplete="off" id="additionalCity1"
+//                                     oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')"
+//                                     class="form-control" onchange="updateProgress2('form2')" placeholder="Enter Text" />
+//                                 <small class="error-message"></small>
+//                             </div>
+//                             <div class="col">
+//                                 <label class="question-label">State</label>
+//                                 <select name="additionalState1" id="additionalState1" class="form-control state-feild"
+//                                     placeholder="Select One">
+//                                     <option value="state1"></option>
+//                                     <option value="state2"></option>
+//                                     <option value="state3"></option>=
+//                                 </select>
+//                             </div>
+//                             <div class="col">
+//                                 <label class="question-label">Zip</label>
+//                                 <input type="number" name="zip" id="additionalZip1" autocomplete="off" maxlength="6"
+//                                     class="form-control" onchange="updateProgress2('form2')"
+//                                     oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')"
+//                                     placeholder="Enter Number" />
+//                                 <small class="error-message"></small>
+//                             </div>
+//                         </div>
+//                         <div class="form-row">
+//                             <div>
+//                                 <label class="question-label">From</label>
+
+//                                 <input type="date" class="dab form-control" id="additionalFrom1" name="dob"
+//                                     onchange="handleDateChange2(event)">
+//                                 <small class="error-message"></small>
+//                             </div>
+//                             <div>
+//                                 <label class="question-label">To</label>
+//                                 <input type="date" class="dab form-control " id="additionalTo1" name="dob"
+//                                     onchange="handleDateChange2(event)">
+//                                 <small class="error-message"></small>
+//                             </div>
+//                         </div>
+//                     </div>
+//                     <div class="mt-3" id="additionalAddressFeilds1">
+//                         <h6 class="just-color">
+//                             <p class="question-label">Did you have additional prior address to add</p>
+//                         </h6>
+//                     </div>
+//                     <div class="col-12 d-flex flex-column mt-2">
+//                         <div class="form-check" d-flex align-items-end>
+//                             <input class="form-check-input" type="radio" value="no" id="addressNo1" name="Adress1"
+//                                 onchange="handleAddressChange(this)">
+//                             <label class="form-check-label label ms-4" for="addressNo1">
+//                                 No
+//                             </label>
+//                         </div>
+
+//                         <div class="form-check mt-2">
+//                             <input class="form-check-input" type="radio" value="yes" id="addressYes1" name="Adress1"
+//                                 onchange="handleAddressChange(this)">
+//                             <label class="form-check-label ms-4" for="addressYes1">
+//                                 Yes
+//                             </label>
+//                         </div>
+//                     </div>
+//                 </div>
+//               </div>
+//             `
+//                     const mainContainer=document.getElementById('mainAddressContainer');
+//                     mainContainer.appendChild(addressHistory);
+
+//     }
+
+// }
+
+
+// let addressCounter = 1; // Counter for unique IDs
+
+// // Handle Yes/No selection
+// function handleAddressChange(radio) {
+//     const parentContainer = radio.closest('#addressSon');
+//     const addressSection = document.getElementById('addressSection');
+
+//     if (radio.value === 'yes') {
+//         // Clone the template
+//         addressCounter++;
+//         const newTemplate = parentContainer.cloneNode(true);
+
+//         // Update IDs and names to make them unique
+//         newTemplate.dataset.templateId = addressCounter;
+//         newTemplate.querySelectorAll('input, select, label, div').forEach(el => {
+//             if (el.id) el.id = el.id.replace(/\d+$/, addressCounter);
+//             if (el.name) el.name = el.name.replace(/\d+$/, addressCounter);
+//             if (el.htmlFor) el.htmlFor = el.htmlFor.replace(/\d+$/, addressCounter);
+//         });
+
+//         // Reset inputs in the cloned template
+//         newTemplate.querySelectorAll('input[type="text"], input[type="number"], input[type="date"]').forEach(el => el.value = '');
+//         newTemplate.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
+//         newTemplate.querySelectorAll('select').forEach(el => el.value = '');
+
+//         // Append to address section
+//         addressSection.appendChild(newTemplate);
+//     } else if (radio.value === 'no') {
+//         // Remove all templates added after the current one
+//         const currentTemplateId = parentContainer.dataset.templateId;
+//         document.querySelectorAll('#addressSon').forEach(el => {
+//             if (el.dataset.templateId > currentTemplateId) el.remove();
+//         });
+//     }
+// }
+
+
+
+let addressCounter = 1; // Counter for unique IDs
+
+// Main function to handle Yes/No selection
+function handleAddressChange(radio) {
+    const parentContainer = radio.closest('#addressSon'); // Current template container
+    const addressSection = document.getElementById('addressSection');
+
+    if (radio.value === 'yes') {
+        // Clone the template
+        addressCounter++;
+        const newTemplate = parentContainer.cloneNode(true);
+
+        // Update IDs, names, and attributes for uniqueness
+        newTemplate.dataset.templateId = addressCounter;
+        newTemplate.querySelectorAll('[id], [name], [for]').forEach(el => {
+            if (el.id) el.id = el.id.replace(/\d+$/, addressCounter);
+            if (el.name) el.name = el.name.replace(/\d+$/, addressCounter);
+            if (el.htmlFor) el.htmlFor = el.htmlFor.replace(/\d+$/, addressCounter);
+        });
+
+        // Reset inputs in the cloned template
+        newTemplate.querySelectorAll('input[type="text"], input[type="number"], input[type="date"]').forEach(el => el.value = '');
+        newTemplate.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
+        newTemplate.querySelectorAll('select').forEach(el => el.value = '');
+
+        // Append the new template
+        addressSection.appendChild(newTemplate);
+    } else if (radio.value === 'no') {
+        // Remove all templates with a higher data-template-id
+        const currentTemplateId = parseInt(parentContainer.dataset.templateId, 10);
+        document.querySelectorAll('#addressSon').forEach(el => {
+            if (parseInt(el.dataset.templateId, 10) > currentTemplateId) {
+                el.remove();
+            }
+        });
+    }
+}
+
+// Main function to handle initial Yes/No for address history
+function addressHistory(value) {
+    if (value === 'yes') {
+        const addressHistory = document.createElement('div');
+        addressHistory.id = `Address1`;
+        addressHistory.innerHTML = `
+            <div class="mt-3">
+                <h4 class="just-color" style="border-bottom: 2px solid #8bafdf; width: 100%; padding-bottom: 5px;">
+                    Address History Continued
+                </h4>
+            </div>
+            <div>
+                <h6 class="just-color">
+                    <p class="question-label">List any prior address in the THREE (3) years preceding the date of this
+                        application, include street, city, state, and zip (NO PO BOXES)
+                    </p>
+                </h6>
+            </div>
+            <div id="addressSection">
+                <div id="addressSon" class="mt-2" data-template-id="${addressCounter}">
+                    <div class="address-container">
+                        <div class="form-row">
+                            <div>
+                                <label class="question-label">Additional Address #${addressCounter}</label>
+                                <input type="text" autocomplete="off" name="address${addressCounter}" id="additionalAddress${addressCounter}"
+                                    class="form-control" onchange="updateProgress2('form2')" placeholder="Enter Text">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <label class="question-label">City</label>
+                                <input type="text" name="city${addressCounter}" maxlength="50" autocomplete="off" id="additionalCity${addressCounter}"
+                                    oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')"
+                                    class="form-control" onchange="updateProgress2('form2')" placeholder="Enter Text" />
+                                <small class="error-message"></small>
+                            </div>
+                            <div class="col">
+                                <label class="question-label">State</label>
+                                <select name="additionalState${addressCounter}" id="additionalState${addressCounter}" class="form-control state-feild"
+                                    placeholder="Select One">
+                                    <option value="state1"></option>
+                                    <option value="state2"></option>
+                                    <option value="state3"></option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label class="question-label">Zip</label>
+                                <input type="number" name="zip${addressCounter}" id="additionalZip${addressCounter}" autocomplete="off" maxlength="6"
+                                    class="form-control" onchange="updateProgress2('form2')"
+                                    oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')"
+                                    placeholder="Enter Number" />
+                                <small class="error-message"></small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div>
+                                <label class="question-label">From</label>
+                                <input type="date" class="dab form-control" id="additionalFrom${addressCounter}" name="from${addressCounter}"
+                                    onchange="handleDateChange2(event)">
+                                <small class="error-message"></small>
+                            </div>
+                            <div>
+                                <label class="question-label">To</label>
+                                <input type="date" class="dab form-control" id="additionalTo${addressCounter}" name="to${addressCounter}"
+                                    onchange="handleDateChange2(event)">
+                                <small class="error-message"></small>
+                            </div>
+                        </div>
+
+                    </div>
+                                            <div class="mt-3">
+                            <h6 class="just-color">
+                                <p class="question-label">Did you have additional prior address to add?</p>
+                            </h6>
+                            <div class="col-12 d-flex flex-column mt-2">
+                                <div class="form-check" d-flex align-items-end>
+                                    <input class="form-check-input" type="radio" value="no" id="addressNo${addressCounter}" name="Adress${addressCounter}"
+                                        onchange="handleAddressChange(this)">
+                                    <label class="form-check-label label ms-4" for="addressNo${addressCounter}">
+                                        No
+                                    </label>
+                                </div>
+                                <div class="form-check mt-2">
+                                    <input class="form-check-input" type="radio" value="yes" id="addressYes${addressCounter}" name="Adress${addressCounter}"
+                                        onchange="handleAddressChange(this)">
+                                    <label class="form-check-label ms-4" for="addressYes${addressCounter}">
+                                        Yes
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        `;
+        const mainContainer = document.getElementById('mainAddressContainer');
+        mainContainer.appendChild(addressHistory);
+    }
+}
+
+function removeHistoryElement(value){
+    if(value=='no'){
+        document.getElementById('Address1').remove();
+    }
+
+}
+
+
+const priorAddress=`<div class="address-container mt-2" id="priorAdd" style="display:block">
+<div class="form-row ">
+    <div>
+        <label class="question-label">Additional Address #2</label>
+        <input type="text" autocomplete="off" name="additionalAddress2" class="form-control"
+            id="additionalAddress2" onchange="updateProgress2('form2')" placeholder="Enter Text">
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="col">
+        <label class="question-label">City</label>
+        <!-- <input required type="text" data-validate="text" autocomplete="off" name="city" onchange="updateProgress2('form2')"> -->
+        <input type="text" name="city" maxlength="50" autocomplete="off" id="additionalCity2"
+            oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')"
+            class="form-control" onchange="updateProgress2('form2')" placeholder="Enter Text" />
+        <small class="error-message"></small>
+    </div>
+    <div class="col">
+        <label class="question-label">State</label>
+        <select name="addressState" id="additionalState2" class="form-control state-feild"
+            placeholder="Select One">
+            <option value="state1"></option>
+            <option value="state2"></option>
+            <option value="state3"></option>=
+        </select>
+    </div>
+    <div class="col">
+        <label class="question-label">Zip</label>
+        <input type="number" name="zip" autocomplete="off" maxlength="6" class="form-control"
+            onchange="updateProgress2('form2')" id="additionalZip2"
+            oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')"
+            placeholder="Enter Number" />
+        <small class="error-message"></small>
+    </div>
+</div>
+<div class="form-row">
+    <div>
+        <label class="question-label">From</label>
+
+        <input type="date" class="dab form-control" id="additionalFrom2" name="dob"
+            onchange="handleDateChange2(event)">
+        <small class="error-message"></small>
+    </div>
+    <div>
+        <label class="question-label">To</label>
+        <input type="date" class="dab form-control " id="additionalTo2" name="dob"
+            onchange="handleDateChange2(event)">
+        <small class="error-message"></small>
+    </div>
+</div>
+</div>`
+
 function handleDateChange2(event) {
     console.log('Entered into date 2');
     const selectedDate = new Date(event.target.value);
@@ -235,28 +579,13 @@ function toggleFields2(formId, config) {
 }
 
 const toggleFieldsConfig2 = [
-    {
-        radioId: "addressYes",
-        fieldsToShow: ["Address1"],
-    },
-    {
-        radioId: "addressYes1",
-        fieldsToShow: ["priorAdd"],
-    },
     // {
-    //     radioId:"voilationYes",
-    //     fieldsToShow:["voilationDetail"]
+    //     radioId: "addressYes",
+    //     fieldsToShow: ["Address1"],
     // },
     // {
-    //     radioId:"voilationYes1",
-    //     fieldsToShow:["voilationDetail1"]
-    // },
-    // {
-    //     radioId:"accidentYes",
-    //     fieldsToShow:["accident"]
-    // },
-    // { radioId:"accidentYes1",
-    //   fieldsToShow:["accident1"],
+    //     radioId: "addressYes1",
+    //     fieldsToShow: ["priorAdd"],
     // },
     {
         radioId:"licenseDenyYes",
@@ -840,16 +1169,96 @@ function hideCheckmark(formId) {
 
 
 
+// function addNewEmploymentForm() {
+//     formCounter++; // Increment the counter for new forms
+
+//     // Find the template form
+//     const template = document.getElementById('employmentForm_1');
+
+//     // Clone the form
+//     const newForm = template.cloneNode(true);
+
+//     // Update the ID of the cloned form
+//     newForm.id = `employmentForm_${formCounter}`;
+//     console.log("new Form Id",newForm.id);
+
+//     // Update IDs, names, and 'for' attributes
+//     const inputs = newForm.querySelectorAll('input, textarea, select, label');
+//     inputs.forEach((input) => {
+//         if (input.id) {
+//             input.id = `${input.id}_${formCounter}`;
+//         }
+
+//         if (input.name) {
+//             input.name = `${input.name}_${formCounter}`;
+//         }
+
+//         if (input.tagName === "LABEL" && input.getAttribute("for")) {
+//             input.setAttribute("for", `${input.getAttribute("for")}_${formCounter}`);
+//         }
+//     });
+
+//     // Clear values for inputs and textareas
+//     newForm.querySelectorAll('input, textarea').forEach((field) => {
+//         if (field.type !== "radio" && field.type !== "checkbox") {
+//             field.value = '';
+//         } else {
+//             field.checked = false; // Uncheck radios and checkboxes
+//         }
+//     });
+
+//     // Append the new form to the container
+//     const container = document.getElementById('employmentFormsContainer');
+//     container.appendChild(newForm);
+// }
 
 
-let formCounter = 1;
+// function addNewEmploymentForm() {
+//     formCounter++; // Increment the counter for new forms
+
+//     // Find the template form
+//     const template = document.getElementById('employmentForm_1');
+
+//     // Clone the form
+//     const newForm = template.cloneNode(true);
+
+//     // Update the ID of the cloned form
+//     newForm.id = `employmentForm_${formCounter}`;
+//     console.log("New Form ID:", newForm.id);
+
+//     // Update IDs, names, and 'for' attributes for input, textarea, select, label, and div elements
+//     const elements = newForm.querySelectorAll('input, textarea, select, label, div');
+//     elements.forEach((element) => {
+//         if (element.id) {
+//             element.id = `${element.id}_${formCounter}`; // Update IDs
+//         }
+
+//         if (element.name) {
+//             element.name = `${element.name}_${formCounter}`; // Update names
+//         }
+
+//         if (element.tagName === "LABEL" && element.getAttribute("for")) {
+//             element.setAttribute("for", `${element.getAttribute("for")}_${formCounter}`); // Update 'for'
+//         }
+//     });
+
+//     // Clear values for inputs and textareas
+//     newForm.querySelectorAll('input, textarea').forEach((field) => {
+//         if (field.type !== "radio" && field.type !== "checkbox") {
+//             field.value = ''; // Clear text fields
+//         } else {
+//             field.checked = false; // Uncheck radios and checkboxes
+//         }
+//     });
+
+//     // Append the new form to the container
+//     const container = document.getElementById('employmentFormsContainer');
+//     container.appendChild(newForm);
+// }
+
 function addNewEmploymentForm() {
-    if(!render){
-    const reasonbx=document.getElementById('reasonBox');
-    reasonbx.remove();
-    render=true;}
-    
     formCounter++; // Increment the counter for new forms
+
 
     // Find the template form
     const template = document.getElementById('employmentForm_1');
@@ -857,44 +1266,87 @@ function addNewEmploymentForm() {
     // Clone the form
     const newForm = template.cloneNode(true);
 
+    // Remove dynamically generated unemployment sections before cloning
+    const dynamicSections = newForm.querySelectorAll('[id^="unemployReason"]'); // Target dynamic unemployment IDs
+    dynamicSections.forEach((section) => section.remove());
+
     // Update the ID of the cloned form
     newForm.id = `employmentForm_${formCounter}`;
-    console.log("new Form Id",newForm.id);
+    console.log("New Form ID:", newForm.id);
 
-    // Update IDs, names, and 'for' attributes
-    const inputs = newForm.querySelectorAll('input, textarea, select, label');
-    inputs.forEach((input) => {
-        if (input.id) {
-            input.id = `${input.id}_${formCounter}`;
+    // Update IDs, names, and 'for' attributes for input, textarea, select, label, and div elements
+    const elements = newForm.querySelectorAll('input, textarea, select, label, div');
+    elements.forEach((element) => {
+        if (element.id) {
+            element.id = `${element.id}_${formCounter}`; // Update IDs
         }
 
-        if (input.name) {
-            input.name = `${input.name}_${formCounter}`;
+        if (element.name) {
+            element.name = `${element.name}_${formCounter}`; // Update names
         }
 
-        if (input.tagName === "LABEL" && input.getAttribute("for")) {
-            input.setAttribute("for", `${input.getAttribute("for")}_${formCounter}`);
+        if (element.tagName === "LABEL" && element.getAttribute("for")) {
+            element.setAttribute("for", `${element.getAttribute("for")}_${formCounter}`); // Update 'for'
         }
     });
 
     // Clear values for inputs and textareas
     newForm.querySelectorAll('input, textarea').forEach((field) => {
         if (field.type !== "radio" && field.type !== "checkbox") {
-            field.value = '';
+            field.value = ''; // Clear text fields
         } else {
             field.checked = false; // Uncheck radios and checkboxes
         }
     });
-
+console.log('formNumber is',formCounter);
     // Append the new form to the container
     const container = document.getElementById('employmentFormsContainer');
     container.appendChild(newForm);
+    // separationElement=document.getElementById(`companySeparation${(formCounter==1)?'':(`_${formCounter-1}`)}`);
+    // console.log(`companySeparation${(formCounter==1)?'':(`_${formCounter-1}`)}`);
+    // if(separationElement){
+    //     caluclateHistory(`companySeparation${(formCounter==1)?'':(`_${formCounter-1}`)}`);
+    // }
+    // else{
+    //    console.log('Element DoesNOT Exis=t'); 
+    // }
+
+    validateEmploymentHistory();
 }
+
+
+
+
+
+
+// function clearAdditionalForms(currentFormId) {
+//     const container = document.getElementById('employmentFormsContainer');
+// console.log("present form Id",currentFormId);
+//     // Extract the form number from the current form's ID
+//     const currentFormNumber = parseInt(currentFormId.split('_')[1]);
+
+//     // Find all dynamically added forms
+//     const forms = container.querySelectorAll('[id^="employmentForm"]');
+
+//     // Loop through forms and delete those with a higher index
+//     forms.forEach((form) => {
+//         const formNumber = parseInt(form.id.split('_')[1]);
+
+//         if (formNumber > currentFormNumber) {
+//             form.remove();}
+         
+//     });
+
+//     // Update the form counter to reflect remaining forms
+//    formCounter = currentFormNumber + 1;
+//     console.log("formNumber: ",formCounter);
+// }
 
 
 function clearAdditionalForms(currentFormId) {
     const container = document.getElementById('employmentFormsContainer');
-console.log("present form Id",currentFormId);
+    console.log("present form Id", currentFormId);
+
     // Extract the form number from the current form's ID
     const currentFormNumber = parseInt(currentFormId.split('_')[1]);
 
@@ -904,18 +1356,125 @@ console.log("present form Id",currentFormId);
     // Loop through forms and delete those with a higher index
     forms.forEach((form) => {
         const formNumber = parseInt(form.id.split('_')[1]);
-        console.log("getting Form Number",formNumber);
 
         if (formNumber > currentFormNumber) {
             form.remove();
         }
     });
 
-    // Update the form counter to reflect remaining forms
-    formCounter = currentFormNumber + 1;
+    // Recalculate the formCounter to the maximum remaining form number
+    const remainingForms = container.querySelectorAll('[id^="employmentForm"]');
+    if (remainingForms.length > 0) {
+        // Find the highest index among remaining forms
+        formCounter = Math.max(
+            ...Array.from(remainingForms).map((form) =>
+                parseInt(form.id.split('_')[1])
+            )
+        );
+    } else {
+        // Reset to 1 if no forms remain
+        formCounter = 1;
+    }
+
+    console.log("Updated formCounter: ", formCounter);
+    validateEmploymentHistory();
+    
 }
 
+
+function addUnemployment(presentId ,value){
+    if(value=='yes'){
+unemployNumber=parseInt((presentId.split('_')[1]));
+    const unemploy=document.createElement('div');
+    unemploy.id=`unemployReason${presentId==''?'1':('_' + unemployNumber)}`;
+    unemploy.innerHTML=`        <div class="form-row mt-3">
+                                    <div>
+                                        <label class="question-label">Unemployed From</label>
+
+                                        <input required type="date" class="dab form-control " id="unemployedFrom"
+                                            name="unemployment" onchange="handleDateChange2(event)">
+                                        <small class="error-message"></small>
+                                    </div>
+                                    <div>
+                                        <label class="question-label"> Unemployed To</label>
+                                        <input required type="date" class="to form-control" id="unemployedTo "
+                                            name="unemployment" onchange="handleDateChange2(event)">
+                                        <small class="error-message"></small>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mt-4">
+                                    <label class="question-label">Reason for Unemployment</label>
+                                    <textarea name="unemploymentReason" id="unemployReason" placeholder="Enter Text"
+                                        rows="4" class="form-control mt-2 txtfeild"></textarea>
+                                </div>`
+console.log("unemployNumber",unemployNumber);
+document.getElementById(presentId).appendChild(unemploy);}
+
+}
+
+function removeUnemployment(presentId ,value){
+    if(value=='no'){
+       reasonNumber=parseInt((presentId.split('_')[1])); 
+       const reasonbox=document.getElementById(`unemployReason_${reasonNumber}`)
+       if(reasonbox){
+        reasonbox.remove();
+       }   
+    }
+}
+
+// function startDate(id){
+//     if(id=='companyStart'){
+// let startDate=document.getElementById('companyStart').value
+// if(startDate){
+//     startYear=new Date(startDate).getFullYear();
+// }
+// else{
+// console.log("StartDate",startDate);
+// console.log("StartYear",startYear);
+// return;
+
+// }
+// }else{
+//     return;
+// }
+// }
+
+// function caluclateHistory(id){
+//     console.log("entered in caluclateHistory");
+    
+// //    sepNumber=(id=='companySeparation')?1 :parseInt((id.split('_')[1])); 
+//     let endDate=document.getElementById(id).value;
+//     if(endDate){
+//         endYear=new Date(endDate).getFullYear();
+//         years=endYear-startYear;
+//         console.log('years',years);
+//     }
+//     else{
+//         console.log('endDate',endDate);
+//     }
+//     if(years<10){
+//         console
+//         addEmploymentValidation();
+//         return;
+//     }
+//     else{
+//     const reasonbx=document.getElementById('reasonBox');
+//     if(reasonbx){
+//     reasonbx.remove();
+//     return;}
+//     else {
+//         return;
+//     }
+    
+// }
+
+
+// }
+
 function addEmploymentValidation(){
+    console.log("entered in addEmploymentValidation");
+    if(!(document.getElementById('reasonBox'))){
     const reasonForm=document.createElement('div');
             reasonForm.classList.add('reasonDiv','mt-3');
             reasonForm.id='reasonBox';
@@ -933,10 +1492,82 @@ function addEmploymentValidation(){
                 </div>`
             const mainContainer = document.getElementById('histroyValidator');
             mainContainer.appendChild(reasonForm);
+    }
 
 }
 
 
+function validateEmploymentHistory() {
+    const container = document.getElementById('employmentFormsContainer');
+    const forms = container.querySelectorAll('[id^="employmentForm"]');
+    
+    let earliestStartDate = null;
+    let latestEndDate = null;
+
+    forms.forEach((form) => {
+        const startDateField = form.querySelector('[id^="companyStart"]');
+        const endDateField = form.querySelector('[id^="companySeparation"]');
+
+        const startDate = startDateField ? new Date(startDateField.value) : null;
+        const endDate = endDateField ? new Date(endDateField.value) : null;
+
+        if (startDate && !isNaN(startDate)) {
+            if (!earliestStartDate || startDate < earliestStartDate) {
+                earliestStartDate = startDate;
+            }
+        }
+
+        if (endDate && !isNaN(endDate)) {
+            if (!latestEndDate || endDate > latestEndDate) {
+                latestEndDate = endDate;
+            }
+        }
+    });
+
+    if (earliestStartDate && latestEndDate) {
+        totalYears = (latestEndDate - earliestStartDate) / (1000 * 60 * 60 * 24 * 365);
+        console.log(`Total Employment History: ${totalYears} years`);
+
+        if (totalYears < 10) {
+            addEmploymentValidation();
+        } else {
+            removeEmploymentValidation();
+        }
+    } else {
+        console.log("Start date or end date is missing.");
+        addEmploymentValidation();
+    }
+}
+
+// function addEmploymentValidation() {
+//     console.log("Adding reason box for insufficient employment history.");
+//     if (!document.getElementById('reasonBox')) {
+//         const reasonForm = document.createElement('div');
+//         reasonForm.classList.add('reasonDiv', 'mt-3');
+//         reasonForm.id = 'reasonBox';
+//         reasonForm.innerHTML = `
+//             <div class="warnDiv">
+//                 <p class="warning">
+//                     You have not provided TEN (10) years of employment history. Please provide the reason below.
+//                 </p>
+//             </div>
+//             <div class="col-12 mt-4">
+//                 <label class="question-label">Reason for not meeting the TEN (10) years of employment history requirement.</label>
+//                 <textarea name="employHistoryReason" id="employHistroy" placeholder="Enter Text" rows="4"
+//                     class="form-control mt-2 txtfeild"></textarea>
+//             </div>`;
+//         const mainContainer = document.getElementById('histroyValidator');
+//         mainContainer.appendChild(reasonForm);
+//     }
+// }
+
+function removeEmploymentValidation() {
+    console.log("Removing reason box for sufficient employment history.");
+    const reasonBox = document.getElementById('reasonBox');
+    if (reasonBox) {
+        reasonBox.remove();
+    }
+}
 
 
 

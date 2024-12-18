@@ -1,11 +1,13 @@
 .state-feild{
+    width: 100% !important;
     color: white !important;
+    padding:0.375rem 0.75rem !important;
     padding-right: 25px !important; /* Increase the padding to give space for the icon */
     background-color: #4A72A7 !important;
     border: none !important;
     border-bottom: 2px solid white !important;
     border-radius: 5px;
-    font-size: 14px !important;
+    font-size: 14px;
     appearance: none !important; /* Remove default appearance */
     -webkit-appearance: none !important; /* WebKit-specific */
     -moz-appearance: none !important;    /* Firefox-specific */
@@ -16,11 +18,15 @@
 
 
 }
+h4{
+    font-weight: 400 !important;
+}
 .link1{
     color:white;
     cursor: pointer;
 }
 .or{
+ 
     align-content: center;
     width:2rem !important;
     flex:none !important;
@@ -28,6 +34,7 @@
     padding-right: 0px !important;
 }
 .orText{
+    color: white !important;
     margin-top:1rem;
     margin-bottom: 0px !important;
 }
@@ -155,8 +162,8 @@ input::placeholder {
 
 
 .form-container {
-    width: 100%;
-   
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    width: 100%;  
     display: flex;
     justify-content: center;
     align-items: center;
@@ -363,7 +370,7 @@ button:disabled {
     font-size: 1rem;
     color: white !important;
     margin-bottom: 10px !important;
-    font-weight: 500;
+    font-weight: 400 !important;
 }
 
 .checkbox-group {
@@ -416,7 +423,7 @@ input[type="checkbox"]:checked::before {
 .checkbox-item .label {
     /* color: white; */
     cursor: pointer;
-    font-weight: 500;
+    font-weight:400 !important;
 }
 input {
     width: 100%;
@@ -447,6 +454,13 @@ input[type="date"] {
 input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1); /* Invert the color of the calendar icon to make it white */
 }
+
+
+select:focus {
+  
+    border-bottom: 2px solid #66b2ff !important;
+    outline: none !important;
+}
 /* input:focus {
     border-bottom: 2px solid #66b2ff !important;
     outline: none;
@@ -464,11 +478,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     transition: background-color 0.3s ease;
 }
 
-select:focus {
-  
-    border-bottom: 2px solid #66b2ff !important;
-    outline: none !important;
-} */
+ */
 
 /* select {
     width: 35% !important;
@@ -564,6 +574,7 @@ padding: 0px !important;
 
 .clearSign{
     cursor:pointer;
+    color:white;
 }
 
 canvas {

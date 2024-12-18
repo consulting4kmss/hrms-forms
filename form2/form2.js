@@ -1,38 +1,42 @@
 var totalFields2 = 0;
 var totalPages2 = 0;
-let formCounter=1;
-let years=0;
-let totalYears=0; 
+let formCounter = 1;
+let years = 0;
+let totalYears = 0;
 function nextPage2(pageNumber) {
-    // if (validatePage('form2', pageNumber - 1)) {
-       if(pageNumber==9){
-            initializeSignatureBox();
-            clearSign();
-            addForm2EventListeners();
+     if (validatePage('form2', pageNumber - 1)) {
+    if (pageNumber == 9) {
+        initializeSignatureBox();
+        clearSign();
+        addForm2EventListeners();
 
-       }
-       if(pageNumber==7){
+    }
+    if (pageNumber == 7) {
         validateEmploymentHistory();
-       }
-       if(pageNumber-1==7){
-        if(totalYears>=10){
+    }
+    if (pageNumber - 1 == 7) {
+        if (totalYears >= 10) {
+            const currentPage = document.querySelector(`#form2-page${pageNumber - 1}`);
+            const nextPage = document.querySelector(`#form2-page${pageNumber}`);
+            currentPage.style.display = 'none';
+            nextPage.style.display = 'block';
+            updatePageInfo2('form2', pageNumber);
+            caluclateTotalFeilds();
+
+            
+        }
+    }
+    else {
         const currentPage = document.querySelector(`#form2-page${pageNumber - 1}`);
         const nextPage = document.querySelector(`#form2-page${pageNumber}`);
         currentPage.style.display = 'none';
         nextPage.style.display = 'block';
-        updatePageInfo2('form2',pageNumber);
-        updateProgress2('form2');}
-       }
-       else{
-        const currentPage = document.querySelector(`#form2-page${pageNumber - 1}`);
-        const nextPage = document.querySelector(`#form2-page${pageNumber}`);
-        currentPage.style.display = 'none';
-        nextPage.style.display = 'block';
-        updatePageInfo2('form2',pageNumber);
-        updateProgress2('form2');}
-    // }else{
-    //     console.log("Validation Failed");
-    // }
+        updatePageInfo2('form2', pageNumber);
+        caluclateTotalFeilds();
+    }
+     }else{
+        showInvalidModal();
+     }
 }
 
 function previousPage2(pageNumber) {
@@ -41,8 +45,8 @@ function previousPage2(pageNumber) {
     currentPage.style.display = 'none';
     previousPage.style.display = 'block';
     updatePageInfo2('form2', pageNumber);
-    updateProgress2('form2');
-    
+    caluclateTotalFeilds();
+
 }
 
 
@@ -128,8 +132,8 @@ function handleMutualExclusiveCheckboxes2(formId) {
             });
 
             updateProgress2(formId);
-      
-            toggleFields2(formId, toggleFieldsConfig2);
+
+            // toggleFields2(formId, toggleFieldsConfig2);
         });
     });
 }
@@ -137,20 +141,14 @@ function handleMutualExclusiveCheckboxes2(formId) {
 function initializeForm2(formId) {
     totalPages2 = document.querySelectorAll(`#${formId} .form-page2 `).length;
 
-    totalFields2 = Array.from(document.querySelectorAll(`#${formId} .form-page2 input`))
-        .filter((field, index, self) => {
-            if (field.type === 'checkbox' || field.type === 'radio') {
-                return self.findIndex(f => f.name === field.name) === index;
-            }
-            return true;
-        }).length;
+    caluclateTotalFeilds()
 
-    updatePageInfo2(formId,1);
-    toggleFields2(formId, toggleFieldsConfig2);
+    updatePageInfo2(formId, 1);
+    // toggleFields2(formId, toggleFieldsConfig2);
     console.log("executing form2");
 
     const fields = document.querySelectorAll(`#${formId} .form-page2 input, #${formId} .form-page2 select`);
-    console.log("printing Feilds ",fields);
+    console.log("printing Feilds ", fields);
     fields.forEach(field => {
         field.addEventListener('change', () => {
             updateProgress2(formId);
@@ -160,6 +158,18 @@ function initializeForm2(formId) {
     handleMutualExclusiveCheckboxes2(formId);
 
     updateProgress2(formId);
+}
+
+function caluclateTotalFeilds(){
+    totalFields2 = Array.from(document.querySelectorAll(`#form2 .form-page2 input`))
+    .filter((field, index, self) => {
+        if (field.type === 'checkbox' || field.type === 'radio') {
+            return self.findIndex(f => f.name === field.name) === index;
+        }
+        return true;
+    }).length;
+    updateProgress2('form2');
+
 }
 // function handleDateChange2(event) {
 //     console.log('entered into date 2');
@@ -179,150 +189,6 @@ function initializeForm2(formId) {
 //     const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
 //     const year = date.getFullYear();
 //     return `${month}/${day}/${year}`;
-// }
-
-
-// function addressHistory(value){
-//     if(value=='yes'){
-//         const addressHistory=document.createElement('div');
-//         addressHistory.id='Address1';
-//         addressHistory.innerHTML=`
-//                 <div class="mt-3">
-//                     <h4 class="just-color" style="border-bottom: 2px solid #8bafdf; width: 100%; padding-bottom: 5px;">
-//                         Address History Continued
-//                     </h4>
-//                 </div>
-
-//                 <div>
-//                     <h6 class="just-color">
-//                         <p class="question-label">List any prior address in the THREE (3) years preceding the date of
-//                             this
-//                             application, include
-//                             street, city, state, and zip (NO PO BOXES)
-//                         </p>
-//                     </h6>
-//                 </div>
-//              <div id="addressSection">
-//                 <div  id="addressSon" class="mt-2">
-//                     <div class="address-container">
-//                         <div class="form-row ">
-//                             <div>
-//                                 <label class="question-label">Additional Address #1</label>
-//                                 <input type="text" autocomplete="off" name="address1" id="additionalAddress1"
-//                                     class="form-control" onchange="updateProgress2('form2')" placeholder="Enter Text">
-//                             </div>
-//                         </div>
-
-//                         <div class="form-row">
-//                             <div class="col">
-//                                 <label class="question-label">City</label>
-//                                 <!-- <input required type="text" data-validate="text" autocomplete="off" name="city" onchange="updateProgress2('form2')"> -->
-//                                 <input type="text" name="city" maxlength="50" autocomplete="off" id="additionalCity1"
-//                                     oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')"
-//                                     class="form-control" onchange="updateProgress2('form2')" placeholder="Enter Text" />
-//                                 <small class="error-message"></small>
-//                             </div>
-//                             <div class="col">
-//                                 <label class="question-label">State</label>
-//                                 <select name="additionalState1" id="additionalState1" class="form-control state-feild"
-//                                     placeholder="Select One">
-//                                     <option value="state1"></option>
-//                                     <option value="state2"></option>
-//                                     <option value="state3"></option>=
-//                                 </select>
-//                             </div>
-//                             <div class="col">
-//                                 <label class="question-label">Zip</label>
-//                                 <input type="number" name="zip" id="additionalZip1" autocomplete="off" maxlength="6"
-//                                     class="form-control" onchange="updateProgress2('form2')"
-//                                     oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')"
-//                                     placeholder="Enter Number" />
-//                                 <small class="error-message"></small>
-//                             </div>
-//                         </div>
-//                         <div class="form-row">
-//                             <div>
-//                                 <label class="question-label">From</label>
-
-//                                 <input type="date" class="dab form-control" id="additionalFrom1" name="dob"
-//                                     onchange="handleDateChange2(event)">
-//                                 <small class="error-message"></small>
-//                             </div>
-//                             <div>
-//                                 <label class="question-label">To</label>
-//                                 <input type="date" class="dab form-control " id="additionalTo1" name="dob"
-//                                     onchange="handleDateChange2(event)">
-//                                 <small class="error-message"></small>
-//                             </div>
-//                         </div>
-//                     </div>
-//                     <div class="mt-3" id="additionalAddressFeilds1">
-//                         <h6 class="just-color">
-//                             <p class="question-label">Did you have additional prior address to add</p>
-//                         </h6>
-//                     </div>
-//                     <div class="col-12 d-flex flex-column mt-2">
-//                         <div class="form-check" d-flex align-items-end>
-//                             <input class="form-check-input" type="radio" value="no" id="addressNo1" name="Adress1"
-//                                 onchange="handleAddressChange(this)">
-//                             <label class="form-check-label label ms-4" for="addressNo1">
-//                                 No
-//                             </label>
-//                         </div>
-
-//                         <div class="form-check mt-2">
-//                             <input class="form-check-input" type="radio" value="yes" id="addressYes1" name="Adress1"
-//                                 onchange="handleAddressChange(this)">
-//                             <label class="form-check-label ms-4" for="addressYes1">
-//                                 Yes
-//                             </label>
-//                         </div>
-//                     </div>
-//                 </div>
-//               </div>
-//             `
-//                     const mainContainer=document.getElementById('mainAddressContainer');
-//                     mainContainer.appendChild(addressHistory);
-
-//     }
-
-// }
-
-
-// let addressCounter = 1; // Counter for unique IDs
-
-// // Handle Yes/No selection
-// function handleAddressChange(radio) {
-//     const parentContainer = radio.closest('#addressSon');
-//     const addressSection = document.getElementById('addressSection');
-
-//     if (radio.value === 'yes') {
-//         // Clone the template
-//         addressCounter++;
-//         const newTemplate = parentContainer.cloneNode(true);
-
-//         // Update IDs and names to make them unique
-//         newTemplate.dataset.templateId = addressCounter;
-//         newTemplate.querySelectorAll('input, select, label, div').forEach(el => {
-//             if (el.id) el.id = el.id.replace(/\d+$/, addressCounter);
-//             if (el.name) el.name = el.name.replace(/\d+$/, addressCounter);
-//             if (el.htmlFor) el.htmlFor = el.htmlFor.replace(/\d+$/, addressCounter);
-//         });
-
-//         // Reset inputs in the cloned template
-//         newTemplate.querySelectorAll('input[type="text"], input[type="number"], input[type="date"]').forEach(el => el.value = '');
-//         newTemplate.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
-//         newTemplate.querySelectorAll('select').forEach(el => el.value = '');
-
-//         // Append to address section
-//         addressSection.appendChild(newTemplate);
-//     } else if (radio.value === 'no') {
-//         // Remove all templates added after the current one
-//         const currentTemplateId = parentContainer.dataset.templateId;
-//         document.querySelectorAll('#addressSon').forEach(el => {
-//             if (el.dataset.templateId > currentTemplateId) el.remove();
-//         });
-//     }
 // }
 
 
@@ -354,14 +220,17 @@ function handleAddressChange(radio) {
 
         // Append the new template
         addressSection.appendChild(newTemplate);
+        caluclateTotalFeilds();
     } else if (radio.value === 'no') {
         // Remove all templates with a higher data-template-id
         const currentTemplateId = parseInt(parentContainer.dataset.templateId, 10);
         document.querySelectorAll('#addressSon').forEach(el => {
             if (parseInt(el.dataset.templateId, 10) > currentTemplateId) {
                 el.remove();
+                caluclateTotalFeilds();
             }
         });
+        caluclateTotalFeilds();
     }
 }
 
@@ -389,30 +258,30 @@ function addressHistory(value) {
                         <div class="form-row">
                             <div>
                                 <label class="question-label">Additional Address #${addressCounter}</label>
-                                <input type="text" autocomplete="off" name="address${addressCounter}" id="additionalAddress${addressCounter}"
+                                <input required type="text" autocomplete="off" name="address${addressCounter}" id="additionalAddress${addressCounter}"
                                     class="form-control" onchange="updateProgress2('form2')" placeholder="Enter Text">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col">
                                 <label class="question-label">City</label>
-                                <input type="text" name="city${addressCounter}" maxlength="50" autocomplete="off" id="additionalCity${addressCounter}"
+                                <input required type="text" name="city${addressCounter}" maxlength="50" autocomplete="off" id="additionalCity${addressCounter}"
                                     oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')"
                                     class="form-control" onchange="updateProgress2('form2')" placeholder="Enter Text" />
                                 <small class="error-message"></small>
                             </div>
                             <div class="col">
                                 <label class="question-label">State</label>
-                                <select name="additionalState${addressCounter}" id="additionalState${addressCounter}" class="form-control state-feild"
-                                    placeholder="Select One">
-                                    <option value="state1"></option>
-                                    <option value="state2"></option>
-                                    <option value="state3"></option>
+                                <select required data-validate="text" name="additionalState${addressCounter}" id="additionalState${addressCounter}" class="state-feild"
+                                    >
+                                    <option value="">Select One</option>
+                                    <option value="NewYork">NewYork</option>
+                                    <option value="Dallas">Dallas</option>
                                 </select>
                             </div>
                             <div class="col">
                                 <label class="question-label">Zip</label>
-                                <input type="number" name="zip${addressCounter}" id="additionalZip${addressCounter}" autocomplete="off" maxlength="6"
+                                <input required type="number" name="zip${addressCounter}" id="additionalZip${addressCounter}" autocomplete="off" maxlength="6"
                                     class="form-control" onchange="updateProgress2('form2')"
                                     oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')"
                                     placeholder="Enter Number" />
@@ -422,13 +291,13 @@ function addressHistory(value) {
                         <div class="form-row">
                             <div>
                                 <label class="question-label">From</label>
-                                <input type="date" class="dab form-control" id="additionalFrom${addressCounter}" name="from${addressCounter}"
+                                <input required type="date" class="dab form-control" id="additionalFrom${addressCounter}" name="from${addressCounter}"
                                     onchange="handleDateChange2(event)">
                                 <small class="error-message"></small>
                             </div>
                             <div>
                                 <label class="question-label">To</label>
-                                <input type="date" class="dab form-control" id="additionalTo${addressCounter}" name="to${addressCounter}"
+                                <input required type="date" class="dab form-control" id="additionalTo${addressCounter}" name="to${addressCounter}"
                                     onchange="handleDateChange2(event)">
                                 <small class="error-message"></small>
                             </div>
@@ -461,69 +330,74 @@ function addressHistory(value) {
         `;
         const mainContainer = document.getElementById('mainAddressContainer');
         mainContainer.appendChild(addressHistory);
+        caluclateTotalFeilds();
     }
 }
 
-function removeHistoryElement(value){
+function removeHistoryElement(value) {
+    if (value == 'no') {
+       const Element=document.getElementById('Address1');
+       if(Element){
+        Element.remove();
+       }
+        caluclateTotalFeilds();
+    }
+
+
+}
+function licenseAccepted(value) {
+    if (value == 'no') {
+        if (document.getElementById('denyExplanation')) {
+            document.getElementById('denyExplanation').remove();
+            caluclateTotalFeilds();
+        }
+    }
+}
+function licenseDenied(value) {
+    if (value == 'yes') {
+        const licenseElement = document.createElement('div');
+        licenseElement.id = 'denyExplanation';
+        licenseElement.classList.add('col-12');
+        licenseElement.classList.add('mt-3');
+        licenseElement.innerHTML = `
+                    <label class="question-label">Disclosure</label>
+                    <textarea required id="licenseDenyExplanation" rows="4" class="form-control mt-2 txtfeild "></textarea>
+                `;
+        const MainContainer = document.getElementById('licenseContainer');
+        MainContainer.appendChild(licenseElement);
+        caluclateTotalFeilds();
+    }
+
+}
+
+function licenseSuspended(value){
+    if(value=='yes'){
+       const suspendExplain=document.createElement('div');
+       suspendExplain.id='suspendedExplanation'; 
+       suspendExplain.classList.add('col-12','mt-3');
+
+       suspendExplain.innerHTML=`
+                    <label class="question-label">Disclosure</label>
+                    <textarea required id="licenseSuspendedExplanation" rows="4" class="form-control mt-2 txtfeild "></textarea>
+              `
+        document.getElementById('suspendContainer').appendChild(suspendExplain);
+        caluclateTotalFeilds();
+
+
+    }
+
+}
+function licenseNotSuspended(value){
     if(value=='no'){
-        document.getElementById('Address1').remove();
+        suspendExplainBox=document.getElementById('suspendedExplanation');
+        if(suspendExplainBox){
+            suspendExplainBox.remove();
+            caluclateTotalFeilds();
+        }
     }
-
 }
 
 
-const priorAddress=`<div class="address-container mt-2" id="priorAdd" style="display:block">
-<div class="form-row ">
-    <div>
-        <label class="question-label">Additional Address #2</label>
-        <input type="text" autocomplete="off" name="additionalAddress2" class="form-control"
-            id="additionalAddress2" onchange="updateProgress2('form2')" placeholder="Enter Text">
-    </div>
-</div>
-
-<div class="form-row">
-    <div class="col">
-        <label class="question-label">City</label>
-        <!-- <input required type="text" data-validate="text" autocomplete="off" name="city" onchange="updateProgress2('form2')"> -->
-        <input type="text" name="city" maxlength="50" autocomplete="off" id="additionalCity2"
-            oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')"
-            class="form-control" onchange="updateProgress2('form2')" placeholder="Enter Text" />
-        <small class="error-message"></small>
-    </div>
-    <div class="col">
-        <label class="question-label">State</label>
-        <select name="addressState" id="additionalState2" class="form-control state-feild"
-            placeholder="Select One">
-            <option value="state1"></option>
-            <option value="state2"></option>
-            <option value="state3"></option>=
-        </select>
-    </div>
-    <div class="col">
-        <label class="question-label">Zip</label>
-        <input type="number" name="zip" autocomplete="off" maxlength="6" class="form-control"
-            onchange="updateProgress2('form2')" id="additionalZip2"
-            oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')"
-            placeholder="Enter Number" />
-        <small class="error-message"></small>
-    </div>
-</div>
-<div class="form-row">
-    <div>
-        <label class="question-label">From</label>
-
-        <input type="date" class="dab form-control" id="additionalFrom2" name="dob"
-            onchange="handleDateChange2(event)">
-        <small class="error-message"></small>
-    </div>
-    <div>
-        <label class="question-label">To</label>
-        <input type="date" class="dab form-control " id="additionalTo2" name="dob"
-            onchange="handleDateChange2(event)">
-        <small class="error-message"></small>
-    </div>
-</div>
-</div>`
 
 function handleDateChange2(event) {
     console.log('Entered into date 2');
@@ -547,82 +421,82 @@ function formatDateToDDMMYYYY2(date) {
     return `${month}/${day}/${year}`;
 }
 
-function toggleFields2(formId, config) {
-    config.forEach(({ radioId, fieldsToShow }) => {
-        const radiobut = document.getElementById(radioId);
+// function toggleFields2(formId, config) {
+//     config.forEach(({ radioId, fieldsToShow }) => {
+//         const radiobut = document.getElementById(radioId);
 
-        fieldsToShow.forEach(fieldId => {
-            const fieldElement = document.getElementById(fieldId);
-            const childElements = fieldElement.querySelectorAll('*');
-            const childIds = Array.from(childElements)
-                .filter(element => element.id)
-                .map(element => element.id);
-
-              
-
-            if (radiobut && radiobut.checked) {
-                fieldElement.style.display = 'block';
-                document.getElementById(childIds[0]).required = true;
-                document.getElementById(childIds[0]).style.display='block';
-            }
-            else {
-                fieldElement.style.display = 'none';
-                document.getElementById(childIds[0]).required = false;
-                document.getElementById(childIds[0]).style.display='none';
+//         fieldsToShow.forEach(fieldId => {
+//             const fieldElement = document.getElementById(fieldId);
+//             const childElements = fieldElement.querySelectorAll('*');
+//             const childIds = Array.from(childElements)
+//                 .filter(element => element.id)
+//                 .map(element => element.id);
 
 
-            }
-        });
-    });
 
-    updateProgress2(formId);
-}
+//             if (radiobut && radiobut.checked) {
+//                 fieldElement.style.display = 'block';
+//                 document.getElementById(childIds[0]).required = true;
+//                 document.getElementById(childIds[0]).style.display = 'block';
+//             }
+//             else {
+//                 fieldElement.style.display = 'none';
+//                 document.getElementById(childIds[0]).required = false;
+//                 document.getElementById(childIds[0]).style.display = 'none';
 
-const toggleFieldsConfig2 = [
-    // {
-    //     radioId: "addressYes",
-    //     fieldsToShow: ["Address1"],
-    // },
-    // {
-    //     radioId: "addressYes1",
-    //     fieldsToShow: ["priorAdd"],
-    // },
-    {
-        radioId:"licenseDenyYes",
-        fieldsToShow:["denyExplanation"],
-    },
-    {
-        radioId:"licenseSuspendedYes",
-        fieldsToShow:["suspendedExplanation"],
-    },
-    {
-      radioId:"militaryYes",
-      fieldsToShow:["fmcsa"]
-    }
 
-]
+//             }
+//         });
+//     });
+
+//     updateProgress2(formId);
+// }
+
+
+
+// const toggleFieldsConfig2 = [
+
+//     {
+//         radioId: "militaryYes",
+//         fieldsToShow: ["fmcsa"]
+//     }
+
+// ]
+
+
 
 
 
 function validateAndFormatPhoneNumber(input) {
-    const rawValue = input.value.replace(/\D/g, ''); // Remove non-numeric characters
+    let rawValue = input.value.replace(/\D/g, ''); // Remove non-numeric characters
+    const errorField = input.nextElementSibling; // Select the small tag for error messages
+
+    // Truncate to 10 digits if input exceeds 10 characters
+    if (rawValue.length > 10) {
+        rawValue = rawValue.substring(0, 10);
+    }
 
     // Handle empty input (allows clearing)
     if (rawValue.length === 0) {
         input.value = '';
-        const errorField = input.nextElementSibling;
-        errorField.textContent = '';
+        errorField.textContent = ''; // Clear error message
         errorField.style.display = 'none';
         return;
     }
 
-    // Validate that only numbers are allowed
-    if (rawValue.length > 10) {
-        input.value = formatPhoneNumber(rawValue.substring(0, 10)); // Format first 10 digits only
+    // Validate and show error for invalid length
+    if (rawValue.length !== 10) {
+        errorField.textContent = 'Phone number must be exactly 10 digits.';
+        errorField.style.display = 'block';
+        input.value = formatPhoneNumber(rawValue); // Format partial input for better UX
         return;
     }
 
-    // Format the phone number dynamically
+    // Clear error message if input is valid
+    errorField.textContent = '';
+    errorField.style.display = 'none';
+
+    // Format and set the phone number
     input.value = formatPhoneNumber(rawValue);
 }
 
@@ -635,6 +509,7 @@ function formatPhoneNumber(value) {
         return `(${value.substring(0, 3)}) ${value.substring(3, 6)}-${value.substring(6)}`;
     }
 }
+
 
 
 
@@ -661,6 +536,49 @@ function validInput(input, regex, errorMessage) {
             errorField.style.display = 'none';
         }
         return true;
+    }
+}
+
+function validateAndFormatSSN(input) {
+    let rawValue = input.value.replace(/\D/g, ''); // Remove all non-numeric characters
+    const errorField = input.nextElementSibling; // Select the small tag for error messages
+
+    // Truncate to 9 digits if input exceeds 9 characters
+    if (rawValue.length > 9) {
+        rawValue = rawValue.substring(0, 9);
+    }
+
+    // Handle empty input (allows clearing)
+    if (rawValue.length === 0) {
+        input.value = '';
+        errorField.textContent = ''; // Clear error message
+        errorField.style.display = 'none';
+        return;
+    }
+
+    // Validate and show error for invalid length (less than 9 digits)
+    if (rawValue.length !== 9) {
+        errorField.textContent = 'SSN must be exactly 9 digits.';
+        errorField.style.display = 'block';
+        input.value = formatSSN(rawValue); // Format partial input for better UX
+        return;
+    }
+
+    // Clear error message if input is valid
+    errorField.textContent = '';
+    errorField.style.display = 'none';
+
+    // Format and set the SSN
+    input.value = formatSSN(rawValue);
+}
+
+function formatSSN(value) {
+    if (value.length <= 3) {
+        return value; // First 3 digits
+    } else if (value.length <= 5) {
+        return `${value.substring(0, 3)}-${value.substring(3)}`; // First 3 digits + dash + next 2 digits
+    } else {
+        return `${value.substring(0, 3)}-${value.substring(3, 5)}-${value.substring(5)}`; // xxx-xx-xxxx format
     }
 }
 
@@ -735,6 +653,65 @@ function validInput(input, regex, errorMessage) {
 
 
 
+// function validatePage(formId, pageNumber) {
+
+//     const form = document.getElementById(formId);
+//     const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
+//     const inputs = currentPage.querySelectorAll('input, select, textarea');
+//     const canvases = currentPage.querySelectorAll('canvas');
+//     let isValid = true;
+
+
+//     const validationRules = {
+//         text: { regex: /^[a-zA-Z\s]*$/, errorMessage: 'Only letters are allowed' },
+//         number: { regex: /^[0-9]*$/, errorMessage: 'Only numbers are allowed' }
+
+//     };
+
+
+//     inputs.forEach(input => {
+//     const validateInput = () => {
+//                     if (input.type === 'checkbox') {
+//                         const checkboxes = currentPage.querySelectorAll(`input[name="${input.name}"]`);
+//                         const isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+        
+//                         if (!isAnyChecked) {
+//                             isValid = false;
+//                             checkboxes.forEach(checkbox => checkbox.classList.add('highlight-feedback'));
+//                         } else {
+//                             checkboxes.forEach(checkbox => checkbox.classList.remove('highlight-feedback'));
+//                         }
+//                     } else if (input.required) {
+//                         if (input.tagName === 'SELECT' && !input.value) {
+//                             isValid = false;
+//                             input.classList.add('highlight');
+//                         } else if (input.tagName === 'TEXTAREA' && !input.value.trim()) {
+//                             isValid = false;
+//                             input.classList.add('highlight');
+//                         } else if (input.value.trim()) {
+//                             input.classList.remove('highlight');
+//                         } else {
+//                             isValid = false;
+//                             input.classList.add('highlight');
+//                         }
+//                     } else {
+//                         input.classList.remove('highlight');
+//                     }
+//                 };
+        
+
+//                 input.addEventListener('input', validateInput);
+//                 if (input.tagName === 'SELECT') {
+//                     input.addEventListener('change', validateInput);
+//                 }
+        
+
+//                 validateInput();
+//             });
+
+
+
+
 function validatePage(formId, pageNumber) {
     const form = document.getElementById(formId);
     const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
@@ -745,7 +722,7 @@ function validatePage(formId, pageNumber) {
         // Skip hidden inputs
         const isHidden = getComputedStyle(input).display === 'none' || input.closest('[style*="display: none"]');
         if (isHidden) {
-            console.log("input  is "+input+"     its display is ="+isHidden)
+            console.log("input  is " + input + "     its display is =" + isHidden)
             return;
         }
 
@@ -849,25 +826,25 @@ function handleRadioChange(event) {
                 <div class="address-container mt-3">
                     <div class="col-12">
                         <label class="question-label">Date of Conviction</label>
-                        <input type="date" class="dab" name="applicantdob-${violationCount}" id="voilationDate-${violationCount}" onchange="updateProgress2('form2')">
+                        <input required type="date" class="dab" name="applicantdob-${violationCount}" id="voilationDate-${violationCount}" onchange="updateProgress2('form2')">
                     </div>
                     <div class="col-12 mt-3">
                         <label class="question-label">Offence</label>
-                        <input type="text" data-validate="text" name="offence-${violationCount}" autocomplete="off" class="form-control" id="voilationOffence-${violationCount}" onchange="updateProgress2('form2')">
+                        <input required type="text" data-validate="text" name="offence-${violationCount}" autocomplete="off" class="form-control" id="voilationOffence-${violationCount}" onchange="updateProgress2('form2')">
                     </div>
                     <div class="col-12 mt-3 mb-3">
                         <label class="question-label">Location</label>
-                        <input type="text" data-validate="text" name="voilationLocation-${violationCount}" autocomplete="off" class="form-control" id="voilationLocation-${violationCount}" onchange="updateProgress2('form2')">
+                        <input required type="text" data-validate="text" name="voilationLocation-${violationCount}" autocomplete="off" class="form-control" id="voilationLocation-${violationCount}" onchange="updateProgress2('form2')">
                     </div>
                     <div class="mt-3 mb-2">
                         <label class="question-label">Type Of Vehicle Operated</label>
                         <div class="form-check col-12 mt-2">
                             <input class="form-check-input box" type="radio" id="offenceCommercial-${violationCount}" name="offenceVehicle-${violationCount}" value="Commercial" onchange="updateProgress2('form2')">
-                            <label for="offenceCommercial-${violationCount}" class="label ms-3">Commercial</label>
+                            <label class="form-check-label" for="offenceCommercial-${violationCount}" class="label ms-3">Commercial</label>
                         </div>
                         <div class="form-check col-12 mt-2">
                             <input class="form-check-input box" type="radio" id="offencePrivate-${violationCount}" name="offenceVehicle-${violationCount}" value="Private" onchange="updateProgress2('form2')">
-                            <label for="offencePrivate-${violationCount}" class="label ms-3">Private</label>
+                            <label class="form-check-label"  for="offencePrivate-${violationCount}" class="label ms-3">Private</label>
                         </div>
                     </div>
                 </div>
@@ -887,6 +864,7 @@ function handleRadioChange(event) {
 
         // Append the new section
         container.insertAdjacentHTML("beforeend", template);
+        caluclateTotalFeilds();
     } else if (event.target.value === "no") {
         const currentViolation = event.target.closest(".violation-detail");
 
@@ -896,6 +874,7 @@ function handleRadioChange(event) {
                 container.removeChild(container.firstChild);
             }
             violationCount = 0;
+            caluclateTotalFeilds();
             return;
         }
 
@@ -907,6 +886,7 @@ function handleRadioChange(event) {
             const violationIndex = parseInt(violation.dataset.index);
             if (violationIndex > currentViolationIndex) {
                 container.removeChild(violation);
+                caluclateTotalFeilds();
             }
         });
 
@@ -934,7 +914,7 @@ function handleAccidentChange(event) {
                 <div class="address-container mb-2 mt-3">
                     <div class="col-12">
                         <label class="question-label">Date of Accident</label>
-                        <input type="date" class="dab" name="accidentDate-${accidentCount}" id="accidentDate-${accidentCount}" oninput="handleDateChange2(event)" placeholder="MM/DD/YYYY" onchange="updateProgress2('form2')">
+                        <input required type="date" class="dab" name="accidentDate-${accidentCount}" id="accidentDate-${accidentCount}" oninput="handleDateChange2(event)" placeholder="MM/DD/YYYY" onchange="updateProgress2('form2')">
                     </div>
 
                     <div class="col-12 d-flex flex-column mt-4">
@@ -951,7 +931,7 @@ function handleAccidentChange(event) {
                         </div>
                         <div class="col-12 mt-4">
                             <label class="question-label">Circumstances of Accident</label>
-                            <textarea name="circumstances-${accidentCount}" id="accidentExplanation-${accidentCount}" rows="4" class="form-control mt-2 txtfeild"></textarea>
+                            <textarea required name="circumstances-${accidentCount}" id="accidentExplanation-${accidentCount}" rows="4" class="form-control mt-2 txtfeild"></textarea>
                         </div>
                         <div class="mb-3 mt-4">
                             <label class="question-label">Attachment (Optional)</label>
@@ -975,6 +955,7 @@ function handleAccidentChange(event) {
 
         // Append the new accident detail template
         container.insertAdjacentHTML("beforeend", template);
+        caluclateTotalFeilds();
     } else if (event.target.value === "no") {
         const currentAccident = event.target.closest(".accident-detail");
 
@@ -982,6 +963,7 @@ function handleAccidentChange(event) {
             // This is the first set of "Yes/No" buttons outside the .accident-detail
             while (container.firstChild) {
                 container.removeChild(container.firstChild);
+                caluclateTotalFeilds();
             }
             accidentCount = 0;
             return;
@@ -995,6 +977,7 @@ function handleAccidentChange(event) {
             const accidentIndex = parseInt(accident.dataset.index);
             if (accidentIndex > currentAccidentIndex) {
                 container.removeChild(accident);
+                caluclateTotalFeilds();
             }
         });
 
@@ -1002,6 +985,623 @@ function handleAccidentChange(event) {
         accidentCount = currentAccidentIndex;
     }
 }
+//<------------------------------------------------------------------PAGE 6---------------------------------->
+
+function militaryDriver(value){
+if(value=='yes'){
+    const militaryElement=document.createElement('div');
+     militaryElement.id='fmcsa';
+     militaryElement.innerHTML=`
+                <div class="address-container mt-4">
+                    <label class="question-label">Straight Truck (check all that apply)</label>
+                    <div>
+                        <div class=" form-check col-12 mt-2">
+                            <div class="checkbox ">
+                                <input class="form-check-input " type="checkbox" id="truckVan" name="straightTruck"
+                                    value="Van" onchange="updateProgress2('form2')">
+                            </div>
+                            <div class="label ms-3">
+                                <label class="form-check-label"  for="truckVan">Van</label>
+                            </div>
+                        </div>
+                        <div class=" form-check col-12 mt-2">
+                            <div class="checkbox">
+                                <input class="form-check-input " type="checkbox" id="truckBox" name="straightTruck"
+                                    value="Box" onchange="updateProgress2('form2')">
+                            </div>
+                            <div class="label ms-3">
+                                <label class="form-check-label"  for="truckBox">Box</label>
+                            </div>
+                        </div>
+
+                        <div class=" form-check col-12 mt-2">
+                            <div class="checkbox ">
+                                <input class="form-check-input " type="checkbox" id="truckFlat" name="straightTruck"
+                                    value="Flat Bed" onchange="updateProgress2('form2')">
+                            </div>
+                            <div class="label ms-3">
+                                <label class="form-check-label"  for="truckFlat">Flat Bed</label>
+                            </div>
+                        </div>
+
+                        <div class=" form-check col-12 mt-2">
+                            <div class="checkbox">
+                                <input class="form-check-input " type="checkbox" id="truckBucket" name="straightTruck"
+                                    value="Bucket or Auger" onchange="updateProgress2('form2')">
+                            </div>
+                            <div class="label ms-3">
+                                <label class="form-check-label"  for="truckBucket">Bucket or Auger</label>
+                            </div>
+                        </div>
+                        <div class=" form-check col-12 mt-2">
+                            <div class="checkbox">
+                                <input class="form-check-input " type="checkbox" id="truckTanker" name="straightTruck"
+                                    value="tanker" onchange="updateProgress2('form2')">
+                            </div>
+                            <div class="label ms-3">
+                                <label class="form-check-label"  for="truckTanker">Tanker</label>
+                            </div>
+                        </div>
+
+                        <div class=" form-check col-12 mt-2">
+                            <div class="checkbox">
+                                <input class="form-check-input " type="checkbox" id="otherService" name="straightTruck"
+                                    value="Other Utility Service" onchange="updateProgress2('form2')">
+                            </div>
+                            <div class="label ms-3">
+                                <label class="form-check-label"  for="otherService">Other Utility Service</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3 mb-3">
+                        <div class="col">
+                            <label class="question-label">From</label>
+
+                            <input required type="date" class="dab form-control " id="truckFrom" name="truckFrom"
+                                onchange="handleDateChange2(event)">
+                            <small class="error-message"></small>
+                        </div>
+                        <div class="col">
+                            <label class="question-label">To</label>
+                            <input required type="date" class="form-control" id="truckTo" name="truckto"
+                                onchange="handleDateChange2(event)">
+                            <small class="error-message"></small>
+                        </div>
+                        <div class="or">
+                            <p class="orText">OR</p>
+                        </div>
+                        <div class="col-5">
+                            <label class="question-label">Approximate Number of Miles</label>
+                            <input required type="text" class="form-control" id="truckMiles " name="truckmiles"
+                                placeholder="Enter number" onchange="handleDateChange2(event)">
+                            <small class="error-message"></small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="address-container mt-4">
+                    <label class="question-label">Tractor & Semi-Trailer (check all that apply)</label>
+                    <div>
+                        <div class=" form-check col-12 mt-2">
+                            <div class="checkbox ">
+                                <input class="form-check-input " type="checkbox" id="tractorBox" name="tractor"
+                                    value="Box Trailer" onchange="updateProgress2('form2')">
+                            </div>
+                            <div class="label ms-3">
+                                <label class="form-check-label"  for="tractorbox">Box trailer</label>
+                            </div>
+                        </div>
+                        <div class=" form-check col-12 mt-2">
+                            <div class="checkbox">
+                                <input class="form-check-input " type="checkbox" id="tractorFlat" name="tractor"
+                                    value="Flat Trailer" onchange="updateProgress2('form2')">
+                            </div>
+                            <div class="label ms-3">
+                                <label class="form-check-label"  for="tractorFlat">Flat trailer</label>
+                            </div>
+                        </div>
+
+                        <div class=" form-check col-12 mt-2">
+                            <div class="checkbox ">
+                                <input class="form-check-input " type="checkbox" id="truckFlat" name="tractor"
+                                    value="Tank trailer" onchange="updateProgress2('form2')">
+                            </div>
+                            <div class="label ms-3">
+                                <label class="form-check-label"  for="truckFlat">Tank trailer</label>
+                            </div>
+                        </div>
+
+                        <div class=" form-check col-12 mt-2">
+                            <div class="checkbox">
+                                <input class="form-check-input " type="checkbox" id="tractorBucket" name="tractor"
+                                    value="Bucket or Auger" onchange="updateProgress2('form2')">
+                            </div>
+                            <div class="label ms-3">
+                                <label class="form-check-label"  for="tractorBucket">Bucket or Auger</label>
+                            </div>
+                        </div>
+                        <div class=" form-check col-12 mt-2">
+                            <div class="checkbox">
+                                <input class="form-check-input " type="checkbox" id="tractorMulti" name="tractor"
+                                    value="Multi-trailer" onchange="updateProgress2('form2')">
+                            </div>
+                            <div class="label ms-3">
+                                <label class="form-check-label"  for="tractorMulti">Multi-trailer</label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-3 mb-3">
+                        <div class="col">
+                            <label class="question-label">From</label>
+
+                            <input required type="date" class="dab form-control " id="tractorFrom" name="tractorFrom"
+                                onchange="handleDateChange2(event)">
+                            <small class="error-message"></small>
+                        </div>
+                        <div class="col">
+                            <label class="question-label">To</label>
+                            <input required type="date" class="form-control" id="tractorTo" name="tractorto"
+                                onchange="handleDateChange2(event)">
+                            <small class="error-message"></small>
+                        </div>
+                        <div class="or">
+                            <p class="orText">OR</p>
+                        </div>
+                        <div class="col-5">
+                            <label class="question-label">Approximate Number of Miles</label>
+                            <input required type="text" class="form-control" id="tractorMiles " name="tractormiles"
+                                placeholder="Enter number" onchange="handleDateChange2(event)">
+                            <small class="error-message"></small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="address-container mt-4">
+                    <label class="question-label">Bus or Passenger Van (check all that apply)</label>
+                    <div>
+                        <div class=" form-check col-12 mt-2">
+                            <div class="checkbox ">
+                                <input class="form-check-input " type="checkbox" id="busHire" name="bus"
+                                    value="8passengers" onchange="updateProgress2('form2')">
+                            </div>
+                            <div class="label ms-3">
+                                <label class="form-check-label"  for="busHire">For hire ,greater than 8passengers</label>
+                            </div>
+                        </div>
+                        <div class=" form-check col-12 mt-2">
+                            <div class="checkbox">
+                                <input class="form-check-input " type="checkbox" id="busShuttle" name="bus"
+                                    value="15passengers" onchange="updateProgress2('form2')">
+                            </div>
+                            <div class="label ms-3">
+                                <label class="form-check-label"  for="busShuttle">Private or Shuttle ,greater thsn 15passengers</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3 mb-3">
+                        <div class="col">
+                            <label class="question-label">From</label>
+
+                            <input required type="date" class="dab form-control " id="busFrom" name="busFrom"
+                                onchange="handleDateChange2(event)">
+                            <small class="error-message"></small>
+                        </div>
+                        <div class="col">
+                            <label class="question-label">To</label>
+                            <input required type="date" class="form-control" id="busTo" name="busto"
+                                onchange="handleDateChange2(event)">
+                            <small class="error-message"></small>
+                        </div>
+                        <div class="or">
+                            <p class="orText">OR</p>
+                        </div>
+                        <div class="col-5">
+                            <label class="question-label">Approximate Number of Miles</label>
+                            <input required type="text" class="form-control" id="busMiles " name="busmiles"
+                                placeholder="Enter number" onchange="handleDateChange2(event)">
+                            <small class="error-message"></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="address-container mt-4">
+
+                    <div class="col-12 mt-2">
+                        <label class="question-label">Other commercial motor vehicles (list)</label>
+                        <textarea name="defectiveVisionExplanation" id="otherVehicles" rows="4"
+                            class="form-control mt-2 txtfeild "></textarea>
+                    </div>
+
+
+                    <div class="row mt-3 mb-3">
+                        <div class="col">
+                            <label class="question-label">From</label>
+
+                            <input required type="date" class="dab form-control " id="otherFrom" name="otherfrom"
+                                onchange="handleDateChange2(event)">
+                            <small class="error-message"></small>
+                        </div>
+                        <div class="col">
+                            <label class="question-label">To</label>
+                            <input required type="date" class="form-control" id="otherTo" name="otherto"
+                                onchange="handleDateChange2(event)">
+                            <small class="error-message"></small>
+                        </div>
+                        <div class="or">
+                            <p class="orText">OR</p>
+                        </div>
+                        <div class="col-5">
+                            <label class="question-label">Approximate Number of Miles</label>
+                            <input required type="text" class="form-control" id="otherMiles " name="othermiles"
+                                placeholder="Enter number" onchange="handleDateChange2(event)">
+                            <small class="error-message"></small>
+                        </div>
+                    </div>
+                </div> `
+                document.getElementById('militaryDriving').appendChild(militaryElement);
+                caluclateTotalFeilds();
+}
+}
+function notMilitaryDriver(value){
+    if(value=='no'){
+        militaryElement=document.getElementById('fmcsa');
+        if( militaryElement){
+            militaryElement.remove();
+            caluclateTotalFeilds();
+        }
+
+
+    }
+}
+
+
+
+// <------------------------------------------------------------------PAGE 7--------------------------------->
+
+
+function addNewEmploymentForm() {
+    formCounter++; // Increment the counter for new forms
+
+
+    // Find the template form
+    const template = document.getElementById('employmentForm_1');
+
+    // Clone the form
+    const newForm = template.cloneNode(true);
+
+    // Remove dynamically generated unemployment sections before cloning
+    const dynamicSections=newForm.querySelectorAll('[id^="unemployReason"],[id^="notApplicable"],[id^="checkDot"]');
+    dynamicSections.forEach((section)=>section.remove());
+    
+  
+   
+
+    // Update the ID of the cloned form
+    newForm.id = `employmentForm_${formCounter}`;
+    console.log("New Form ID:", newForm.id);
+
+    // Update IDs, names, and 'for' attributes for input, textarea, select, label, and div elements
+    const elements = newForm.querySelectorAll('input, textarea, select, label, div');
+    elements.forEach((element) => {
+        if (element.id) {
+            element.id = `${element.id}_${formCounter}`; // Update IDs
+        }
+
+        if (element.name) {
+            element.name = `${element.name}_${formCounter}`; // Update names
+        }
+
+        if (element.tagName === "LABEL" && element.getAttribute("for")) {
+            element.setAttribute("for", `${element.getAttribute("for")}_${formCounter}`); // Update 'for'
+        }
+    });
+
+    // Clear values for inputs and textareas
+    newForm.querySelectorAll('input, textarea').forEach((field) => {
+        if (field.type !== "radio" && field.type !== "checkbox") {
+            field.value = ''; // Clear text fields
+        } else {
+            field.checked = false; // Uncheck radios and checkboxes
+        }
+    });
+    console.log('formNumber is', formCounter);
+   
+    const container = document.getElementById('employmentFormsContainer');
+    container.appendChild(newForm);
+
+
+    validateEmploymentHistory();
+    caluclateTotalFeilds();
+}
+
+
+
+function clearAdditionalForms(currentFormId) {
+    const container = document.getElementById('employmentFormsContainer');
+    console.log("present form Id", currentFormId);
+
+    // Extract the form number from the current form's ID
+    const currentFormNumber = parseInt(currentFormId.split('_')[1]);
+
+    // Find all dynamically added forms
+    const forms = container.querySelectorAll('[id^="employmentForm"]');
+
+    // Loop through forms and delete those with a higher index
+    forms.forEach((form) => {
+        const formNumber = parseInt(form.id.split('_')[1]);
+
+        if (formNumber > currentFormNumber) {
+            form.remove();
+            caluclateTotalFeilds();
+        }
+    });
+
+    // Recalculate the formCounter to the maximum remaining form number
+    const remainingForms = container.querySelectorAll('[id^="employmentForm"]');
+    if (remainingForms.length > 0) {
+        // Find the highest index among remaining forms
+        formCounter = Math.max(
+            ...Array.from(remainingForms).map((form) =>
+                parseInt(form.id.split('_')[1])
+            )
+        );
+    } else {
+        // Reset to 1 if no forms remain
+        formCounter = 1;
+    }
+
+    console.log("Updated formCounter: ", formCounter);
+    validateEmploymentHistory();
+    caluclateTotalFeilds();
+
+}
+
+function addDotMode(presentId, value) {
+    if (value == 'yes') {
+        const dotNumber = parseInt((presentId.split('_')[1]));
+        const dotMode = document.createElement('div');
+        dotMode.classList.add('col-12','mt-3')
+        dotMode.id = `checkDot${(dotNumber) ? ('_' + dotNumber) : ''}`;
+        dotMode.innerHTML = `     <label class="question-label">Check the DotMode Below</label>
+                                    <div class=" form-check col-12 mt-2">
+                                        <div class="checkbox ">
+                                            <input class="form-check-input box" type="radio" id="dotFMCSA" name="dotMode"
+                                                value="FMCSA" onchange="updateProgress2('form2')">
+                                        </div>
+                                        <div class="label ms-3">
+                                            <label class="form-check-label" for="dotFMCSA">FMCSA</label>
+                                        </div>
+                                    </div>
+                                    <div class=" form-check col-12 mt-2">
+                                        <div class="checkbox">
+                                            <input class="form-check-input box" type="radio" id="dotPHMSA" name="dotMode"
+                                                value="PHMSA" onchange="updateProgress2('form2')">
+                                        </div>
+                                        <div class="label ms-3">
+                                            <label class="form-check-label" for="dotPHMSA">PHMSA</label>
+                                        </div>
+                                    </div>
+    
+                                    <div class=" form-check col-12 mt-2">
+                                        <div class="checkbox ">
+                                            <input class="form-check-input box" type="radio" id="dotFAA" name="dotMode"
+                                                value="FAA" onchange="updateProgress2('form2')">
+                                        </div>
+                                        <div class="label ms-3">
+                                            <label class="form-check-label" for="dotFAA">FAA</label>
+                                        </div>
+                                    </div>
+    
+    
+                                    <div class=" form-check col-12 mt-2">
+                                        <div class="checkbox">
+                                            <input class="form-check-input box" type="radio" id="dotFTA" name="dotMode"
+                                                value="FTA" onchange="updateProgress2('form2')">
+                                        </div>
+                                        <div class="label ms-3">
+                                            <label class="form-check-label" for="dotFTA">FTA</label>
+                                        </div>
+                                    </div>
+    
+                                    <div class=" form-check col-12 mt-2">
+                                        <div class="checkbox">
+                                            <input class="form-check-input box" type="radio" id="dotFRA" name="dotMode"
+                                                value="FRA" onchange="updateProgress2('form2')">
+                                        </div>
+                                        <div class="label ms-3">
+                                            <label class="form-check-label" for="dotFRA">FRA</label>
+                                        </div>
+                                    </div>
+    
+                                    <div class=" form-check col-12 mt-2">
+                                        <div class="checkbox">
+                                            <input class="form-check-input box" type="radio" id="dotUSCG" name="dotMode"
+                                                value="USCG" onchange="updateProgress2('form2')">
+                                        </div>
+                                        <div class="label ms-3">
+                                            <label class="form-check-label" for="dotUSCG">USCG</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 d-flex flex-column mt-3">
+                                        <div>
+                                            <p class="question-label">Your current Employer will be contacted before the end of
+                                                the
+                                                background investigation. Please indicate your preference as to when you would
+                                                like
+                                                the
+                                                background investigator to contact your current employer.</p>
+                                        </div>
+                                        <div class="form-check" d-flex align-items-end>
+                                            <input class="form-check-input" type="radio" value="yes" id="verifyYes"
+                                                name="verify" onchange="updateProgress2('form2')">
+                                            <label class="form-check-label ms-4" for="verifyYes">
+                                                By checking this box, I give my permission for my current employment to be
+                                                verified
+                                                immediately.
+                                            </label>
+                                        </div>
+        
+                                        <div class="form-check mt-2">
+                                            <input class="form-check-input" type="radio" value="no" id="verifyNo" name="verify"
+                                                onchange="updateProgress2('form2')">
+                                            <label class="form-check-label ms-4" for="verifyNo">
+                                                I would like the background investigator to wait until the very end of the
+                                                investigation
+                                                and
+                                                would like them to notify me before contacting my current employer. I understand
+                                                that by
+                                                checking this box, the background investigation could be delayed as a result.
+                                            </label>
+                                        </div>
+                                    </div>`
+    console.log('Dot',dotNumber);
+    document.getElementById(presentId).appendChild(dotMode);
+    caluclateTotalFeilds();
+
+    }
+}
+function removeDotMode(presentId,value){
+    if (value == 'no') {
+        removeNumber=parseInt(presentId.split('_')[1]);
+        const removeDot=document.getElementById(`checkDot${(removeNumber)?('_'+removeNumber):''}`);
+        if(removeDot){
+      removeDot.remove();
+      caluclateTotalFeilds();}
+        else{
+            console.log("printing removeDot")
+        }
+    }
+}
+
+
+
+function addUnemployment(presentId, value) {
+    if (value == 'yes') {
+        unemployNumber = parseInt(presentId.split('_')[1]);
+        const unemploy = document.createElement('div');
+        unemploy.id = `unemployReason${(unemployNumber) ? ('_' + unemployNumber) : ''}`;
+        unemploy.innerHTML = `        <div class="form-row mt-3">
+                                    <div>
+                                        <label class="question-label">Unemployed From</label>
+
+                                        <input required type="date" class="dab form-control " id="unemployedFrom"
+                                            name="unemployment" onchange="handleDateChange2(event)">
+                                        <small class="error-message"></small>
+                                    </div>
+                                    <div>
+                                        <label class="question-label"> Unemployed To</label>
+                                        <input required type="date" class="to form-control" id="unemployedTo "
+                                            name="unemployment" onchange="handleDateChange2(event)">
+                                        <small class="error-message"></small>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mt-4">
+                                    <label class="question-label">Reason for Unemployment</label>
+                                    <textarea required required name="unemploymentReason" id="unemployReason" placeholder="Enter Text"
+                                        rows="4" class="form-control mt-2 txtfeild"></textarea>
+                                </div>`
+        console.log("unemployNumber", unemployNumber);
+        document.getElementById(presentId).appendChild(unemploy);
+        caluclateTotalFeilds();
+    }
+}
+
+function removeUnemployment(presentId, value) {
+    if (value == 'no') {
+        reasonNumber = parseInt((presentId.split('_')[1]));
+        const reasonbox = document.getElementById(`unemployReason${(reasonNumber) ? ('_' + reasonNumber) : ''}`)
+        if (reasonbox) {
+            reasonbox.remove();
+            caluclateTotalFeilds();
+        }
+    }
+}
+
+
+
+function validateEmploymentHistory() {
+    const container = document.getElementById('employmentFormsContainer');
+    const forms = container.querySelectorAll('[id^="employmentForm"]');
+
+    let earliestStartDate = null;
+    let latestEndDate = null;
+
+    forms.forEach((form) => {
+        const startDateField = form.querySelector('[id^="companyStart"]');
+        const endDateField = form.querySelector('[id^="companySeparation"]');
+
+        const startDate = startDateField ? new Date(startDateField.value) : null;
+        const endDate = endDateField ? new Date(endDateField.value) : null;
+
+        if (startDate && !isNaN(startDate)) {
+            if (!earliestStartDate || startDate < earliestStartDate) {
+                earliestStartDate = startDate;
+            }
+        }
+
+        if (endDate && !isNaN(endDate)) {
+            if (!latestEndDate || endDate > latestEndDate) {
+                latestEndDate = endDate;
+            }
+        }
+    });
+
+    if (earliestStartDate && latestEndDate) {
+        totalYears = (latestEndDate - earliestStartDate) / (1000 * 60 * 60 * 24 * 365);
+        console.log(`Total Employment History: ${totalYears} years`);
+
+        if (totalYears < 10) {
+            addEmploymentValidation();
+        } else {
+            removeEmploymentValidation();
+        }
+    } else {
+        console.log("Start date or end date is missing.");
+        addEmploymentValidation();
+    }
+}
+
+function addEmploymentValidation() {
+    console.log("entered in addEmploymentValidation");
+    if (!(document.getElementById('reasonBox'))) {
+        const reasonForm = document.createElement('div');
+        reasonForm.classList.add('reasonDiv', 'mt-3');
+        reasonForm.id = 'reasonBox';
+        reasonForm.innerHTML = `                
+                <div class="warnDiv">
+                    <p class="warning">
+                        you have not provided TEN (10) years of employment history please provide the reason below
+                    </p>
+                </div>
+                <div class="col-12 mt-4">
+                    <label class="question-label">Reason for not meeting the TEN (10) years of employment history
+                        requirement.</label>
+                    <textarea required name="employHistoryReason" id="employHistroy" placeholder="Enter Text" rows="4"
+                        class="form-control mt-2 txtfeild"></textarea>
+                </div>`
+        const mainContainer = document.getElementById('histroyValidator');
+        mainContainer.appendChild(reasonForm);
+        caluclateTotalFeilds();
+    }
+
+}
+
+function removeEmploymentValidation() {
+    console.log("Removing reason box for sufficient employment history.");
+    const reasonBox = document.getElementById('reasonBox');
+    if (reasonBox) {
+        reasonBox.remove();
+        caluclateTotalFeilds();
+    }
+}
+
+
+
+//Page 9 (signatureBox Canvas...) & invalid Success Modals
 
 
 var canvas, context;
@@ -1022,7 +1622,7 @@ function getMousePosition(event) {
 
 
 function initializeSignatureBox() {
-   
+
     canvas = document.getElementById('signBox');
 
     if (!canvas) {
@@ -1031,11 +1631,11 @@ function initializeSignatureBox() {
     }
 
     context = canvas.getContext('2d');
-    context.lineWidth = 0.3; 
-    context.lineCap = "round"; 
-    context.strokeStyle = "white"; 
+    context.lineWidth = 0.3;
+    context.lineCap = "round";
+    context.strokeStyle = "white";
 
-    
+
     canvas.addEventListener('mousedown', (event) => {
         isDrawing = true;
         context.beginPath();
@@ -1075,11 +1675,11 @@ function clearSign() {
     });
 }
 
-    function saveSign(){
+function saveSign() {
     if (canvas) {
         signatureData = canvas.toDataURL('image/png');
         console.log('Signature saved:', signatureData);
-       
+
     } else {
         console.error("Signature box is not initialized.");
     }
@@ -1087,23 +1687,23 @@ function clearSign() {
 
 function showInvalidModal() {
     const invalidModal = document.getElementById('invalidModal');
-    const overlay=document.getElementById('overlay');
-    if (invalidModal && overlay){
-    invalidModal.style.display = 'block';
-    overlay.style.display='block';
-    document.body.style.overflow='hidden';
+    const overlay = document.getElementById('overlay');
+    if (invalidModal && overlay) {
+        invalidModal.style.display = 'block';
+        overlay.style.display = 'block';
+        document.body.style.overflow = 'hidden';
     }
 }
 
 function closeModal() {
-    const overlay=document.getElementById('overlay');
+    const overlay = document.getElementById('overlay');
     console.log("printing overlay", overlay);
     const invalidModal = document.getElementById('invalidModal');
-   if( invalidModal && overlay){
-    invalidModal.style.display = 'none';
-    overlay.style.display='none';
-    document.body.style.overflow='auto';
-   }
+    if (invalidModal && overlay) {
+        invalidModal.style.display = 'none';
+        overlay.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
 }
 
 function addForm2EventListeners() {
@@ -1113,9 +1713,9 @@ function addForm2EventListeners() {
             event.preventDefault();
             // if (validatePage('form2', 9)) {
 
-                showCheckmark('form2Tick');
-                showSuccessModal();
-                form1Completed=true;
+            showCheckmark('form2Tick');
+            showSuccessModal();
+            form1Completed = true;
             // }
             // else {
             //     showInvalidModal();
@@ -1127,11 +1727,11 @@ function addForm2EventListeners() {
 
 function showSuccessModal() {
     const successModal = document.getElementById('successModal');
-    const overlay =document.getElementById('overlay');
+    const overlay = document.getElementById('overlay');
     if (successModal && overlay) {
         successModal.style.display = 'block';
         overlay.style.display = 'block';
-        document.body.style.overflow='hidden';
+        document.body.style.overflow = 'hidden';
     }
 }
 
@@ -1141,11 +1741,11 @@ function showSuccessModal() {
 function closeDialog() {
     console.log("entered into console.log");
     const successModal = document.getElementById('successModal');
-    const overlay=document.getElementById('overlay');
+    const overlay = document.getElementById('overlay');
     if (successModal && overlay) {
         successModal.style.display = 'none';
-        overlay.style.display='none';
-        document.body.style.overflow='auto';
+        overlay.style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
 }
 
@@ -1165,410 +1765,6 @@ function hideCheckmark(formId) {
         checkmark.classList.remove('visible');
     }
 }
-
-
-
-
-// function addNewEmploymentForm() {
-//     formCounter++; // Increment the counter for new forms
-
-//     // Find the template form
-//     const template = document.getElementById('employmentForm_1');
-
-//     // Clone the form
-//     const newForm = template.cloneNode(true);
-
-//     // Update the ID of the cloned form
-//     newForm.id = `employmentForm_${formCounter}`;
-//     console.log("new Form Id",newForm.id);
-
-//     // Update IDs, names, and 'for' attributes
-//     const inputs = newForm.querySelectorAll('input, textarea, select, label');
-//     inputs.forEach((input) => {
-//         if (input.id) {
-//             input.id = `${input.id}_${formCounter}`;
-//         }
-
-//         if (input.name) {
-//             input.name = `${input.name}_${formCounter}`;
-//         }
-
-//         if (input.tagName === "LABEL" && input.getAttribute("for")) {
-//             input.setAttribute("for", `${input.getAttribute("for")}_${formCounter}`);
-//         }
-//     });
-
-//     // Clear values for inputs and textareas
-//     newForm.querySelectorAll('input, textarea').forEach((field) => {
-//         if (field.type !== "radio" && field.type !== "checkbox") {
-//             field.value = '';
-//         } else {
-//             field.checked = false; // Uncheck radios and checkboxes
-//         }
-//     });
-
-//     // Append the new form to the container
-//     const container = document.getElementById('employmentFormsContainer');
-//     container.appendChild(newForm);
-// }
-
-
-// function addNewEmploymentForm() {
-//     formCounter++; // Increment the counter for new forms
-
-//     // Find the template form
-//     const template = document.getElementById('employmentForm_1');
-
-//     // Clone the form
-//     const newForm = template.cloneNode(true);
-
-//     // Update the ID of the cloned form
-//     newForm.id = `employmentForm_${formCounter}`;
-//     console.log("New Form ID:", newForm.id);
-
-//     // Update IDs, names, and 'for' attributes for input, textarea, select, label, and div elements
-//     const elements = newForm.querySelectorAll('input, textarea, select, label, div');
-//     elements.forEach((element) => {
-//         if (element.id) {
-//             element.id = `${element.id}_${formCounter}`; // Update IDs
-//         }
-
-//         if (element.name) {
-//             element.name = `${element.name}_${formCounter}`; // Update names
-//         }
-
-//         if (element.tagName === "LABEL" && element.getAttribute("for")) {
-//             element.setAttribute("for", `${element.getAttribute("for")}_${formCounter}`); // Update 'for'
-//         }
-//     });
-
-//     // Clear values for inputs and textareas
-//     newForm.querySelectorAll('input, textarea').forEach((field) => {
-//         if (field.type !== "radio" && field.type !== "checkbox") {
-//             field.value = ''; // Clear text fields
-//         } else {
-//             field.checked = false; // Uncheck radios and checkboxes
-//         }
-//     });
-
-//     // Append the new form to the container
-//     const container = document.getElementById('employmentFormsContainer');
-//     container.appendChild(newForm);
-// }
-
-function addNewEmploymentForm() {
-    formCounter++; // Increment the counter for new forms
-
-
-    // Find the template form
-    const template = document.getElementById('employmentForm_1');
-
-    // Clone the form
-    const newForm = template.cloneNode(true);
-
-    // Remove dynamically generated unemployment sections before cloning
-    const dynamicSections = newForm.querySelectorAll('[id^="unemployReason"]'); // Target dynamic unemployment IDs
-    dynamicSections.forEach((section) => section.remove());
-
-    // Update the ID of the cloned form
-    newForm.id = `employmentForm_${formCounter}`;
-    console.log("New Form ID:", newForm.id);
-
-    // Update IDs, names, and 'for' attributes for input, textarea, select, label, and div elements
-    const elements = newForm.querySelectorAll('input, textarea, select, label, div');
-    elements.forEach((element) => {
-        if (element.id) {
-            element.id = `${element.id}_${formCounter}`; // Update IDs
-        }
-
-        if (element.name) {
-            element.name = `${element.name}_${formCounter}`; // Update names
-        }
-
-        if (element.tagName === "LABEL" && element.getAttribute("for")) {
-            element.setAttribute("for", `${element.getAttribute("for")}_${formCounter}`); // Update 'for'
-        }
-    });
-
-    // Clear values for inputs and textareas
-    newForm.querySelectorAll('input, textarea').forEach((field) => {
-        if (field.type !== "radio" && field.type !== "checkbox") {
-            field.value = ''; // Clear text fields
-        } else {
-            field.checked = false; // Uncheck radios and checkboxes
-        }
-    });
-console.log('formNumber is',formCounter);
-    // Append the new form to the container
-    const container = document.getElementById('employmentFormsContainer');
-    container.appendChild(newForm);
-    // separationElement=document.getElementById(`companySeparation${(formCounter==1)?'':(`_${formCounter-1}`)}`);
-    // console.log(`companySeparation${(formCounter==1)?'':(`_${formCounter-1}`)}`);
-    // if(separationElement){
-    //     caluclateHistory(`companySeparation${(formCounter==1)?'':(`_${formCounter-1}`)}`);
-    // }
-    // else{
-    //    console.log('Element DoesNOT Exis=t'); 
-    // }
-
-    validateEmploymentHistory();
-}
-
-
-
-
-
-
-// function clearAdditionalForms(currentFormId) {
-//     const container = document.getElementById('employmentFormsContainer');
-// console.log("present form Id",currentFormId);
-//     // Extract the form number from the current form's ID
-//     const currentFormNumber = parseInt(currentFormId.split('_')[1]);
-
-//     // Find all dynamically added forms
-//     const forms = container.querySelectorAll('[id^="employmentForm"]');
-
-//     // Loop through forms and delete those with a higher index
-//     forms.forEach((form) => {
-//         const formNumber = parseInt(form.id.split('_')[1]);
-
-//         if (formNumber > currentFormNumber) {
-//             form.remove();}
-         
-//     });
-
-//     // Update the form counter to reflect remaining forms
-//    formCounter = currentFormNumber + 1;
-//     console.log("formNumber: ",formCounter);
-// }
-
-
-function clearAdditionalForms(currentFormId) {
-    const container = document.getElementById('employmentFormsContainer');
-    console.log("present form Id", currentFormId);
-
-    // Extract the form number from the current form's ID
-    const currentFormNumber = parseInt(currentFormId.split('_')[1]);
-
-    // Find all dynamically added forms
-    const forms = container.querySelectorAll('[id^="employmentForm"]');
-
-    // Loop through forms and delete those with a higher index
-    forms.forEach((form) => {
-        const formNumber = parseInt(form.id.split('_')[1]);
-
-        if (formNumber > currentFormNumber) {
-            form.remove();
-        }
-    });
-
-    // Recalculate the formCounter to the maximum remaining form number
-    const remainingForms = container.querySelectorAll('[id^="employmentForm"]');
-    if (remainingForms.length > 0) {
-        // Find the highest index among remaining forms
-        formCounter = Math.max(
-            ...Array.from(remainingForms).map((form) =>
-                parseInt(form.id.split('_')[1])
-            )
-        );
-    } else {
-        // Reset to 1 if no forms remain
-        formCounter = 1;
-    }
-
-    console.log("Updated formCounter: ", formCounter);
-    validateEmploymentHistory();
-    
-}
-
-
-function addUnemployment(presentId ,value){
-    if(value=='yes'){
-unemployNumber=parseInt((presentId.split('_')[1]));
-    const unemploy=document.createElement('div');
-    unemploy.id=`unemployReason${presentId==''?'1':('_' + unemployNumber)}`;
-    unemploy.innerHTML=`        <div class="form-row mt-3">
-                                    <div>
-                                        <label class="question-label">Unemployed From</label>
-
-                                        <input required type="date" class="dab form-control " id="unemployedFrom"
-                                            name="unemployment" onchange="handleDateChange2(event)">
-                                        <small class="error-message"></small>
-                                    </div>
-                                    <div>
-                                        <label class="question-label"> Unemployed To</label>
-                                        <input required type="date" class="to form-control" id="unemployedTo "
-                                            name="unemployment" onchange="handleDateChange2(event)">
-                                        <small class="error-message"></small>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 mt-4">
-                                    <label class="question-label">Reason for Unemployment</label>
-                                    <textarea name="unemploymentReason" id="unemployReason" placeholder="Enter Text"
-                                        rows="4" class="form-control mt-2 txtfeild"></textarea>
-                                </div>`
-console.log("unemployNumber",unemployNumber);
-document.getElementById(presentId).appendChild(unemploy);}
-
-}
-
-function removeUnemployment(presentId ,value){
-    if(value=='no'){
-       reasonNumber=parseInt((presentId.split('_')[1])); 
-       const reasonbox=document.getElementById(`unemployReason_${reasonNumber}`)
-       if(reasonbox){
-        reasonbox.remove();
-       }   
-    }
-}
-
-// function startDate(id){
-//     if(id=='companyStart'){
-// let startDate=document.getElementById('companyStart').value
-// if(startDate){
-//     startYear=new Date(startDate).getFullYear();
-// }
-// else{
-// console.log("StartDate",startDate);
-// console.log("StartYear",startYear);
-// return;
-
-// }
-// }else{
-//     return;
-// }
-// }
-
-// function caluclateHistory(id){
-//     console.log("entered in caluclateHistory");
-    
-// //    sepNumber=(id=='companySeparation')?1 :parseInt((id.split('_')[1])); 
-//     let endDate=document.getElementById(id).value;
-//     if(endDate){
-//         endYear=new Date(endDate).getFullYear();
-//         years=endYear-startYear;
-//         console.log('years',years);
-//     }
-//     else{
-//         console.log('endDate',endDate);
-//     }
-//     if(years<10){
-//         console
-//         addEmploymentValidation();
-//         return;
-//     }
-//     else{
-//     const reasonbx=document.getElementById('reasonBox');
-//     if(reasonbx){
-//     reasonbx.remove();
-//     return;}
-//     else {
-//         return;
-//     }
-    
-// }
-
-
-// }
-
-function addEmploymentValidation(){
-    console.log("entered in addEmploymentValidation");
-    if(!(document.getElementById('reasonBox'))){
-    const reasonForm=document.createElement('div');
-            reasonForm.classList.add('reasonDiv','mt-3');
-            reasonForm.id='reasonBox';
-            reasonForm.innerHTML=`                
-                <div class="warnDiv">
-                    <p class="warning">
-                        you have not provided TEN (10) years of employment history please provide the reason below
-                    </p>
-                </div>
-                <div class="col-12 mt-4">
-                    <label class="question-label">Reason for not meeting the TEN (10) years of employment history
-                        requirement.</label>
-                    <textarea name="employHistoryReason" id="employHistroy" placeholder="Enter Text" rows="4"
-                        class="form-control mt-2 txtfeild"></textarea>
-                </div>`
-            const mainContainer = document.getElementById('histroyValidator');
-            mainContainer.appendChild(reasonForm);
-    }
-
-}
-
-
-function validateEmploymentHistory() {
-    const container = document.getElementById('employmentFormsContainer');
-    const forms = container.querySelectorAll('[id^="employmentForm"]');
-    
-    let earliestStartDate = null;
-    let latestEndDate = null;
-
-    forms.forEach((form) => {
-        const startDateField = form.querySelector('[id^="companyStart"]');
-        const endDateField = form.querySelector('[id^="companySeparation"]');
-
-        const startDate = startDateField ? new Date(startDateField.value) : null;
-        const endDate = endDateField ? new Date(endDateField.value) : null;
-
-        if (startDate && !isNaN(startDate)) {
-            if (!earliestStartDate || startDate < earliestStartDate) {
-                earliestStartDate = startDate;
-            }
-        }
-
-        if (endDate && !isNaN(endDate)) {
-            if (!latestEndDate || endDate > latestEndDate) {
-                latestEndDate = endDate;
-            }
-        }
-    });
-
-    if (earliestStartDate && latestEndDate) {
-        totalYears = (latestEndDate - earliestStartDate) / (1000 * 60 * 60 * 24 * 365);
-        console.log(`Total Employment History: ${totalYears} years`);
-
-        if (totalYears < 10) {
-            addEmploymentValidation();
-        } else {
-            removeEmploymentValidation();
-        }
-    } else {
-        console.log("Start date or end date is missing.");
-        addEmploymentValidation();
-    }
-}
-
-// function addEmploymentValidation() {
-//     console.log("Adding reason box for insufficient employment history.");
-//     if (!document.getElementById('reasonBox')) {
-//         const reasonForm = document.createElement('div');
-//         reasonForm.classList.add('reasonDiv', 'mt-3');
-//         reasonForm.id = 'reasonBox';
-//         reasonForm.innerHTML = `
-//             <div class="warnDiv">
-//                 <p class="warning">
-//                     You have not provided TEN (10) years of employment history. Please provide the reason below.
-//                 </p>
-//             </div>
-//             <div class="col-12 mt-4">
-//                 <label class="question-label">Reason for not meeting the TEN (10) years of employment history requirement.</label>
-//                 <textarea name="employHistoryReason" id="employHistroy" placeholder="Enter Text" rows="4"
-//                     class="form-control mt-2 txtfeild"></textarea>
-//             </div>`;
-//         const mainContainer = document.getElementById('histroyValidator');
-//         mainContainer.appendChild(reasonForm);
-//     }
-// }
-
-function removeEmploymentValidation() {
-    console.log("Removing reason box for sufficient employment history.");
-    const reasonBox = document.getElementById('reasonBox');
-    if (reasonBox) {
-        reasonBox.remove();
-    }
-}
-
 
 
 

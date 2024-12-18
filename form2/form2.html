@@ -29,7 +29,7 @@
                     <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-2">
                         <label class="question-label">Applicant Name</label>
 
-                        <input required type="text" data-validate="text" name="firstName" autocomplete="off"
+                        <input required type="text"  placeholder="Enter Text" data-validate="text" name="firstName" autocomplete="off"
                             maxlength="30" oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"
                             class="form-control" onchange="updateProgress2('form2')" />
                         <small class="error-message"></small>
@@ -42,19 +42,27 @@
                         <small class="error-message"></small>
 
                     </div>
-                    <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
+                    <!-- <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
                         <label class="question-label">Social Security Number (SSN)</label>
-                        <input type="text" name="middleName" autocomplete="off" maxlength="30"
+                        <input type="text"  placeholder="xxx-xx-xxxx" name="middleName" autocomplete="off" maxlength="30"
                             oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')" class="form-control"
                             onchange="updateProgress2('form2')" />
                         <small class="error-message"></small>
+                    </div> -->
+
+                    <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
+                        <label class="question-label">Social Security Number (SSN)</label>
+                        <input type="text" placeholder="xxx-xx-xxxx" name="ssn" autocomplete="off" maxlength="11"
+                            oninput="validateAndFormatSSN(this);" class="form-control" onchange="updateProgress2('form2')" />
+                        <small class="error-message" style="color: rgb(255, 94, 94); display: none;">Error message</small>
                     </div>
+
                     <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
                         <label class="question-label">Phone</label>
-                        <input required type="text" name="home" autocomplete="off"
-                            oninput="validateAndFormatPhoneNumber(this);" class="form-control"
+                        <input required datavalidate='' type="text" name="home" autocomplete="off"
+                           placeholder="(xxx) xxx-xxxx" oninput="validateAndFormatPhoneNumber(this);" class="form-control"
                             onchange="updateProgress2('form2')" />
-                        <small class="error-message"></small>
+                        <small class="error-message" style="color: rgb(255, 94, 94); display: none;"></small> <!-- Error message container -->
                     </div>
                 </div>
                 <div style="margin-top: 20px;">
@@ -82,11 +90,11 @@
                 </div>
                 <div class="col">
                     <label class="question-label">State</label>
-                    <select required name="asthmaYear" id="asthmaYear" class="form-control state-feild"
-                        placeholder="Select One">
-                        <option value="state1"></option>
-                        <option value="state2"></option>
-                        <option value="state3"></option>=
+                     <select required data-validate="text" name="States" id="addressState1" class="state-feild"
+                        >
+                        <option value="">Select One</option>
+                        <option value="state2">Dallas</option>
+                        <option value="state3">WashingTon DC</option>=
                     </select>
                 </div>
                 <div class="col">
@@ -163,11 +171,10 @@
             <div class="address-container mt-2" id="dl">
                 <div class="col-12 ">
                     <label class="question-label">Current DL Issuing State</label>
-                    <select required name="asthmaYear" id="dlState" class="form-control state-feild"
-                        placeholder="Select One">
-                        <option value="state1"></option>
-                        <option value="state2"></option>
-                        <option value="state3"></option>=
+                     <select required data-validate="text"  name="states" id="dlState" class="state-feild">
+                        <option value="">Select One</option>
+                        <option value="state2">Washington Dc</option>
+                        <option value="state3">Dallas</option>
                     </select>
                 </div>
 
@@ -192,11 +199,11 @@
             <div class="address-container mt-3" id="dl1">
                 <div class="col-12 ">
                     <label class="question-label">Previous DL Issuing State</label>
-                    <select required name="state" id="preDlState" class="form-control state-feild"
-                        placeholder="Select One">
-                        <option value="state1"></option>
-                        <option value="state2"></option>
-                        <option value="state3"></option>=
+                     <select required data-validate="text" name="state" id="preDlState" class="state-feild"
+                       >
+                        <option value="">Select One</option>
+                        <option value="state2">WashingTon Dc</option>
+                        <option value="state3">Dallas</option>=
                     </select>
                 </div>
 
@@ -230,7 +237,7 @@
                                     name="endorsements" value="None" onchange="updateProgress2('form2')">
                             </div>
                             <div class="label ms-3">
-                                <label for="non-commercial">None</label>
+                                <label class="form-check-label" for="non-commercial">None</label>
                             </div>
                         </div>
                         <div class=" form-check col-12 mt-2">
@@ -239,7 +246,7 @@
                                     value="Tank Vechile" onchange="updateProgress2('form2')">
                             </div>
                             <div class="label ms-3">
-                                <label for="commercial">Tank Vechile</label>
+                                <label class="form-check-label" for="commercial">Tank Vechile</label>
                             </div>
                         </div>
 
@@ -249,7 +256,7 @@
                                     value="Hazardous Materials" onchange="updateProgress2('form2')">
                             </div>
                             <div class="label ms-3">
-                                <label for="commercialLearner">Hazardous Materials</label>
+                                <label class="form-check-label" for="commercialLearner">Hazardous Materials</label>
                             </div>
                         </div>
 
@@ -259,7 +266,7 @@
                                     name="endorsements" value="Other" onchange="updateProgress2('form2')">
                             </div>
                             <div class="label ms-3">
-                                <label for="nonInState">Other</label>
+                                <label class="form-check-label" for="nonInState">Other</label>
                             </div>
                         </div>
                     </div>
@@ -329,7 +336,7 @@
                 </h6>
             </div>
             <div class="col-12 d-flex flex-column mt-2">
-                <label class=" question-label formtext">Were you involved in any motor vehicle accidents during the
+                <label class="question-label formtext">Were you involved in any motor vehicle accidents during the
                     THREE (3) years preceding the date of this application?</label>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" value="no" id="accidentNo" name="accident"
@@ -361,7 +368,7 @@
                     Status of Driver's License or Permit
                 </h4>
             </div>
-            <div class="mt-3">
+            <div id="licenseContainer"  class="mt-3">
                 <div>
                     <h6 class="just-color">
                         <p class="question-label">Have you ever been denied a license ,permit, or privilege to operate a
@@ -375,7 +382,7 @@
 
                     <div class="form-check" d-flex align-items-end>
                         <input class="form-check-input" type="radio" value="no" id="licenseDenyNo" name="licenseDeny"
-                            onchange="updateProgress2('form2')">
+                            onchange="licenseAccepted(this.value)">
                         <label class="form-check-label label ms-4" for="licenseDenyNo">
                             No
                         </label>
@@ -383,21 +390,15 @@
 
                     <div class="form-check mt-2">
                         <input class="form-check-input" type="radio" value="yes" id="licenseDenyYes" name="licenseDeny"
-                            onchange="updateProgress2('form2')">
+                            onchange="licenseDenied(this.value)">
                         <label class="form-check-label ms-4" for="licenseDenyYes">
                             Yes
                         </label>
                     </div>
                 </div>
-                <div class="col-12 mt-3" id="denyExplanation" style="display:none">
-                    <label class="question-label">Disclosure</label>
-                    <textarea id="licenseDenyExplanation" rows="4" class="form-control mt-2 txtfeild "></textarea>
-                </div>
             </div>
 
-            <div class="mt-4">
-
-
+            <div id="suspendContainer" class="mt-4">
                 <div class="col-12 d-flex flex-column mt-2">
                     <div>
                         <h6 class="just-color">
@@ -407,7 +408,7 @@
                     </div>
                     <div class="form-check" d-flex align-items-end>
                         <input class="form-check-input" type="radio" value="no" id="licenseSuspendedNo"
-                            name="licenseSuspended" onchange="updateProgress2('form2')">
+                            name="licenseSuspended" onchange="licenseNotSuspended(this.value)">
                         <label class="form-check-label label ms-4" for="licenseSuspendedNo">
                             No
                         </label>
@@ -415,15 +416,11 @@
 
                     <div class="form-check mt-2">
                         <input class="form-check-input" type="radio" value="yes" id="licenseSuspendedYes"
-                            name="licenseSuspended" onchange="updateProgress2('form2')">
+                            name="licenseSuspended" onchange="licenseSuspended(this.value)">
                         <label class="form-check-label ms-4" for="licenseSuspendedYes">
                             Yes
                         </label>
                     </div>
-                </div>
-                <div class="col-12 mt-3" id="suspendedExplanation" style="display:none">
-                    <label class="question-label">Disclosure</label>
-                    <textarea id="licenseSuspendedExplanation" rows="4" class="form-control mt-2 txtfeild "></textarea>
                 </div>
             </div>
             <div class="mt-4">
@@ -439,10 +436,6 @@
                     </p>
                 </h6>
             </div>
-
-
-
-
             <div class="button-row">
                 <button onclick="previousPage2(4)" style="background: none;">Back</button>
                 <button onclick="nextPage2(6)">Next</button>
@@ -450,16 +443,16 @@
         </div>
 
         <div id="form2-page6" class="form-page2" style="display: none;">
-            <div class="col-12 d-flex flex-column mt-2">
+            <div id="militaryDriving" class="col-12 d-flex flex-column mt-2">
                 <div>
-
                     <p class="question-label">Do you have any FMCSA-regulated or military driving experience in past
-                        THREE(3) years ?</p>
+                        THREE(3) years ?
+                    </p>
 
                 </div>
                 <div class="form-check" d-flex align-items-end>
                     <input class="form-check-input" type="radio" value="no" id="militaryNo" name="militarydriving"
-                        onchange="updateProgress2('form2')">
+                        onchange="notMilitaryDriver(this.value)">
                     <label class="form-check-label ms-4" for="militaryNo">
                         No
                     </label>
@@ -467,268 +460,12 @@
 
                 <div class="form-check mt-2">
                     <input class="form-check-input" type="radio" value="yes" id="militaryYes" name="militarydriving"
-                        onchange="updateProgress2('form2')">
+                        onchange="militaryDriver(this.value)">
                     <label class="form-check-label ms-4" for="militaryYes">
                         Yes
                     </label>
                 </div>
             </div>
-            <div id="fmcsa" style="display:none">
-                <div class="address-container mt-4">
-                    <label class="question-label">Straight Truck (check all that apply)</label>
-                    <div>
-                        <div class=" form-check col-12 mt-2">
-                            <div class="checkbox ">
-                                <input class="form-check-input " type="checkbox" id="truckVan" name="straightTruck"
-                                    value="Van" onchange="updateProgress2('form2')">
-                            </div>
-                            <div class="label ms-3">
-                                <label for="truckVan">Van</label>
-                            </div>
-                        </div>
-                        <div class=" form-check col-12 mt-2">
-                            <div class="checkbox">
-                                <input class="form-check-input " type="checkbox" id="truckBox" name="straightTruck"
-                                    value="Box" onchange="updateProgress2('form2')">
-                            </div>
-                            <div class="label ms-3">
-                                <label for="truckBox">Box</label>
-                            </div>
-                        </div>
-
-                        <div class=" form-check col-12 mt-2">
-                            <div class="checkbox ">
-                                <input class="form-check-input " type="checkbox" id="truckFlat" name="straightTruck"
-                                    value="Flat Bed" onchange="updateProgress2('form2')">
-                            </div>
-                            <div class="label ms-3">
-                                <label for="truckFlat">Flat Bed</label>
-                            </div>
-                        </div>
-
-                        <div class=" form-check col-12 mt-2">
-                            <div class="checkbox">
-                                <input class="form-check-input " type="checkbox" id="truckBucket" name="straightTruck"
-                                    value="Bucket or Auger" onchange="updateProgress2('form2')">
-                            </div>
-                            <div class="label ms-3">
-                                <label for="truckBucket">Bucket or Auger</label>
-                            </div>
-                        </div>
-                        <div class=" form-check col-12 mt-2">
-                            <div class="checkbox">
-                                <input class="form-check-input " type="checkbox" id="truckTanker" name="straightTruck"
-                                    value="tanker" onchange="updateProgress2('form2')">
-                            </div>
-                            <div class="label ms-3">
-                                <label for="truckTanker">Tanker</label>
-                            </div>
-                        </div>
-
-                        <div class=" form-check col-12 mt-2">
-                            <div class="checkbox">
-                                <input class="form-check-input " type="checkbox" id="otherService" name="straightTruck"
-                                    value="Other Utility Service" onchange="updateProgress2('form2')">
-                            </div>
-                            <div class="label ms-3">
-                                <label for="otherService">Other Utility Service</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mt-3 mb-3">
-                        <div class="col">
-                            <label class="question-label">From</label>
-
-                            <input required type="date" class="dab form-control " id="truckFrom" name="truckFrom"
-                                onchange="handleDateChange2(event)">
-                            <small class="error-message"></small>
-                        </div>
-                        <div class="col">
-                            <label class="question-label">To</label>
-                            <input required type="date" class="form-control" id="truckTo" name="truckto"
-                                onchange="handleDateChange2(event)">
-                            <small class="error-message"></small>
-                        </div>
-                        <div class="or">
-                            <p class="orText">OR</p>
-                        </div>
-                        <div class="col-5">
-                            <label class="question-label">Approximate Number of Miles</label>
-                            <input required type="text" class="form-control" id="truckMiles " name="truckmiles"
-                                placeholder="Enter number" onchange="handleDateChange2(event)">
-                            <small class="error-message"></small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="address-container mt-4">
-                    <label class="question-label">Tractor & Semi-Trailer (check all that apply)</label>
-                    <div>
-                        <div class=" form-check col-12 mt-2">
-                            <div class="checkbox ">
-                                <input class="form-check-input " type="checkbox" id="tractorBox" name="tractor"
-                                    value="Box Trailer" onchange="updateProgress2('form2')">
-                            </div>
-                            <div class="label ms-3">
-                                <label for="tractorbox">Box trailer</label>
-                            </div>
-                        </div>
-                        <div class=" form-check col-12 mt-2">
-                            <div class="checkbox">
-                                <input class="form-check-input " type="checkbox" id="tractorFlat" name="tractor"
-                                    value="Flat Trailer" onchange="updateProgress2('form2')">
-                            </div>
-                            <div class="label ms-3">
-                                <label for="tractorFlat">Flat trailer</label>
-                            </div>
-                        </div>
-
-                        <div class=" form-check col-12 mt-2">
-                            <div class="checkbox ">
-                                <input class="form-check-input " type="checkbox" id="truckFlat" name="tractor"
-                                    value="Tank trailer" onchange="updateProgress2('form2')">
-                            </div>
-                            <div class="label ms-3">
-                                <label for="truckFlat">Tank trailer</label>
-                            </div>
-                        </div>
-
-                        <div class=" form-check col-12 mt-2">
-                            <div class="checkbox">
-                                <input class="form-check-input " type="checkbox" id="tractorBucket" name="tractor"
-                                    value="Bucket or Auger" onchange="updateProgress2('form2')">
-                            </div>
-                            <div class="label ms-3">
-                                <label for="tractorBucket">Bucket or Auger</label>
-                            </div>
-                        </div>
-                        <div class=" form-check col-12 mt-2">
-                            <div class="checkbox">
-                                <input class="form-check-input " type="checkbox" id="tractorMulti" name="tractor"
-                                    value="Multi-trailer" onchange="updateProgress2('form2')">
-                            </div>
-                            <div class="label ms-3">
-                                <label for="tractorMulti">Multi-trailer</label>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="row mt-3 mb-3">
-                        <div class="col">
-                            <label class="question-label">From</label>
-
-                            <input required type="date" class="dab form-control " id="tractorFrom" name="tractorFrom"
-                                onchange="handleDateChange2(event)">
-                            <small class="error-message"></small>
-                        </div>
-                        <div class="col">
-                            <label class="question-label">To</label>
-                            <input required type="date" class="form-control" id="tractorTo" name="tractorto"
-                                onchange="handleDateChange2(event)">
-                            <small class="error-message"></small>
-                        </div>
-                        <div class="or">
-                            <p class="orText">OR</p>
-                        </div>
-                        <div class="col-5">
-                            <label class="question-label">Approximate Number of Miles</label>
-                            <input required type="text" class="form-control" id="tractorMiles " name="tractormiles"
-                                placeholder="Enter number" onchange="handleDateChange2(event)">
-                            <small class="error-message"></small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="address-container mt-4">
-                    <label class="question-label">Bus or Passenger Van (check all that apply)</label>
-                    <div>
-                        <div class=" form-check col-12 mt-2">
-                            <div class="checkbox ">
-                                <input class="form-check-input " type="checkbox" id="busHire" name="bus"
-                                    value="8passengers" onchange="updateProgress2('form2')">
-                            </div>
-                            <div class="label ms-3">
-                                <label for="busHire">For hire ,greater than 8passengers</label>
-                            </div>
-                        </div>
-                        <div class=" form-check col-12 mt-2">
-                            <div class="checkbox">
-                                <input class="form-check-input " type="checkbox" id="busShuttle" name="bus"
-                                    value="15passengers" onchange="updateProgress2('form2')">
-                            </div>
-                            <div class="label ms-3">
-                                <label for="busShuttle">Private or Shuttle ,greater thsn 15passengers</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mt-3 mb-3">
-                        <div class="col">
-                            <label class="question-label">From</label>
-
-                            <input required type="date" class="dab form-control " id="busFrom" name="busFrom"
-                                onchange="handleDateChange2(event)">
-                            <small class="error-message"></small>
-                        </div>
-                        <div class="col">
-                            <label class="question-label">To</label>
-                            <input required type="date" class="form-control" id="busTo" name="busto"
-                                onchange="handleDateChange2(event)">
-                            <small class="error-message"></small>
-                        </div>
-                        <div class="or">
-                            <p class="orText">OR</p>
-                        </div>
-                        <div class="col-5">
-                            <label class="question-label">Approximate Number of Miles</label>
-                            <input required type="text" class="form-control" id="busMiles " name="busmiles"
-                                placeholder="Enter number" onchange="handleDateChange2(event)">
-                            <small class="error-message"></small>
-                        </div>
-                    </div>
-                </div>
-                <div class="address-container mt-4">
-
-                    <div class="col-12 mt-2">
-                        <label class="question-label">Other commercial motor vehicles (list)</label>
-                        <textarea name="defectiveVisionExplanation" id="otherVehicles" rows="4"
-                            class="form-control mt-2 txtfeild "></textarea>
-                    </div>
-
-
-                    <div class="row mt-3 mb-3">
-                        <div class="col">
-                            <label class="question-label">From</label>
-
-                            <input required type="date" class="dab form-control " id="otherFrom" name="otherfrom"
-                                onchange="handleDateChange2(event)">
-                            <small class="error-message"></small>
-                        </div>
-                        <div class="col">
-                            <label class="question-label">To</label>
-                            <input required type="date" class="form-control" id="otherTo" name="otherto"
-                                onchange="handleDateChange2(event)">
-                            <small class="error-message"></small>
-                        </div>
-                        <div class="or">
-                            <p class="orText">OR</p>
-                        </div>
-                        <div class="col-5">
-                            <label class="question-label">Approximate Number of Miles</label>
-                            <input required type="text" class="form-control" id="otherMiles " name="othermiles"
-                                placeholder="Enter number" onchange="handleDateChange2(event)">
-                            <small class="error-message"></small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
             <div class="button-row">
                 <button onclick="previousPage2(5)" style="background: none;">Back</button>
                 <button onclick="nextPage2(7)">Next</button>
@@ -738,7 +475,7 @@
         <div id="form2-page7" class="form-page2" style="display: none;">
             <div id="histroyValidator">
 
-                <h4 class="just-color">Employment Verification</h4>
+                <h4 class="just-color" style="border-bottom: 2px solid #8bafdf; width: 100%; padding-bottom: 5px;">Employment Verification</h4>
                 <p class="question-label">
                     List your past TEN (10) years of Employment History. Indicate if each job or school involved
                     FMCSA-regulated driving and/or DOT drug & alcohol testing. You must account for any gaps in
@@ -765,7 +502,7 @@
                                 <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
                                     <label class="question-label">Type of Business/School</label>
 
-                                    <input required type="text" data-validate="text" name="companyType"
+                                    <input required type="text"  placeholder="Enter Text" data-validate="text" name="companyType"
                                         autocomplete="off" class="form-control" onchange="updateProgress2('form2')" />
                                     <small class="error-message"></small>
                                 </div>
@@ -773,7 +510,7 @@
                                 <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
                                     <label class="question-label">Address</label>
 
-                                    <input required type="text" data-validate="text" name="companyAddress"
+                                    <input required type="text"  placeholder="Enter Text" data-validate="text" name="companyAddress"
                                         autocomplete="off" class="form-control" onchange="updateProgress2('form2')" />
                                     <small class="error-message"></small>
                                 </div>
@@ -792,11 +529,11 @@
                                 </div>
                                 <div class="col">
                                     <label class="question-label">State</label>
-                                    <select required name="companyState" id="companyState"
-                                        class="form-control state-feild" placeholder="Select One">
-                                        <option value="state1"></option>
-                                        <option value="state2"></option>
-                                        <option value="state3"></option>=
+                                    <select required data-validate="text" name="companyState" id="companyState"
+                                        class=" state-feild">
+                                        <option value="">Select One</option>
+                                        <option value="state2">Dallas</option>
+                                        <option value="state3">Washington Dc</option>=
                                     </select>
                                 </div>
                                 <div class="col">
@@ -819,13 +556,13 @@
 
                                 <div class="col">
                                     <label class="question-label">Separation Date</label>
-                                    <input type="date" class="form-control" id="companySeparation" name="separationDate"
+                                    <input required type="date" class="form-control" id="companySeparation" name="separationDate"
                                         onchange="validateEmploymentHistory()">
                                     <!-- onchange="handleDateChange2(event)" -->
                                     <small class="error-message"></small>
                                 </div>
 
-                                <div class="col">
+                                <div class="col" id="notApplicable">
                                     <label class="question-label mt-1">Not Applicable</label>
                                     <div class="row">
                                         <div class="col-auto checkbox notbox ">
@@ -833,7 +570,7 @@
                                                 name="endorsements" value="None" onchange="updateProgress2('form2')">
                                         </div>
                                         <div class="col">
-                                            <label for="stillEmployeel">Currently Still Employed</label>
+                                            <label class="form-check-label"  for="stillEmployeel">Currently Still Employed</label>
                                         </div>
                                     </div>
                                 </div>
@@ -842,7 +579,7 @@
                                 <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                     <label class="question-label">Supervisor Name</label>
 
-                                    <input required type="text" data-validate="text" name="supervisor"
+                                    <input required required type="text" data-validate="text" name="supervisor"
                                         autocomplete="off"
                                         oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"
                                         class="form-control" onchange="updateProgress2('form2')"
@@ -861,7 +598,7 @@
                                 </div>
                                 <div class="col-12 mt-4">
                                     <label class="question-label">Reason for Leaving</label>
-                                    <textarea name="leaveReason" id="leavingReason" placeholder="Enter Text" rows="4"
+                                    <textarea required name="leaveReason" id="leavingReason" placeholder="Enter Text" rows="4"
                                         class="form-control mt-2 txtfeild"></textarea>
                                 </div>
 
@@ -891,7 +628,7 @@
                             </div>
 
 
-                            <div id="dotDiv_1" class="col-12 d-flex flex-column mt-3">
+                            <div id="dotDiv" class="col-12 d-flex flex-column mt-3">
                                 <div>
                                     <p class="question-label">Was this job designated as a safety sensitive function in
                                         any
@@ -901,7 +638,7 @@
                                 </div>
                                 <div class="form-check" d-flex align-items-end>
                                     <input class="form-check-input mt-2" type="radio" value="no" id="sensitiveNo"
-                                        name="sensitive" onchange="updateProgress2('form2')">
+                                        name="sensitive" onchange="removeDotMode(this.closest('[id^=dotDiv]').id,this.value)">
                                     <label class="form-check-label ms-4" for="sensitiveNo">
                                         No
                                     </label>
@@ -909,108 +646,18 @@
 
                                 <div class="form-check mt-2">
                                     <input class="form-check-input" type="radio" value="yes" id="sensitiveYes"
-                                        name="sensitive" onchange="updateProgress2('form2')">
+                                        name="sensitive" onchange="addDotMode(this.closest('[id^=dotDiv]').id,this.value)">
                                     <label class="form-check-label ms-4" for="sensitiveYes">
                                         Yes
                                     </label>
                                 </div>
+
+
+    
                             </div>
 
-                            <div class="col-12 mt-3">
-                                <label class="question-label">Check the DotMode Below</label>
-                                <div class=" form-check col-12 mt-2">
-                                    <div class="checkbox ">
-                                        <input class="form-check-input box" type="radio" id="dotFMCSA" name="dotMode"
-                                            value="FMCSA" onchange="updateProgress2('form2')">
-                                    </div>
-                                    <div class="label ms-3">
-                                        <label for="dotFMCSA">FMCSA</label>
-                                    </div>
-                                </div>
-                                <div class=" form-check col-12 mt-2">
-                                    <div class="checkbox">
-                                        <input class="form-check-input box" type="radio" id="dotPHMSA" name="dotMode"
-                                            value="PHMSA" onchange="updateProgress2('form2')">
-                                    </div>
-                                    <div class="label ms-3">
-                                        <label for="dotPHMSA">PHMSA</label>
-                                    </div>
-                                </div>
+                            
 
-                                <div class=" form-check col-12 mt-2">
-                                    <div class="checkbox ">
-                                        <input class="form-check-input box" type="radio" id="dotFAA" name="dotMode"
-                                            value="FAA" onchange="updateProgress2('form2')">
-                                    </div>
-                                    <div class="label ms-3">
-                                        <label for="dotFAA">FAA</label>
-                                    </div>
-                                </div>
-
-
-                                <div class=" form-check col-12 mt-2">
-                                    <div class="checkbox">
-                                        <input class="form-check-input box" type="radio" id="dotFTA" name="dotMode"
-                                            value="FTA" onchange="updateProgress2('form2')">
-                                    </div>
-                                    <div class="label ms-3">
-                                        <label for="dotFTA">FTA</label>
-                                    </div>
-                                </div>
-
-                                <div class=" form-check col-12 mt-2">
-                                    <div class="checkbox">
-                                        <input class="form-check-input box" type="radio" id="dotFRA" name="dotMode"
-                                            value="FRA" onchange="updateProgress2('form2')">
-                                    </div>
-                                    <div class="label ms-3">
-                                        <label for="dotFRA">FRA</label>
-                                    </div>
-                                </div>
-
-                                <div class=" form-check col-12 mt-2">
-                                    <div class="checkbox">
-                                        <input class="form-check-input box" type="radio" id="dotUSCG" name="dotMode"
-                                            value="USCG" onchange="updateProgress2('form2')">
-                                    </div>
-                                    <div class="label ms-3">
-                                        <label for="dotUSCG">USCG</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-12 d-flex flex-column mt-3">
-                                <div>
-                                    <p class="question-label">Your current Employer will be contacted before the end of
-                                        the
-                                        background investigation. Please indicate your preference as to when you would
-                                        like
-                                        the
-                                        background investigator to contact your current employer.</p>
-                                </div>
-                                <div class="form-check" d-flex align-items-end>
-                                    <input class="form-check-input" type="radio" value="yes" id="verifyYes"
-                                        name="verify" onchange="updateProgress2('form2')">
-                                    <label class="form-check-label ms-4" for="verifyYes">
-                                        By checking this box, I give my permission for my current employment to be
-                                        verified
-                                        immediately.
-                                    </label>
-                                </div>
-
-                                <div class="form-check mt-2">
-                                    <input class="form-check-input" type="radio" value="no" id="verifyNo" name="verify"
-                                        onchange="updateProgress2('form2')">
-                                    <label class="form-check-label ms-4" for="verifyNo">
-                                        I would like the background investigator to wait until the very end of the
-                                        investigation
-                                        and
-                                        would like them to notify me before contacting my current employer. I understand
-                                        that by
-                                        checking this box, the background investigation could be delayed as a result.
-                                    </label>
-                                </div>
-                            </div>
 
                             <div id="unemployDiv" class="col-12 d-flex flex-column mt-3 mb-4">
                                 <div>
@@ -1021,16 +668,16 @@
                                 </div>
                                 <div class="form-check" d-flex align-items-end>
                                     <input class="form-check-input" type="radio" value="no" id="unemploymentNo"
-                                        name="sensitive" onchange="removeUnemployment(this.closest('[id^=unemployDiv]').id,this.value)">
-                                    <label class="form-check-label ms-4" for="sensitiveNo">
+                                        name="unemployment" onchange="removeUnemployment(this.closest('[id^=unemployDiv]').id,this.value)">
+                                    <label class="form-check-label ms-4" for="unemploymentNo">
                                         No
                                     </label>
                                 </div>
 
                                 <div class="form-check mt-2">
-                                    <input class="form-check-input" type="radio" value="yes" id="sensitiveYes"
-                                        name="sensitive" onchange="addUnemployment(this.closest('[id^=unemployDiv]').id,this.value)">
-                                    <label class="form-check-label ms-4" for="sensitiveYes">
+                                    <input class="form-check-input" type="radio" value="yes" id="unemploymentYes"
+                                        name="unemployment" onchange="addUnemployment(this.closest('[id^=unemployDiv]').id,this.value)">
+                                    <label class="form-check-label ms-4" for="unemploymentYes">
                                         Yes
                                     </label>
                                 </div>
@@ -1096,33 +743,31 @@
 
             <div>
                 <div class="mt-2">
+                    <p class="question-label">
                     You have the following rights regarding the investigative information that will be provided to
                     Dominion Energy from your previous employers:
+                    </p>
 
                 </div>
-                <div class="mt-2">
-                    <p>
+                <div class="question-label">
+                    <p class="just-color">
                         1. The right to review information provided by previous employers.
-
-
-
-
                     </p>
                 </div>
                 <div>
-                    <p>
+                    <p class="question-label">
                         2. The right to have errors in the information corrected by the previous employer and for that
                         previous employer to re-send the corrected information to the prospective employer.
                     </p>
                 </div>
                 <div>
-                    <p>
+                    <p class="question-label">
                         3. The right to have a rebuttal statement attached to the alleged erroneous information, if the
                         previous employer and the driver cannot agree on the accuracy of the information.
                     </p>
                 </div>
                 <div>
-                    <p>
+                    <p class="question-label">
                         4. Drivers who have previous Department of Transportation regulated employment history in the
                         preceding three years and wish to review previous employer provided investigative information
                         must submit a written request to the prospective employer, which may be done at any time,
@@ -1137,18 +782,19 @@
                     </p>
                 </div>
                 <div>
-                    <p>5. A CDL driver who believes a Drug and Alcohol Clearinghouse record for their license is
+                    <p class="question-label">5. A CDL driver who believes a Drug and Alcohol Clearinghouse record for their license is
                         incorrect may petition the FMCSA to correct the error.
                     </p>
                 </div>
 
                 <div class="address-container">
-                    <div class="headLine">
+                    <div class="headLine just-color" >
                         PRE-EMPLOYMENT/PRE-TRANSFER CONSENT FOR FEDERAL MOTOR CARRIER SAFETY ADMINISTRATION (FMCSA) DRUG
                         & ALCOHOL CLEARINGHOUSE QUERY
                     </div>
                     <div class="matter mt-3">
                         <div class="para1">
+                            <p class="question-label">
                             FMCSR Section 382.701 requires that holders of a commercial driver's license (CDL) or
                             commercial learner's permit (CLP) who are changing employers or who are transferring from a
                             non-driving position into a position that requires operating a commercial motor vehicle give
@@ -1159,15 +805,18 @@
                                 www.clearinghouse.fmcas.dot.gov</a> will delay your background investigation. If hired,
                             you will be subject to an annual Clearinghouse query to verify that you remain qualified as
                             a CDL-licensed driver.
+                            </p>
                         </div>
 
                         <div class="para2 mt-3">
+                            <p class="question-label">
                             As part of this application and safety performance background investigation, you must
                             provide the following consent and acknowledgement
+                            </p>
                         </div>
 
                         <div class="para3 mt-3">
-                            <p>
+                            <p class="question-label">
                                 FMCSA Drug and Alcohol Clearinghouse Limited Query Consent [49 CFR 382.701] - <em>This
                                     is my general consent for Dominion Energy or its authorized service agent to access
                                     and conduct a limited query in the FMCSA Drug and Alcohol Clearinghouse for any
@@ -1191,14 +840,14 @@
                                         name="acknowledgement1" value="Van" onchange="updateProgress2('form2')">
                                 </div>
                                 <div class="label ms-3">
-                                    <label for="generalAcknowledgement">I acknowledge the requ requirement and give my
+                                    <label class="form-check-label"  for="generalAcknowledgement" class="just-color">I acknowledge the requ requirement and give my
                                         general consent for Dominion Energy to perform DACH limited queries for the term
                                         of my employment.</label>
                                 </div>
                             </div>
                         </div>
                         <div class="para3 mt-3">
-                            <p>
+                            <p class="question-label">
                                 Authorization for Service Agent - <em>As part of becoming a FMCSA-regulated driver for
                                     Dominion Energy, I must complete a driver background investigation including a
                                     release authorization for the company or company service agent to obtain consumer
@@ -1229,7 +878,7 @@
             </div>
 
             <div>
-                <p>
+                <p class="question-label">
                     I hereby authorize Dominion Energy and any of its affiliated companies to verify the information on
                     this employment application. I also authorize and request each previous employer, or other persons
                     given by me as a reference to answer all questions asked and to give any information sought in
@@ -1239,7 +888,7 @@
                 </p>
             </div>
             <div>
-                <p>
+                <p class="question-label" >
                     I have read and fully understand the stipulations of this employment application. I agree that if
                     employed by Dominion Energy, unless otherwise agreed to in writing signed by me or my designated
                     representative and an authorized representative of the company, my employment is at will and will
@@ -1249,23 +898,23 @@
             </div>
 
             <div>
-                <p>
+                <p class="question-label">
                     This certifies that this application was completed by me, and that all entries on it and information
                     in it are true and complete to the best of my knowledge.
                 </p>
             </div>
-            <div class="col-12 col-xxl-5 col-xl-5 col-lg-4 col-md-4 col-sm-12 mt-3">
-                <label class="appDate">Date of Birth</label>
+            <div class="col-12 col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 mt-3">
+                <label class="appDate just-color form-check-label">Date of Application</label>
                 <input required type="date" class="dab" name="applicantdob" id="appliedDate"
                     oninput="handleDateChange2(event)" placeholder="MM/DD/YYYY" onchange="updateProgress2('form2')">
                 <small class="error-message"></small>
             </div>
 
             <div class="mt-3">
-                <label for="signBox">Applicant Signature</label>
+                <label for="signBox" class="just-color form-check-label">Applicant's Signature</label>
                 <canvas class="mt-1" id="signBox" width="400" height="200" style="border: 1px solid #ccc;"></canvas>
                 <br>
-                <p id="clearButton" type="text" data-validate="text" class="clearSign">Clear Signature</p>
+                <p id="clearButton"  data-validate="text" class="clearSign ">Clear Signature</p>
             </div>
 
             <div class="button-row">

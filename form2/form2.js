@@ -4,39 +4,39 @@ let formCounter = 1;
 let years = 0;
 let totalYears = 0;
 function nextPage2(pageNumber) {
-     if (validatePage('form2', pageNumber - 1)) {
-    if (pageNumber == 9) {
-        initializeSignatureBox();
-        clearSign();
-        addForm2EventListeners();
+    if (validatePage('form2', pageNumber - 1)) {
+        if (pageNumber == 9) {
+            initializeSignatureBox();
+            clearSign();
+            addForm2EventListeners();
 
-    }
-    if (pageNumber == 7) {
-        validateEmploymentHistory();
-    }
-    if (pageNumber - 1 == 7) {
-        if (totalYears >= 10) {
+        }
+        if (pageNumber == 7) {
+            validateEmploymentHistory();
+        }
+        if (pageNumber - 1 == 7) {
+            if (totalYears >= 10) {
+                const currentPage = document.querySelector(`#form2-page${pageNumber - 1}`);
+                const nextPage = document.querySelector(`#form2-page${pageNumber}`);
+                currentPage.style.display = 'none';
+                nextPage.style.display = 'block';
+                updatePageInfo2('form2', pageNumber);
+                caluclateTotalFeilds();
+
+
+            }
+        }
+        else {
             const currentPage = document.querySelector(`#form2-page${pageNumber - 1}`);
             const nextPage = document.querySelector(`#form2-page${pageNumber}`);
             currentPage.style.display = 'none';
             nextPage.style.display = 'block';
             updatePageInfo2('form2', pageNumber);
             caluclateTotalFeilds();
-
-            
         }
-    }
-    else {
-        const currentPage = document.querySelector(`#form2-page${pageNumber - 1}`);
-        const nextPage = document.querySelector(`#form2-page${pageNumber}`);
-        currentPage.style.display = 'none';
-        nextPage.style.display = 'block';
-        updatePageInfo2('form2', pageNumber);
-        caluclateTotalFeilds();
-    }
-     }else{
+    } else {
         showInvalidModal();
-     }
+    }
 }
 
 function previousPage2(pageNumber) {
@@ -49,13 +49,12 @@ function previousPage2(pageNumber) {
 
 }
 
-
 function updatePageInfo2(formId, currentPage) {
     const currentPageText = document.getElementById('currentPageText2');
     const progressBar = document.getElementById('progressBar2');
     const percentageText = document.getElementById('currentPagePercentage2');
 
-    const fields = document.querySelectorAll(`#${formId} .form-page2 input`);
+    const fields = document.querySelectorAll(`#${formId} .form-page2 input[required]`);
     let filledFields = 0;
 
     fields.forEach(field => {
@@ -78,14 +77,14 @@ function updatePageInfo2(formId, currentPage) {
 
 function updateProgress2(formId) {
     const form = document.getElementById(formId);
-    const fields = form.querySelectorAll('.form-page2 input');
+    const fields = form.querySelectorAll('.form-page2 input[required]');
+
     let filledFields = 0;
     const processedGroups = new Set();
 
     fields.forEach(field => {
         if ((field.type === 'text' || field.type === 'email' || field.type === 'date' || field.type === 'number') && field.value.trim()) {
             filledFields++;
-
         }
         if ((field.type === 'checkbox' || field.type === 'radio') && field.checked) {
             const groupName = field.name;
@@ -97,10 +96,7 @@ function updateProgress2(formId) {
     });
 
     const percentage = ((filledFields / totalFields2) * 100);
-    console.log("Total Fields:", totalFields2);
-    console.log("Filled Fields:", filledFields);
-    console.log("Percentage:", percentage);
-
+   
     const progressBar = document.querySelector('.progress-bar2');
     progressBar.style.width = `${percentage}%`;
 
@@ -109,6 +105,8 @@ function updateProgress2(formId) {
     const offset = Math.max(0, percentage - 7);
     percentageText.style.left = `${offset}%`;
 }
+
+
 
 function handleMutualExclusiveCheckboxes2(formId) {
     const radios = document.querySelectorAll(`#${formId} input[type="radio"]`);
@@ -145,10 +143,10 @@ function initializeForm2(formId) {
 
     updatePageInfo2(formId, 1);
     // toggleFields2(formId, toggleFieldsConfig2);
-    console.log("executing form2");
+    
 
     const fields = document.querySelectorAll(`#${formId} .form-page2 input, #${formId} .form-page2 select`);
-    console.log("printing Feilds ", fields);
+    
     fields.forEach(field => {
         field.addEventListener('change', () => {
             updateProgress2(formId);
@@ -160,16 +158,15 @@ function initializeForm2(formId) {
     updateProgress2(formId);
 }
 
-function caluclateTotalFeilds(){
-    totalFields2 = Array.from(document.querySelectorAll(`#form2 .form-page2 input`))
-    .filter((field, index, self) => {
-        if (field.type === 'checkbox' || field.type === 'radio') {
-            return self.findIndex(f => f.name === field.name) === index;
-        }
-        return true;
-    }).length;
+function caluclateTotalFeilds() {
+    totalFields2 = Array.from(document.querySelectorAll(`#form2 .form-page2 input[required]`))
+        .filter((field, index, self) => {
+            if (field.type === 'checkbox' || field.type === 'radio') {
+                return self.findIndex(f => f.name === field.name) === index;
+            }
+            return true;
+        }).length;
     updateProgress2('form2');
-
 }
 // function handleDateChange2(event) {
 //     console.log('entered into date 2');
@@ -275,8 +272,56 @@ function addressHistory(value) {
                                 <select required data-validate="text" name="additionalState${addressCounter}" id="additionalState${addressCounter}" class="state-feild"
                                     >
                                     <option value="">Select One</option>
-                                    <option value="NewYork">NewYork</option>
-                                    <option value="Dallas">Dallas</option>
+                                    <option value="Alabama">Alabama</option>
+                                    <option value="Alaska">Alaska</option>
+                                    <option value="Arizona">Arizona</option>
+                                    <option value="Arkansas">Arkansas</option>
+                                    <option value="California">California</option>
+                                    <option value="Colorado">Colorado</option>
+                                    <option value="Connecticut">Connecticut</option>
+                                    <option value="Delaware">Delaware</option>
+                                    <option value="Florida">Florida</option>
+                                    <option value="Georgia">Georgia</option>
+                                    <option value="Hawaii">Hawaii</option>
+                                    <option value="Idaho">Idaho</option>
+                                    <option value="Illinois">Illinois</option>
+                                    <option value="Indiana">Indiana</option>
+                                    <option value="Iowa">Iowa</option>
+                                    <option value="Kansas">Kansas</option>
+                                    <option value="Kentucky">Kentucky</option>
+                                    <option value="Louisiana">Louisiana</option>
+                                    <option value="Maine">Maine</option>
+                                    <option value="Maryland">Maryland</option>
+                                    <option value="Massachusetts">Massachusetts</option>
+                                    <option value="Michigan">Michigan</option>
+                                    <option value="Minnesota">Minnesota</option>
+                                    <option value="Mississippi">Mississippi</option>
+                                    <option value="Missouri">Missouri</option>
+                                    <option value="Montana">Montana</option>
+                                    <option value="Nebraska">Nebraska</option>
+                                    <option value="Nevada">Nevada</option>
+                                    <option value="New Hampshire">New Hampshire</option>
+                                    <option value="New Jersey">New Jersey</option>
+                                    <option value="New Mexico">New Mexico</option>
+                                    <option value="New York">New York</option>
+                                    <option value="North Carolina">North Carolina</option>
+                                    <option value="North Dakota">North Dakota</option>
+                                    <option value="Ohio">Ohio</option>
+                                    <option value="Oklahoma">Oklahoma</option>
+                                    <option value="Oregon">Oregon</option>
+                                    <option value="Pennsylvania">Pennsylvania</option>
+                                    <option value="Rhode Island">Rhode Island</option>
+                                    <option value="South Carolina">South Carolina</option>
+                                    <option value="South Dakota">South Dakota</option>
+                                    <option value="Tennessee">Tennessee</option>
+                                    <option value="Texas">Texas</option>
+                                    <option value="Utah">Utah</option>
+                                    <option value="Vermont">Vermont</option>
+                                    <option value="Virginia">Virginia</option>
+                                    <option value="Washington">Washington</option>
+                                    <option value="West Virginia">West Virginia</option>
+                                    <option value="Wisconsin">Wisconsin</option>
+                                    <option value="Wyoming">Wyoming</option>
                                 </select>
                             </div>
                             <div class="col">
@@ -310,14 +355,14 @@ function addressHistory(value) {
                             </h6>
                             <div class="col-12 d-flex flex-column mt-2">
                                 <div class="form-check" d-flex align-items-end>
-                                    <input class="form-check-input" type="radio" value="no" id="addressNo${addressCounter}" name="Adress${addressCounter}"
+                                    <input class="form-check-input" type="radio" required value="no" id="addressNo${addressCounter}" name="Adress${addressCounter}"
                                         onchange="handleAddressChange(this)">
                                     <label class="form-check-label label ms-4" for="addressNo${addressCounter}">
                                         No
                                     </label>
                                 </div>
                                 <div class="form-check mt-2">
-                                    <input class="form-check-input" type="radio" value="yes" id="addressYes${addressCounter}" name="Adress${addressCounter}"
+                                    <input class="form-check-input" type="radio" required value="yes" id="addressYes${addressCounter}" name="Adress${addressCounter}"
                                         onchange="handleAddressChange(this)">
                                     <label class="form-check-label ms-4" for="addressYes${addressCounter}">
                                         Yes
@@ -336,10 +381,10 @@ function addressHistory(value) {
 
 function removeHistoryElement(value) {
     if (value == 'no') {
-       const Element=document.getElementById('Address1');
-       if(Element){
-        Element.remove();
-       }
+        const Element = document.getElementById('Address1');
+        if (Element) {
+            Element.remove();
+        }
         caluclateTotalFeilds();
     }
 
@@ -370,13 +415,13 @@ function licenseDenied(value) {
 
 }
 
-function licenseSuspended(value){
-    if(value=='yes'){
-       const suspendExplain=document.createElement('div');
-       suspendExplain.id='suspendedExplanation'; 
-       suspendExplain.classList.add('col-12','mt-3');
+function licenseSuspended(value) {
+    if (value == 'yes') {
+        const suspendExplain = document.createElement('div');
+        suspendExplain.id = 'suspendedExplanation';
+        suspendExplain.classList.add('col-12', 'mt-3');
 
-       suspendExplain.innerHTML=`
+        suspendExplain.innerHTML = `
                     <label class="question-label">Disclosure</label>
                     <textarea required id="licenseSuspendedExplanation" rows="4" class="form-control mt-2 txtfeild "></textarea>
               `
@@ -387,10 +432,10 @@ function licenseSuspended(value){
     }
 
 }
-function licenseNotSuspended(value){
-    if(value=='no'){
-        suspendExplainBox=document.getElementById('suspendedExplanation');
-        if(suspendExplainBox){
+function licenseNotSuspended(value) {
+    if (value == 'no') {
+        suspendExplainBox = document.getElementById('suspendedExplanation');
+        if (suspendExplainBox) {
             suspendExplainBox.remove();
             caluclateTotalFeilds();
         }
@@ -400,7 +445,7 @@ function licenseNotSuspended(value){
 
 
 function handleDateChange2(event) {
-    console.log('Entered into date 2');
+    
     const selectedDate = new Date(event.target.value);
 
     if (!isNaN(selectedDate)) { // Ensure the date is valid
@@ -674,7 +719,7 @@ function formatSSN(value) {
 //                     if (input.type === 'checkbox') {
 //                         const checkboxes = currentPage.querySelectorAll(`input[name="${input.name}"]`);
 //                         const isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-        
+
 //                         if (!isAnyChecked) {
 //                             isValid = false;
 //                             checkboxes.forEach(checkbox => checkbox.classList.add('highlight-feedback'));
@@ -698,13 +743,13 @@ function formatSSN(value) {
 //                         input.classList.remove('highlight');
 //                     }
 //                 };
-        
+
 
 //                 input.addEventListener('input', validateInput);
 //                 if (input.tagName === 'SELECT') {
 //                     input.addEventListener('change', validateInput);
 //                 }
-        
+
 
 //                 validateInput();
 //             });
@@ -716,13 +761,13 @@ function validatePage(formId, pageNumber) {
     const form = document.getElementById(formId);
     const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
     const inputs = currentPage.querySelectorAll('input, select, textarea');
+    const canvases = currentPage.querySelectorAll('canvas');
     let isValid = true;
 
     inputs.forEach(input => {
         // Skip hidden inputs
         const isHidden = getComputedStyle(input).display === 'none' || input.closest('[style*="display: none"]');
         if (isHidden) {
-            console.log("input  is " + input + "     its display is =" + isHidden)
             return;
         }
 
@@ -737,7 +782,6 @@ function validatePage(formId, pageNumber) {
                 } else {
                     checkboxes.forEach(checkbox => checkbox.classList.remove('highlight-feedback'));
                 }
-                console.log("Valid Function TYPE===CHECKBOX", isValid);
             } else if (input.type === 'radio') {
                 const radios = currentPage.querySelectorAll(`input[name="${input.name}"]`);
                 const isAnyChecked = Array.from(radios).some(radio => radio.checked);
@@ -747,22 +791,17 @@ function validatePage(formId, pageNumber) {
                 } else {
                     radios.forEach(radio => radio.classList.remove('highlight-feedback'));
                 }
-                console.log("Valid Function TYPE===RADIO", isValid);
             } else if (input.required) {
                 if (input.tagName === 'SELECT' && !input.value) {
                     isValid = false;
                     input.classList.add('highlight');
-                    console.log("Valid Function INPUT REQUIRED TAGNAME==SELECT", isValid);
                 } else if (input.tagName === 'TEXTAREA' && !input.value.trim()) {
                     isValid = false;
                     input.classList.add('highlight');
-                    console.log("Valid Function INPUT REQUIRED TAGNAME==TEXTAREA", isValid);
                 } else if (input.value.trim()) {
                     input.classList.remove('highlight');
-                    console.log("Valid Function INPUT.VALUE.TRIM", isValid);
                 } else {
                     isValid = false;
-                    console.log("DEFAULT IN INPUT.REQUIRED", isValid);
                     input.classList.add('highlight');
                 }
             } else {
@@ -778,7 +817,18 @@ function validatePage(formId, pageNumber) {
         validateInput();
     });
 
-    console.log("Valid Function end", isValid);
+    canvases.forEach(canvas => {
+        const context = canvas.getContext('2d');
+        const pixelData = context.getImageData(0, 0, canvas.width, canvas.height).data;
+        const isCanvasEmpty = !pixelData.some(value => value !== 0);
+
+        if (isCanvasEmpty) {
+            isValid = false;
+            canvas.classList.add('highlight');
+        } else {
+            canvas.classList.remove('highlight');
+        }
+    });
     return isValid;
 }
 
@@ -839,11 +889,11 @@ function handleRadioChange(event) {
                     <div class="mt-3 mb-2">
                         <label class="question-label">Type Of Vehicle Operated</label>
                         <div class="form-check col-12 mt-2">
-                            <input class="form-check-input box" type="radio" id="offenceCommercial-${violationCount}" name="offenceVehicle-${violationCount}" value="Commercial" onchange="updateProgress2('form2')">
+                            <input class="form-check-input box" type="radio" required id="offenceCommercial-${violationCount}" name="offenceVehicle-${violationCount}" value="Commercial" onchange="updateProgress2('form2')">
                             <label class="form-check-label" for="offenceCommercial-${violationCount}" class="label ms-3">Commercial</label>
                         </div>
                         <div class="form-check col-12 mt-2">
-                            <input class="form-check-input box" type="radio" id="offencePrivate-${violationCount}" name="offenceVehicle-${violationCount}" value="Private" onchange="updateProgress2('form2')">
+                            <input class="form-check-input box" type="radio" required id="offencePrivate-${violationCount}" name="offenceVehicle-${violationCount}" value="Private" onchange="updateProgress2('form2')">
                             <label class="form-check-label"  for="offencePrivate-${violationCount}" class="label ms-3">Private</label>
                         </div>
                     </div>
@@ -851,11 +901,11 @@ function handleRadioChange(event) {
                 <div class="col-12 d-flex flex-column mt-2">
                     <label class="question-label">Do you have additional traffic violations to add?</label>
                     <div class="form-check d-flex align-items-end">
-                        <input class="form-check-input" type="radio" value="no" id="violationNo-${violationCount}" name="trafficVoilation-${violationCount}" onchange="handleRadioChange(event)">
+                        <input class="form-check-input" type="radio" required value="no" id="violationNo-${violationCount}" name="trafficVoilation-${violationCount}" onchange="handleRadioChange(event)">
                         <label class="form-check-label label ms-4" for="violationNo-${violationCount}">No</label>
                     </div>
                     <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" value="yes" id="violationYes-${violationCount}" name="trafficVoilation-${violationCount}" onchange="handleRadioChange(event)">
+                        <input class="form-check-input" type="radio" required value="yes" id="violationYes-${violationCount}" name="trafficVoilation-${violationCount}" onchange="handleRadioChange(event)">
                         <label class="form-check-label ms-4" for="violationYes-${violationCount}">Yes</label>
                     </div>
                 </div>
@@ -922,11 +972,11 @@ function handleAccidentChange(event) {
                             <label class="question-label">Fatalities or Personal Injuries</label>
                         </div>
                         <div class="form-check mt-2">
-                            <input class="form-check-input" type="radio" value="no" id="fatalities-${accidentCount}" name="fatalities-${accidentCount}" onchange="updateProgress2('form2')">
+                            <input class="form-check-input" type="radio" required value="no" id="fatalities-${accidentCount}" name="fatalities-${accidentCount}" onchange="updateProgress2('form2')">
                             <label class="form-check-label label ms-4" for="fatalities-${accidentCount}">Fatalities</label>
                         </div>
                         <div class="form-check mt-2">
-                            <input class="form-check-input" type="radio" value="yes" id="injuries-${accidentCount}" name="fatalities-${accidentCount}" onchange="updateProgress2('form2')">
+                            <input class="form-check-input" type="radio" required value="yes" id="injuries-${accidentCount}" name="fatalities-${accidentCount}" onchange="updateProgress2('form2')">
                             <label class="form-check-label ms-4" for="injuries-${accidentCount}">Personal Injuries</label>
                         </div>
                         <div class="col-12 mt-4">
@@ -942,11 +992,11 @@ function handleAccidentChange(event) {
                     <div class="col-12 d-flex flex-column mt-2">
                         <label class="question-label">Do you have additional accidents to add?</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" value="no" id="accidentNo-${accidentCount}" name="additionalAccident-${accidentCount}" onchange="handleAccidentChange(event)">
+                            <input class="form-check-input" type="radio" required value="no" id="accidentNo-${accidentCount}" name="additionalAccident-${accidentCount}" onchange="handleAccidentChange(event)">
                             <label class="form-check-label label ms-4" for="accidentNo-${accidentCount}">No</label>
                         </div>
                         <div class="form-check mt-2">
-                            <input class="form-check-input" type="radio" value="yes" id="accidentYes-${accidentCount}" name="additionalAccident-${accidentCount}" onchange="handleAccidentChange(event)">
+                            <input class="form-check-input" type="radio" required value="yes" id="accidentYes-${accidentCount}" name="additionalAccident-${accidentCount}" onchange="handleAccidentChange(event)">
                             <label class="form-check-label ms-4" for="accidentYes-${accidentCount}">Yes</label>
                         </div>
                     </div>
@@ -987,17 +1037,17 @@ function handleAccidentChange(event) {
 }
 //<------------------------------------------------------------------PAGE 6---------------------------------->
 
-function militaryDriver(value){
-if(value=='yes'){
-    const militaryElement=document.createElement('div');
-     militaryElement.id='fmcsa';
-     militaryElement.innerHTML=`
+function militaryDriver(value) {
+    if (value == 'yes') {
+        const militaryElement = document.createElement('div');
+        militaryElement.id = 'fmcsa';
+        militaryElement.innerHTML = `
                 <div class="address-container mt-4">
                     <label class="question-label">Straight Truck (check all that apply)</label>
                     <div>
                         <div class=" form-check col-12 mt-2">
                             <div class="checkbox ">
-                                <input class="form-check-input " type="checkbox" id="truckVan" name="straightTruck"
+                                <input class="form-check-input " type="checkbox" required id="truckVan" name="straightTruck"
                                     value="Van" onchange="updateProgress2('form2')">
                             </div>
                             <div class="label ms-3">
@@ -1006,7 +1056,7 @@ if(value=='yes'){
                         </div>
                         <div class=" form-check col-12 mt-2">
                             <div class="checkbox">
-                                <input class="form-check-input " type="checkbox" id="truckBox" name="straightTruck"
+                                <input class="form-check-input " type="checkbox" required id="truckBox" name="straightTruck"
                                     value="Box" onchange="updateProgress2('form2')">
                             </div>
                             <div class="label ms-3">
@@ -1016,7 +1066,7 @@ if(value=='yes'){
 
                         <div class=" form-check col-12 mt-2">
                             <div class="checkbox ">
-                                <input class="form-check-input " type="checkbox" id="truckFlat" name="straightTruck"
+                                <input class="form-check-input " type="checkbox" required id="truckFlat" name="straightTruck"
                                     value="Flat Bed" onchange="updateProgress2('form2')">
                             </div>
                             <div class="label ms-3">
@@ -1026,7 +1076,7 @@ if(value=='yes'){
 
                         <div class=" form-check col-12 mt-2">
                             <div class="checkbox">
-                                <input class="form-check-input " type="checkbox" id="truckBucket" name="straightTruck"
+                                <input class="form-check-input " type="checkbox" required id="truckBucket" name="straightTruck"
                                     value="Bucket or Auger" onchange="updateProgress2('form2')">
                             </div>
                             <div class="label ms-3">
@@ -1035,7 +1085,7 @@ if(value=='yes'){
                         </div>
                         <div class=" form-check col-12 mt-2">
                             <div class="checkbox">
-                                <input class="form-check-input " type="checkbox" id="truckTanker" name="straightTruck"
+                                <input class="form-check-input " type="checkbox" required id="truckTanker" name="straightTruck"
                                     value="tanker" onchange="updateProgress2('form2')">
                             </div>
                             <div class="label ms-3">
@@ -1045,7 +1095,7 @@ if(value=='yes'){
 
                         <div class=" form-check col-12 mt-2">
                             <div class="checkbox">
-                                <input class="form-check-input " type="checkbox" id="otherService" name="straightTruck"
+                                <input class="form-check-input " type="checkbox" required id="otherService" name="straightTruck"
                                     value="Other Utility Service" onchange="updateProgress2('form2')">
                             </div>
                             <div class="label ms-3">
@@ -1085,7 +1135,7 @@ if(value=='yes'){
                     <div>
                         <div class=" form-check col-12 mt-2">
                             <div class="checkbox ">
-                                <input class="form-check-input " type="checkbox" id="tractorBox" name="tractor"
+                                <input class="form-check-input " type="checkbox" required id="tractorBox" name="tractor"
                                     value="Box Trailer" onchange="updateProgress2('form2')">
                             </div>
                             <div class="label ms-3">
@@ -1094,7 +1144,7 @@ if(value=='yes'){
                         </div>
                         <div class=" form-check col-12 mt-2">
                             <div class="checkbox">
-                                <input class="form-check-input " type="checkbox" id="tractorFlat" name="tractor"
+                                <input class="form-check-input " type="checkbox" required id="tractorFlat" name="tractor"
                                     value="Flat Trailer" onchange="updateProgress2('form2')">
                             </div>
                             <div class="label ms-3">
@@ -1104,7 +1154,7 @@ if(value=='yes'){
 
                         <div class=" form-check col-12 mt-2">
                             <div class="checkbox ">
-                                <input class="form-check-input " type="checkbox" id="truckFlat" name="tractor"
+                                <input class="form-check-input " type="checkbox" required id="truckFlat" name="tractor"
                                     value="Tank trailer" onchange="updateProgress2('form2')">
                             </div>
                             <div class="label ms-3">
@@ -1114,7 +1164,7 @@ if(value=='yes'){
 
                         <div class=" form-check col-12 mt-2">
                             <div class="checkbox">
-                                <input class="form-check-input " type="checkbox" id="tractorBucket" name="tractor"
+                                <input class="form-check-input " type="checkbox" required id="tractorBucket" name="tractor"
                                     value="Bucket or Auger" onchange="updateProgress2('form2')">
                             </div>
                             <div class="label ms-3">
@@ -1123,7 +1173,7 @@ if(value=='yes'){
                         </div>
                         <div class=" form-check col-12 mt-2">
                             <div class="checkbox">
-                                <input class="form-check-input " type="checkbox" id="tractorMulti" name="tractor"
+                                <input class="form-check-input " type="checkbox" required id="tractorMulti" name="tractor"
                                     value="Multi-trailer" onchange="updateProgress2('form2')">
                             </div>
                             <div class="label ms-3">
@@ -1164,7 +1214,7 @@ if(value=='yes'){
                     <div>
                         <div class=" form-check col-12 mt-2">
                             <div class="checkbox ">
-                                <input class="form-check-input " type="checkbox" id="busHire" name="bus"
+                                <input class="form-check-input " type="checkbox" required id="busHire" name="bus"
                                     value="8passengers" onchange="updateProgress2('form2')">
                             </div>
                             <div class="label ms-3">
@@ -1173,7 +1223,7 @@ if(value=='yes'){
                         </div>
                         <div class=" form-check col-12 mt-2">
                             <div class="checkbox">
-                                <input class="form-check-input " type="checkbox" id="busShuttle" name="bus"
+                                <input class="form-check-input " type="checkbox" required id="busShuttle" name="bus"
                                     value="15passengers" onchange="updateProgress2('form2')">
                             </div>
                             <div class="label ms-3">
@@ -1211,7 +1261,7 @@ if(value=='yes'){
 
                     <div class="col-12 mt-2">
                         <label class="question-label">Other commercial motor vehicles (list)</label>
-                        <textarea name="defectiveVisionExplanation" id="otherVehicles" rows="4"
+                        <textarea required name="defectiveVisionExplanation" id="otherVehicles" rows="4"
                             class="form-control mt-2 txtfeild "></textarea>
                     </div>
 
@@ -1241,14 +1291,14 @@ if(value=='yes'){
                         </div>
                     </div>
                 </div> `
-                document.getElementById('militaryDriving').appendChild(militaryElement);
-                caluclateTotalFeilds();
+        document.getElementById('militaryDriving').appendChild(militaryElement);
+        caluclateTotalFeilds();
+    }
 }
-}
-function notMilitaryDriver(value){
-    if(value=='no'){
-        militaryElement=document.getElementById('fmcsa');
-        if( militaryElement){
+function notMilitaryDriver(value) {
+    if (value == 'no') {
+        militaryElement = document.getElementById('fmcsa');
+        if (militaryElement) {
             militaryElement.remove();
             caluclateTotalFeilds();
         }
@@ -1273,15 +1323,14 @@ function addNewEmploymentForm() {
     const newForm = template.cloneNode(true);
 
     // Remove dynamically generated unemployment sections before cloning
-    const dynamicSections=newForm.querySelectorAll('[id^="unemployReason"],[id^="notApplicable"],[id^="checkDot"]');
-    dynamicSections.forEach((section)=>section.remove());
-    
-  
-   
+    const dynamicSections = newForm.querySelectorAll('[id^="unemployReason"],[id^="notApplicable"],[id^="checkDot"]');
+    dynamicSections.forEach((section) => section.remove());
+
+
+
 
     // Update the ID of the cloned form
     newForm.id = `employmentForm_${formCounter}`;
-    console.log("New Form ID:", newForm.id);
 
     // Update IDs, names, and 'for' attributes for input, textarea, select, label, and div elements
     const elements = newForm.querySelectorAll('input, textarea, select, label, div');
@@ -1307,8 +1356,7 @@ function addNewEmploymentForm() {
             field.checked = false; // Uncheck radios and checkboxes
         }
     });
-    console.log('formNumber is', formCounter);
-   
+
     const container = document.getElementById('employmentFormsContainer');
     container.appendChild(newForm);
 
@@ -1321,7 +1369,6 @@ function addNewEmploymentForm() {
 
 function clearAdditionalForms(currentFormId) {
     const container = document.getElementById('employmentFormsContainer');
-    console.log("present form Id", currentFormId);
 
     // Extract the form number from the current form's ID
     const currentFormNumber = parseInt(currentFormId.split('_')[1]);
@@ -1353,7 +1400,6 @@ function clearAdditionalForms(currentFormId) {
         formCounter = 1;
     }
 
-    console.log("Updated formCounter: ", formCounter);
     validateEmploymentHistory();
     caluclateTotalFeilds();
 
@@ -1363,12 +1409,12 @@ function addDotMode(presentId, value) {
     if (value == 'yes') {
         const dotNumber = parseInt((presentId.split('_')[1]));
         const dotMode = document.createElement('div');
-        dotMode.classList.add('col-12','mt-3')
+        dotMode.classList.add('col-12', 'mt-3')
         dotMode.id = `checkDot${(dotNumber) ? ('_' + dotNumber) : ''}`;
         dotMode.innerHTML = `     <label class="question-label">Check the DotMode Below</label>
                                     <div class=" form-check col-12 mt-2">
                                         <div class="checkbox ">
-                                            <input class="form-check-input box" type="radio" id="dotFMCSA" name="dotMode"
+                                            <input class="form-check-input box" type="radio" required id="dotFMCSA" name="dotMode"
                                                 value="FMCSA" onchange="updateProgress2('form2')">
                                         </div>
                                         <div class="label ms-3">
@@ -1377,7 +1423,7 @@ function addDotMode(presentId, value) {
                                     </div>
                                     <div class=" form-check col-12 mt-2">
                                         <div class="checkbox">
-                                            <input class="form-check-input box" type="radio" id="dotPHMSA" name="dotMode"
+                                            <input class="form-check-input box" type="radio" required id="dotPHMSA" name="dotMode"
                                                 value="PHMSA" onchange="updateProgress2('form2')">
                                         </div>
                                         <div class="label ms-3">
@@ -1387,7 +1433,7 @@ function addDotMode(presentId, value) {
     
                                     <div class=" form-check col-12 mt-2">
                                         <div class="checkbox ">
-                                            <input class="form-check-input box" type="radio" id="dotFAA" name="dotMode"
+                                            <input class="form-check-input box" type="radio" required id="dotFAA" name="dotMode"
                                                 value="FAA" onchange="updateProgress2('form2')">
                                         </div>
                                         <div class="label ms-3">
@@ -1398,7 +1444,7 @@ function addDotMode(presentId, value) {
     
                                     <div class=" form-check col-12 mt-2">
                                         <div class="checkbox">
-                                            <input class="form-check-input box" type="radio" id="dotFTA" name="dotMode"
+                                            <input class="form-check-input box" type="radio" required id="dotFTA" name="dotMode"
                                                 value="FTA" onchange="updateProgress2('form2')">
                                         </div>
                                         <div class="label ms-3">
@@ -1408,7 +1454,7 @@ function addDotMode(presentId, value) {
     
                                     <div class=" form-check col-12 mt-2">
                                         <div class="checkbox">
-                                            <input class="form-check-input box" type="radio" id="dotFRA" name="dotMode"
+                                            <input class="form-check-input box" type="radio" required id="dotFRA" name="dotMode"
                                                 value="FRA" onchange="updateProgress2('form2')">
                                         </div>
                                         <div class="label ms-3">
@@ -1418,7 +1464,7 @@ function addDotMode(presentId, value) {
     
                                     <div class=" form-check col-12 mt-2">
                                         <div class="checkbox">
-                                            <input class="form-check-input box" type="radio" id="dotUSCG" name="dotMode"
+                                            <input class="form-check-input box" type="radio" required id="dotUSCG" name="dotMode"
                                                 value="USCG" onchange="updateProgress2('form2')">
                                         </div>
                                         <div class="label ms-3">
@@ -1435,7 +1481,7 @@ function addDotMode(presentId, value) {
                                                 background investigator to contact your current employer.</p>
                                         </div>
                                         <div class="form-check" d-flex align-items-end>
-                                            <input class="form-check-input" type="radio" value="yes" id="verifyYes"
+                                            <input class="form-check-input" type="radio" required value="yes" id="verifyYes"
                                                 name="verify" onchange="updateProgress2('form2')">
                                             <label class="form-check-label ms-4" for="verifyYes">
                                                 By checking this box, I give my permission for my current employment to be
@@ -1445,7 +1491,7 @@ function addDotMode(presentId, value) {
                                         </div>
         
                                         <div class="form-check mt-2">
-                                            <input class="form-check-input" type="radio" value="no" id="verifyNo" name="verify"
+                                            <input class="form-check-input" type="radio" required value="no" id="verifyNo" name="verify"
                                                 onchange="updateProgress2('form2')">
                                             <label class="form-check-label ms-4" for="verifyNo">
                                                 I would like the background investigator to wait until the very end of the
@@ -1457,21 +1503,20 @@ function addDotMode(presentId, value) {
                                             </label>
                                         </div>
                                     </div>`
-    console.log('Dot',dotNumber);
-    document.getElementById(presentId).appendChild(dotMode);
-    caluclateTotalFeilds();
+        document.getElementById(presentId).appendChild(dotMode);
+        caluclateTotalFeilds();
 
     }
 }
-function removeDotMode(presentId,value){
+function removeDotMode(presentId, value) {
     if (value == 'no') {
-        removeNumber=parseInt(presentId.split('_')[1]);
-        const removeDot=document.getElementById(`checkDot${(removeNumber)?('_'+removeNumber):''}`);
-        if(removeDot){
-      removeDot.remove();
-      caluclateTotalFeilds();}
-        else{
-            console.log("printing removeDot")
+        removeNumber = parseInt(presentId.split('_')[1]);
+        const removeDot = document.getElementById(`checkDot${(removeNumber) ? ('_' + removeNumber) : ''}`);
+        if (removeDot) {
+            removeDot.remove();
+            caluclateTotalFeilds();
+        }
+        else {
         }
     }
 }
@@ -1504,7 +1549,6 @@ function addUnemployment(presentId, value) {
                                     <textarea required required name="unemploymentReason" id="unemployReason" placeholder="Enter Text"
                                         rows="4" class="form-control mt-2 txtfeild"></textarea>
                                 </div>`
-        console.log("unemployNumber", unemployNumber);
         document.getElementById(presentId).appendChild(unemploy);
         caluclateTotalFeilds();
     }
@@ -1521,8 +1565,85 @@ function removeUnemployment(presentId, value) {
     }
 }
 
+// function validateEmploymentHistory() {
+//     const container = document.getElementById('employmentFormsContainer');
+//     const forms = container.querySelectorAll('[id^="employmentForm"]');
+
+//     let earliestStartDate = null;
+//     let latestEndDate = null;
+
+//     forms.forEach((form) => {
+//         const startDateField = form.querySelector('[id^="companyStart"]');
+//         const endDateField = form.querySelector('[id^="companySeparation"]');
+
+//         const startDate = startDateField ? new Date(startDateField.value) : null;
+//         const endDate = endDateField ? new Date(endDateField.value) : null;
+
+//         if (startDate && !isNaN(startDate)) {
+//             if (!earliestStartDate || startDate < earliestStartDate) {
+//                 earliestStartDate = startDate;
+//             }
+//         }
+
+//         if (endDate && !isNaN(endDate)) {
+//             if (!latestEndDate || endDate > latestEndDate) {
+//                 latestEndDate = endDate;
+//             }
+//         }
+//     });
+
+//     if (earliestStartDate && latestEndDate) {
+//         totalYears = (latestEndDate - earliestStartDate) / (1000 * 60 * 60 * 24 * 365);
+//         console.log(`Total Employment History: ${totalYears} years`);
+
+//         if (totalYears < 10) {
+//             addEmploymentValidation();
+//         } else {
+//             removeEmploymentValidation();
+//         }
+//     } else {
+//         console.log("Start date or end date is missing.");
+//         addEmploymentValidation();
+//     }
+// }
+
+// function addEmploymentValidation() {
+//     console.log("entered in addEmploymentValidation");
+//     if (!(document.getElementById('reasonBox'))) {
+//         const reasonForm = document.createElement('div');
+//         reasonForm.classList.add('reasonDiv', 'mt-3');
+//         reasonForm.id = 'reasonBox';
+//         reasonForm.innerHTML = `                
+//                 <div class="warnDiv">
+//                     <p class="warning">
+//                         you have not provided TEN (10) years of employment history please provide the reason below
+//                     </p>
+//                 </div>
+//                 <div class="col-12 mt-4">
+//                     <label class="question-label">Reason for not meeting the TEN (10) years of employment history
+//                         requirement.</label>
+//                     <textarea required name="employHistoryReason" id="employHistroy" placeholder="Enter Text" rows="4"
+//                         class="form-control mt-2 txtfeild"></textarea>
+//                 </div>`
+//         const mainContainer = document.getElementById('histroyValidator');
+//         mainContainer.appendChild(reasonForm);
+//         caluclateTotalFeilds();
+//     }
+
+// }
+
+// function removeEmploymentValidation() {
+//     console.log("Removing reason box for sufficient employment history.");
+//     const reasonBox = document.getElementById('reasonBox');
+//     if (reasonBox) {
+//         reasonBox.remove();
+//         caluclateTotalFeilds();
+//     }
+// }
 
 
+
+//Page 9 (signatureBox Canvas...) & invalid Success Modals
 function validateEmploymentHistory() {
     const container = document.getElementById('employmentFormsContainer');
     const forms = container.querySelectorAll('[id^="employmentForm"]');
@@ -1552,7 +1673,6 @@ function validateEmploymentHistory() {
 
     if (earliestStartDate && latestEndDate) {
         totalYears = (latestEndDate - earliestStartDate) / (1000 * 60 * 60 * 24 * 365);
-        console.log(`Total Employment History: ${totalYears} years`);
 
         if (totalYears < 10) {
             addEmploymentValidation();
@@ -1560,13 +1680,32 @@ function validateEmploymentHistory() {
             removeEmploymentValidation();
         }
     } else {
-        console.log("Start date or end date is missing.");
         addEmploymentValidation();
     }
 }
 
+function toggleEmploymentDates() {
+    const stillEmployeeCheckbox = document.getElementById('stillEmployee');
+    const startDateField = document.getElementById('companyStart');
+    const endDateField = document.getElementById('companySeparation');
+
+    if (stillEmployeeCheckbox.checked) {
+        const currentDate = new Date();
+        const startDate = new Date(currentDate.setFullYear(currentDate.getFullYear() - 10));
+        startDateField.value = startDate.toISOString().split('T')[0];
+
+        endDateField.value = new Date().toISOString().split('T')[0];
+        endDateField.required = false;
+    } else {
+        startDateField.value = '';
+        endDateField.value = '';
+        endDateField.required = true;
+    }
+
+    validateEmploymentHistory();
+}
+
 function addEmploymentValidation() {
-    console.log("entered in addEmploymentValidation");
     if (!(document.getElementById('reasonBox'))) {
         const reasonForm = document.createElement('div');
         reasonForm.classList.add('reasonDiv', 'mt-3');
@@ -1582,26 +1721,20 @@ function addEmploymentValidation() {
                         requirement.</label>
                     <textarea required name="employHistoryReason" id="employHistroy" placeholder="Enter Text" rows="4"
                         class="form-control mt-2 txtfeild"></textarea>
-                </div>`
+                </div>`;
         const mainContainer = document.getElementById('histroyValidator');
         mainContainer.appendChild(reasonForm);
         caluclateTotalFeilds();
     }
-
 }
 
 function removeEmploymentValidation() {
-    console.log("Removing reason box for sufficient employment history.");
     const reasonBox = document.getElementById('reasonBox');
     if (reasonBox) {
         reasonBox.remove();
         caluclateTotalFeilds();
     }
 }
-
-
-
-//Page 9 (signatureBox Canvas...) & invalid Success Modals
 
 
 var canvas, context;
@@ -1660,7 +1793,6 @@ function initializeSignatureBox() {
         saveSign();
     });
 
-    console.log("Signature box initialized with white color and thin line.");
 }
 
 
@@ -1678,7 +1810,6 @@ function clearSign() {
 function saveSign() {
     if (canvas) {
         signatureData = canvas.toDataURL('image/png');
-        console.log('Signature saved:', signatureData);
 
     } else {
         console.error("Signature box is not initialized.");
@@ -1697,7 +1828,6 @@ function showInvalidModal() {
 
 function closeModal() {
     const overlay = document.getElementById('overlay');
-    console.log("printing overlay", overlay);
     const invalidModal = document.getElementById('invalidModal');
     if (invalidModal && overlay) {
         invalidModal.style.display = 'none';
@@ -1726,20 +1856,25 @@ function addForm2EventListeners() {
 }
 
 function showSuccessModal() {
-    const successModal = document.getElementById('successModal');
-    const overlay = document.getElementById('overlay');
-    if (successModal && overlay) {
-        successModal.style.display = 'block';
-        overlay.style.display = 'block';
-        document.body.style.overflow = 'hidden';
+    if (validatePage('form2', 9)) {
+        const successModal = document.getElementById('successModal');
+        const overlay = document.getElementById('overlay');
+        if (successModal && overlay) {
+            successModal.style.display = 'block';
+            overlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
     }
+    else {
+        showInvalidModal();
+    }
+
 }
 
 
 
 
 function closeDialog() {
-    console.log("entered into console.log");
     const successModal = document.getElementById('successModal');
     const overlay = document.getElementById('overlay');
     if (successModal && overlay) {

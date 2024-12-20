@@ -29,9 +29,10 @@
                     <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-2">
                         <label class="question-label">Applicant Name</label>
 
-                        <input required type="text"  placeholder="Enter Text" data-validate="text" name="firstName" autocomplete="off"
-                            maxlength="30" oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"
-                            class="form-control" onchange="updateProgress2('form2')" />
+                        <input required type="text" placeholder="Enter Text" data-validate="text" name="firstName"
+                            autocomplete="off" maxlength="30"
+                            oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')" class="form-control"
+                            onchange="updateProgress2('form2')" />
                         <small class="error-message"></small>
                     </div>
                     <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
@@ -52,17 +53,20 @@
 
                     <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
                         <label class="question-label">Social Security Number (SSN)</label>
-                        <input type="text" placeholder="xxx-xx-xxxx" name="ssn" autocomplete="off" maxlength="11"
-                            oninput="validateAndFormatSSN(this);" class="form-control" onchange="updateProgress2('form2')" />
-                        <small class="error-message" style="color: rgb(255, 94, 94); display: none;">Error message</small>
+                        <input required type="text" placeholder="xxx-xx-xxxx" name="ssn" autocomplete="off"
+                            maxlength="11" oninput="validateAndFormatSSN(this);" class="form-control"
+                            onchange="updateProgress2('form2')" />
+                        <small class="error-message" style="color: rgb(255, 94, 94); display: none;">Error
+                            message</small>
                     </div>
 
                     <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
                         <label class="question-label">Phone</label>
                         <input required datavalidate='' type="text" name="home" autocomplete="off"
-                           placeholder="(xxx) xxx-xxxx" oninput="validateAndFormatPhoneNumber(this);" class="form-control"
-                            onchange="updateProgress2('form2')" />
-                        <small class="error-message" style="color: rgb(255, 94, 94); display: none;"></small> <!-- Error message container -->
+                            placeholder="(xxx) xxx-xxxx" oninput="validateAndFormatPhoneNumber(this);"
+                            class="form-control" onchange="updateProgress2('form2')" />
+                        <small class="error-message" style="color: rgb(255, 94, 94); display: none;"></small>
+                        <!-- Error message container -->
                     </div>
                 </div>
                 <div style="margin-top: 20px;">
@@ -90,11 +94,58 @@
                 </div>
                 <div class="col">
                     <label class="question-label">State</label>
-                     <select required data-validate="text" name="States" id="addressState1" class="state-feild"
-                        >
+                    <select required data-validate="text" name="States" id="addressState1" class="state-feild">
                         <option value="">Select One</option>
-                        <option value="state2">Dallas</option>
-                        <option value="state3">WashingTon DC</option>=
+                        <option value="state2">Alabama</option>
+                        <option value="state3">Alaska</option>
+                        <option value="state4">Arizona</option>
+                        <option value="state5">Arkansas</option>
+                        <option value="state6">California</option>
+                        <option value="state7">Colorado</option>
+                        <option value="state8">Connecticut</option>
+                        <option value="state9">Delaware</option>
+                        <option value="state10">Florida</option>
+                        <option value="state11">Georgia</option>
+                        <option value="state12">Hawaii</option>
+                        <option value="state13">Idaho</option>
+                        <option value="state14">Illinois</option>
+                        <option value="state15">Indiana</option>
+                        <option value="state16">Iowa</option>
+                        <option value="state17">Kansas</option>
+                        <option value="state18">Kentucky</option>
+                        <option value="state19">Louisiana</option>
+                        <option value="state20">Maine</option>
+                        <option value="state21">Maryland</option>
+                        <option value="state22">Massachusetts</option>
+                        <option value="state23">Michigan</option>
+                        <option value="state24">Minnesota</option>
+                        <option value="state25">Mississippi</option>
+                        <option value="state26">Missouri</option>
+                        <option value="state27">Montana</option>
+                        <option value="state28">Nebraska</option>
+                        <option value="state29">Nevada</option>
+                        <option value="state30">New Hampshire</option>
+                        <option value="state31">New Jersey</option>
+                        <option value="state32">New Mexico</option>
+                        <option value="state33">New York</option>
+                        <option value="state34">North Carolina</option>
+                        <option value="state35">North Dakota</option>
+                        <option value="state36">Ohio</option>
+                        <option value="state37">Oklahoma</option>
+                        <option value="state38">Oregon</option>
+                        <option value="state39">Pennsylvania</option>
+                        <option value="state40">Rhode Island</option>
+                        <option value="state41">South Carolina</option>
+                        <option value="state42">South Dakota</option>
+                        <option value="state43">Tennessee</option>
+                        <option value="state44">Texas</option>
+                        <option value="state45">Utah</option>
+                        <option value="state46">Vermont</option>
+                        <option value="state47">Virginia</option>
+                        <option value="state48">Washington</option>
+                        <option value="state49">West Virginia</option>
+                        <option value="state50">Wisconsin</option>
+                        <option value="state51">Wyoming</option>
                     </select>
                 </div>
                 <div class="col">
@@ -134,26 +185,26 @@
             </div>
             <div id="mainAddressContainer">
 
-            <div class="col-12 d-flex flex-column mt-2">
+                <div class="col-12 d-flex flex-column mt-2">
 
 
-                <div class="form-check" d-flex align-items-end>
-                    <input class="form-check-input" type="radio" value="no" id="addressNo" name="priorAdress"
-                        onchange="removeHistoryElement(this.value)">
-                    <label class="form-check-label label ms-4" for="addressNo">
-                        No
-                    </label>
-                </div>
+                    <div class="form-check" d-flex align-items-end>
+                        <input class="form-check-input" type="radio" required value="no" id="addressNo"
+                            name="priorAdress" onchange="removeHistoryElement(this.value)">
+                        <label class="form-check-label label ms-4" for="addressNo">
+                            No
+                        </label>
+                    </div>
 
-                <div class="form-check mt-2">
-                    <input class="form-check-input" type="radio" value="yes" id="addressYes" name="priorAdress"
-                        onchange="addressHistory(this.value)">
-                    <label class="form-check-label ms-4" for="addressYes">
-                        Yes
-                    </label>
+                    <div class="form-check mt-2">
+                        <input class="form-check-input" type="radio" required value="yes" id="addressYes"
+                            name="priorAdress" onchange="addressHistory(this.value)">
+                        <label class="form-check-label ms-4" for="addressYes">
+                            Yes
+                        </label>
+                    </div>
                 </div>
             </div>
-           </div>
 
 
             <div class="single-button-container">
@@ -171,10 +222,58 @@
             <div class="address-container mt-2" id="dl">
                 <div class="col-12 ">
                     <label class="question-label">Current DL Issuing State</label>
-                     <select required data-validate="text"  name="states" id="dlState" class="state-feild">
+                    <select required data-validate="text" name="states" id="dlState" class="state-feild">
                         <option value="">Select One</option>
-                        <option value="state2">Washington Dc</option>
-                        <option value="state3">Dallas</option>
+                        <option value="state2">Alabama</option>
+                        <option value="state3">Alaska</option>
+                        <option value="state4">Arizona</option>
+                        <option value="state5">Arkansas</option>
+                        <option value="state6">California</option>
+                        <option value="state7">Colorado</option>
+                        <option value="state8">Connecticut</option>
+                        <option value="state9">Delaware</option>
+                        <option value="state10">Florida</option>
+                        <option value="state11">Georgia</option>
+                        <option value="state12">Hawaii</option>
+                        <option value="state13">Idaho</option>
+                        <option value="state14">Illinois</option>
+                        <option value="state15">Indiana</option>
+                        <option value="state16">Iowa</option>
+                        <option value="state17">Kansas</option>
+                        <option value="state18">Kentucky</option>
+                        <option value="state19">Louisiana</option>
+                        <option value="state20">Maine</option>
+                        <option value="state21">Maryland</option>
+                        <option value="state22">Massachusetts</option>
+                        <option value="state23">Michigan</option>
+                        <option value="state24">Minnesota</option>
+                        <option value="state25">Mississippi</option>
+                        <option value="state26">Missouri</option>
+                        <option value="state27">Montana</option>
+                        <option value="state28">Nebraska</option>
+                        <option value="state29">Nevada</option>
+                        <option value="state30">New Hampshire</option>
+                        <option value="state31">New Jersey</option>
+                        <option value="state32">New Mexico</option>
+                        <option value="state33">New York</option>
+                        <option value="state34">North Carolina</option>
+                        <option value="state35">North Dakota</option>
+                        <option value="state36">Ohio</option>
+                        <option value="state37">Oklahoma</option>
+                        <option value="state38">Oregon</option>
+                        <option value="state39">Pennsylvania</option>
+                        <option value="state40">Rhode Island</option>
+                        <option value="state41">South Carolina</option>
+                        <option value="state42">South Dakota</option>
+                        <option value="state43">Tennessee</option>
+                        <option value="state44">Texas</option>
+                        <option value="state45">Utah</option>
+                        <option value="state46">Vermont</option>
+                        <option value="state47">Virginia</option>
+                        <option value="state48">Washington</option>
+                        <option value="state49">West Virginia</option>
+                        <option value="state50">Wisconsin</option>
+                        <option value="state51">Wyoming</option>
                     </select>
                 </div>
 
@@ -199,11 +298,58 @@
             <div class="address-container mt-3" id="dl1">
                 <div class="col-12 ">
                     <label class="question-label">Previous DL Issuing State</label>
-                     <select required data-validate="text" name="state" id="preDlState" class="state-feild"
-                       >
+                    <select required data-validate="text" name="state" id="preDlState" class="state-feild">
                         <option value="">Select One</option>
-                        <option value="state2">WashingTon Dc</option>
-                        <option value="state3">Dallas</option>=
+                        <option value="state2">Alabama</option>
+                        <option value="state3">Alaska</option>
+                        <option value="state4">Arizona</option>
+                        <option value="state5">Arkansas</option>
+                        <option value="state6">California</option>
+                        <option value="state7">Colorado</option>
+                        <option value="state8">Connecticut</option>
+                        <option value="state9">Delaware</option>
+                        <option value="state10">Florida</option>
+                        <option value="state11">Georgia</option>
+                        <option value="state12">Hawaii</option>
+                        <option value="state13">Idaho</option>
+                        <option value="state14">Illinois</option>
+                        <option value="state15">Indiana</option>
+                        <option value="state16">Iowa</option>
+                        <option value="state17">Kansas</option>
+                        <option value="state18">Kentucky</option>
+                        <option value="state19">Louisiana</option>
+                        <option value="state20">Maine</option>
+                        <option value="state21">Maryland</option>
+                        <option value="state22">Massachusetts</option>
+                        <option value="state23">Michigan</option>
+                        <option value="state24">Minnesota</option>
+                        <option value="state25">Mississippi</option>
+                        <option value="state26">Missouri</option>
+                        <option value="state27">Montana</option>
+                        <option value="state28">Nebraska</option>
+                        <option value="state29">Nevada</option>
+                        <option value="state30">New Hampshire</option>
+                        <option value="state31">New Jersey</option>
+                        <option value="state32">New Mexico</option>
+                        <option value="state33">New York</option>
+                        <option value="state34">North Carolina</option>
+                        <option value="state35">North Dakota</option>
+                        <option value="state36">Ohio</option>
+                        <option value="state37">Oklahoma</option>
+                        <option value="state38">Oregon</option>
+                        <option value="state39">Pennsylvania</option>
+                        <option value="state40">Rhode Island</option>
+                        <option value="state41">South Carolina</option>
+                        <option value="state42">South Dakota</option>
+                        <option value="state43">Tennessee</option>
+                        <option value="state44">Texas</option>
+                        <option value="state45">Utah</option>
+                        <option value="state46">Vermont</option>
+                        <option value="state47">Virginia</option>
+                        <option value="state48">Washington</option>
+                        <option value="state49">West Virginia</option>
+                        <option value="state50">Wisconsin</option>
+                        <option value="state51">Wyoming</option>
                     </select>
                 </div>
 
@@ -223,9 +369,53 @@
                 </div>
 
             </div>
+            <div class="col-12 mt-3">
+                <div class="col-12">
+                    <label class="question-label">Current DL Type &Class</label>
 
+                    <div>
+                        <div class=" form-check col-12 mt-2">
+                            <div class="checkbox ">
+                                <input class="form-check-input box" type="radio" required id="non-commercial"
+                                    name="dlType" value="None" onchange="updateProgress2('form2')">
+                            </div>
+                            <div class="label ms-3">
+                                <label class="form-check-label" for="non-commercial">Non-Commercial</label>
+                            </div>
+                        </div>
+                        <div class=" form-check col-12 mt-2">
+                            <div class="checkbox">
+                                <input class="form-check-input box" type="radio" required id="commercial" name="dlType"
+                                    value="Tank Vechile" onchange="updateProgress2('form2')">
+                            </div>
+                            <div class="label ms-3">
+                                <label class="form-check-label" for="commercial">Commercial: CDL A,B or C</label>
+                            </div>
+                        </div>
 
+                        <div class=" form-check col-12 mt-2">
+                            <div class="checkbox ">
+                                <input class="form-check-input box" type="radio" required id="commercialLearner"
+                                    name="dlType" value="Hazardous Materials" onchange="updateProgress2('form2')">
+                            </div>
+                            <div class="label ms-3">
+                                <label class="form-check-label" for="commercialLearner">Commercial Lerner's(CLP)</label>
+                            </div>
+                        </div>
 
+                        <div class=" form-check col-12 mt-2">
+                            <div class="checkbox">
+                                <input class="form-check-input box" type="radio" required id="nonInState" name="dlType"
+                                    value="Other" onchange="updateProgress2('form2')">
+                            </div>
+                            <div class="label ms-3">
+                                <label class="form-check-label" for="nonInState">Non-In-state only commercial,limited to
+                                    10-26k lbs.</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-12 mt-3">
                 <div class="col-12">
                     <label class="question-label">Current DL Endorsements</label>
@@ -233,40 +423,40 @@
                     <div>
                         <div class=" form-check col-12 mt-2">
                             <div class="checkbox ">
-                                <input class="form-check-input box" type="radio" id="noDlEndorsements"
-                                    name="endorsements" value="None" onchange="updateProgress2('form2')">
+                                <input class="form-check-input box" type="radio" required id="none" name="endorsements"
+                                    value="None" onchange="updateProgress2('form2')">
                             </div>
                             <div class="label ms-3">
-                                <label class="form-check-label" for="non-commercial">None</label>
+                                <label class="form-check-label" for="none">None</label>
                             </div>
                         </div>
                         <div class=" form-check col-12 mt-2">
                             <div class="checkbox">
-                                <input class="form-check-input box" type="radio" id="commercial" name="endorsements"
+                                <input class="form-check-input box" type="radio" required id="tankV" name="endorsements"
                                     value="Tank Vechile" onchange="updateProgress2('form2')">
                             </div>
                             <div class="label ms-3">
-                                <label class="form-check-label" for="commercial">Tank Vechile</label>
+                                <label class="form-check-label" for="tankV">Tank Vechile</label>
                             </div>
                         </div>
 
                         <div class=" form-check col-12 mt-2">
                             <div class="checkbox ">
-                                <input class="form-check-input box" type="radio" id="hazardous" name="endorsements"
-                                    value="Hazardous Materials" onchange="updateProgress2('form2')">
+                                <input class="form-check-input box" type="radio" required id="hazardousM"
+                                    name="endorsements" value="Hazardous Materials" onchange="updateProgress2('form2')">
                             </div>
                             <div class="label ms-3">
-                                <label class="form-check-label" for="commercialLearner">Hazardous Materials</label>
+                                <label class="form-check-label" for="hazardousM">Hazardous Materials</label>
                             </div>
                         </div>
 
                         <div class=" form-check col-12 mt-2">
                             <div class="checkbox">
-                                <input class="form-check-input box" type="radio" id="otherEndorsements"
+                                <input class="form-check-input box" type="radio" required id="otherE"
                                     name="endorsements" value="Other" onchange="updateProgress2('form2')">
                             </div>
                             <div class="label ms-3">
-                                <label class="form-check-label" for="nonInState">Other</label>
+                                <label class="form-check-label" for="otherE">Other</label>
                             </div>
                         </div>
                     </div>
@@ -301,13 +491,13 @@
                     violations) for which
                     you have been convicted or forfeited bond or collateral during the past THREE (3) years?</label>
                 <div class="form-check d-flex align-items-end">
-                    <input class="form-check-input" type="radio" value="no" id="voilationNo" name="trafficVoilation"
-                        onchange="handleRadioChange(event)">
+                    <input class="form-check-input" type="radio" required value="no" id="voilationNo"
+                        name="trafficVoilation" onchange="handleRadioChange(event)">
                     <label class="form-check-label label ms-4" for="voilationNo">No</label>
                 </div>
                 <div class="form-check mt-2">
-                    <input class="form-check-input" type="radio" value="yes" id="voilationYes" name="trafficVoilation"
-                        onchange="handleRadioChange(event)">
+                    <input class="form-check-input" type="radio" required value="yes" id="voilationYes"
+                        name="trafficVoilation" onchange="handleRadioChange(event)">
                     <label class="form-check-label ms-4" for="voilationYes">Yes</label>
                 </div>
             </div>
@@ -339,12 +529,12 @@
                 <label class="question-label formtext">Were you involved in any motor vehicle accidents during the
                     THREE (3) years preceding the date of this application?</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" value="no" id="accidentNo" name="accident"
+                    <input class="form-check-input" type="radio" required value="no" id="accidentNo" name="accident"
                         onchange="handleAccidentChange(event)">
                     <label class="form-check-label label ms-4" for="accidentNo">No</label>
                 </div>
                 <div class="form-check mt-2">
-                    <input class="form-check-input" type="radio" value="yes" id="accidentYes" name="accident"
+                    <input class="form-check-input" type="radio" required value="yes" id="accidentYes" name="accident"
                         onchange="handleAccidentChange(event)">
                     <label class="form-check-label ms-4" for="accidentYes">Yes</label>
                 </div>
@@ -368,7 +558,7 @@
                     Status of Driver's License or Permit
                 </h4>
             </div>
-            <div id="licenseContainer"  class="mt-3">
+            <div id="licenseContainer" class="mt-3">
                 <div>
                     <h6 class="just-color">
                         <p class="question-label">Have you ever been denied a license ,permit, or privilege to operate a
@@ -381,16 +571,16 @@
                 <div class="col-12 d-flex flex-column mt-2">
 
                     <div class="form-check" d-flex align-items-end>
-                        <input class="form-check-input" type="radio" value="no" id="licenseDenyNo" name="licenseDeny"
-                            onchange="licenseAccepted(this.value)">
+                        <input class="form-check-input" type="radio" required value="no" id="licenseDenyNo"
+                            name="licenseDeny" onchange="licenseAccepted(this.value)">
                         <label class="form-check-label label ms-4" for="licenseDenyNo">
                             No
                         </label>
                     </div>
 
                     <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" value="yes" id="licenseDenyYes" name="licenseDeny"
-                            onchange="licenseDenied(this.value)">
+                        <input class="form-check-input" type="radio" required value="yes" id="licenseDenyYes"
+                            name="licenseDeny" onchange="licenseDenied(this.value)">
                         <label class="form-check-label ms-4" for="licenseDenyYes">
                             Yes
                         </label>
@@ -407,7 +597,7 @@
                         </h6>
                     </div>
                     <div class="form-check" d-flex align-items-end>
-                        <input class="form-check-input" type="radio" value="no" id="licenseSuspendedNo"
+                        <input class="form-check-input" type="radio" required value="no" id="licenseSuspendedNo"
                             name="licenseSuspended" onchange="licenseNotSuspended(this.value)">
                         <label class="form-check-label label ms-4" for="licenseSuspendedNo">
                             No
@@ -415,7 +605,7 @@
                     </div>
 
                     <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" value="yes" id="licenseSuspendedYes"
+                        <input class="form-check-input" type="radio" required value="yes" id="licenseSuspendedYes"
                             name="licenseSuspended" onchange="licenseSuspended(this.value)">
                         <label class="form-check-label ms-4" for="licenseSuspendedYes">
                             Yes
@@ -451,16 +641,16 @@
 
                 </div>
                 <div class="form-check" d-flex align-items-end>
-                    <input class="form-check-input" type="radio" value="no" id="militaryNo" name="militarydriving"
-                        onchange="notMilitaryDriver(this.value)">
+                    <input class="form-check-input" type="radio" required value="no" id="militaryNo"
+                        name="militarydriving" onchange="notMilitaryDriver(this.value)">
                     <label class="form-check-label ms-4" for="militaryNo">
                         No
                     </label>
                 </div>
 
                 <div class="form-check mt-2">
-                    <input class="form-check-input" type="radio" value="yes" id="militaryYes" name="militarydriving"
-                        onchange="militaryDriver(this.value)">
+                    <input class="form-check-input" type="radio" required value="yes" id="militaryYes"
+                        name="militarydriving" onchange="militaryDriver(this.value)">
                     <label class="form-check-label ms-4" for="militaryYes">
                         Yes
                     </label>
@@ -475,7 +665,8 @@
         <div id="form2-page7" class="form-page2" style="display: none;">
             <div id="histroyValidator">
 
-                <h4 class="just-color" style="border-bottom: 2px solid #8bafdf; width: 100%; padding-bottom: 5px;">Employment Verification</h4>
+                <h4 class="just-color" style="border-bottom: 2px solid #8bafdf; width: 100%; padding-bottom: 5px;">
+                    Employment Verification</h4>
                 <p class="question-label">
                     List your past TEN (10) years of Employment History. Indicate if each job or school involved
                     FMCSA-regulated driving and/or DOT drug & alcohol testing. You must account for any gaps in
@@ -502,16 +693,18 @@
                                 <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
                                     <label class="question-label">Type of Business/School</label>
 
-                                    <input required type="text"  placeholder="Enter Text" data-validate="text" name="companyType"
-                                        autocomplete="off" class="form-control" onchange="updateProgress2('form2')" />
+                                    <input required type="text" placeholder="Enter Text" data-validate="text"
+                                        name="companyType" autocomplete="off" class="form-control"
+                                        onchange="updateProgress2('form2')" />
                                     <small class="error-message"></small>
                                 </div>
 
                                 <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
                                     <label class="question-label">Address</label>
 
-                                    <input required type="text"  placeholder="Enter Text" data-validate="text" name="companyAddress"
-                                        autocomplete="off" class="form-control" onchange="updateProgress2('form2')" />
+                                    <input required type="text" placeholder="Enter Text" data-validate="text"
+                                        name="companyAddress" autocomplete="off" class="form-control"
+                                        onchange="updateProgress2('form2')" />
                                     <small class="error-message"></small>
                                 </div>
                             </div>
@@ -532,8 +725,56 @@
                                     <select required data-validate="text" name="companyState" id="companyState"
                                         class=" state-feild">
                                         <option value="">Select One</option>
-                                        <option value="state2">Dallas</option>
-                                        <option value="state3">Washington Dc</option>=
+                                        <option value="state2">Alabama</option>
+                                        <option value="state3">Alaska</option>
+                                        <option value="state4">Arizona</option>
+                                        <option value="state5">Arkansas</option>
+                                        <option value="state6">California</option>
+                                        <option value="state7">Colorado</option>
+                                        <option value="state8">Connecticut</option>
+                                        <option value="state9">Delaware</option>
+                                        <option value="state10">Florida</option>
+                                        <option value="state11">Georgia</option>
+                                        <option value="state12">Hawaii</option>
+                                        <option value="state13">Idaho</option>
+                                        <option value="state14">Illinois</option>
+                                        <option value="state15">Indiana</option>
+                                        <option value="state16">Iowa</option>
+                                        <option value="state17">Kansas</option>
+                                        <option value="state18">Kentucky</option>
+                                        <option value="state19">Louisiana</option>
+                                        <option value="state20">Maine</option>
+                                        <option value="state21">Maryland</option>
+                                        <option value="state22">Massachusetts</option>
+                                        <option value="state23">Michigan</option>
+                                        <option value="state24">Minnesota</option>
+                                        <option value="state25">Mississippi</option>
+                                        <option value="state26">Missouri</option>
+                                        <option value="state27">Montana</option>
+                                        <option value="state28">Nebraska</option>
+                                        <option value="state29">Nevada</option>
+                                        <option value="state30">New Hampshire</option>
+                                        <option value="state31">New Jersey</option>
+                                        <option value="state32">New Mexico</option>
+                                        <option value="state33">New York</option>
+                                        <option value="state34">North Carolina</option>
+                                        <option value="state35">North Dakota</option>
+                                        <option value="state36">Ohio</option>
+                                        <option value="state37">Oklahoma</option>
+                                        <option value="state38">Oregon</option>
+                                        <option value="state39">Pennsylvania</option>
+                                        <option value="state40">Rhode Island</option>
+                                        <option value="state41">South Carolina</option>
+                                        <option value="state42">South Dakota</option>
+                                        <option value="state43">Tennessee</option>
+                                        <option value="state44">Texas</option>
+                                        <option value="state45">Utah</option>
+                                        <option value="state46">Vermont</option>
+                                        <option value="state47">Virginia</option>
+                                        <option value="state48">Washington</option>
+                                        <option value="state49">West Virginia</option>
+                                        <option value="state50">Wisconsin</option>
+                                        <option value="state51">Wyoming</option>
                                     </select>
                                 </div>
                                 <div class="col">
@@ -548,38 +789,39 @@
                             <div class="row mt-3 mb-3">
                                 <div class="col">
                                     <label class="question-label">Start Date</label>
-
-                                    <input required type="date" class="dab form-control " id="companyStart"
+                                    <input required type="date" class="dab form-control" id="companyStart"
                                         name="startDate" onchange="validateEmploymentHistory()">
                                     <small class="error-message"></small>
                                 </div>
 
                                 <div class="col">
                                     <label class="question-label">Separation Date</label>
-                                    <input required type="date" class="form-control" id="companySeparation" name="separationDate"
-                                        onchange="validateEmploymentHistory()">
-                                    <!-- onchange="handleDateChange2(event)" -->
+                                    <input required type="date" class="form-control" id="companySeparation"
+                                        name="separationDate" onchange="validateEmploymentHistory()">
                                     <small class="error-message"></small>
                                 </div>
 
                                 <div class="col" id="notApplicable">
                                     <label class="question-label mt-1">Not Applicable</label>
                                     <div class="row">
-                                        <div class="col-auto checkbox notbox ">
+                                        <div class="col-auto checkbox notbox">
                                             <input class="form-check-input box" type="checkbox" id="stillEmployee"
-                                                name="endorsements" value="None" onchange="updateProgress2('form2')">
+                                                name="endorsements" value="None" onchange="toggleEmploymentDates()">
                                         </div>
                                         <div class="col">
-                                            <label class="form-check-label"  for="stillEmployeel">Currently Still Employed</label>
+                                            <label class="form-check-label" for="stillEmployee">Currently Still
+                                                Employed</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+
                             <div class="row">
                                 <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                     <label class="question-label">Supervisor Name</label>
 
-                                    <input required required type="text" data-validate="text" name="supervisor"
+                                    <input required  type="text" data-validate="text" name="supervisor"
                                         autocomplete="off"
                                         oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"
                                         class="form-control" onchange="updateProgress2('form2')"
@@ -598,8 +840,8 @@
                                 </div>
                                 <div class="col-12 mt-4">
                                     <label class="question-label">Reason for Leaving</label>
-                                    <textarea required name="leaveReason" id="leavingReason" placeholder="Enter Text" rows="4"
-                                        class="form-control mt-2 txtfeild"></textarea>
+                                    <textarea required name="leaveReason" id="leavingReason" placeholder="Enter Text"
+                                        rows="4" class="form-control mt-2 txtfeild"></textarea>
                                 </div>
 
                             </div>
@@ -611,7 +853,7 @@
                                         (FMCSA) rules while employed by your current employer?</p>
                                 </div>
                                 <div class="form-check" d-flex align-items-end>
-                                    <input class="form-check-input" type="radio" value="no" id="federalMotorNo"
+                                    <input class="form-check-input" type="radio" required value="no" id="federalMotorNo"
                                         name="federalCarrier" onchange="updateProgress2('form2')">
                                     <label class="form-check-label ms-4" for="federalMotorNo">
                                         No
@@ -619,8 +861,8 @@
                                 </div>
 
                                 <div class="form-check mt-2">
-                                    <input class="form-check-input" type="radio" value="yes" id="federalMotorYes"
-                                        name="federalCarrier" onchange="updateProgress2('form2')">
+                                    <input class="form-check-input" type="radio" required value="yes"
+                                        id="federalMotorYes" name="federalCarrier" onchange="updateProgress2('form2')">
                                     <label class="form-check-label ms-4" for="federalMotorYes">
                                         Yes
                                     </label>
@@ -637,26 +879,28 @@
                                         substances testing requirements of 49 CFR Part 40?</p>
                                 </div>
                                 <div class="form-check" d-flex align-items-end>
-                                    <input class="form-check-input mt-2" type="radio" value="no" id="sensitiveNo"
-                                        name="sensitive" onchange="removeDotMode(this.closest('[id^=dotDiv]').id,this.value)">
+                                    <input class="form-check-input mt-2" type="radio" required value="no"
+                                        id="sensitiveNo" name="sensitive"
+                                        onchange="removeDotMode(this.closest('[id^=dotDiv]').id,this.value)">
                                     <label class="form-check-label ms-4" for="sensitiveNo">
                                         No
                                     </label>
                                 </div>
 
                                 <div class="form-check mt-2">
-                                    <input class="form-check-input" type="radio" value="yes" id="sensitiveYes"
-                                        name="sensitive" onchange="addDotMode(this.closest('[id^=dotDiv]').id,this.value)">
+                                    <input class="form-check-input" type="radio" required value="yes" id="sensitiveYes"
+                                        name="sensitive"
+                                        onchange="addDotMode(this.closest('[id^=dotDiv]').id,this.value)">
                                     <label class="form-check-label ms-4" for="sensitiveYes">
                                         Yes
                                     </label>
                                 </div>
 
 
-    
+
                             </div>
 
-                            
+
 
 
                             <div id="unemployDiv" class="col-12 d-flex flex-column mt-3 mb-4">
@@ -667,16 +911,18 @@
                                         and the prior employment period ?</p>
                                 </div>
                                 <div class="form-check" d-flex align-items-end>
-                                    <input class="form-check-input" type="radio" value="no" id="unemploymentNo"
-                                        name="unemployment" onchange="removeUnemployment(this.closest('[id^=unemployDiv]').id,this.value)">
+                                    <input class="form-check-input" type="radio" required value="no" id="unemploymentNo"
+                                        name="unemployment"
+                                        onchange="removeUnemployment(this.closest('[id^=unemployDiv]').id,this.value)">
                                     <label class="form-check-label ms-4" for="unemploymentNo">
                                         No
                                     </label>
                                 </div>
 
                                 <div class="form-check mt-2">
-                                    <input class="form-check-input" type="radio" value="yes" id="unemploymentYes"
-                                        name="unemployment" onchange="addUnemployment(this.closest('[id^=unemployDiv]').id,this.value)">
+                                    <input class="form-check-input" type="radio" required value="yes"
+                                        id="unemploymentYes" name="unemployment"
+                                        onchange="addUnemployment(this.closest('[id^=unemployDiv]').id,this.value)">
                                     <label class="form-check-label ms-4" for="unemploymentYes">
                                         Yes
                                     </label>
@@ -690,7 +936,7 @@
                                 <p class="question-label">Do you have additional Employers to add ?</p>
                             </div>
                             <div class="form-check" d-flex align-items-end>
-                                <input class="form-check-input" type="radio" value="no" id="additionalNo"
+                                <input class="form-check-input" type="radio" required value="no" id="additionalNo"
                                     name="additional"
                                     onchange="clearAdditionalForms(this.closest('[id^=employmentForm]').id);"
                                     oninput="updateProgress2('form2')">
@@ -700,7 +946,7 @@
                             </div>
 
                             <div class="form-check mt-2">
-                                <input class="form-check-input" type="radio" value="yes" id="additionalYes"
+                                <input class="form-check-input" type="radio" required value="yes" id="additionalYes"
                                     name="additional" onchange="addNewEmploymentForm()"
                                     oninput="updateProgress2('form2')">
                                 <label class="form-check-label ms-4" for="additionalYes">
@@ -744,8 +990,8 @@
             <div>
                 <div class="mt-2">
                     <p class="question-label">
-                    You have the following rights regarding the investigative information that will be provided to
-                    Dominion Energy from your previous employers:
+                        You have the following rights regarding the investigative information that will be provided to
+                        Dominion Energy from your previous employers:
                     </p>
 
                 </div>
@@ -782,36 +1028,44 @@
                     </p>
                 </div>
                 <div>
-                    <p class="question-label">5. A CDL driver who believes a Drug and Alcohol Clearinghouse record for their license is
+                    <p class="question-label">5. A CDL driver who believes a Drug and Alcohol Clearinghouse record for
+                        their license is
                         incorrect may petition the FMCSA to correct the error.
                     </p>
                 </div>
 
                 <div class="address-container">
-                    <div class="headLine just-color" >
+                    <div class="headLine just-color">
                         PRE-EMPLOYMENT/PRE-TRANSFER CONSENT FOR FEDERAL MOTOR CARRIER SAFETY ADMINISTRATION (FMCSA) DRUG
                         & ALCOHOL CLEARINGHOUSE QUERY
                     </div>
                     <div class="matter mt-3">
                         <div class="para1">
                             <p class="question-label">
-                            FMCSR Section 382.701 requires that holders of a commercial driver's license (CDL) or
-                            commercial learner's permit (CLP) who are changing employers or who are transferring from a
-                            non-driving position into a position that requires operating a commercial motor vehicle give
-                            specific consent for a Drug and Alcohol Clearinghouse query. This requires action on your
-                            part to register in the Clearinghouse and give electronic consent in the Clearinghouse for
-                            the pre-employment query when requested by Dominion Energy. Failure to immediately register
-                            your CDL or CLP in the Clearinghouse at <a class="link1">
-                                www.clearinghouse.fmcas.dot.gov</a> will delay your background investigation. If hired,
-                            you will be subject to an annual Clearinghouse query to verify that you remain qualified as
-                            a CDL-licensed driver.
+                                FMCSR Section 382.701 requires that holders of a commercial driver's license (CDL) or
+                                commercial learner's permit (CLP) who are changing employers or who are transferring
+                                from a
+                                non-driving position into a position that requires operating a commercial motor vehicle
+                                give
+                                specific consent for a Drug and Alcohol Clearinghouse query. This requires action on
+                                your
+                                part to register in the Clearinghouse and give electronic consent in the Clearinghouse
+                                for
+                                the pre-employment query when requested by Dominion Energy. Failure to immediately
+                                register
+                                your CDL or CLP in the Clearinghouse at <a class="link1">
+                                    www.clearinghouse.fmcas.dot.gov</a> will delay your background investigation. If
+                                hired,
+                                you will be subject to an annual Clearinghouse query to verify that you remain qualified
+                                as
+                                a CDL-licensed driver.
                             </p>
                         </div>
 
                         <div class="para2 mt-3">
                             <p class="question-label">
-                            As part of this application and safety performance background investigation, you must
-                            provide the following consent and acknowledgement
+                                As part of this application and safety performance background investigation, you must
+                                provide the following consent and acknowledgement
                             </p>
                         </div>
 
@@ -836,11 +1090,13 @@
                         <div class="para3 mt-3">
                             <div class=" form-check col-12">
                                 <div class="checkbox ">
-                                    <input class="form-check-input " type="checkbox" id="generalAcknowledgement"
-                                        name="acknowledgement1" value="Van" onchange="updateProgress2('form2')">
+                                    <input class="form-check-input " type="checkbox" required
+                                        id="generalAcknowledgement" name="acknowledgement1" value="Van"
+                                        onchange="updateProgress2('form2')">
                                 </div>
                                 <div class="label ms-3">
-                                    <label class="form-check-label"  for="generalAcknowledgement" class="just-color">I acknowledge the requ requirement and give my
+                                    <label class="form-check-label" for="generalAcknowledgement" class="just-color">I
+                                        acknowledge the requ requirement and give my
                                         general consent for Dominion Energy to perform DACH limited queries for the term
                                         of my employment.</label>
                                 </div>
@@ -888,7 +1144,7 @@
                 </p>
             </div>
             <div>
-                <p class="question-label" >
+                <p class="question-label">
                     I have read and fully understand the stipulations of this employment application. I agree that if
                     employed by Dominion Energy, unless otherwise agreed to in writing signed by me or my designated
                     representative and an authorized representative of the company, my employment is at will and will
@@ -914,7 +1170,7 @@
                 <label for="signBox" class="just-color form-check-label">Applicant's Signature</label>
                 <canvas class="mt-1" id="signBox" width="400" height="200" style="border: 1px solid #ccc;"></canvas>
                 <br>
-                <p id="clearButton"  data-validate="text" class="clearSign ">Clear Signature</p>
+                <p id="clearButton" data-validate="text" class="clearSign ">Clear Signature</p>
             </div>
 
             <div class="button-row">

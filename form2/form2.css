@@ -571,7 +571,11 @@ padding: 0px !important;
     padding: 5px 10px;
     /* width: 40% !important; */
 }
-
+.still{
+    position: relative;
+    top: 0px;
+    right: 0px;
+}
 .clearSign{
     cursor:pointer;
     color:white;

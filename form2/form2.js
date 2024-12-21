@@ -1643,7 +1643,7 @@ function removeUnemployment(presentId, value) {
 
 
 
-//Page 9 (signatureBox Canvas...) & invalid Success Modals
+
 function validateEmploymentHistory() {
     const container = document.getElementById('employmentFormsContainer');
     const forms = container.querySelectorAll('[id^="employmentForm"]');
@@ -1691,8 +1691,8 @@ function toggleEmploymentDates() {
 
     if (stillEmployeeCheckbox.checked) {
         const currentDate = new Date();
-        const startDate = new Date(currentDate.setFullYear(currentDate.getFullYear() - 10));
-        startDateField.value = startDate.toISOString().split('T')[0];
+        // const startDate = new Date(currentDate.setFullYear(currentDate.getFullYear() - 10));
+        // startDateField.value = startDate.toISOString().split('T')[0];
 
         endDateField.value = new Date().toISOString().split('T')[0];
         endDateField.required = false;
@@ -1735,6 +1735,8 @@ function removeEmploymentValidation() {
         caluclateTotalFeilds();
     }
 }
+
+
 
 
 var canvas, context;

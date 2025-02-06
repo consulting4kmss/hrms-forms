@@ -16,6 +16,7 @@ function nextPage2(pageNumber) {
         }
         if (pageNumber - 1 == 7) {
             if (totalYears >= 10) {
+                collectFormData('form2', pageNumber - 1);
                 const currentPage = document.querySelector(`#form2-page${pageNumber - 1}`);
                 const nextPage = document.querySelector(`#form2-page${pageNumber}`);
                 currentPage.style.display = 'none';
@@ -27,6 +28,7 @@ function nextPage2(pageNumber) {
             }
         }
         else {
+            collectFormData('form2', pageNumber - 1);
             const currentPage = document.querySelector(`#form2-page${pageNumber - 1}`);
             const nextPage = document.querySelector(`#form2-page${pageNumber}`);
             currentPage.style.display = 'none';
@@ -216,17 +218,23 @@ function handleAddressChange(radio) {
         newTemplate.querySelectorAll('select').forEach(el => el.value = '');
 
         // Append the new template
+        addressCounter++;
+        console.log(addressCounter);
         addressSection.appendChild(newTemplate);
+    
         caluclateTotalFeilds();
     } else if (radio.value === 'no') {
         // Remove all templates with a higher data-template-id
         const currentTemplateId = parseInt(parentContainer.dataset.templateId, 10);
         document.querySelectorAll('#addressSon').forEach(el => {
             if (parseInt(el.dataset.templateId, 10) > currentTemplateId) {
-                el.remove();
+                addressCounter--;
+                console.log(addressCounter);
+                el.remove();     
                 caluclateTotalFeilds();
             }
         });
+       
         caluclateTotalFeilds();
     }
 }
@@ -383,13 +391,28 @@ function removeHistoryElement(value) {
     if (value == 'no') {
         const Element = document.getElementById('Address1');
         if (Element) {
+            addressCounter=1;
+               console.log(addressCounter);
             Element.remove();
         }
+  
         caluclateTotalFeilds();
     }
 
 
 }
+
+// function recalculateAddressIds() {
+//     const addressElements = document.querySelectorAll('#addressSon');
+//     if (addressElements.length > 0) {
+//         // Get the highest data-template-id among the remaining elements
+//         addressCounter = Math.max(...Array.from(addressElements).map(el => parseInt(el.dataset.templateId, 10)));
+//     } else {
+//         addressCounter = 1; // Reset if no elements exist
+//     }
+
+// }
+
 function licenseAccepted(value) {
     if (value == 'no') {
         if (document.getElementById('denyExplanation')) {
@@ -856,7 +879,39 @@ function getValidationRule(input) {
     return rules[validationType] || null;
 }
 
+function collectFormData(formId, pageNumber) {
+    const form = document.getElementById(formId);
+    const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
+    
+    if (!currentPage) {
+        console.error(`Page ${pageNumber} not found inside form ${formId}`);
+        return {};
+    }
 
+    const inputs = currentPage.querySelectorAll('input, select, textarea');
+    let data = {};
+
+    inputs.forEach(input => {
+        // Ignore hidden fields
+        //if (input.offsetParent === null) return;
+
+        if (input.type === 'radio') {
+            if (input.checked) {
+                data[input.name] = input.value;
+            }
+        } else if (input.type === 'checkbox') {
+            if (!data[input.name]) data[input.name] = [];
+            if (input.checked) {
+                data[input.name].push(input.value);
+            }
+        } else {
+            data[input.name] = input.value.trim();
+        }
+    });
+
+    console.log("Collected Data:", JSON.stringify(data, null, 2)); // Print data in JSON format
+    return data;
+}
 
 let violationCount = 0;
 

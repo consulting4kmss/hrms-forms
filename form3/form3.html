@@ -1,4 +1,4 @@
-<!-- <div class="form-container text-white">
+<div class="form-container text-white">
     <div id="form1" class="form-card ">
         <div class="col-12">
             <h3 class="heading">Pre-Employment Candidate Health Evaluation Questionnaire (HEQ)</h3>
@@ -31,12 +31,12 @@
                     <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                         <label>First Name</label>
 
-                        <input required type="text" data-validate="text" name="firstName"  autocomplete="off" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  class="form-control" onchange="updateProgress('form1')" />
+                        <input id="firstName" required type="text" data-validate="text" name="firstName"  autocomplete="off" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  class="form-control" onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
                     </div>
                     <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                         <label>Last Name</label>
-                        <input required type="text" data-validate="text" autocomplete="off" name="lastName"  autocomplete="off" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  class="form-control" onchange="updateProgress('form1')" />
+                        <input id="lastName" required type="text" data-validate="text" autocomplete="off" name="lastName"  autocomplete="off" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  class="form-control" onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
 
   
@@ -118,13 +118,13 @@
             </div>
             <div class="form-row">
                 <div>
-                    <label>Height</label>
-                    <input required type="number" step="000.01" min="0" max="249.99" name="height" data-validate="number" autocomplete="off" maxlength="6" oninput="this.value = this.value.slice(0, 3); validInput(validInput(this, /^\d*(\.\d{0,2})?$/, 'Only numbers with up to 2 decimals are allowed'));" />
+                    <label>Height</label>                                                                                                                                                                                                 
+                    <input required id="weight" type="decimal" step="0.01" min="0" max="249.99" data-validate="number" autocomplete="off" maxlength="6" oninput="validInput(this, /^\d{0,3}(\.\d{0,2})?$/, 'Only numbers with up to 2 decimals are allowed');" />
                     <small class="error-message"></small>
                 </div>
                 <div>
-                    <label>Weight</label>
-                    <input required type="number"name="weight" autocomplete="off" maxlength="4" data-validate="number" oninput="this.value = this.value.slice(0, 3); validInput(this, /^[0-9]*$/, 'Only numbers are allowed');" />
+                    <label>Weight</label>                                                                                                                                                                                                 
+                    <input required id="height" type="decimal" step="0.01" min="0" max="249.99" data-validate="number" autocomplete="off" maxlength="6" oninput="validInput(this, /^\d{0,3}(\.\d{0,2})?$/, 'Only numbers with up to 2 decimals are allowed');" />
                     <small class="error-message"></small>
                 </div>
             </div>
@@ -172,7 +172,7 @@
 
                     <div id="defectiveVisionYearInput" class="col-12 mt-2" style="display: none;">
                         <label class="question-label">Indicate Year it Occurred</label>
-                        <select name="defectiveVisionYear" id="defectiveVisionYear"
+                        <select style="display: none;" name="defectiveVisionYear" id="defectiveVisionYear"
                             class="form-control mt-2 select-feild ">
                             <option class="opt" value="">Select Year</option>
                             <option class="opt" value="2020">2020</option>
@@ -183,7 +183,7 @@
                     </div>
                     <div id="defectiveVisionExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea name="defectiveVisionExplanation" id="defectiveVisionExplanation" rows="4"
+                        <textarea style="display: none;" name="defectiveVisionExplanation" id="defectiveVisionExplanation" rows="4"
                             class="form-control mt-2 txtfeild "></textarea>
                     </div>
                     <div class="col-12 mt-3">
@@ -194,7 +194,7 @@
                             <div class="checkbox-item d-flex align-items-center">
                                 <div class="col-12 d-flex flex-column">
                                     <div class="form-check" d-flex align-items-end>
-                                        <input class="form-check-input" type="checkbox" value="no" id="visionOtherNo"
+                                        <input  class="form-check-input" type="checkbox" value="no" id="visionOtherNo"
                                             name="visionOther" onchange="updateProgress('form1')">
 
                                         <label class="form-check-label label ms-4" for="visionOtherNo">
@@ -216,7 +216,7 @@
                         </div>
                         <div id="visionOtherYearInput" class="col-12 " style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select name="visionOtherYear" id="visionOtherYear" class="form-control mt-2 select-feild ">
+                            <select style="display:none" name="visionOtherYear" id="visionOtherYear" class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
                                 <option value="2021">2021</option>
@@ -226,7 +226,7 @@
                         </div>
                         <div id="visionOtherExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea name="visionOtherExplanation" id="visionOtherExplanation" rows="4"
+                            <textarea style="display:none" name="visionOtherExplanation" id="visionOtherExplanation" rows="4"
                                 class="form-control mt-2 txtfeild "></textarea>
                         </div>
                     </div>
@@ -2445,7 +2445,7 @@
 
                     <div>
                         <label for="signatureBox">Applicant Signature</label>
-                        <canvas id="signatureBox" width="400" height="200" style="border: 1px solid #ccc;"></canvas>
+                        <canvas id="signatureBox" width="400" height="200" style="border: 1px solid #ccc;" name="sign"></canvas>
                         <br>
                         <p id="clearButton" type="text" data-validate="text" class="clearSign">Clear Signature</p>
 
@@ -2496,4 +2496,4 @@
     </div>
 
 </div>
-</div> -->
+</div>

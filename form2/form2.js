@@ -15,7 +15,8 @@ function nextPage2(pageNumber) {
             validateEmploymentHistory();
         }
         if (pageNumber - 1 == 7) {
-            if (totalYears >= 10) {
+            reason=document.getElementById('employHistroy');
+            if (totalYears >= 10 || reason.value) {
                 collectFormData('form2', pageNumber - 1);
                 const currentPage = document.querySelector(`#form2-page${pageNumber - 1}`);
                 const nextPage = document.querySelector(`#form2-page${pageNumber}`);
@@ -170,27 +171,6 @@ function caluclateTotalFeilds() {
         }).length;
     updateProgress2('form2');
 }
-// function handleDateChange2(event) {
-//     console.log('entered into date 2');
-//     const selectedDate = new Date(event.target.value);
-
-//     if (!isNaN(selectedDate)) { // Ensure the date is valid
-//         const formattedDate = formatDateToDDMMYYYY2(selectedDate);
-//         const dateOutput = event.target.nextElementSibling; // Assuming the output is next to the input
-//         if (dateOutput) {
-//             dateOutput.textContent = `Selected Date: ${formattedDate}`;
-//         }
-//     }
-// }
-
-// function formatDateToDDMMYYYY2(date) {
-//     const day = String(date.getDate()).padStart(2, '0');
-//     const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
-//     const year = date.getFullYear();
-//     return `${month}/${day}/${year}`;
-// }
-
-
 
 let addressCounter = 1; // Counter for unique IDs
 

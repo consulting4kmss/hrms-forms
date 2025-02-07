@@ -81,7 +81,10 @@ function updatePageInfo(formId, currentPage) {
 function updateProgress(formId) {
 
     caluclateFilledFeilds();
+    console.log('Filled Fields:', filledFields);   
+    console.log('Total Fields:', totalFields); 
     const percentage = ((filledFields / totalFields) * 100);
+    console.log('Percentage:', percentage);
 
     const progressBar = document.querySelector('.progress-bar');
     progressBar.style.width = `${percentage}%`;
@@ -106,9 +109,10 @@ function caluclateTotalFeilds() {
             return true;
         })
         .filter(field => field.style.display !== 'none') // Only count fields that are visible (displayed)
+        .filter(field => field.id !== 'midName' && field.id !== 'add2')
         .length;
 
-    console.log("Total Fields in calculation:", totalFields);
+   // console.log("Total Fields in calculation:", totalFields);
 
     updateProgress('form1');
 }
@@ -123,6 +127,10 @@ function caluclateFilledFeilds() {
             return;
         }
         if ((field.type === 'text' || field.type === 'email' || field.type === 'date' || field.type === 'number' || field.type === 'decimal' || field.tagName === 'SELECT' || field.tagName === 'TEXTAREA' || field.id === 'weight' || field.id === 'height') && field.value.trim()) {
+            if (field.id === 'midName' || field.id === 'add2') {
+                console.log("field.id", field.id);
+                return;
+            }
             filledFields++;
 
         } else if (field.tagName === 'CANVAS' && !isCanvasEmpty(field)) {
@@ -147,20 +155,61 @@ function validatePage(formId, pageNumber) {
     let isValid = true;
 
 
+    // inputs.forEach(input => {
+    //     const validateInput = () => {
+    //         if (input.type === 'checkbox') {
+    //             const checkboxes = currentPage.querySelectorAll(`input[name="${input.name}"]`);
+    //             const isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+    //             if (!isAnyChecked) {
+    //                 isValid = false;
+    //                 checkboxes.forEach(checkbox => checkbox.classList.add('highlight-feedback'));
+    //             } else {
+    //                 checkboxes.forEach(checkbox => checkbox.classList.remove('highlight-feedback'));
+    //             }
+    //         } else if (input.required) {
+    //             if (input.tagName === 'SELECT' && !input.value) {
+    //                 isValid = false;
+    //                 input.classList.add('highlight');
+    //             } else if (input.tagName === 'TEXTAREA' && !input.value.trim()) {
+    //                 isValid = false;
+    //                 input.classList.add('highlight');
+    //             } else if (input.value.trim()) {
+    //                 input.classList.remove('highlight');
+    //             } else {
+    //                 isValid = false;
+    //                 input.classList.add('highlight');
+    //             }
+    //         } else {
+    //             input.classList.remove('highlight');
+    //         }
+    //     };
+
+
+    //     input.addEventListener('input', validateInput);
+    //     if (input.tagName === 'SELECT') {
+    //         input.addEventListener('change', validateInput);
+    //     }
+
+
+    //     validateInput();
+    // });
+
     inputs.forEach(input => {
         const validateInput = () => {
             if (input.type === 'checkbox') {
                 const checkboxes = currentPage.querySelectorAll(`input[name="${input.name}"]`);
                 const isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-
+    
                 if (!isAnyChecked) {
                     isValid = false;
                     checkboxes.forEach(checkbox => checkbox.classList.add('highlight-feedback'));
                 } else {
                     checkboxes.forEach(checkbox => checkbox.classList.remove('highlight-feedback'));
                 }
-            } else if (input.required) {
-                if (input.tagName === 'SELECT' && !input.value) {
+            } else if (input.required && input.offsetParent !== null) {  
+                // **Check if the field is visible**
+                if (input.tagName === 'SELECT' && !input.value.trim()) {
                     isValid = false;
                     input.classList.add('highlight');
                 } else if (input.tagName === 'TEXTAREA' && !input.value.trim()) {
@@ -176,17 +225,15 @@ function validatePage(formId, pageNumber) {
                 input.classList.remove('highlight');
             }
         };
-
-
+    
         input.addEventListener('input', validateInput);
         if (input.tagName === 'SELECT') {
             input.addEventListener('change', validateInput);
         }
-
-
+    
         validateInput();
     });
-
+    
 
 
     const inputsToValidate = document.querySelectorAll('[data-validate]');
@@ -248,7 +295,7 @@ function getValidationRule(input) {
 function nextPage(formId, pageNumber) {
    
 
-      if (validatePage(formId, pageNumber - 1)) {
+    if (validatePage(formId, pageNumber - 1)) {
    
     if (pageNumber == 4) {
     
@@ -496,6 +543,11 @@ function toggleFields(formId, config) {
                 // Hide all child elements when the parent is hidden
                 childElements.forEach(child => {
                     child.style.display = 'none';  // Ensure child elements are also hidden
+                    if (child.tagName === 'INPUT' || child.tagName === 'TEXTAREA') {
+                        child.value = ''; 
+                    } else if (child.tagName === 'SELECT') {
+                        child.selectedIndex = 0; // Reset dropdown selection
+                    }
                 });
                 // Remove required attribute for the first child element
                 const firstChild = childElements[0];

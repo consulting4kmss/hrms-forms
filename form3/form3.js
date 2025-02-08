@@ -768,14 +768,6 @@ function validInput(input, regex, errorMessage) {
 
 
 
-function formatDateToDDMMYYYY(date) {
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-    return `${month}-${day}-${year}`;
-}
-
-
 const today = new Date();
 const formattedTodayForInput = today.toISOString().split('T')[0];
 document.getElementById('dob').setAttribute('max', formattedTodayForInput);
@@ -783,9 +775,30 @@ document.getElementById('doa').setAttribute('max', formattedTodayForInput);
 
 
 function handleDateChange(event) {
-    const selectedDate = new Date(event.target.value);
-    const formattedDate = formatDateToDDMMYYYY(selectedDate);
-   // document.getElementById('formattedDate').textContent = `Selected Date: ${formattedDate}`;
+    const input = event.target;
+    const selectedDate = new Date(input.value);
+    const year = selectedDate.getFullYear();
+    const errorField = input.nextElementSibling;
+    if (year > 9999 || year < 1000) { 
+        input.classList.add('highlight');        
+        errorField.style.display = 'block';
+        errorField.textContent = 'Invalid date. Please enter a valid Year.';
+      
+        return;
+    }else{
+        input.classList.remove('highlight');
+        errorField.style.display = 'none';
+        errorField.style.display = 'none';
+
+    }
+}
+
+function formatDateToDDMMYYYY(date) {
+    if (!(date instanceof Date) || isNaN(date)) return "";
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
 }
 
 function validateAndFormatPhoneNumber(input) {

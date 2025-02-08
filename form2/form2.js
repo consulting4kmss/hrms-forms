@@ -172,7 +172,7 @@ function caluclateTotalFeilds() {
     updateProgress2('form2');
 }
 
-let addressCounter = 1; // Counter for unique IDs
+var addressCounter = 1; // Counter for unique IDs
 
 // Main function to handle Yes/No selection
 function handleAddressChange(radio) {
@@ -191,15 +191,16 @@ function handleAddressChange(radio) {
             if (el.name) el.name = el.name.replace(/\d+$/, addressCounter);
             if (el.htmlFor) el.htmlFor = el.htmlFor.replace(/\d+$/, addressCounter);
         });
-
+        const label = newTemplate.querySelector('.question-label');
+    if (label) {
+        label.textContent = `Additional Address #${addressCounter}`;
+    }
         // Reset inputs in the cloned template
         newTemplate.querySelectorAll('input[type="text"], input[type="number"], input[type="date"]').forEach(el => el.value = '');
         newTemplate.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
         newTemplate.querySelectorAll('select').forEach(el => el.value = '');
 
-        // Append the new template
-        addressCounter++;
-        console.log(addressCounter);
+
         addressSection.appendChild(newTemplate);
     
         caluclateTotalFeilds();
@@ -324,13 +325,13 @@ function addressHistory(value) {
                         <div class="form-row">
                             <div>
                                 <label class="question-label">From</label>
-                                <input required type="date" class="dab form-control" id="additionalFrom${addressCounter}" name="from${addressCounter}"
+                                <input required type="date" max="9999-12-31" class="dab form-control" id="additionalFrom${addressCounter}" name="from${addressCounter}"
                                     onchange="handleDateChange2(event)">
                                 <small class="error-message"></small>
                             </div>
                             <div>
                                 <label class="question-label">To</label>
-                                <input required type="date" class="dab form-control" id="additionalTo${addressCounter}" name="to${addressCounter}"
+                                <input required type="date" max="9999-12-31" class="dab form-control" id="additionalTo${addressCounter}" name="to${addressCounter}"
                                     onchange="handleDateChange2(event)">
                                 <small class="error-message"></small>
                             </div>
@@ -382,16 +383,16 @@ function removeHistoryElement(value) {
 
 }
 
-// function recalculateAddressIds() {
-//     const addressElements = document.querySelectorAll('#addressSon');
-//     if (addressElements.length > 0) {
-//         // Get the highest data-template-id among the remaining elements
-//         addressCounter = Math.max(...Array.from(addressElements).map(el => parseInt(el.dataset.templateId, 10)));
-//     } else {
-//         addressCounter = 1; // Reset if no elements exist
-//     }
+function recalculateAddressIds() {
+    const addressElements = document.querySelectorAll('#addressSon');
+    if (addressElements.length > 0) {
+        // Get the highest data-template-id among the remaining elements
+        addressCounter = Math.max(...Array.from(addressElements).map(el => parseInt(el.dataset.templateId, 10)));
+    } else {
+        addressCounter = 1; // Reset if no elements exist
+    }
 
-// }
+}
 
 function licenseAccepted(value) {
     if (value == 'no') {
@@ -447,73 +448,54 @@ function licenseNotSuspended(value) {
 
 
 
-function handleDateChange2(event) {
+// function handleDateChange2(event) {
     
-    const selectedDate = new Date(event.target.value);
+//     const selectedDate = new Date(event.target.value);
 
-    if (!isNaN(selectedDate)) { // Ensure the date is valid
-        const formattedDate = formatDateToDDMMYYYY2(selectedDate);
+//     if (!isNaN(selectedDate)) { // Ensure the date is valid
+//         const formattedDate = formatDateToDDMMYYYY2(selectedDate);
 
-        // Display formatted date in a sibling element
-        const errorMessage = event.target.nextElementSibling; // Assuming <small> follows the input
-        if (errorMessage) {
-            errorMessage.textContent = `Selected Date: ${formattedDate}`;
-        }
+//         // Display formatted date in a sibling element
+//         const errorMessage = event.target.nextElementSibling; // Assuming <small> follows the input
+//         if (errorMessage) {
+//             errorMessage.textContent = `Selected Date: ${formattedDate}`;
+//         }
+//     }
+// }
+
+// function formatDateToDDMMYYYY2(date) {
+//     const day = String(date.getDate()).padStart(2, '0');
+//     const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+//     const year = date.getFullYear();
+//     return `${month}/${day}/${year}`;
+// }
+
+function handleDateChange2(event) {
+    const input = event.target;
+    const selectedDate = new Date(input.value);
+    const year = selectedDate.getFullYear();
+    const errorField = input.nextElementSibling;
+    if (year > 9999 || year < 1000) { 
+        input.classList.add('highlight');        
+        errorField.style.display = 'block';
+        errorField.textContent = 'Invalid date. Please enter a valid Year.';
+      
+        return;
+    }else{
+        input.classList.remove('highlight');
+        errorField.style.display = 'none';
+        errorField.style.display = 'none';
+
     }
 }
 
-function formatDateToDDMMYYYY2(date) {
+function formatDateToDDMMYYYY(date) {
+    if (!(date instanceof Date) || isNaN(date)) return "";
     const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+    const month = String(date.getMonth() + 1).padStart(2, '0');
     const year = date.getFullYear();
-    return `${month}/${day}/${year}`;
+    return `${day}/${month}/${year}`;
 }
-
-// function toggleFields2(formId, config) {
-//     config.forEach(({ radioId, fieldsToShow }) => {
-//         const radiobut = document.getElementById(radioId);
-
-//         fieldsToShow.forEach(fieldId => {
-//             const fieldElement = document.getElementById(fieldId);
-//             const childElements = fieldElement.querySelectorAll('*');
-//             const childIds = Array.from(childElements)
-//                 .filter(element => element.id)
-//                 .map(element => element.id);
-
-
-
-//             if (radiobut && radiobut.checked) {
-//                 fieldElement.style.display = 'block';
-//                 document.getElementById(childIds[0]).required = true;
-//                 document.getElementById(childIds[0]).style.display = 'block';
-//             }
-//             else {
-//                 fieldElement.style.display = 'none';
-//                 document.getElementById(childIds[0]).required = false;
-//                 document.getElementById(childIds[0]).style.display = 'none';
-
-
-//             }
-//         });
-//     });
-
-//     updateProgress2(formId);
-// }
-
-
-
-// const toggleFieldsConfig2 = [
-
-//     {
-//         radioId: "militaryYes",
-//         fieldsToShow: ["fmcsa"]
-//     }
-
-// ]
-
-
-
-
 
 function validateAndFormatPhoneNumber(input) {
     let rawValue = input.value.replace(/\D/g, ''); // Remove non-numeric characters
@@ -629,133 +611,6 @@ function formatSSN(value) {
         return `${value.substring(0, 3)}-${value.substring(3, 5)}-${value.substring(5)}`; // xxx-xx-xxxx format
     }
 }
-
-
-// function validatePage(formId, pageNumber) {
-
-//     const form = document.getElementById(formId);
-//     const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
-//     const inputs = currentPage.querySelectorAll('input, select, textarea');
-//     let isValid = true;
-
-//     inputs.forEach(input => {
-//         const validateInput = () => {
-//             if (input.type === 'checkbox') {
-//                 const checkboxes = currentPage.querySelectorAll(`input[name="${input.name}"]`);
-//                 const isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-
-//                 if (!isAnyChecked) {
-//                     isValid = false;
-//                     checkboxes.forEach(checkbox => checkbox.classList.add('highlight-feedback'));
-//                 } else {
-//                     checkboxes.forEach(checkbox => checkbox.classList.remove('highlight-feedback'));
-//                 }
-//                 console.log("Valid Function TYPE===CHECKBOX", isValid);
-//             }else if(input.type==='radio'){
-//                 const radios=currentPage.querySelectorAll(`input[name="${input.name}"]`);
-//                 const isAnyChecked=Array.from(radios).some(radio=>radio.checked);
-//                 if(!isAnyChecked){
-//                     isValid=false;
-//                     radios.forEach(radio=>radio.classList.add('highlight-feedback') );
-//                 } else{
-//                     radios.forEach(radio=>radio.classList.remove('highlight-feedback'));
-//                 }
-//                 console.log("Valid Function TYPE===RADIO",isValid);
-//             } 
-//             else if (input.required) {
-//                 if (input.tagName === 'SELECT' && !input.value) {
-//                     isValid = false;
-//                     input.classList.add('highlight');
-//                     console.log("Valid Function INPUT REQUIRED TAGNAME==SELECT", isValid);
-//                 } else if (input.tagName === 'TEXTAREA' && !input.value.trim()) {
-//                     isValid = false;
-//                     input.classList.add('highlight');
-//                     console.log("Valid Function INPUT REQUIRED TAGNAME==TEXTAREA", isValid);
-//                 } else if (input.value.trim()) {
-//                     input.classList.remove('highlight');
-//                     console.log("Valid Function INPUT.VALUE.TRIM", isValid);
-//                 } else {
-//                     isValid = false;
-//                     console.log("DEFAULT IN INPUT.REQUIRED", isValid);
-//                     input.classList.add('highlight');
-//                 }
-
-//             } else {
-//                 input.classList.remove('highlight');
-//             }
-//         };
-
-
-//         input.addEventListener('input', validateInput);
-//         if (input.tagName === 'SELECT') {
-//             input.addEventListener('change', validateInput);
-//         }
-
-
-//         validateInput();
-//     });
-
-//     console.log("Valid Function end", isValid);
-//     return isValid;
-// }
-
-
-
-// function validatePage(formId, pageNumber) {
-
-//     const form = document.getElementById(formId);
-//     const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
-//     const inputs = currentPage.querySelectorAll('input, select, textarea');
-//     const canvases = currentPage.querySelectorAll('canvas');
-//     let isValid = true;
-
-
-//     const validationRules = {
-//         text: { regex: /^[a-zA-Z\s]*$/, errorMessage: 'Only letters are allowed' },
-//         number: { regex: /^[0-9]*$/, errorMessage: 'Only numbers are allowed' }
-
-//     };
-
-
-//     inputs.forEach(input => {
-//     const validateInput = () => {
-//                     if (input.type === 'checkbox') {
-//                         const checkboxes = currentPage.querySelectorAll(`input[name="${input.name}"]`);
-//                         const isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-
-//                         if (!isAnyChecked) {
-//                             isValid = false;
-//                             checkboxes.forEach(checkbox => checkbox.classList.add('highlight-feedback'));
-//                         } else {
-//                             checkboxes.forEach(checkbox => checkbox.classList.remove('highlight-feedback'));
-//                         }
-//                     } else if (input.required) {
-//                         if (input.tagName === 'SELECT' && !input.value) {
-//                             isValid = false;
-//                             input.classList.add('highlight');
-//                         } else if (input.tagName === 'TEXTAREA' && !input.value.trim()) {
-//                             isValid = false;
-//                             input.classList.add('highlight');
-//                         } else if (input.value.trim()) {
-//                             input.classList.remove('highlight');
-//                         } else {
-//                             isValid = false;
-//                             input.classList.add('highlight');
-//                         }
-//                     } else {
-//                         input.classList.remove('highlight');
-//                     }
-//                 };
-
-
-//                 input.addEventListener('input', validateInput);
-//                 if (input.tagName === 'SELECT') {
-//                     input.addEventListener('change', validateInput);
-//                 }
-
-
-//                 validateInput();
-//             });
 
 
 
@@ -911,7 +766,7 @@ function handleRadioChange(event) {
                 <div class="address-container mt-3">
                     <div class="col-12">
                         <label class="question-label">Date of Conviction</label>
-                        <input required type="date" class="dab" name="applicantdob-${violationCount}" id="voilationDate-${violationCount}" onchange="updateProgress2('form2')">
+                        <input required type="date" max="9999-12-31" class="dab" name="applicantdob-${violationCount}" id="voilationDate-${violationCount}" onchange="updateProgress2('form2')">
                     </div>
                     <div class="col-12 mt-3">
                         <label class="question-label">Offence</label>
@@ -999,7 +854,7 @@ function handleAccidentChange(event) {
                 <div class="address-container mb-2 mt-3">
                     <div class="col-12">
                         <label class="question-label">Date of Accident</label>
-                        <input required type="date" class="dab" name="accidentDate-${accidentCount}" id="accidentDate-${accidentCount}" oninput="handleDateChange2(event)" placeholder="MM/DD/YYYY" onchange="updateProgress2('form2')">
+                        <input required type="date" max="9999-12-31" class="dab" name="accidentDate-${accidentCount}" id="accidentDate-${accidentCount}" oninput="handleDateChange2(event)" placeholder="MM/DD/YYYY" onchange="updateProgress2('form2')">
                     </div>
 
                     <div class="col-12 d-flex flex-column mt-4">
@@ -1143,13 +998,13 @@ function militaryDriver(value) {
                         <div class="col">
                             <label class="question-label">From</label>
 
-                            <input required type="date" class="dab form-control " id="truckFrom" name="truckFrom"
+                            <input required type="date" max="9999-12-31" class="dab form-control " id="truckFrom" name="truckFrom"
                                 onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
                         <div class="col">
                             <label class="question-label">To</label>
-                            <input required type="date" class="form-control" id="truckTo" name="truckto"
+                            <input required type="date" max="9999-12-31" class="form-control" id="truckTo" name="truckto"
                                 onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
@@ -1158,7 +1013,7 @@ function militaryDriver(value) {
                         </div>
                         <div class="col-5">
                             <label class="question-label">Approximate Number of Miles</label>
-                            <input required type="text" class="form-control" id="truckMiles " name="truckmiles"
+                            <input required type="number" class="form-control" id="truckMiles " name="truckmiles"
                                 placeholder="Enter number" onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
@@ -1222,13 +1077,13 @@ function militaryDriver(value) {
                         <div class="col">
                             <label class="question-label">From</label>
 
-                            <input required type="date" class="dab form-control " id="tractorFrom" name="tractorFrom"
+                            <input required type="date" max="9999-12-31" class="dab form-control " id="tractorFrom" name="tractorFrom"
                                 onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
                         <div class="col">
                             <label class="question-label">To</label>
-                            <input required type="date" class="form-control" id="tractorTo" name="tractorto"
+                            <input required type="date" max="9999-12-31" class="form-control" id="tractorTo" name="tractorto"
                                 onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
@@ -1237,7 +1092,7 @@ function militaryDriver(value) {
                         </div>
                         <div class="col-5">
                             <label class="question-label">Approximate Number of Miles</label>
-                            <input required type="text" class="form-control" id="tractorMiles " name="tractormiles"
+                            <input required type="number" class="form-control" id="tractorMiles " name="tractormiles"
                                 placeholder="Enter number" onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
@@ -1271,13 +1126,13 @@ function militaryDriver(value) {
                         <div class="col">
                             <label class="question-label">From</label>
 
-                            <input required type="date" class="dab form-control " id="busFrom" name="busFrom"
+                            <input required type="date" max="9999-12-31" class="dab form-control " id="busFrom" name="busFrom"
                                 onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
                         <div class="col">
                             <label class="question-label">To</label>
-                            <input required type="date" class="form-control" id="busTo" name="busto"
+                            <input required type="date" max="9999-12-31" class="form-control" id="busTo" name="busto"
                                 onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
@@ -1286,7 +1141,7 @@ function militaryDriver(value) {
                         </div>
                         <div class="col-5">
                             <label class="question-label">Approximate Number of Miles</label>
-                            <input required type="text" class="form-control" id="busMiles " name="busmiles"
+                            <input required type="" class="form-control" id="busMiles " name="busmiles"
                                 placeholder="Enter number" onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
@@ -1305,13 +1160,13 @@ function militaryDriver(value) {
                         <div class="col">
                             <label class="question-label">From</label>
 
-                            <input required type="date" class="dab form-control " id="otherFrom" name="otherfrom"
+                            <input required type="date" max="9999-12-31" class="dab form-control " id="otherFrom" name="otherfrom"
                                 onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
                         <div class="col">
                             <label class="question-label">To</label>
-                            <input required type="date" class="form-control" id="otherTo" name="otherto"
+                            <input required type="date" max="9999-12-31" class="form-control" id="otherTo" name="otherto"
                                 onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
@@ -1320,7 +1175,7 @@ function militaryDriver(value) {
                         </div>
                         <div class="col-5">
                             <label class="question-label">Approximate Number of Miles</label>
-                            <input required type="text" class="form-control" id="otherMiles " name="othermiles"
+                            <input required type="number" class="form-control" id="otherMiles " name="othermiles"
                                 placeholder="Enter number" onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
@@ -1567,13 +1422,13 @@ function addUnemployment(presentId, value) {
                                     <div>
                                         <label class="question-label">Unemployed From</label>
 
-                                        <input required type="date" class="dab form-control " id="unemployedFrom"
+                                        <input required type="date" max="9999-12-31" class="dab form-control " id="unemployedFrom"
                                             name="unemployment" onchange="handleDateChange2(event)">
                                         <small class="error-message"></small>
                                     </div>
                                     <div>
                                         <label class="question-label"> Unemployed To</label>
-                                        <input required type="date" class="to form-control" id="unemployedTo "
+                                        <input required type="date" max="9999-12-31" class="to form-control" id="unemployedTo "
                                             name="unemployment" onchange="handleDateChange2(event)">
                                         <small class="error-message"></small>
                                     </div>
@@ -1599,83 +1454,6 @@ function removeUnemployment(presentId, value) {
         }
     }
 }
-
-// function validateEmploymentHistory() {
-//     const container = document.getElementById('employmentFormsContainer');
-//     const forms = container.querySelectorAll('[id^="employmentForm"]');
-
-//     let earliestStartDate = null;
-//     let latestEndDate = null;
-
-//     forms.forEach((form) => {
-//         const startDateField = form.querySelector('[id^="companyStart"]');
-//         const endDateField = form.querySelector('[id^="companySeparation"]');
-
-//         const startDate = startDateField ? new Date(startDateField.value) : null;
-//         const endDate = endDateField ? new Date(endDateField.value) : null;
-
-//         if (startDate && !isNaN(startDate)) {
-//             if (!earliestStartDate || startDate < earliestStartDate) {
-//                 earliestStartDate = startDate;
-//             }
-//         }
-
-//         if (endDate && !isNaN(endDate)) {
-//             if (!latestEndDate || endDate > latestEndDate) {
-//                 latestEndDate = endDate;
-//             }
-//         }
-//     });
-
-//     if (earliestStartDate && latestEndDate) {
-//         totalYears = (latestEndDate - earliestStartDate) / (1000 * 60 * 60 * 24 * 365);
-//         console.log(`Total Employment History: ${totalYears} years`);
-
-//         if (totalYears < 10) {
-//             addEmploymentValidation();
-//         } else {
-//             removeEmploymentValidation();
-//         }
-//     } else {
-//         console.log("Start date or end date is missing.");
-//         addEmploymentValidation();
-//     }
-// }
-
-// function addEmploymentValidation() {
-//     console.log("entered in addEmploymentValidation");
-//     if (!(document.getElementById('reasonBox'))) {
-//         const reasonForm = document.createElement('div');
-//         reasonForm.classList.add('reasonDiv', 'mt-3');
-//         reasonForm.id = 'reasonBox';
-//         reasonForm.innerHTML = `                
-//                 <div class="warnDiv">
-//                     <p class="warning">
-//                         you have not provided TEN (10) years of employment history please provide the reason below
-//                     </p>
-//                 </div>
-//                 <div class="col-12 mt-4">
-//                     <label class="question-label">Reason for not meeting the TEN (10) years of employment history
-//                         requirement.</label>
-//                     <textarea required name="employHistoryReason" id="employHistroy" placeholder="Enter Text" rows="4"
-//                         class="form-control mt-2 txtfeild"></textarea>
-//                 </div>`
-//         const mainContainer = document.getElementById('histroyValidator');
-//         mainContainer.appendChild(reasonForm);
-//         caluclateTotalFeilds();
-//     }
-
-// }
-
-// function removeEmploymentValidation() {
-//     console.log("Removing reason box for sufficient employment history.");
-//     const reasonBox = document.getElementById('reasonBox');
-//     if (reasonBox) {
-//         reasonBox.remove();
-//         caluclateTotalFeilds();
-//     }
-// }
-
 
 
 

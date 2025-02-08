@@ -35,11 +35,18 @@
                             onchange="updateProgress2('form2')" />
                         <small class="error-message"></small>
                     </div>
-                    <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
+                    <!-- <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
                         <label class="question-label">Date of Birth</label>
                         <input required type="date" class="dab" name="applicantdob" id="applicantDob"
                             oninput="handleDateChange2(event)" placeholder="MM/DD/YYYY"
-                            onchange="updateProgress2('form2')">
+                            onchange="updateProgress2('form2')"> -->
+                            
+                            <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
+                                <label class="question-label">Date of Birth</label>
+                                <input required type="date" class="dab" name="applicantdob" id="applicantDob"
+                                    oninput="handleDateChange2(event)" onchange="updateProgress2('form2')" max="9999-12-31">
+                            
+                            
                         <small class="error-message"></small>
 
                     </div>
@@ -160,14 +167,14 @@
                 <div>
                     <label class="question-label">From</label>
 
-                    <input required type="date" class="dab form-control " id="from" name="dob"
+                    <input required type="date" max="9999-12-31" class="dab form-control " id="from" name="dob"
                         onchange="handleDateChange2(event)">
                     <small class="error-message"></small>
                 </div>
                 <div>
                     <label class="question-label">To</label>
-                    <input required type="date" class="to form-control" id="dab form-control " name="to"
-                        onchange="handleDateChange2(event)">
+                    <input required type="date"  class="to form-control" id="dab form-control " name="to"
+                        onchange="handleDateChange2(event)" max="9999-12-31">
                     <small class="error-message"></small>
                 </div>
             </div>
@@ -287,7 +294,7 @@
 
                 <div class="col-12 mt-3 mb-3">
                     <label class="question-label">Current DL Expiration Date </label>
-                    <input required type="date" class="dab form-control" name="dlExpiry" id="dlExpiry"
+                    <input required type="date" max="9999-12-31" class="dab form-control" name="dlExpiry" id="dlExpiry"
                         onchange="handleDateChange2(event)" placeholder="MM/DD/YYYY">
                     <small class="error-message"></small>
                 </div>
@@ -363,7 +370,7 @@
 
                 <div class="col-12 mt-3 mb-3">
                     <label class="question-label">Previous DL Expiration Date </label>
-                    <input required type="date" class="dab form-control " name="preDlExpiry" id="preDlExpiry"
+                    <input required type="date" max="9999-12-31" class="dab form-control " name="preDlExpiry" id="preDlExpiry"
                         onchange="handleDateChange2(event)" placeholder="MM/DD/YYYY">
                     <small class="error-message"></small>
                 </div>
@@ -789,15 +796,15 @@
                             <div class="row mt-3 mb-3">
                                 <div class="col">
                                     <label class="question-label">Start Date</label>
-                                    <input required type="date" class="dab form-control" id="companyStart"
-                                        name="startDate" onchange="validateEmploymentHistory()">
+                                    <input required type="date" max="9999-12-31" class="dab form-control" id="companyStart"
+                                        name="startDate" oninput="handleDateChange2(event)" onchange="validateEmploymentHistory()">
                                     <small class="error-message"></small>
                                 </div>
                             
                                 <div class="col">
                                     <label class="question-label">Separation Date</label>
-                                    <input type="date" class="form-control" id="companySeparation"
-                                        name="separationDate" onchange="validateEmploymentHistory()">
+                                    <input type="date" max="9999-12-31" class="form-control" id="companySeparation"
+                                        name="separationDate" oninput="handleDateChange2(event)" onchange="validateEmploymentHistory()">
                                     <small class="error-message"></small>
                                 </div>
                             
@@ -1161,7 +1168,7 @@
             </div>
             <div class="col-12 col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 mt-3">
                 <label class="appDate just-color form-check-label">Date of Application</label>
-                <input required type="date" class="dab" name="applicantdob" id="appliedDate"
+                <input required type="date" max="9999-12-31" class="dab" name="applicantdob" id="appliedDate"
                     oninput="handleDateChange2(event)" placeholder="MM/DD/YYYY" onchange="updateProgress2('form2')">
                 <small class="error-message"></small>
             </div>

@@ -162,7 +162,7 @@ input::placeholder {
 
 
 .form-container {
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-family:Segoe UI, Tahoma, Geneva, Verdana, sans-serif !important;
     width: 100%;  
     display: flex;
     justify-content: center;

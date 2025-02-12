@@ -1,4 +1,5 @@
 .heading{
+    font-weight: 400 !important;
     color:white !important;
 }
 .formtext{
@@ -52,7 +53,7 @@
 
 
 
-label {
+label{
 
     color: white !important;
     
@@ -202,12 +203,12 @@ button:disabled {
     cursor: not-allowed;
 }
 
+
 .question-label {
     display: block;
-    font-size: 16px;
+    font-size: 1rem;
     color: white !important;
-
-    font-weight: bold;
+    font-weight: 400 !important;
 }
 
 .checkbox-group {
@@ -253,8 +254,7 @@ input[type="checkbox"]:checked::before {
     position: absolute;
     top: -2px;
     left: 4px;
-  
-    font-weight: bold;
+    font-weight:400 !important;
 }
 
 .checkbox-item .label {
@@ -347,9 +347,9 @@ textarea:focus {
     outline: none !important;
 }
 
-.form-check-label {
+/* .form-check-label {
     font-size: 1rem; 
-}
+} */
 
 .txtfeild{
     background-color:#4A72A7 !important;

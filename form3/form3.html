@@ -1,7 +1,7 @@
 <div class="form-container ">
     <div id="form1" class="form-card ">
         <div class="col-12">
-            <h3 class="heading">Pre-Employment Candidate Health Evaluation Questionnaire (HEQ)</h3>
+            <h4 class="heading">Pre-Employment Candidate Health Evaluation Questionnaire (HEQ)</h4>
         </div>
 
         <div class="page-count " >
@@ -29,13 +29,13 @@
             <div>
                 <div class="row">
                     <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                        <label>First Name</label>
+                        <label class="question-label">First Name</label>
 
                         <input id="firstName" required type="text" data-validate="text" name="firstName"  autocomplete="off" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  class="form-control" onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
                     </div>
                     <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                        <label>Last Name</label>
+                        <label class="question-label">Last Name</label>
                         <input id="lastName" required type="text" data-validate="text" autocomplete="off" name="lastName"  autocomplete="off" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  class="form-control" onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
 
@@ -43,57 +43,57 @@
 
                     </div>
                     <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                        <label>Middle Name</label>
+                        <label class="question-label">Middle Name</label>
                         <input type="text" name="middleName" id="midName" autocomplete="off" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  class="form-control" onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
                     </div>
                     <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                        <label>Suffix</label>
-                        <input required type="text" data-validate="text" autocomplete="off" name="suffix" maxlength="30"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  class="form-control" onchange="updateProgress('form1')" />
+                        <label class="question-label">Suffix</label>
+                        <input required type="text" data-validate="text" autocomplete="off" name="suffix" maxlength="5"  oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"  class="form-control" onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
                     </div>
                 </div>
             </div>
             <div class="form-row mt-3">
                 <div>
-                    <label>Permanent Home Address(Line1)</label>
-                    <input required type="text" data-validate="text" autocomplete="off" name="address1" class="form-control" onchange="updateProgress('form1')">
+                    <label class="question-label">Permanent Home Address(Line1)</label>
+                    <input required type="text" data-validate="text" autocomplete="off" name="address1" maxlength="200" class="form-control" onchange="updateProgress('form1')">
                 </div>
             </div>
             <div class="form-row">
                 <div>
-                    <label>Permanent Home Address(Line2)</label>
-                    <input  type="text"  autocomplete="off" name="address2" id="add2" class="form-control" onchange="updateProgress('form1')">
+                    <label class="question-label">Permanent Home Address(Line2)</label>
+                    <input  type="text"  autocomplete="off" name="address2" id="add2" class="form-control" maxlength="200" onchange="updateProgress('form1')">
                 </div>
             </div>
             <div class="form-row">
                 <div>
-                    <label>City</label>
+                    <label class="question-label">City</label>
 
                     <input required type="text" data-validate="text" name="city" maxlength="50" autocomplete="off" oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" class="form-control" onchange="updateProgress('form1')"/>
                     <small class="error-message"></small>
                 </div>
                 <div>
-                    <label>State</label>
+                    <label class="question-label">State</label>
                     <input required type="text" data-validate="text" name="state" maxlength="50" autocomplete="off" oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" class="form-control" onchange="updateProgress('form1')"/>
                     <small class="error-message"></small>
                 </div>
                 <div>
-                    <label>Zip</label>
+                    <label class="question-label">Zip</label>
                   
-                    <input required type="number" name="zip" autocomplete="off" maxlength="6" data-validate="number" class="form-control" onchange="updateProgress('form1')" oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')"  />
+                    <input required type="text" name="zip" autocomplete="off" maxlength="9" data-validate="number" class="form-control" onchange="updateProgress('form1')" oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')"  />
                     <small class="error-message"></small>
                 </div>
             </div>
             <div class="form-row">
                 <div>
-                    <label>Home Phone No.</label>
+                    <label class="question-label">Home Phone No.</label>
                     
                     <input required type="text" name="home" autocomplete="off"     oninput="validateAndFormatPhoneNumber(this);"  class="form-control" onchange="updateProgress('form1')" />
                     <small class="error-message"></small>
                 </div>
                 <div>
-                    <label>Cell Phone No.</label>
+                    <label class="question-label">Cell Phone No.</label>
                     <input required type="text" name="cell" autocomplete="off"  oninput="validateAndFormatPhoneNumber(this);"  class="form-control" onchange="updateProgress('form1')"/>
                     <small class="error-message"></small>
                     
@@ -102,7 +102,7 @@
 
             <div class="form-row">
                 <div>
-                    <label>Date of Birth</label>
+                    <label class="question-label">Date of Birth</label>
                     
                     <input required type="date" class="dab" id="dob" name="dob" onchange="handleDateChange(event)">
                     <small class="error-message"></small>
@@ -110,20 +110,20 @@
             </div>
             <div class="form-row">
                 <div>
-                    <label>Gender</label>
+                    <label class="question-label">Gender</label>
                    
-                    <input required type="text" data-validate="text" name="gender" maxlength="20" autocomplete="off" oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" class="form-control" onchange="updateProgress('form1')"/>
+                    <input required type="text" data-validate="text" name="gender" maxlength="10" autocomplete="off" oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" class="form-control" onchange="updateProgress('form1')"/>
                     <small class="error-message"></small>
                 </div>
             </div>
             <div class="form-row">
                 <div>
-                    <label>Height</label>                                                                                                                                                                                                 
+                    <label class="question-label">Height</label>                                                                                                                                                                                                 
                     <input required id="weight" type="decimal" step="0.01" min="0" max="249.99" data-validate="number" autocomplete="off" maxlength="6" oninput="validInput(this, /^\d{0,3}(\.\d{0,2})?$/, 'Only numbers with up to 2 decimals are allowed');" />
                     <small class="error-message"></small>
                 </div>
                 <div>
-                    <label>Weight</label>                                                                                                                                                                                                 
+                    <label class="question-label">Weight</label>                                                                                                                                                                                                 
                     <input required id="height" type="decimal" step="0.01" min="0" max="249.99" data-validate="number" autocomplete="off" maxlength="6" oninput="validInput(this, /^\d{0,3}(\.\d{0,2})?$/, 'Only numbers with up to 2 decimals are allowed');" />
                     <small class="error-message"></small>
                 </div>
@@ -137,13 +137,13 @@
 
         <div id="form1-page2" class="form-page" style="display: none;">
             <div>
-                <h3 class="heading">
+                <h4 class="heading">
                     <p class="heading">Do you have or have you ever had any disease, injury, disorder, or surgery of the following?</p>
-                </h3>
+                </h4>
             </div>
             <div>
                 <div style="margin-top: 20px;">
-                    <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Eyes</h3>
+                    <h5 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Eyes</h5>
                 </div>
 
                 <div class="col-12">
@@ -155,7 +155,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="visionNo"
                                 name="defectiveVision" onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="visionNo">
+                            <label class="question-label label ms-4" for="visionNo">
                                 No
                             </label>
                         </div>
@@ -164,7 +164,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" name="defectiveVision"
                                 id="visionYes" name="defectiveVision" onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="visionYes">
+                            <label class="question-label ms-4" for="visionYes">
                                 Yes
                             </label>
                         </div>
@@ -183,7 +183,7 @@
                     </div>
                     <div id="defectiveVisionExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required style="display: none;" name="defectiveVisionExplanation" id="defectiveVisionExplanation" rows="4"
+                        <textarea required maxlength="250" style="display: none;" name="defectiveVisionExplanation" id="defectiveVisionExplanation" rows="4"
                             class="form-control mt-2 txtfeild "></textarea>
                     </div>
                     <div class="col-12 mt-3">
@@ -197,7 +197,7 @@
                                         <input  class="form-check-input" type="checkbox" value="no" id="visionOtherNo"
                                             name="visionOther" onchange="updateProgress('form1')">
 
-                                        <label class="form-check-label label ms-4" for="visionOtherNo">
+                                        <label class="question-label label ms-4" for="visionOtherNo">
                                             No
                                         </label>
                                     </div>
@@ -207,7 +207,7 @@
                                             id="visionOtherYes" name="defectiveVision"
                                             onchange="updateProgress('form1')">
 
-                                        <label class="form-check-label ms-4" for="visionYes">
+                                        <label class="question-label ms-4" for="visionYes">
                                             Yes
                                         </label>
                                     </div>
@@ -226,15 +226,15 @@
                         </div>
                         <div id="visionOtherExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required style="display:none" name="visionOtherExplanation" id="visionOtherExplanation" rows="4"
+                            <textarea required maxlength="250" style="display:none" name="visionOtherExplanation" id="visionOtherExplanation" rows="4"
                                 class="form-control mt-2 txtfeild "></textarea>
                         </div>
                     </div>
                     <div>
                         <div class="mt-3">
-                            <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
+                            <h5 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
                                 Ear,Nose,Throat
-                            </h3>
+                            </h5>
                         </div>
                         <div class="col-12">
                             <div class="col-12">
@@ -247,7 +247,7 @@
                                             <input class="form-check-input" type="checkbox" value="no" id="hearingNo"
                                                 name="hearingLoss" onchange="updateProgress('form1')">
 
-                                            <label class="form-check-label label ms-4" for="hearingNo">
+                                            <label class="question-label label ms-4" for="hearingNo">
                                                 No
                                             </label>
                                         </div>
@@ -256,7 +256,7 @@
                                             <input class="form-check-input" type="checkbox" value="yes"
                                                 name="hearingLoss" id="hearingYes" onchange="updateProgress('form1')">
 
-                                            <label class="form-check-label ms-4" for="hearingYes">
+                                            <label class="question-label ms-4" for="hearingYes">
                                                 Yes
                                             </label>
                                         </div>
@@ -276,7 +276,7 @@
                                 </div>
                                 <div id="hearingLossExplanationInput" class="col-12 mt-3 mb-2" style="display: none;">
                                     <label class="question-label">Explain</label>
-                                    <textarea required name="hearingLossExplanation" id="hearingLossExplanation" rows="4"
+                                    <textarea required maxlength="250" name="hearingLossExplanation" id="hearingLossExplanation" rows="4"
                                         class="form-control mt-2 txtfeild "></textarea>
                                 </div>
                                 <div class="col-12 ">
@@ -292,7 +292,7 @@
                                                 id="hearingotherNo" name="hearingOther"
                                                 onchange="updateProgress('form1')">
 
-                                            <label class="form-check-label label ms-4" for="hearingotherNo">
+                                            <label class="question-label label ms-4" for="hearingotherNo">
                                                 No
                                             </label>
                                         </div>
@@ -302,7 +302,7 @@
                                                 name="hearingOther" id="hearingotherYes"
                                                 onchange="updateProgress('form1')">
 
-                                            <label class="form-check-label ms-4" for="hearingotherYes">
+                                            <label class="question-label ms-4" for="hearingotherYes">
                                                 Yes
                                             </label>
                                         </div>
@@ -321,14 +321,14 @@
                                     </div>
                                     <div id="hearingOtherExplanationInput" class="col-12 mt-3" style="display: none;">
                                         <label class="question-label">Explain</label>
-                                        <textarea required name="hearingOtherExplanation" id="hearingOtherExplanation" rows="4"
+                                        <textarea required maxlength="250" name="hearingOtherExplanation" id="hearingOtherExplanation" rows="4"
                                             class="form-control mt-2 txtfeild "></textarea>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="mt-3">
-                                        <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
-                                            Head</h3>
+                                        <h5 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
+                                            Head</h5>
                                     </div>
                                     <div class="col-12 mt-2">
                                         <div class="col-12">
@@ -343,7 +343,7 @@
                                                     id="migrainesNo" name="migraines"
                                                     onchange="updateProgress('form1')">
 
-                                                <label class="form-check-label label ms-4" for="migrainesNo">
+                                                <label class="question-label label ms-4" for="migrainesNo">
                                                     No
                                                 </label>
                                             </div>
@@ -353,7 +353,7 @@
                                                     name="migraines" id="migrainesYes"
                                                     onchange="updateProgress('form1')">
 
-                                                <label class="form-check-label ms-4" for="migrainesYes">
+                                                <label class="question-label ms-4" for="migrainesYes">
                                                     Yes
                                                 </label>
                                             </div>
@@ -373,7 +373,7 @@
                                     </div>
                                     <div id="migrainesExplanationInput" class="col-12 mt-3" style="display: none;">
                                         <label class="question-label">Explain</label>
-                                        <textarea required name="migrainesExplanation" id="migrainesExplanation" rows="4"
+                                        <textarea required maxlength="250" name="migrainesExplanation" id="migrainesExplanation" rows="4"
                                             class="form-control mt-2 txtfeild "></textarea>
                                     </div>
                                     <div class="col-12 mt-3">
@@ -390,7 +390,7 @@
                                                         id="headachesNo" name="headaches"
                                                         onchange="updateProgress('form1')">
 
-                                                    <label class="form-check-label label ms-4" for="headachesNo">
+                                                    <label class="question-label label ms-4" for="headachesNo">
                                                         No
                                                     </label>
                                                 </div>
@@ -400,7 +400,7 @@
                                                         name="headaches" id="headachesYes"
                                                         onchange="updateProgress('form1')">
 
-                                                    <label class="form-check-label ms-4" for="headachesYes">
+                                                    <label class="question-label ms-4" for="headachesYes">
                                                         Yes
                                                     </label>
                                                 </div>
@@ -423,7 +423,7 @@
                                     </div>
                                     <div id="headachesExplanationInput" class="col-12 mt-3" style="display: none;">
                                         <label class="question-label">Explain</label>
-                                        <textarea required name="headachesExplanation" id="headachesExplanation" rows="4"
+                                        <textarea required maxlength="250" name="headachesExplanation" id="headachesExplanation" rows="4"
                                             class="form-control mt-2 txtfeild ">
                                         </textarea>
                                     </div>
@@ -438,7 +438,7 @@
                                                     <input class="form-check-input" type="checkbox" value="no"
                                                         id="tbiNo" name="tbi" onchange="updateProgress('form1')">
 
-                                                    <label class="form-check-label label ms-4" for="headachesNo">
+                                                    <label class="question-label label ms-4" for="headachesNo">
                                                         No
                                                     </label>
                                                 </div>
@@ -447,7 +447,7 @@
                                                     <input class="form-check-input" type="checkbox" value="yes"
                                                         name="tbi" id="tbiYes" onchange="updateProgress('form1')">
 
-                                                    <label class="form-check-label ms-4" for="tbiYes">
+                                                    <label class="question-label ms-4" for="tbiYes">
                                                         Yes
                                                     </label>
                                                 </div>
@@ -467,14 +467,14 @@
                                     </div>
                                     <div id="tbiExplanationInput" class="col-12 mt-3" style="display: none;">
                                         <label class="question-label">Explain</label>
-                                        <textarea required name="tbiExplanation" id="tbiExplanation" rows="4"
+                                        <textarea required maxlength="250" name="tbiExplanation" id="tbiExplanation" rows="4"
                                             class="form-control txtfeild"></textarea>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="mt-3">
-                                        <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
-                                            Neck</h3>
+                                        <h5 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
+                                            Neck</h5>
                                     </div>
                                     <div class="col-12 mt-2">
                                         <div class="col-12">
@@ -488,7 +488,7 @@
                                                         id="thyroidNo" name="thyroid"
                                                         onchange="updateProgress('form1')">
 
-                                                    <label class="form-check-label label ms-4" for="thyroidNo">
+                                                    <label class="question-label label ms-4" for="thyroidNo">
                                                         No
                                                     </label>
                                                 </div>
@@ -498,7 +498,7 @@
                                                         name="thyroid" id="thyroidYes"
                                                         onchange="updateProgress('form1')">
 
-                                                    <label class="form-check-label ms-4" for="thyroidYes">
+                                                    <label class="question-label ms-4" for="thyroidYes">
                                                         Yes
                                                     </label>
                                                 </div>
@@ -519,15 +519,15 @@
                                     </div>
                                     <div id="thyroidExplanationInput" class="col-12 mt-3" style="display: none;">
                                         <label class="question-label">Explain</label>
-                                        <textarea required name="thyroidExplanation" id="thyroidExplanation" rows="4"
+                                        <textarea required maxlength="250" name="thyroidExplanation" id="thyroidExplanation" rows="4"
                                             class="form-control mt-2 txtfeild "></textarea>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="mt-3">
-                                        <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
+                                        <h5 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
                                             Heart
-                                        </h3>
+                                        </h5>
                                     </div>
                                     <div class="col-12 mt-2">
                                         <div class="col-12">
@@ -542,7 +542,7 @@
                                                         id="irregularHeartbeatNo" name="irregularHeartbeat"
                                                         onchange="updateProgress('form1')">
 
-                                                    <label class="form-check-label label ms-4"
+                                                    <label class="question-label label ms-4"
                                                         for="irregularHeartbeatNo">
                                                         No
                                                     </label>
@@ -553,7 +553,7 @@
                                                         name="irregularHeartbeat" id="irregularHeartbeatYes"
                                                         onchange="updateProgress('form1')">
 
-                                                    <label class="form-check-label ms-4" for="irregularHeartbeatYes">
+                                                    <label class="question-label ms-4" for="irregularHeartbeatYes">
                                                         Yes
                                                     </label>
                                                 </div>
@@ -574,7 +574,7 @@
                                     <div id="irregularHeartbeatExplanationInput" class="col-12 mt-3"
                                         style="display: none;">
                                         <label class="question-label">Explain</label>
-                                        <textarea required name="irregularHeartbeatExplanation"
+                                        <textarea required maxlength="250" name="irregularHeartbeatExplanation"
                                             id="irregularHeartbeatExplanation" rows="4" class="form-control"></textarea>
                                     </div>
                                     <div class="col-12 mt-3">
@@ -588,7 +588,7 @@
                                                     <input class="form-check-input" type="checkbox" value="no"
                                                         id="highBpNo" name="highBp" onchange="updateProgress('form1')">
 
-                                                    <label class="form-check-label label ms-4" for="highBpNo">
+                                                    <label class="question-label label ms-4" for="highBpNo">
                                                         No
                                                     </label>
                                                 </div>
@@ -597,7 +597,7 @@
                                                     <input class="form-check-input" type="checkbox" value="yes"
                                                         name="highBp" id="highBpYes" onchange="updateProgress('form1')">
 
-                                                    <label class="form-check-label ms-4" for="highBpYes">
+                                                    <label class="question-label ms-4" for="highBpYes">
                                                         Yes
                                                     </label>
                                                 </div>
@@ -617,7 +617,7 @@
                                     </div>
                                     <div id="highBpExplanationInput" class="col-12 mt-3" style="display: none;">
                                         <label class="question-label">Explain</label>
-                                        <textarea required name="highBpExplanation" id="highBpExplanation" rows="4"
+                                        <textarea required maxlength="250" name="highBpExplanation" id="highBpExplanation" rows="4"
                                             class="form-control mt-2 txtfeild "></textarea>
                                     </div>
                                     <div class="col-12 mt-3">
@@ -632,7 +632,7 @@
                                                         id="heartDiseaseNo" name="heartDisease"
                                                         onchange="updateProgress('form1')">
 
-                                                    <label class="form-check-label label ms-4" for="heartDiseaseNo">
+                                                    <label class="question-label label ms-4" for="heartDiseaseNo">
                                                         No
                                                     </label>
                                                 </div>
@@ -642,7 +642,7 @@
                                                         name="heartDisease" id="heartDiseaseYes"
                                                         onchange="updateProgress('form1')">
 
-                                                    <label class="form-check-label ms-4" for="heartDiseaseYes">
+                                                    <label class="question-label ms-4" for="heartDiseaseYes">
                                                         Yes
                                                     </label>
                                                 </div>
@@ -662,7 +662,7 @@
                                     </div>
                                     <div id="heartDiseaseExplanationInput" class="col-12 mt-3" style="display: none;">
                                         <label class="question-label">Explain</label>
-                                        <textarea required name="heartDiseaseExplanation" id="heartDiseaseExplanation" rows="4"
+                                        <textarea required maxlength="250" name="heartDiseaseExplanation" id="heartDiseaseExplanation" rows="4"
                                             class="form-control"></textarea>
                                     </div>
                                     <div class="col-12 mt-3">
@@ -678,7 +678,7 @@
                                                         id="heartFailureNo" name="heartFailure"
                                                         onchange="updateProgress('form1')">
 
-                                                    <label class="form-check-label label ms-4" for="heartFailureNo">
+                                                    <label class="question-label label ms-4" for="heartFailureNo">
                                                         No
                                                     </label>
                                                 </div>
@@ -688,7 +688,7 @@
                                                         name="heartFailure" id="heartFailureYes"
                                                         onchange="updateProgress('form1')">
 
-                                                    <label class="form-check-label ms-4" for="heartFailureYes">
+                                                    <label class="question-label ms-4" for="heartFailureYes">
                                                         Yes
                                                     </label>
                                                 </div>
@@ -708,7 +708,7 @@
                                     </div>
                                     <div id="heartFailureExplanationInput" class="col-12 mt-3" style="display: none;">
                                         <label class="question-label">Explain</label>
-                                        <textarea required name="heartFailureExplanation" id="heartFailureExplanation" rows="4"
+                                        <textarea required maxlength="250" name="heartFailureExplanation" id="heartFailureExplanation" rows="4"
                                             class="form-control mt-2 txtfeild "></textarea>
                                     </div>
                                 </div>
@@ -730,16 +730,16 @@
         <div id="form1-page3" class="form-page" style="display: none;">
 
             <div>
-                <h3 class="heading">
+                <h4 class="heading">
                     <p class="heading">Do you have or have you ever had any disease, injury, disorder, or surgery of the following?
                     </p>
-                </h3>
+                </h4>
             </div>
 
             <div>
 
                 <div style="margin-top: 20px;">
-                    <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Lungs</h3>
+                    <h5 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Lungs</h5>
                 </div>
                 <div>
                     <div class="col-12">
@@ -754,7 +754,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="asthmaNo" name="asthma"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="asthmaNo">
+                            <label class="question-label label ms-4" for="asthmaNo">
                                 No
                             </label>
                         </div>
@@ -763,7 +763,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="asthmaYes" name="asthma"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="asthmaYes">
+                            <label class="question-label ms-4" for="asthmaYes">
                                 Yes
                             </label>
                         </div>
@@ -781,7 +781,7 @@
                     </div>
                     <div id="asthmaExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="asthmaExplanation" id="asthmaExplanation" rows="4"
+                        <textarea required maxlength="250" name="asthmaExplanation" id="asthmaExplanation" rows="4"
                             class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
@@ -801,7 +801,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="copdNo" name="copd"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="copdNo">
+                            <label class="question-label label ms-4" for="copdNo">
                                 No
                             </label>
                         </div>
@@ -810,7 +810,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="copdYes" name="copd"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="copdYes">
+                            <label class="question-label ms-4" for="copdYes">
                                 Yes
                             </label>
                         </div>
@@ -828,7 +828,7 @@
                     </div>
                     <div id="copdExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="copdExplanation" id="copdExplanation" rows="4"
+                        <textarea required maxlength="250" name="copdExplanation" id="copdExplanation" rows="4"
                             class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
@@ -848,7 +848,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="tuberNo" name="tuber"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="tuberNo">
+                            <label class="question-label label ms-4" for="tuberNo">
                                 No
                             </label>
                         </div>
@@ -857,7 +857,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="tuberYes" name="tuber"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="tuberYes">
+                            <label class="question-label ms-4" for="tuberYes">
                                 Yes
                             </label>
                         </div>
@@ -875,7 +875,7 @@
                     </div>
                     <div id="tuberExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="tuberExplanation" id="tuberExplanation" rows="4"
+                        <textarea required maxlength="250" name="tuberExplanation" id="tuberExplanation" rows="4"
                             class="form-control mt-2 txtfeild "></textarea>
                     </div>
                 </div>
@@ -890,7 +890,7 @@
             <div>
 
                 <div style="margin-top: 20px;">
-                    <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Bones/Joints</h3>
+                    <h5 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Bones/Joints</h5>
                 </div>
                 <div>
                     <div class="col-12 mt-3">
@@ -905,7 +905,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="kneeNo" name="knee"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="kneeNo">
+                            <label class="question-label label ms-4" for="kneeNo">
                                 No
                             </label>
                         </div>
@@ -914,7 +914,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="kneeYes" name="knee"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="kneeYes">
+                            <label class="question-label ms-4" for="kneeYes">
                                 Yes
                             </label>
                         </div>
@@ -932,7 +932,7 @@
                     </div>
                     <div id="kneeExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="kneeExplanation" id="kneeExplanation" rows="4"
+                        <textarea required maxlength="250" name="kneeExplanation" id="kneeExplanation" rows="4"
                             class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
@@ -952,7 +952,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="shoulderNo" name="shoulder"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="shoulderNo">
+                            <label class="question-label label ms-4" for="shoulderNo">
                                 No
                             </label>
                         </div>
@@ -961,7 +961,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="shoulderYes" name="shoulder"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="shoulderYes">
+                            <label class="question-label ms-4" for="shoulderYes">
                                 Yes
                             </label>
                         </div>
@@ -979,7 +979,7 @@
                     </div>
                     <div id="shoulderExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="shoulderExplanation" id="shoulderExplanation" rows="4"
+                        <textarea required maxlength="250" name="shoulderExplanation" id="shoulderExplanation" rows="4"
                             class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
@@ -999,7 +999,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="elbowNo" name="elbow"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="elbowNo">
+                            <label class="question-label label ms-4" for="elbowNo">
                                 No
                             </label>
                         </div>
@@ -1008,7 +1008,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="elbowYes" name="elbow"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="elbowYes">
+                            <label class="question-label ms-4" for="elbowYes">
                                 Yes
                             </label>
                         </div>
@@ -1026,7 +1026,7 @@
                     </div>
                     <div id="elbowExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="elbowExplanation" id="elbowExplanation" rows="4"
+                        <textarea required maxlength="250" name="elbowExplanation" id="elbowExplanation" rows="4"
                             class="form-control mt-2 txtfeild "></textarea>
                     </div>
                 </div>
@@ -1044,7 +1044,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="spineNo" name="spine"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="spineNo">
+                            <label class="question-label label ms-4" for="spineNo">
                                 No
                             </label>
                         </div>
@@ -1053,7 +1053,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="spineYes" name="spine"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="spineYes">
+                            <label class="question-label ms-4" for="spineYes">
                                 Yes
                             </label>
                         </div>
@@ -1071,7 +1071,7 @@
                     </div>
                     <div id="spineExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="spineExplanation" id="spineExplanation" rows="4"
+                        <textarea required maxlength="250" name="spineExplanation" id="spineExplanation" rows="4"
                             class="form-control mt-2 txtfeild "></textarea>
                     </div>
                 </div>
@@ -1090,7 +1090,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="wristNo" name="wrist"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="wristNo">
+                            <label class="question-label label ms-4" for="wristNo">
                                 No
                             </label>
                         </div>
@@ -1099,7 +1099,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="wristYes" name="wrist"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="wristYes">
+                            <label class="question-label ms-4" for="wristYes">
                                 Yes
                             </label>
                         </div>
@@ -1117,7 +1117,7 @@
                     </div>
                     <div id="wristExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="wristExplanation" id="wristExplanation" rows="4"
+                        <textarea required maxlength="250" name="wristExplanation" id="wristExplanation" rows="4"
                             class="form-control mt-2 txtfeild "></textarea>
                     </div>
                 </div>
@@ -1135,7 +1135,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="arthritisNo" name="arthritis"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="arthritisNo">
+                            <label class="question-label label ms-4" for="arthritisNo">
                                 No
                             </label>
                         </div>
@@ -1144,7 +1144,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="arthritisYes"
                                 name="arthritis" onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="arthritisYes">
+                            <label class="question-label ms-4" for="arthritisYes">
                                 Yes
                             </label>
                         </div>
@@ -1162,7 +1162,7 @@
                     </div>
                     <div id="arthritisExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="arthritisExplanation" id="arthritisExplanation" rows="4"
+                        <textarea required maxlength="250" name="arthritisExplanation" id="arthritisExplanation" rows="4"
                             class="form-control mt-2 txtfeild "></textarea>
                     </div>
                 </div>
@@ -1171,7 +1171,7 @@
             <div>
 
                 <div style="margin-top: 20px;">
-                    <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Blood Diseases</h3>
+                    <h5 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Blood Diseases</h5>
                 </div>
                 <div>
                     <div class="col-12">
@@ -1186,7 +1186,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="anemiaNo" name="anemia"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="anemiaNo">
+                            <label class="question-label label ms-4" for="anemiaNo">
                                 No
                             </label>
                         </div>
@@ -1195,7 +1195,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="anemiaYes" name="anemia"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="anemiaYes">
+                            <label class="question-label ms-4" for="anemiaYes">
                                 Yes
                             </label>
                         </div>
@@ -1213,7 +1213,7 @@
                     </div>
                     <div id="anemiaExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="anemiaExplanation" id="anemiaExplanation" rows="4"
+                        <textarea required maxlength="250" name="anemiaExplanation" id="anemiaExplanation" rows="4"
                             class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
@@ -1233,7 +1233,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="sickleNo" name="sickle"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="sickleNo">
+                            <label class="question-label label ms-4" for="sickleNo">
                                 No
                             </label>
                         </div>
@@ -1242,7 +1242,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="sickleYes" name="sickle"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="sickleYes">
+                            <label class="question-label ms-4" for="sickleYes">
                                 Yes
                             </label>
                         </div>
@@ -1260,7 +1260,7 @@
                     </div>
                     <div id="sickleExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="sickleExplanation" id="sickleExplanation" rows="4"
+                        <textarea required maxlength="250" name="sickleExplanation" id="sickleExplanation" rows="4"
                             class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
@@ -1280,7 +1280,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="otherBloodNo"
                                 name="otherBlood" onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="otherBloodNo">
+                            <label class="question-label label ms-4" for="otherBloodNo">
                                 No
                             </label>
                         </div>
@@ -1289,7 +1289,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="otherBloodYes"
                                 name="otherBlood" onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="otherBloodYes">
+                            <label class="question-label ms-4" for="otherBloodYes">
                                 Yes
                             </label>
                         </div>
@@ -1307,7 +1307,7 @@
                     </div>
                     <div id="otherBloodExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="otherBloodExplanation" id="otherBloodExplanation" rows="4"
+                        <textarea required maxlength="250" name="otherBloodExplanation" id="otherBloodExplanation" rows="4"
                             class="form-control mt-2 txtfeild "></textarea>
                     </div>
                 </div>
@@ -1316,7 +1316,7 @@
 
             <div>
                 <div style="margin-top: 20px;">
-                    <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Diabetes</h3>
+                    <h5 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Diabetes</h5>
                 </div>
                 <div>
                     <div class="col-12">
@@ -1331,7 +1331,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="diabetesNo" name="diabetes"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="diabetesNo">
+                            <label class="question-label label ms-4" for="diabetesNo">
                                 No
                             </label>
                         </div>
@@ -1340,7 +1340,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="diabetesYes" name="diabetes"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="diabetesYes">
+                            <label class="question-label ms-4" for="diabetesYes">
                                 Yes
                             </label>
                         </div>
@@ -1358,7 +1358,7 @@
                     </div>
                     <div id="diabetesExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="diabetesExplanation" id="diabetesExplanation" rows="4"
+                        <textarea required maxlength="250" name="diabetesExplanation" id="diabetesExplanation" rows="4"
                             class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
@@ -1368,7 +1368,7 @@
             <div>
 
                 <div style="margin-top: 20px;">
-                    <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Epilepsy/Seizures</h3>
+                    <h5 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Epilepsy/Seizures</h5>
                 </div>
                 <div>
                     <div class="col-12">
@@ -1383,7 +1383,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="seizureNo" name="seizure"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="seizureNo">
+                            <label class="question-label label ms-4" for="seizureNo">
                                 No
                             </label>
                         </div>
@@ -1392,7 +1392,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="seizureYes" name="seizure"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="seizureYes">
+                            <label class="question-label ms-4" for="seizureYes">
                                 Yes
                             </label>
                         </div>
@@ -1410,7 +1410,7 @@
                     </div>
                     <div id="seizureExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="seizureExplanation" id="seizureExplanation" rows="4"
+                        <textarea required maxlength="250" name="seizureExplanation" id="seizureExplanation" rows="4"
                             class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
@@ -1420,7 +1420,7 @@
             <div>
 
                 <div style="margin-top: 20px;">
-                    <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Fainting Spells</h3>
+                    <h5 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Fainting Spells</h5>
                 </div>
                 <div>
                     <div class="col-12">
@@ -1435,7 +1435,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="faintingNo" name="fainting"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="faintingNo">
+                            <label class="question-label label ms-4" for="faintingNo">
                                 No
                             </label>
                         </div>
@@ -1444,7 +1444,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="faintingYes" name="fainting"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="faintingYes">
+                            <label class="question-label ms-4" for="faintingYes">
                                 Yes
                             </label>
                         </div>
@@ -1462,7 +1462,7 @@
                     </div>
                     <div id="faintingExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="faintingExplanation" id="faintingExplanation" rows="4"
+                        <textarea required maxlength="250" name="faintingExplanation" id="faintingExplanation" rows="4"
                             class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
@@ -1474,7 +1474,7 @@
             <div>
 
                 <div style="margin-top: 20px;">
-                    <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Mental Health</h3>
+                    <h5 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Mental Health</h5>
                 </div>
                 <div>
                     <div class="col-12 mt-3">
@@ -1489,7 +1489,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="depressionNo"
                                 name="depression" onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="depressionNo">
+                            <label class="question-label label ms-4" for="depressionNo">
                                 No
                             </label>
                         </div>
@@ -1498,7 +1498,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="depressionYes"
                                 name="depression" onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="depressionYes">
+                            <label class="question-label ms-4" for="depressionYes">
                                 Yes
                             </label>
                         </div>
@@ -1516,7 +1516,7 @@
                     </div>
                     <div id="depressionExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="depressionExplanation" id="depressionExplanation" rows="4"
+                        <textarea required maxlength="250" name="depressionExplanation" id="depressionExplanation" rows="4"
                             class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
@@ -1536,7 +1536,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="anxietyNo" name="anxiety"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="anxietyNo">
+                            <label class="question-label label ms-4" for="anxietyNo">
                                 No
                             </label>
                         </div>
@@ -1545,7 +1545,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="anxietyYes" name="anxiety"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="anxietyYes">
+                            <label class="question-label ms-4" for="anxietyYes">
                                 Yes
                             </label>
                         </div>
@@ -1563,7 +1563,7 @@
                     </div>
                     <div id="anxietyExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="anxietyExplanation" id="anxietyExplanation" rows="4"
+                        <textarea required maxlength="250" name="anxietyExplanation" id="anxietyExplanation" rows="4"
                             class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
@@ -1583,7 +1583,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="bipolarNo" name="bipolar"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="bipolarNo">
+                            <label class="question-label label ms-4" for="bipolarNo">
                                 No
                             </label>
                         </div>
@@ -1592,7 +1592,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="bipolarYes" name="bipolar"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="bipolarYes">
+                            <label class="question-label ms-4" for="bipolarYes">
                                 Yes
                             </label>
                         </div>
@@ -1610,7 +1610,7 @@
                     </div>
                     <div id="bipolarExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="bipolarExplanation" id="bipolarExplanation" rows="4"
+                        <textarea required maxlength="250" name="bipolarExplanation" id="bipolarExplanation" rows="4"
                             class="form-control mt-2 txtfeild "></textarea>
                     </div>
                 </div>
@@ -1628,7 +1628,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="substanceNo" name="substance"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="substanceNo">
+                            <label class="question-label label ms-4" for="substanceNo">
                                 No
                             </label>
                         </div>
@@ -1637,7 +1637,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="substanceYes"
                                 name="substance" onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="substanceYes">
+                            <label class="question-label ms-4" for="substanceYes">
                                 Yes
                             </label>
                         </div>
@@ -1655,7 +1655,7 @@
                     </div>
                     <div id="substanceExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="substanceExplanation" id="substanceExplanation" rows="4"
+                        <textarea required maxlength="250" name="substanceExplanation" id="substanceExplanation" rows="4"
                             class="form-control mt-2 txtfeild "></textarea>
                     </div>
                 </div>
@@ -1674,16 +1674,16 @@
 
         <div id="form1-page4" class="form-page" style="display: none;">
             <div>
-                <h3 class="heading">
+                <h4 class="heading">
                     <p class="heading">Do you have or have you ever had any disease, injury, disorder, or surgery of the following?
                     </p>
-                </h3>
+                </h4>
             </div>
 
             <div>
 
                 <div style="margin-top: 20px;">
-                    <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Gastrointestinal</h3>
+                    <h5 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Gastrointestinal</h5>
                 </div>
                 <div>
                     <div class="col-12">
@@ -1698,7 +1698,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="crohnNo" name="crohn"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="crohnNo">
+                            <label class="question-label label ms-4" for="crohnNo">
                                 No
                             </label>
                         </div>
@@ -1707,7 +1707,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="crohnYes" name="crohn"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="crohnYes">
+                            <label class="question-label ms-4" for="crohnYes">
                                 Yes
                             </label>
                         </div>
@@ -1725,7 +1725,7 @@
                     </div>
                     <div id="crohnExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="crohnExplanation" id="crohnExplanation" rows="4"
+                        <textarea required maxlength="250" name="crohnExplanation" id="crohnExplanation" rows="4"
                             class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
@@ -1744,7 +1744,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="colitisNo" name="colitis"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="colitisNo">
+                            <label class="question-label label ms-4" for="colitisNo">
                                 No
                             </label>
                         </div>
@@ -1753,7 +1753,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="colitisYes" name="colitis"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="colitisYes">
+                            <label class="question-label ms-4" for="colitisYes">
                                 Yes
                             </label>
                         </div>
@@ -1771,7 +1771,7 @@
                     </div>
                     <div id="colitisExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="colitisExplanation" id="colitisExplanation" rows="4"
+                        <textarea required maxlength="250" name="colitisExplanation" id="colitisExplanation" rows="4"
                             class="form-control mt-2 txtfeild ">
                     </textarea>
                     </div>
@@ -1791,7 +1791,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="hepatisNo" name="hepatis"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="hepatisNo">
+                            <label class="question-label label ms-4" for="hepatisNo">
                                 No
                             </label>
                         </div>
@@ -1800,7 +1800,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="hepatisYes" name="hepatis"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="hepatisYes">
+                            <label class="question-label ms-4" for="hepatisYes">
                                 Yes
                             </label>
                         </div>
@@ -1818,7 +1818,7 @@
                     </div>
                     <div id="hepatisExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="hepatisExplanation" id="hepatisExplanation" rows="4"
+                        <textarea required maxlength="250" name="hepatisExplanation" id="hepatisExplanation" rows="4"
                             class="form-control mt-2 txtfeild ">
                         </textarea>
                     </div>
@@ -1837,7 +1837,7 @@
                             <input class="form-check-input" type="checkbox" value="no" id="cirrhosisNo" name="cirrhosis"
                                 onchange="updateProgress('form1')">
 
-                            <label class="form-check-label label ms-4" for="cirrhosisNo">
+                            <label class="question-label label ms-4" for="cirrhosisNo">
                                 No
                             </label>
                         </div>
@@ -1846,7 +1846,7 @@
                             <input class="form-check-input" type="checkbox" value="yes" id="cirrhosisYes"
                                 name="cirrhosis" onchange="updateProgress('form1')">
 
-                            <label class="form-check-label ms-4" for="cirrhosisYes">
+                            <label class="question-label ms-4" for="cirrhosisYes">
                                 Yes
                             </label>
                         </div>
@@ -1864,7 +1864,7 @@
                     </div>
                     <div id="cirrhosisExplanationInput" class="col-12 mt-3" style="display: none;">
                         <label class="question-label">Explain</label>
-                        <textarea required name="cirrhosisExplanation" id="cirrhosisExplanation" rows="4"
+                        <textarea required maxlength="250" name="cirrhosisExplanation" id="cirrhosisExplanation" rows="4"
                             class="form-control mt-2 txtfeild ">
                         </textarea>
                     </div>
@@ -1872,7 +1872,7 @@
 
                 <div>
                     <div style="margin-top: 20px;">
-                        <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Kidney</h3>
+                        <h5 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Kidney</h5>
                     </div>
                     <div>
                         <div class="col-12">
@@ -1887,7 +1887,7 @@
                                 <input class="form-check-input" type="checkbox" value="no" id="kidneyNo" name="kidney"
                                     onchange="updateProgress('form1')">
 
-                                <label class="form-check-label label ms-4" for="kidneyNo">
+                                <label class="question-label label ms-4" for="kidneyNo">
                                     No
                                 </label>
                             </div>
@@ -1896,7 +1896,7 @@
                                 <input class="form-check-input" type="checkbox" value="yes" id="kidneyYes" name="kidney"
                                     onchange="updateProgress('form1')">
 
-                                <label class="form-check-label ms-4" for="kidneyYes">
+                                <label class="question-label ms-4" for="kidneyYes">
                                     Yes
                                 </label>
                             </div>
@@ -1914,7 +1914,7 @@
                         </div>
                         <div id="kidneyExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required name="kidneyExplanation" id="kidneyExplanation" rows="4"
+                            <textarea required maxlength="250" name="kidneyExplanation" id="kidneyExplanation" rows="4"
                                 class="form-control mt-2 txtfeild ">
                         </textarea>
                         </div>
@@ -1924,7 +1924,7 @@
 
                 <div>
                     <div style="margin-top: 20px;">
-                        <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Skin</h3>
+                        <h5 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Skin</h5>
                     </div>
                     <div>
                         <div class="col-12">
@@ -1939,7 +1939,7 @@
                                 <input class="form-check-input" type="checkbox" value="no" id="skinNo" name="skin"
                                     onchange="updateProgress('form1')">
 
-                                <label class="form-check-label label ms-4" for="skinNo">
+                                <label class="question-label label ms-4" for="skinNo">
                                     No
                                 </label>
                             </div>
@@ -1948,7 +1948,7 @@
                                 <input class="form-check-input" type="checkbox" value="yes" id="skinYes" name="skin"
                                     onchange="updateProgress('form1')">
 
-                                <label class="form-check-label ms-4" for="skinYes">
+                                <label class="question-label ms-4" for="skinYes">
                                     Yes
                                 </label>
                             </div>
@@ -1966,7 +1966,7 @@
                         </div>
                         <div id="skinExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required name="skinExplanation" id="skinExplanation" rows="4"
+                            <textarea required maxlength="250" name="skinExplanation" id="skinExplanation" rows="4"
                                 class="form-control mt-2 txtfeild ">
                         </textarea>
                         </div>
@@ -1976,7 +1976,7 @@
 
                 <div>
                     <div style="margin-top: 20px;">
-                        <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Allergies</h3>
+                        <h5 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Allergies</h5>
                     </div>
                     <div>
                         <div class="col-12">
@@ -1991,7 +1991,7 @@
                                 <input class="form-check-input" type="checkbox" value="no" id="drugNo" name="drug"
                                     onchange="updateProgress('form1')">
 
-                                <label class="form-check-label label ms-4" for="drugNo">
+                                <label class="question-label label ms-4" for="drugNo">
                                     No
                                 </label>
                             </div>
@@ -2000,7 +2000,7 @@
                                 <input class="form-check-input" type="checkbox" value="yes" id="drugYes" name="drug"
                                     onchange="updateProgress('form1')">
 
-                                <label class="form-check-label ms-4" for="drugYes">
+                                <label class="question-label ms-4" for="drugYes">
                                     Yes
                                 </label>
                             </div>
@@ -2018,7 +2018,7 @@
                         </div>
                         <div id="drugExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required name="drugExplanation" id="drugExplanation" rows="4"
+                            <textarea required maxlength="250" name="drugExplanation" id="drugExplanation" rows="4"
                                 class="form-control mt-2 txtfeild ">
                         </textarea>
                         </div>
@@ -2037,7 +2037,7 @@
                                 <input class="form-check-input" type="checkbox" value="no" id="otherAlergyNo"
                                     name="otherAlergy" onchange="updateProgress('form1')">
 
-                                <label class="form-check-label label ms-4" for="otherAlergyNo">
+                                <label class="question-label label ms-4" for="otherAlergyNo">
                                     No
                                 </label>
                             </div>
@@ -2046,7 +2046,7 @@
                                 <input class="form-check-input" type="checkbox" value="yes" id="otherAlergyYes"
                                     name="otherAlergy" onchange="updateProgress('form1')">
 
-                                <label class="form-check-label ms-4" for="otherAlergyYes">
+                                <label class="question-label ms-4" for="otherAlergyYes">
                                     Yes
                                 </label>
                             </div>
@@ -2064,7 +2064,7 @@
                         </div>
                         <div id="otherAlergyExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required name="otherAlergyExplanation" id="otherAlergyExplanation" rows="4"
+                            <textarea required maxlength="250" name="otherAlergyExplanation" id="otherAlergyExplanation" rows="4"
                                 class="form-control mt-2 txtfeild ">
                         </textarea>
                         </div>
@@ -2073,8 +2073,8 @@
 
                 <div>
                     <div style="margin-top: 20px;">
-                        <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Other Health
-                            Conditions Not Listed</h3>
+                        <h5 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Other Health
+                            Conditions Not Listed</h5>
                     </div>
                     <div>
                         <div class="col-12">
@@ -2089,7 +2089,7 @@
                                 <input class="form-check-input" type="checkbox" value="no" id="otherHealthNo"
                                     name="otherHealth" onchange="updateProgress('form1')">
 
-                                <label class="form-check-label label ms-4" for="otherHealthNo">
+                                <label class="question-label label ms-4" for="otherHealthNo">
                                     No
                                 </label>
                             </div>
@@ -2098,7 +2098,7 @@
                                 <input class="form-check-input" type="checkbox" value="yes" id="otherHealthYes"
                                     name="otherHealth" onchange="updateProgress('form1')">
 
-                                <label class="form-check-label ms-4" for="otherHealthYes">
+                                <label class="question-label ms-4" for="otherHealthYes">
                                     Yes
                                 </label>
                             </div>
@@ -2116,7 +2116,7 @@
                         </div>
                         <div id="otherHealthExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required name="otherHealthExplanation" id="otherHealthExplanation" rows="4"
+                            <textarea required maxlength="250" name="otherHealthExplanation" id="otherHealthExplanation" rows="4"
                                 class="form-control mt-2 txtfeild ">
                         </textarea>
                         </div>
@@ -2126,8 +2126,8 @@
 
                 <div>
                     <div style="margin-top: 20px;">
-                        <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">When was your last
-                        </h3>
+                        <h5 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">When was your last
+                        </h5>
                     </div>
                     <div>
                         <div class="col-12">
@@ -2142,7 +2142,7 @@
                                 <input class="form-check-input" type="checkbox" value="no" id="tetanusNo" name="tetanus"
                                     onchange="updateProgress('form1')">
 
-                                <label class="form-check-label label ms-4" for="tetanusNo">
+                                <label class="question-label label ms-4" for="tetanusNo">
                                     No
                                 </label>
                             </div>
@@ -2151,7 +2151,7 @@
                                 <input class="form-check-input" type="checkbox" value="yes" id="tetanusYes"
                                     name="tetanus" onchange="updateProgress('form1')">
 
-                                <label class="form-check-label ms-4" for="tetanusYes">
+                                <label class="question-label ms-4" for="tetanusYes">
                                     Yes
                                 </label>
                             </div>
@@ -2169,7 +2169,7 @@
                         </div>
                         <div id="tetanusExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required name="tetanusExplanation" id="tetanusExplanation" rows="4"
+                            <textarea required maxlength="250" name="tetanusExplanation" id="tetanusExplanation" rows="4"
                                 class="form-control mt-2 txtfeild "></textarea>
                         </div>
                     </div>
@@ -2187,7 +2187,7 @@
                                 <input class="form-check-input" type="checkbox" value="no" id="hepImmuneNo"
                                     name="hepImmune" onchange="updateProgress('form1')">
 
-                                <label class="form-check-label label ms-4" for="hepImmuneNo">
+                                <label class="question-label label ms-4" for="hepImmuneNo">
                                     No
                                 </label>
                             </div>
@@ -2196,7 +2196,7 @@
                                 <input class="form-check-input" type="checkbox" value="yes" id="hepImmuneYes"
                                     name="hepImmune" onchange="updateProgress('form1')">
 
-                                <label class="form-check-label ms-4" for="hepImmuneYes">
+                                <label class="question-label ms-4" for="hepImmuneYes">
                                     Yes
                                 </label>
                             </div>
@@ -2214,7 +2214,7 @@
                         </div>
                         <div id="hepImmuneExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required name="hepImmuneExplanation" id="hepImmuneExplanation" rows="4"
+                            <textarea required maxlength="250" name="hepImmuneExplanation" id="hepImmuneExplanation" rows="4"
                                 class="form-control mt-2 txtfeild ">
                         </textarea>
                         </div>
@@ -2224,9 +2224,9 @@
                 <div>
 
                     <div style="margin-top: 20px;">
-                        <h3 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Check the
+                        <h5 class="heading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Check the
                             Appropriate Box
-                        </h3>
+                        </h5>
                     </div>
                     <div class="mt-2">
                         <div class="col-12">
@@ -2242,7 +2242,7 @@
                                 <input class="form-check-input" type="checkbox" value="no" id="disabilityNo"
                                     name="disability" onchange="updateProgress('form1')">
 
-                                <label class="form-check-label label ms-4" for="disabilityNo">
+                                <label class="question-label label ms-4" for="disabilityNo">
                                     No
                                 </label>
                             </div>
@@ -2251,7 +2251,7 @@
                                 <input class="form-check-input" type="checkbox" value="yes" id="disabilityYes"
                                     name="disability" onchange="updateProgress('form1')">
 
-                                <label class="form-check-label ms-4" for="disabilityYes">
+                                <label class="question-label ms-4" for="disabilityYes">
                                     Yes
                                 </label>
                             </div>
@@ -2269,7 +2269,7 @@
                         </div>
                         <div id="disabilityExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required name="disabilityExplanation" id="disabilityExplanation" rows="4"
+                            <textarea required maxlength="250" name="disabilityExplanation" id="disabilityExplanation" rows="4"
                                 class="form-control mt-2 txtfeild "></textarea>
                         </div>
                     </div>
@@ -2288,7 +2288,7 @@
                                 <input class="form-check-input" type="checkbox" value="no" id="declineNo" name="decline"
                                     onchange="updateProgress('form1')">
 
-                                <label class="form-check-label label ms-4" for="declineNo">
+                                <label class="question-label label ms-4" for="declineNo">
                                     No
                                 </label>
                             </div>
@@ -2297,7 +2297,7 @@
                                 <input class="form-check-input" type="checkbox" value="yes" id="declineYes"
                                     name="decline" onchange="updateProgress('form1')">
 
-                                <label class="form-check-label ms-4" for="declineYes">
+                                <label class="question-label ms-4" for="declineYes">
                                     Yes
                                 </label>
                             </div>
@@ -2315,7 +2315,7 @@
                         </div>
                         <div id="declineExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required name="declineExplanation" id="declineExplanation" rows="4"
+                            <textarea required maxlength="250" name="declineExplanation" id="declineExplanation" rows="4"
                                 class="form-control mt-2 txtfeild ">
                             </textarea>
                         </div>
@@ -2336,7 +2336,7 @@
                                 <input class="form-check-input" type="checkbox" value="no" id="restrictNo"
                                     name="restrict" onchange="updateProgress('form1')">
 
-                                <label class="form-check-label label ms-4" for="restrictNo">
+                                <label class="question-label label ms-4" for="restrictNo">
                                     No
                                 </label>
                             </div>
@@ -2345,7 +2345,7 @@
                                 <input class="form-check-input" type="checkbox" value="yes" id="restrictYes"
                                     name="restrict" onchange="updateProgress('form1')">
 
-                                <label class="form-check-label ms-4" for="restrictYes">
+                                <label class="question-label ms-4" for="restrictYes">
                                     Yes
                                 </label>
                             </div>
@@ -2363,7 +2363,7 @@
                         </div>
                         <div id="restrictExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required name="restrictExplanation" id="restrictExplanation" rows="4"
+                            <textarea required maxlength="250" name="restrictExplanation" id="restrictExplanation" rows="4"
                                 class="form-control mt-2 txtfeild ">
                             </textarea>
                         </div>
@@ -2384,7 +2384,7 @@
                                 <input class="form-check-input" type="checkbox" value="no" id="dutiesNo" name="duties"
                                     onchange="updateProgress('form1')">
 
-                                <label class="form-check-label label ms-4" for="dutiesNo">
+                                <label class="question-label label ms-4" for="dutiesNo">
                                     No
                                 </label>
                             </div>
@@ -2393,7 +2393,7 @@
                                 <input class="form-check-input" type="checkbox" value="yes" id="dutiesYes" name="duties"
                                     onchange="updateProgress('form1')">
 
-                                <label class="form-check-label ms-4" for="dutiesYes">
+                                <label class="question-label ms-4" for="dutiesYes">
                                     Yes
                                 </label>
                             </div>
@@ -2411,7 +2411,7 @@
                         </div>
                         <div id="dutiesExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required name="dutiesExplanation" id="dutiesExplanation" rows="4"
+                            <textarea required maxlength="250" name="dutiesExplanation" id="dutiesExplanation" rows="4"
                                 class="form-control mt-2 txtfeild ">
                             </textarea>
                         </div>
@@ -2429,7 +2429,7 @@
                         <input class="form-check-input mt-1" type="checkbox" value="no" id="certify"
                             name="certification" onchange="updateProgress('form1')">
 
-                        <label class="form-check-label label ms-2" for="certify">
+                        <label class="question-label label ms-2" for="certify">
                             I certify that the answers and statements in this Health Evalution Questionnaire are true
                             and complete.I understand that evidence of omission or falsification of information may
                             result in my disqualification for or termination of employment.
@@ -2438,13 +2438,13 @@
 
                     <div class="form-row mt-3">
                         <div class="d-flex flex-column">
-                            <label>Date of Application</label>
+                            <label class="question-label">Date of Application</label>
                             <input required class="appDate" type="date" id="doa" name="doa" onchange="handleDateChange(event)">
                         </div>
                     </div>
 
                     <div>
-                        <label for="signatureBox">Applicant Signature</label>
+                        <label class="question-label" for="signatureBox">Applicant Signature</label>
                         <canvas id="signatureBox" width="400" height="200" style="border: 1px solid #ccc;" name="sign"></canvas>
                         <br>
                         <p id="clearButton" type="text" data-validate="text" class="clearSign">Clear Signature</p>
@@ -2467,7 +2467,7 @@
     <div id="invalidModal" class="invalid-modal">
         <div class="invalid-modal-content">
             <div class="modal-header">
-                <h3 class="heading" class="modal-heading">Invalid!</h3>
+                <h4 class="heading" class="modal-heading">Invalid!</h4>
                 <span id="closeBtn" class="close-btn" onclick="closeModal()">&#10006;</span>
             </div>
 
@@ -2481,7 +2481,7 @@
     <div id="successModal" class="success-modal">
         <div class="success-modal-content">
             <div class="modal-header">
-                <h3 class="heading" class="modal-heading">Successful!</h3>
+                <h4 class="heading" class="modal-heading">Successful!</h4>
                 <span id="closeBtn" class="close-btn" onclick="closeDialog()">&#10006;</span>
             </div>
 

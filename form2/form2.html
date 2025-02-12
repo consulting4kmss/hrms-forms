@@ -30,33 +30,20 @@
                         <label class="question-label">Applicant Name</label>
 
                         <input required type="text" placeholder="Enter Text" data-validate="text" name="firstName"
-                            autocomplete="off" maxlength="30"
+                            autocomplete="off" maxlength="50"
                             oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.')" class="form-control"
                             onchange="updateProgress2('form2')" />
                         <small class="error-message"></small>
                     </div>
-                    <!-- <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
+                    <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
                         <label class="question-label">Date of Birth</label>
                         <input required type="date" class="dab" name="applicantdob" id="applicantDob"
-                            oninput="handleDateChange2(event)" placeholder="MM/DD/YYYY"
-                            onchange="updateProgress2('form2')"> -->
-                            
-                            <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
-                                <label class="question-label">Date of Birth</label>
-                                <input required type="date" class="dab" name="applicantdob" id="applicantDob"
-                                    oninput="handleDateChange2(event)" onchange="updateProgress2('form2')" >
-                            
-                            
+                            oninput="handleDateChange2(event)" onchange="updateProgress2('form2')">
+
+
                         <small class="error-message"></small>
 
                     </div>
-                    <!-- <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
-                        <label class="question-label">Social Security Number (SSN)</label>
-                        <input type="text"  placeholder="xxx-xx-xxxx" name="middleName" autocomplete="off" maxlength="30"
-                            oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')" class="form-control"
-                            onchange="updateProgress2('form2')" />
-                        <small class="error-message"></small>
-                    </div> -->
 
                     <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
                         <label class="question-label">Social Security Number (SSN)</label>
@@ -86,7 +73,8 @@
                 <div>
                     <label class="question-label">Number and Street (NO PO BOX)</label>
                     <input required type="text" data-validate="text" autocomplete="off" name="address"
-                        class="form-control" onchange="updateProgress2('form2')" placeholder="Enter Text">
+                        class="form-control" maxlength="250" placeholder="Enter Text" 
+                        onchange="updateProgress2('form2')">
                 </div>
             </div>
 
@@ -159,7 +147,8 @@
                     <label class="question-label">Zip</label>
                     <input required type="text" name="zip" autocomplete="off" maxlength="9" data-validate="number"
                         class="form-control" onchange="updateProgress2('form2')"
-                        oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')" placeholder="Enter Number" />
+                        oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')"
+                        placeholder="Enter Number" />
                     <small class="error-message"></small>
                 </div>
             </div>
@@ -167,14 +156,14 @@
                 <div>
                     <label class="question-label">From</label>
 
-                    <input required type="date"  class="dab form-control " id="from" name="dob"
-                        onchange="handleDateChange2(event)">
+                    <input required type="date" class="dab form-control " id="from" name="dob"
+                        oninput="handleDateChange2(event)">
                     <small class="error-message"></small>
                 </div>
                 <div>
                     <label class="question-label">To</label>
-                    <input required type="date"  class="to form-control" id="dab form-control " name="to"
-                        onchange="handleDateChange2(event)" >
+                    <input required type="date" class="to form-control" id="dab form-control " name="to"
+                        oninput="handleDateChange2(event)">
                     <small class="error-message"></small>
                 </div>
             </div>
@@ -287,15 +276,16 @@
                 <div class="col-12 mt-3">
                     <label class="question-label">Current DL Number</label>
                     <input required type="text" name="dlNumber" autocomplete="off" data-validate="number"
-                        class="form-control" onchange="updateProgress2('form2')"
-                        oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')" placeholder="Enter Number" />
+                        class="form-control" maxlength="16" onchange="updateProgress2('form2')"
+                        oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')"
+                        placeholder="Enter Number" />
                     <small class="error-message"></small>
                 </div>
 
                 <div class="col-12 mt-3 mb-3">
                     <label class="question-label">Current DL Expiration Date </label>
-                    <input required type="date"  class="dab form-control" name="dlExpiry" id="dlxpiry"
-                        onchange="handleDateChange2(event)" placeholder="MM/DD/YYYY">
+                    <input required type="date" class="dab " name="dlExpiry" id="dlxpiry"
+                        oninput="handleDateChange2(event)" onchange="updateProgress2('form2')">
                     <small class="error-message"></small>
                 </div>
 
@@ -363,15 +353,16 @@
                 <div class="col-12 mt-3">
                     <label class="question-label">Previous DL Number</label>
                     <input required type="text" name="preDlNumber" autocomplete="off" data-validate="number"
-                        class="form-control" onchange="updateProgress2('form2')"
-                        oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')" placeholder="Enter Number" />
+                        class="form-control" maxlength="16" onchange="updateProgress2('form2')"
+                        oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')"
+                        placeholder="Enter Number" />
                     <small class="error-message"></small>
                 </div>
 
                 <div class="col-12 mt-3 mb-3">
                     <label class="question-label">Previous DL Expiration Date </label>
-                    <input required type="date"  class="dab form-control " name="preDlExpiry" id="preDlExpiry"
-                        onchange="handleDateChange2(event)" placeholder="MM/DD/YYYY">
+                    <input required type="date" class="dab  " name="preDlExpiry" id="preDlExpiry"
+                        oninput="handleDateChange2(event)" onchange="updateProgress2('form2')">
                     <small class="error-message"></small>
                 </div>
 
@@ -688,11 +679,7 @@
                                     <label class="question-label">Current or Last Employer - Name of
                                         Company/School</label>
 
-                                    <input required type="text" data-validate="text" name="currentCompany"
-                                        autocomplete="off"
-                                        oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.')"
-                                        class="form-control" onchange="updateProgress2('form2')"
-                                        placeholder="Enter Text" />
+                                    <input required type="text" data-validate="text" name="currentCompany" autocomplete="off" class="form-control" maxlength="50" placeholder="Enter Text" oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.')" onchange="updateProgress2('form2')"/>
                                     <small class="error-message"></small>
                                 </div>
 
@@ -701,8 +688,9 @@
                                     <label class="question-label">Type of Business/School</label>
 
                                     <input required type="text" placeholder="Enter Text" data-validate="text"
-                                        name="companyType" autocomplete="off" class="form-control"
-                                        oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.')" onchange="updateProgress2('form2')" />
+                                        name="companyType" autocomplete="off" class="form-control" maxlength="50"
+                                        oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.')"
+                                        onchange="updateProgress2('form2')" />
                                     <small class="error-message"></small>
                                 </div>
 
@@ -710,7 +698,7 @@
                                     <label class="question-label">Address</label>
 
                                     <input required type="text" placeholder="Enter Text" data-validate="text"
-                                        name="companyAddress" autocomplete="off" class="form-control"
+                                        name="companyAddress" autocomplete="off" class="form-control" maxlength="250"
                                         onchange="updateProgress2('form2')" />
                                     <small class="error-message"></small>
                                 </div>
@@ -719,7 +707,6 @@
                             <div class="form-row mt-3">
                                 <div class="col">
                                     <label class="question-label">City</label>
-                                    <!-- <input required type="text" data-validate="text" autocomplete="off" name="city" onchange="updateProgress2('form2')"> -->
                                     <input required type="text" data-validate="text" name="companyCity" maxlength="50"
                                         autocomplete="off"
                                         oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.')"
@@ -796,18 +783,19 @@
                             <div class="row mt-3 mb-3">
                                 <div class="col">
                                     <label class="question-label">Start Date</label>
-                                    <input required type="date"  class="dab form-control" id="companyStart"
-                                        name="startDate" oninput="handleDateChange2(event)" onchange="validateEmploymentHistory()">
+                                    <input required type="date" class="dab form-control" id="companyStart"
+                                        name="startDate" oninput="handleDateChange2(event)"
+                                        onchange="validateEmploymentHistory()">
                                     <small class="error-message"></small>
                                 </div>
-                            
+
                                 <div class="col">
                                     <label class="question-label">Separation Date</label>
-                                    <input type="date"  class="form-control" id="companySeparation"
-                                        name="separationDate" oninput="handleDateChange2(event)" onchange="validateEmploymentHistory()">
+                                    <input type="date" class="form-control" id="companySeparation" name="separationDate"
+                                        oninput="handleDateChange2(event)" onchange="validateEmploymentHistory()">
                                     <small class="error-message"></small>
                                 </div>
-                            
+
                                 <div class="col" id="notApplicable">
                                     <label class="question-label mt-1">Not Applicable</label>
                                     <div class="row">
@@ -816,22 +804,23 @@
                                                 name="endorsements" value="None" onchange="toggleEmploymentDates()">
                                         </div>
                                         <div class="col">
-                                            <label class="form-check-label still" for="stillEmployee">Currently Still Employed</label>
+                                            <label class="form-check-label still" for="stillEmployee">Currently Still
+                                                Employed</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
+
 
 
                             <div class="row">
                                 <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                     <label class="question-label">Supervisor Name</label>
 
-                                    <input required  type="text" data-validate="text" name="supervisor"
+                                    <input required type="text" data-validate="text" name="supervisor"
                                         autocomplete="off"
                                         oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.')"
-                                        class="form-control" onchange="updateProgress2('form2')"
+                                        class="form-control" maxlength="50" onchange="updateProgress2('form2')"
                                         placeholder="Enter Text" id="supervisorName" />
                                     <small class="error-message"></small>
                                 </div>
@@ -840,15 +829,15 @@
                                 <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
                                     <label class="question-label">Supervisor/HR Phone #</label>
                                     <input required type="text" name="supervisorNo" id="supervisorPhone"
-                                        autocomplete="off" placeholder="(xxx)xxx-xxxx"
-                                        oninput="validateAndFormatPhoneNumber(this);" class="form-control"
+                                        autocomplete="off" class="form-control"  placeholder="(xxx) xxx-xxxx"
+                                        oninput="validateAndFormatPhoneNumber(this);" 
                                         onchange="updateProgress2('form2')" />
                                     <small class="error-message"></small>
                                 </div>
                                 <div class="col-12 mt-4">
                                     <label class="question-label">Reason for Leaving</label>
                                     <textarea required name="leaveReason" id="leavingReason" placeholder="Enter Text"
-                                        rows="4" class="form-control mt-2 txtfeild"></textarea>
+                                        rows="4" class="form-control mt-2 txtfeild" maxlength="250"></textarea>
                                 </div>
 
                             </div>
@@ -963,20 +952,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="reasonDiv mt-3" id="reasonBox">
-                <div class="warnDiv">
-                    <p class="warning">
-                        you have not provided TEN (10) years of employment history please provide the reason below
-                    </p>
-                </div>
-                <div class="col-12 mt-4">
-                    <label class="question-label">Reason for not meeting the TEN (10) years of employment history
-                        requirement.</label>
-                    <textarea name="employHistoryReason" id="employHistroy" placeholder="Enter Text" rows="4"
-                        class="form-control mt-2 txtfeild"></textarea>
-                </div>
-
-            </div> -->
             </div>
 
 
@@ -1168,8 +1143,8 @@
             </div>
             <div class="col-12 col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 mt-3">
                 <label class="appDate just-color form-check-label">Date of Application</label>
-                <input required type="date"  class="dab" name="applicantdob" id="appliedDate"
-                    oninput="handleDateChange2(event)" placeholder="MM/DD/YYYY" onchange="updateProgress2('form2')">
+                <input required type="date" class="dab" id="appliedDate" name="applicantdob"
+                    oninput="handleDateChange2(event)" onchange="updateProgress2('form2')">
                 <small class="error-message"></small>
             </div>
 

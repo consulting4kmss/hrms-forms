@@ -154,47 +154,6 @@ function validatePage(formId, pageNumber) {
     const canvases = currentPage.querySelectorAll('canvas');
     let isValid = true;
 
-
-    // inputs.forEach(input => {
-    //     const validateInput = () => {
-    //         if (input.type === 'checkbox') {
-    //             const checkboxes = currentPage.querySelectorAll(`input[name="${input.name}"]`);
-    //             const isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-
-    //             if (!isAnyChecked) {
-    //                 isValid = false;
-    //                 checkboxes.forEach(checkbox => checkbox.classList.add('highlight-feedback'));
-    //             } else {
-    //                 checkboxes.forEach(checkbox => checkbox.classList.remove('highlight-feedback'));
-    //             }
-    //         } else if (input.required) {
-    //             if (input.tagName === 'SELECT' && !input.value) {
-    //                 isValid = false;
-    //                 input.classList.add('highlight');
-    //             } else if (input.tagName === 'TEXTAREA' && !input.value.trim()) {
-    //                 isValid = false;
-    //                 input.classList.add('highlight');
-    //             } else if (input.value.trim()) {
-    //                 input.classList.remove('highlight');
-    //             } else {
-    //                 isValid = false;
-    //                 input.classList.add('highlight');
-    //             }
-    //         } else {
-    //             input.classList.remove('highlight');
-    //         }
-    //     };
-
-
-    //     input.addEventListener('input', validateInput);
-    //     if (input.tagName === 'SELECT') {
-    //         input.addEventListener('change', validateInput);
-    //     }
-
-
-    //     validateInput();
-    // });
-
     inputs.forEach(input => {
         const validateInput = () => {
             if (input.type === 'checkbox') {

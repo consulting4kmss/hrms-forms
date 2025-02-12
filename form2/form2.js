@@ -257,7 +257,7 @@ function addressHistory(value) {
                             <div>
                                 <label class="question-label">Additional Address #${addressCounter}</label>
                                 <input required type="text" autocomplete="off" name="address${addressCounter}" id="additionalAddress${addressCounter}"
-                                    class="form-control" onchange="updateProgress2('form2')" placeholder="Enter Text">
+                                    class="form-control" maxlength="200" onchange="updateProgress2('form2')" placeholder="Enter Text">
                             </div>
                         </div>
                         <div class="form-row">
@@ -265,7 +265,7 @@ function addressHistory(value) {
                                 <label class="question-label">City</label>
                                 <input required type="text" name="city${addressCounter}" maxlength="50" autocomplete="off" id="additionalCity${addressCounter}"
                                     oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only Letters are allowed.')"
-                                    class="form-control" onchange="updateProgress2('form2')" placeholder="Enter Text" />
+                                    class="form-control"  maxlength="50" onchange="updateProgress2('form2')" placeholder="Enter Text" />
                                 <small class="error-message"></small>
                             </div>
                             <div class="col">
@@ -423,7 +423,7 @@ function licenseDenied(value) {
         licenseElement.classList.add('mt-3');
         licenseElement.innerHTML = `
                     <label class="question-label">Disclosure</label>
-                    <textarea required id="licenseDenyExplanation" rows="4" class="form-control mt-2 txtfeild "></textarea>
+                    <textarea maxlength="250" required id="licenseDenyExplanation" rows="4" class="form-control mt-2 txtfeild "></textarea>
                 `;
         const MainContainer = document.getElementById('licenseContainer');
         MainContainer.appendChild(licenseElement);
@@ -441,7 +441,7 @@ function licenseSuspended(value) {
 
         suspendExplain.innerHTML = `
                     <label class="question-label">Disclosure</label>
-                    <textarea required id="licenseSuspendedExplanation" rows="4" class="form-control mt-2 txtfeild "></textarea>
+                    <textarea maxlength="250" required id="licenseSuspendedExplanation" rows="4" class="form-control mt-2 txtfeild "></textarea>
               `
         document.getElementById('suspendContainer').appendChild(suspendExplain);
         maxDate();
@@ -492,6 +492,9 @@ function handleDateChange2(event) {
     const errorField = input.nextElementSibling;
     const thisYear = new Date().getFullYear();
     // input.setAttribute("max", today);
+    if(!input.value){
+        return false;
+    }
     if (year > thisYear || year < 1900) { 
         input.classList.add('highlight');        
         errorField.style.display = 'block';
@@ -503,6 +506,7 @@ function handleDateChange2(event) {
         errorField.style.display = 'none';
         errorField.style.display = 'none';
         return true
+
 
     }
 }
@@ -601,10 +605,10 @@ function validInput(input, regex, errorMessage) {
     // Trim invalid characters (force only allowed characters)
   if(errorMessage=="Only Letters are allowed."){
      trimmedValue = value.match(regex) ? value : value.replace(/[^a-zA-Z]/g, '');
-     console.log("entered trimmed value only letters",trimmedValue);
+    
   }else if(errorMessage=="Only numbers are allowed."){
    trimmedValue = value.match(regex) ? value : value.replace(/[^0-9]/g, '');
-   console.log("entered trimmed value only letters",trimmedValue);
+  
    trimmedValue = value.replace(/[^0-9]/g, '');
  }
     if (value !== trimmedValue) {
@@ -635,47 +639,6 @@ function validInput(input, regex, errorMessage) {
         return true;
     }
 }
-
-
-// function validInput(input, regex, errorMessage) {
-//     if (!(regex instanceof RegExp)) {
-//         console.error("Invalid regex provided to validInput:", regex);
-//         return;
-//     }
-
-//     let value = input.value;
-//     const errorField = input.nextElementSibling;
-
-//     try {
-//         // Ensure regex pattern is properly formatted for trimming
-//         const allowedPattern = regex.source.match(/\[.*?\]/)?.[0] || regex.source; 
-
-//         // Replace characters that are NOT in the allowed pattern
-//         const trimmedValue = value.replace(new RegExp(`[^${allowedPattern}]`, 'g'), '');
-
-//         if (value !== trimmedValue) {
-//             input.value = trimmedValue; // Update input field with corrected value
-//         }
-
-//         if (!regex.test(trimmedValue)) {
-//             input.classList.add('highlight');
-//             if (errorField) {
-//                 errorField.style.display = 'block';
-//                 errorField.textContent = errorMessage;
-//             }
-//             return false;
-//         } else {
-//             input.classList.remove('highlight');
-//             if (errorField) {
-//                 errorField.style.display = 'none';
-//             }
-//             return true;
-//         }
-//     } catch (error) {
-//         console.error("Error processing regex:", error);
-//     }
-// }
-
 
 
 function validateAndFormatSSN(input) {
@@ -745,9 +708,19 @@ function validatePage(formId, pageNumber) {
         const validateInput = () => {
             if (input.type === 'checkbox') {
                 const checkboxes = currentPage.querySelectorAll(`input[name="${input.name}"]`);
-                const isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+                let isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+                const endDateField = document.getElementById('companySeparation');
+                toggleEmploymentDates();
+                if(endDateField.required && input.id === 'stillEmployee'){
+                    console.log("endDateField",endDateField.required);
+                // isAnyChecked = Array.from(checkboxes)
+                //     .filter(checkbox => checkbox.id !== 'stillEmployee') // Exclude 'stillEmployee'
+                //     .some(checkbox => checkbox.checked); 
+                return;
+                }
 
                 if (!isAnyChecked) {
+
                     isValid = false;
                     checkboxes.forEach(checkbox => checkbox.classList.add('highlight-feedback'));
                 } else {
@@ -775,28 +748,40 @@ function validatePage(formId, pageNumber) {
                     isValid = false;
                     input.classList.add('highlight');
                 }
+                if (input.name === "home" || input.name === "supervisorNo") {  
+                    const isPhoneValid = validateAndFormatPhoneNumber(input);
+                    if (!isPhoneValid) {
+                        console.log('inside phone number', input.id, input.name)
+                        isValid = false;  
+                    }
+                }
+                if (input.name === "ssn") {  
+                    const isSSNValid = validateAndFormatSSN(input);
+                    if (!isSSNValid) {
+                        console.log('inside ssn', input.id, input.name)
+                        isValid = false;
+                    }
+                }
+                if (input.type === "date") {
+                    const errorField = input.nextElementSibling;
+                    if (!handleDateChange2({ target: input })) {
+                        isValid = false;
+                        errorField.textContent="Invalid date. Please enter a valid Date.";
+                        if(input.id==="companySeparation"|| input.id==="companyStart"){
+                            errorField.textContent="Please enter a valid Date.";
+                        }
+                        input.classList.add('highlight');
+                        errorField.style.display = 'block';
+                    }else{
+                        input.classList.remove('highlight');
+                        errorField.textContent="";
+                        errorField.style.display = 'none';
+                    }
+                }
             } else {
                 input.classList.remove('highlight');
             }
-            if (input.name === "home" || input.name === "supervisorNo") {  
-                const isPhoneValid = validateAndFormatPhoneNumber(input);
-                if (!isPhoneValid) {
-                    console.log('inside phone number', input.id, input.name)
-                    isValid = false;
-                }
-            }
-            if (input.name === "ssn") {  
-                const isSSNValid = validateAndFormatSSN(input);
-                if (!isSSNValid) {
-                    console.log('inside ssn', input.id, input.name)
-                    isValid = false;
-                }
-            }
-            if (input.type === "date") {
-                if (!handleDateChange2({ target: input })) {
-                    isValid = false;
-                }
-            }
+
         };
 
         input.addEventListener('input', validateInput);
@@ -903,11 +888,11 @@ function handleRadioChange(event) {
                     </div>
                     <div class="col-12 mt-3">
                         <label class="question-label">Offence</label>
-                        <input required type="text" data-validate="text" name="offence-${violationCount}" autocomplete="off" class="form-control" id="voilationOffence-${violationCount}" onchange="updateProgress2('form2')">
+                        <input required type="text" data-validate="text" name="offence-${violationCount}" autocomplete="off" class="form-control"  maxlength="200" id="voilationOffence-${violationCount}" onchange="updateProgress2('form2')">
                     </div>
                     <div class="col-12 mt-3 mb-3">
                         <label class="question-label">Location</label>
-                        <input required type="text" data-validate="text" name="voilationLocation-${violationCount}" autocomplete="off" class="form-control" id="voilationLocation-${violationCount}" onchange="updateProgress2('form2')">
+                        <input required type="text" data-validate="text" name="voilationLocation-${violationCount}" autocomplete="off" class="form-control"  maxlength="200" id="voilationLocation-${violationCount}" onchange="updateProgress2('form2')">
                     </div>
                     <div class="mt-3 mb-2">
                         <label class="question-label">Type Of Vehicle Operated</label>
@@ -1006,7 +991,7 @@ function handleAccidentChange(event) {
                         </div>
                         <div class="col-12 mt-4">
                             <label class="question-label">Circumstances of Accident</label>
-                            <textarea required name="circumstances-${accidentCount}" id="accidentExplanation-${accidentCount}" rows="4" class="form-control mt-2 txtfeild"></textarea>
+                            <textarea maxlength="250" required name="circumstances-${accidentCount}" id="accidentExplanation-${accidentCount}" rows="4" class="form-control mt-2 txtfeild"></textarea>
                         </div>
                         <div class="mb-3 mt-4">
                             <label class="question-label">Attachment (Optional)</label>
@@ -1149,7 +1134,7 @@ function militaryDriver(value) {
                         </div>
                         <div class="col-5">
                             <label class="question-label">Approximate Number of Miles</label>
-                            <input required type="text" class="form-control" id="truckMiles " name="truckmiles"
+                            <input required type="text" class="form-control"  maxlength="15" id="truckMiles " name="truckmiles"
                                 placeholder="Enter number"  oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')" onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
@@ -1228,7 +1213,7 @@ function militaryDriver(value) {
                         </div>
                         <div class="col-5">
                             <label class="question-label">Approximate Number of Miles</label>
-                            <input required type="text" class="form-control" id="tractorMiles " name="tractormiles"
+                            <input required type="text" class="form-control" maxlength="15" id="tractorMiles " name="tractormiles"
                                 placeholder="Enter number"  oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')" onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
@@ -1287,7 +1272,7 @@ function militaryDriver(value) {
 
                     <div class="col-12 mt-2">
                         <label class="question-label">Other commercial motor vehicles (list)</label>
-                        <textarea required name="defectiveVisionExplanation" id="otherVehicles" rows="4"
+                        <textarea maxlength="250" required name="defectiveVisionExplanation" id="otherVehicles" rows="4"
                             class="form-control mt-2 txtfeild "></textarea>
                     </div>
 
@@ -1575,7 +1560,7 @@ function addUnemployment(presentId, value) {
 
                                 <div class="col-12 mt-4">
                                     <label class="question-label">Reason for Unemployment</label>
-                                    <textarea required required name="unemploymentReason" id="unemployReason" placeholder="Enter Text"
+                                    <textarea maxlength="250" required required name="unemploymentReason" id="unemployReason" placeholder="Enter Text"
                                         rows="4" class="form-control mt-2 txtfeild"></textarea>
                                 </div>`
         document.getElementById(presentId).appendChild(unemploy);
@@ -1646,14 +1631,17 @@ function toggleEmploymentDates() {
     const stillEmployeeCheckbox = document.getElementById('stillEmployee');
     // const startDateField = document.getElementById('companyStart');
     const endDateField = document.getElementById('companySeparation');
+    const errorField = endDateField.nextElementSibling;
 
     if (stillEmployeeCheckbox.checked) {
-        const currentDate = new Date();
+        // const currentDate = new Date();
         // const startDate = new Date(currentDate.setFullYear(currentDate.getFullYear() - 10));
         // startDateField.value = startDate.toISOString().split('T')[0];
 
         endDateField.value = '';
         endDateField.required = false;
+        errorField.textContent="";
+        errorField.style.display = 'none';
     } else {
         // startDateField.value = '';
         // endDateField.value = '';
@@ -1677,7 +1665,7 @@ function addEmploymentValidation() {
                 <div class="col-12 mt-4">
                     <label class="question-label">Reason for not meeting the TEN (10) years of employment history
                         requirement.</label>
-                    <textarea required name="employHistoryReason" id="employHistroy" placeholder="Enter Text" rows="4"
+                    <textarea maxlength="250" required name="employHistoryReason" id="employHistroy" placeholder="Enter Text" rows="4"
                         class="form-control mt-2 txtfeild"></textarea>
                 </div>`;
         const mainContainer = document.getElementById('histroyValidator');

@@ -2,9 +2,7 @@
     font-weight: 400 !important;
     color:white !important;
 }
-.formtext{
-    color:white !important;
-}
+
 
 
 .form-container {
@@ -203,10 +201,9 @@ button:disabled {
     cursor: not-allowed;
 }
 
-
 .question-label {
     display: block;
-    font-size: 1rem;
+    font-size: 1.3rem;
     color: white !important;
     font-weight: 400 !important;
 }

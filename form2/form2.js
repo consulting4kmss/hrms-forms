@@ -4,7 +4,7 @@ let formCounter = 1;
 let years = 0;
 let totalYears = 0;
 function nextPage2(pageNumber) {
-     if (validatePage('form2', pageNumber - 1)) {
+    if (validatePage('form2', pageNumber - 1)) {
         if (pageNumber == 9) {
             initializeSignatureBox();
             clearSign();
@@ -12,10 +12,12 @@ function nextPage2(pageNumber) {
 
         }
         if (pageNumber == 7) {
+            addSectionListener();
+            checkSections();
             validateEmploymentHistory();
         }
         if (pageNumber - 1 == 7) {
-            reason=document.getElementById('employHistroy');
+            reason = document.getElementById('employHistroy');
             if (totalYears >= 10 || reason.value) {
                 collectFormData('form2', pageNumber - 1);
                 const currentPage = document.querySelector(`#form2-page${pageNumber - 1}`);
@@ -99,7 +101,7 @@ function updateProgress2(formId) {
     });
 
     const percentage = ((filledFields / totalFields2) * 100);
-   
+
     const progressBar = document.querySelector('.progress-bar2');
     progressBar.style.width = `${percentage}%`;
 
@@ -138,9 +140,9 @@ function handleMutualExclusiveCheckboxes2(formId) {
         });
     });
 }
-function maxDate(){
+function maxDate() {
     const today = new Date().toISOString().split('T')[0];
-const dateInputs = document.querySelectorAll('input[type="date"]'); // Select all date inputs
+    const dateInputs = document.querySelectorAll('input[type="date"]'); // Select all date inputs
     dateInputs.forEach(input => {
         input.setAttribute("max", today); // Set max attribute to today's date
     });
@@ -148,19 +150,19 @@ const dateInputs = document.querySelectorAll('input[type="date"]'); // Select al
 
 function initializeForm2(formId) {
     totalPages2 = document.querySelectorAll(`#${formId} .form-page2 `).length;
-console.log("Form 2 initialized");
+    console.log("Form 2 initialized");
 
 
-maxDate();
+    maxDate();
 
     caluclateTotalFeilds()
 
     updatePageInfo2(formId, 1);
     // toggleFields2(formId, toggleFieldsConfig2);
-    
+
 
     const fields = document.querySelectorAll(`#${formId} .form-page2 input, #${formId} .form-page2 select`);
-    
+
     fields.forEach(field => {
         field.addEventListener('change', () => {
             updateProgress2(formId);
@@ -203,9 +205,9 @@ function handleAddressChange(radio) {
             if (el.htmlFor) el.htmlFor = el.htmlFor.replace(/\d+$/, addressCounter);
         });
         const label = newTemplate.querySelector('.question-label');
-    if (label) {
-        label.textContent = `Additional Address #${addressCounter}`;
-    }
+        if (label) {
+            label.textContent = `Additional Address #${addressCounter}`;
+        }
         // Reset inputs in the cloned template
         newTemplate.querySelectorAll('input[type="text"], input[type="number"], input[type="date"]').forEach(el => el.value = '');
         newTemplate.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
@@ -214,7 +216,7 @@ function handleAddressChange(radio) {
 
         addressSection.appendChild(newTemplate);
         maxDate();
-    
+
         caluclateTotalFeilds();
     } else if (radio.value === 'no') {
         // Remove all templates with a higher data-template-id
@@ -223,11 +225,11 @@ function handleAddressChange(radio) {
             if (parseInt(el.dataset.templateId, 10) > currentTemplateId) {
                 addressCounter--;
                 console.log(addressCounter);
-                el.remove();     
+                el.remove();
                 caluclateTotalFeilds();
             }
         });
-       
+
         caluclateTotalFeilds();
     }
 }
@@ -385,11 +387,11 @@ function removeHistoryElement(value) {
     if (value == 'no') {
         const Element = document.getElementById('Address1');
         if (Element) {
-            addressCounter=1;
-               console.log(addressCounter);
+            addressCounter = 1;
+            console.log(addressCounter);
             Element.remove();
         }
-  
+
         caluclateTotalFeilds();
     }
 
@@ -462,29 +464,6 @@ function licenseNotSuspended(value) {
 }
 
 
-
-// function handleDateChange2(event) {
-    
-//     const selectedDate = new Date(event.target.value);
-
-//     if (!isNaN(selectedDate)) { // Ensure the date is valid
-//         const formattedDate = formatDateToDDMMYYYY2(selectedDate);
-
-//         // Display formatted date in a sibling element
-//         const errorMessage = event.target.nextElementSibling; // Assuming <small> follows the input
-//         if (errorMessage) {
-//             errorMessage.textContent = `Selected Date: ${formattedDate}`;
-//         }
-//     }
-// }
-
-// function formatDateToDDMMYYYY2(date) {
-//     const day = String(date.getDate()).padStart(2, '0');
-//     const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
-//     const year = date.getFullYear();
-//     return `${month}/${day}/${year}`;
-// }
-
 function handleDateChange2(event) {
     const input = event.target;
     const selectedDate = new Date(input.value);
@@ -492,16 +471,16 @@ function handleDateChange2(event) {
     const errorField = input.nextElementSibling;
     const thisYear = new Date().getFullYear();
     // input.setAttribute("max", today);
-    if(!input.value){
+    if (!input.value) {
         return false;
     }
-    if (year > thisYear || year < 1900) { 
-        input.classList.add('highlight');        
+    if (year > thisYear || year < 1900) {
+        input.classList.add('highlight');
         errorField.style.display = 'block';
         errorField.textContent = 'Invalid date. Please enter a valid Year.';
-      
+
         return false;
-    }else{
+    } else {
         input.classList.remove('highlight');
         errorField.style.display = 'none';
         errorField.style.display = 'none';
@@ -531,7 +510,7 @@ function validateAndFormatPhoneNumber(input) {
     // Handle empty input (allows clearing)
     if (rawValue.length === 0) {
         input.value = '';
-         input.classList.add('highlight');
+        input.classList.add('highlight');
         errorField.textContent = 'Phone number must be exactly 10 digits.';
         errorField.style.display = 'block';
         return false;
@@ -539,7 +518,7 @@ function validateAndFormatPhoneNumber(input) {
 
     // Validate and show error for invalid length
     if (rawValue.length !== 10) {
-         input.classList.add('highlight');
+        input.classList.add('highlight');
         errorField.textContent = 'Phone number must be exactly 10 digits.';
         errorField.style.display = 'block';
         input.value = formatPhoneNumber(rawValue); // Format partial input for better UX
@@ -567,32 +546,6 @@ function formatPhoneNumber(value) {
 
 
 
-// function validInput(input, regex, errorMessage) {
-//     const value = input.value;
-//     const errorField = input.nextElementSibling;
-
-//     if (!regex.test(value)) {
-//         // Add error styles and message
-//         input.classList.add('highlight');
-//         if (errorField) {
-//             errorField.style.display = 'block';
-//             errorField.textContent = errorMessage;
-//         }
-
-//         // Remove invalid characters
-//         input.value = value.replace(new RegExp(`[^${regex.source.slice(1, -1)}]`, 'g'), '');
-//         return false;
-//     } else {
-//         // Remove error styles and message
-//         input.classList.remove('highlight');
-//         if (errorField) {
-//             errorField.style.display = 'none';
-//         }
-//         return true;
-//     }
-// }
-
-
 function validInput(input, regex, errorMessage) {
     if (!(regex instanceof RegExp)) {
         console.error("Invalid regex provided to validInput:", regex);
@@ -601,23 +554,23 @@ function validInput(input, regex, errorMessage) {
 
     const value = input.value;
     const errorField = input.nextElementSibling;
-  let trimmedValue=value;
+    let trimmedValue = value;
     // Trim invalid characters (force only allowed characters)
-  if(errorMessage=="Only Letters are allowed."){
-     trimmedValue = value.match(regex) ? value : value.replace(/[^a-zA-Z]/g, '');
-    
-  }else if(errorMessage=="Only numbers are allowed."){
-   trimmedValue = value.match(regex) ? value : value.replace(/[^0-9]/g, '');
-  
-   trimmedValue = value.replace(/[^0-9]/g, '');
- }
+    if (errorMessage == "Only Letters are allowed.") {
+        trimmedValue = value.match(regex) ? value : value.replace(/[^a-zA-Z]/g, '');
+
+    } else if (errorMessage == "Only numbers are allowed.") {
+        trimmedValue = value.match(regex) ? value : value.replace(/[^0-9]/g, '');
+
+        trimmedValue = value.replace(/[^0-9]/g, '');
+    }
     if (value !== trimmedValue) {
         input.value = trimmedValue;
         if (errorField) {
             errorField.style.display = 'block';
             errorField.textContent = errorMessage;
         } // Set corrected value
-    }else{
+    } else {
         input.classList.remove('highlight');
         if (errorField) {
             errorField.style.display = 'none';
@@ -706,17 +659,17 @@ function validatePage(formId, pageNumber) {
         }
 
         const validateInput = () => {
-            if (input.type === 'checkbox') {
+            if (input.type === 'checkbox' && input.required) {
                 const checkboxes = currentPage.querySelectorAll(`input[name="${input.name}"]`);
                 let isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
                 const endDateField = document.getElementById('companySeparation');
                 toggleEmploymentDates();
-                if(endDateField.required && input.id === 'stillEmployee'){
-                    console.log("endDateField",endDateField.required);
-                // isAnyChecked = Array.from(checkboxes)
-                //     .filter(checkbox => checkbox.id !== 'stillEmployee') // Exclude 'stillEmployee'
-                //     .some(checkbox => checkbox.checked); 
-                return;
+                if (endDateField.required && input.id === 'stillEmployee') {
+                    console.log("endDateField", endDateField.required);
+                    // isAnyChecked = Array.from(checkboxes)
+                    //     .filter(checkbox => checkbox.id !== 'stillEmployee') // Exclude 'stillEmployee'
+                    //     .some(checkbox => checkbox.checked); 
+                    return;
                 }
 
                 if (!isAnyChecked) {
@@ -748,14 +701,14 @@ function validatePage(formId, pageNumber) {
                     isValid = false;
                     input.classList.add('highlight');
                 }
-                if (input.name === "home" || input.name === "supervisorNo") {  
+                if (input.name === "home" || input.name === "supervisorNo") {
                     const isPhoneValid = validateAndFormatPhoneNumber(input);
                     if (!isPhoneValid) {
                         console.log('inside phone number', input.id, input.name)
-                        isValid = false;  
+                        isValid = false;
                     }
                 }
-                if (input.name === "ssn") {  
+                if (input.name === "ssn") {
                     const isSSNValid = validateAndFormatSSN(input);
                     if (!isSSNValid) {
                         console.log('inside ssn', input.id, input.name)
@@ -766,15 +719,15 @@ function validatePage(formId, pageNumber) {
                     const errorField = input.nextElementSibling;
                     if (!handleDateChange2({ target: input })) {
                         isValid = false;
-                        errorField.textContent="Invalid date. Please enter a valid Date.";
-                        if(input.id==="companySeparation"|| input.id==="companyStart"){
-                            errorField.textContent="Please enter a valid Date.";
+                        errorField.textContent = "Invalid date. Please enter a valid Date.";
+                        if (input.id === "companySeparation" || input.id === "companyStart") {
+                            errorField.textContent = "Please enter a valid Date.";
                         }
                         input.classList.add('highlight');
                         errorField.style.display = 'block';
-                    }else{
+                    } else {
                         input.classList.remove('highlight');
-                        errorField.textContent="";
+                        errorField.textContent = "";
                         errorField.style.display = 'none';
                     }
                 }
@@ -834,7 +787,7 @@ function getValidationRule(input) {
 function collectFormData(formId, pageNumber) {
     const form = document.getElementById(formId);
     const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
-    
+
     if (!currentPage) {
         console.error(`Page ${pageNumber} not found inside form ${formId}`);
         return {};
@@ -1053,7 +1006,7 @@ function militaryDriver(value) {
         const militaryElement = document.createElement('div');
         militaryElement.id = 'fmcsa';
         militaryElement.innerHTML = `
-                <div class="address-container mt-4">
+                <div class="address-container mt-4" id="section1">
                     <label class="question-label">Straight Truck (check all that apply)</label>
                     <div>
                         <div class=" form-check col-12 mt-2">
@@ -1119,13 +1072,13 @@ function militaryDriver(value) {
                         <div class="col">
                             <label class="question-label">From</label>
 
-                            <input required type="date"  class="dab form-control " id="truckFrom" name="truckFrom"
+                            <input required type="date"  class="dab form-control " id="fromDateTruck" name="truckFrom"
                                 onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
                         <div class="col">
                             <label class="question-label">To</label>
-                            <input required type="date"  class="form-control" id="truckTo" name="truckto"
+                            <input required type="date"  class="form-control" id="toDateTruck" name="truckto"
                                 onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
@@ -1134,14 +1087,14 @@ function militaryDriver(value) {
                         </div>
                         <div class="col-5">
                             <label class="question-label">Approximate Number of Miles</label>
-                            <input required type="text" class="form-control"  maxlength="15" id="truckMiles " name="truckmiles"
-                                placeholder="Enter number"  oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')" onchange="handleDateChange2(event)">
+                            <input required type="text" class="form-control"  maxlength="15" id="approxMilesTruck" name="truckmiles"
+                                placeholder="Enter number"  oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')">
                             <small class="error-message"></small>
                         </div>
                     </div>
                 </div>
 
-                <div class="address-container mt-4">
+                <div class="address-container mt-4" id="section2">
                     <label class="question-label">Tractor & Semi-Trailer (check all that apply)</label>
                     <div>
                         <div class=" form-check col-12 mt-2">
@@ -1198,13 +1151,13 @@ function militaryDriver(value) {
                         <div class="col">
                             <label class="question-label">From</label>
 
-                            <input required type="date"  class="dab form-control " id="tractorFrom" name="tractorFrom"
+                            <input required type="date"  class="dab form-control " id="fromDateTractor" name="tractorFrom"
                                 onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
                         <div class="col">
                             <label class="question-label">To</label>
-                            <input required type="date"  class="form-control" id="tractorTo" name="tractorto"
+                            <input required type="date"  class="form-control" id="toDateTractor" name="tractorto"
                                 onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
@@ -1213,14 +1166,14 @@ function militaryDriver(value) {
                         </div>
                         <div class="col-5">
                             <label class="question-label">Approximate Number of Miles</label>
-                            <input required type="text" class="form-control" maxlength="15" id="tractorMiles " name="tractormiles"
-                                placeholder="Enter number"  oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')" onchange="handleDateChange2(event)">
+                            <input required type="text" class="form-control" maxlength="15" id="approxMilesTractor" name="tractormiles"
+                                placeholder="Enter number"  oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')" >
                             <small class="error-message"></small>
                         </div>
                     </div>
                 </div>
 
-                <div class="address-container mt-4">
+                <div class="address-container mt-4" id="section3">
                     <label class="question-label">Bus or Passenger Van (check all that apply)</label>
                     <div>
                         <div class=" form-check col-12 mt-2">
@@ -1247,13 +1200,13 @@ function militaryDriver(value) {
                         <div class="col">
                             <label class="question-label">From</label>
 
-                            <input required type="date"  class="dab form-control " id="busFrom" name="busFrom"
+                            <input required type="date"  class="dab form-control " id="fromDateBus" name="busFrom"
                                 onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
                         <div class="col">
                             <label class="question-label">To</label>
-                            <input required type="date"  class="form-control" id="busTo" name="busto"
+                            <input required type="date"  class="form-control" id="toDateBus" name="busto"
                                 onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
@@ -1262,13 +1215,13 @@ function militaryDriver(value) {
                         </div>
                         <div class="col-5">
                             <label class="question-label">Approximate Number of Miles</label>
-                            <input required type="" class="form-control" id="busMiles " name="busmiles"
-                                placeholder="Enter number"  oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')" onchange="handleDateChange2(event)">
+                            <input required type="" class="form-control" id="approxMilesBus" name="busmiles"
+                                placeholder="Enter number"  oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')">
                             <small class="error-message"></small>
                         </div>
                     </div>
                 </div>
-                <div class="address-container mt-4">
+                <div class="address-container mt-4" id="section4">
 
                     <div class="col-12 mt-2">
                         <label class="question-label">Other commercial motor vehicles (list)</label>
@@ -1281,13 +1234,13 @@ function militaryDriver(value) {
                         <div class="col">
                             <label class="question-label">From</label>
 
-                            <input required type="date"  class="dab form-control " id="otherFrom" name="otherfrom"
+                            <input required type="date"  class="dab form-control " id="fromDateOther" name="otherfrom"
                                 onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
                         <div class="col">
                             <label class="question-label">To</label>
-                            <input required type="date"  class="form-control" id="otherTo" name="otherto"
+                            <input required type="date"  class="form-control" id="toDateOther" name="otherto"
                                 onchange="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
@@ -1296,14 +1249,15 @@ function militaryDriver(value) {
                         </div>
                         <div class="col-5">
                             <label class="question-label">Approximate Number of Miles</label>
-                            <input required type="number" class="form-control" id="otherMiles " name="othermiles"
-                                placeholder="Enter number"  oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')" onchange="handleDateChange2(event)">
+                            <input required type="number" class="form-control" id="approxMilesOther" name="othermiles"
+                                placeholder="Enter number"  oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')">
                             <small class="error-message"></small>
                         </div>
                     </div>
                 </div> `
         document.getElementById('militaryDriving').appendChild(militaryElement);
         maxDate();
+        addSectionListener();
         caluclateTotalFeilds();
     }
 }
@@ -1318,8 +1272,109 @@ function notMilitaryDriver(value) {
 
     }
 }
+function addSectionListener() {
+    const sections = document.querySelectorAll("[id^='section']");
+    sections.forEach(section => {
+        section.addEventListener("change", checkSections);
+    });
+}
 
 
+function checkSections() {
+    const sections = document.querySelectorAll("[id^='section']");
+    let lastFilledSection = null;
+
+    sections.forEach(section => {
+        const inputs = section.querySelectorAll("textarea");
+
+        // Separate checkboxes and other input fields
+        const checkboxes = [...inputs].filter(input => input.type === "checkbox");
+        
+        const dateFrom = section.querySelector("input[id*='fromDate']");
+        const dateTo = section.querySelector("input[id*='toDate']");
+        const milesInput = section.querySelector("input[id*='approxMiles']");
+        dateFeilds = false;
+        if ((dateFrom && dateTo) && (dateFrom.value && dateTo.value)) {
+            dateFeilds = true;
+            console.log("Date To and Date From");
+            milesInput?.removeAttribute("required");
+            dateFrom?.setAttribute("required", "true");
+            dateTo?.setAttribute("required", "true");
+            console.log("milesInput", milesInput);
+        } else if (milesInput && milesInput.value) {
+            dateFeilds = true;
+            console.log("MilesInput");
+            milesInput?.setAttribute("required", "true");
+            dateFrom?.removeAttribute("required");
+            dateTo?.removeAttribute("required");
+            console.log("MilesInput -", milesInput);
+            
+        }
+
+
+        const atLeastOneCheckboxChecked = checkboxes.length > 0 ? checkboxes.some(input => input.checked) : true;
+        if (section.id === 'section4') {
+            const textInputs = [...inputs].filter(input => input.type !== "checkbox");
+            const allTextFieldsFilled = textInputs.every(input => input.value.trim() !== "");
+
+            if (allTextFieldsFilled && atLeastOneCheckboxChecked && dateFeilds) {
+                lastFilledSection = section;
+                console.log("Filled Section:", lastFilledSection.id);
+                removeDateHighlight(dateFrom);
+                removeDateHighlight(dateTo);
+            }
+
+        } else if (atLeastOneCheckboxChecked && dateFeilds) {
+            lastFilledSection = section;
+            removeDateHighlight(dateFrom);
+            removeDateHighlight(dateTo);
+            console.log("Filled Section:", lastFilledSection.id);
+
+        }
+
+
+    });
+
+    // Ensure only ONE section is marked as filled and enforce "required" attributes accordingly
+    sections.forEach(section => {
+        let inputs = section.querySelectorAll("input, textarea");
+
+        if (lastFilledSection && section.id !== lastFilledSection.id) {
+            // Remove 'required' from other sections
+            inputs.forEach(input => {
+                input.removeAttribute("required");
+                input.classList.remove('highlight-feedback'); // Optional: Remove visual indicators
+                console.log("Removed required from:", input.id);
+
+                if (input.type === 'date') {
+                    const errorField = input.nextElementSibling;
+                    input.classList.remove('highlight');
+                    errorField.textContent = "";
+                    errorField.style.display = 'none';
+                }
+            });
+        } 
+        else {
+           if(lastFilledSection && section.id == lastFilledSection.id){
+            inputs = [...section.querySelectorAll("input, textarea")].filter(input => (input.type === "checkbox" || input.tagName === 'TEXTAREA'));
+            }
+            console.log("Entered in Else Block");
+            inputs.forEach(input => {
+                if (!input.hasAttribute("required")) {
+                    input.setAttribute("required", "true");
+                    console.log("WE ADDED REQUIRED ARTTRIBUTE:", input.id);
+                }
+            });
+        }
+    });
+}
+
+function removeDateHighlight(input){
+    const errorField = input.nextElementSibling;
+    input.classList.remove('highlight');
+    errorField.textContent = "";
+    errorField.style.display = 'none';
+};
 
 // <------------------------------------------------------------------PAGE 7--------------------------------->
 
@@ -1585,12 +1640,12 @@ function removeUnemployment(presentId, value) {
 function validateEmploymentHistory() {
     const container = document.getElementById('employmentFormsContainer');
     const forms = container.querySelectorAll('[id^="employmentForm"]');
-    const currentlyEmployed= document.getElementById('stillEmployee');
+    const currentlyEmployed = document.getElementById('stillEmployee');
 
     let earliestStartDate = null;
     let latestEndDate = null;
-    if(currentlyEmployed.checked){
-        latestEndDate=new Date();
+    if (currentlyEmployed.checked) {
+        latestEndDate = new Date();
 
     }
 
@@ -1640,7 +1695,7 @@ function toggleEmploymentDates() {
 
         endDateField.value = '';
         endDateField.required = false;
-        errorField.textContent="";
+        errorField.textContent = "";
         errorField.style.display = 'none';
     } else {
         // startDateField.value = '';

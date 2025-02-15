@@ -1275,7 +1275,9 @@ function notMilitaryDriver(value) {
 function addSectionListener() {
     const sections = document.querySelectorAll("[id^='section']");
     sections.forEach(section => {
-        section.addEventListener("change", checkSections);
+        const inputs = section.querySelectorAll("input,textarea");
+        inputs.forEach(input => {   
+        input.addEventListener("change", checkSections);});
     });
 }
 
@@ -1284,35 +1286,35 @@ function checkSections() {
     const sections = document.querySelectorAll("[id^='section']");
     let lastFilledSection = null;
 
-    sections.forEach(section => {
+    for (const section of sections){
         const inputs = section.querySelectorAll("textarea");
 
         // Separate checkboxes and other input fields
-        const checkboxes = [...inputs].filter(input => input.type === "checkbox");
+        const checkboxes = Array.from(section.querySelectorAll("input[type='checkbox']")).filter(input => input.type === "checkbox");
         
         const dateFrom = section.querySelector("input[id*='fromDate']");
         const dateTo = section.querySelector("input[id*='toDate']");
         const milesInput = section.querySelector("input[id*='approxMiles']");
+        console.log("after getting date feilds  ", section.id);
         dateFeilds = false;
         if ((dateFrom && dateTo) && (dateFrom.value && dateTo.value)) {
             dateFeilds = true;
-            console.log("Date To and Date From");
+            milesInput?.classList.remove('highlight');
             milesInput?.removeAttribute("required");
             dateFrom?.setAttribute("required", "true");
             dateTo?.setAttribute("required", "true");
-            console.log("milesInput", milesInput);
         } else if (milesInput && milesInput.value) {
             dateFeilds = true;
             console.log("MilesInput");
             milesInput?.setAttribute("required", "true");
             dateFrom?.removeAttribute("required");
             dateTo?.removeAttribute("required");
-            console.log("MilesInput -", milesInput);
             
         }
 
 
         const atLeastOneCheckboxChecked = checkboxes.length > 0 ? checkboxes.some(input => input.checked) : true;
+        console.log("checkboxes ",checkboxes);
         if (section.id === 'section4') {
             const textInputs = [...inputs].filter(input => input.type !== "checkbox");
             const allTextFieldsFilled = textInputs.every(input => input.value.trim() !== "");
@@ -1322,18 +1324,27 @@ function checkSections() {
                 console.log("Filled Section:", lastFilledSection.id);
                 removeDateHighlight(dateFrom);
                 removeDateHighlight(dateTo);
+                break;
+            }else{
+
+                lastFilledSection = null;
             }
 
         } else if (atLeastOneCheckboxChecked && dateFeilds) {
             lastFilledSection = section;
             removeDateHighlight(dateFrom);
             removeDateHighlight(dateTo);
-            console.log("Filled Section:", lastFilledSection.id);
+            break;
 
+        }else{
+            console.log("Entered in Else Block"); 
+            lastFilledSection = null;
+           
+            
         }
 
 
-    });
+    };
 
     // Ensure only ONE section is marked as filled and enforce "required" attributes accordingly
     sections.forEach(section => {
@@ -1343,8 +1354,9 @@ function checkSections() {
             // Remove 'required' from other sections
             inputs.forEach(input => {
                 input.removeAttribute("required");
-                input.classList.remove('highlight-feedback'); // Optional: Remove visual indicators
-                console.log("Removed required from:", input.id);
+                input.classList.remove('highlight');
+                input.classList.remove('highlight-feedback'); 
+          
 
                 if (input.type === 'date') {
                     const errorField = input.nextElementSibling;
@@ -1358,11 +1370,10 @@ function checkSections() {
            if(lastFilledSection && section.id == lastFilledSection.id){
             inputs = [...section.querySelectorAll("input, textarea")].filter(input => (input.type === "checkbox" || input.tagName === 'TEXTAREA'));
             }
-            console.log("Entered in Else Block");
+            
             inputs.forEach(input => {
                 if (!input.hasAttribute("required")) {
                     input.setAttribute("required", "true");
-                    console.log("WE ADDED REQUIRED ARTTRIBUTE:", input.id);
                 }
             });
         }
@@ -1370,6 +1381,7 @@ function checkSections() {
 }
 
 function removeDateHighlight(input){
+
     const errorField = input.nextElementSibling;
     input.classList.remove('highlight');
     errorField.textContent = "";
@@ -1692,15 +1704,19 @@ function toggleEmploymentDates() {
         // const currentDate = new Date();
         // const startDate = new Date(currentDate.setFullYear(currentDate.getFullYear() - 10));
         // startDateField.value = startDate.toISOString().split('T')[0];
-
+        
         endDateField.value = '';
-        endDateField.required = false;
+        endDateField.classList.remove('highlight');
+        endDateField.removeAttribute("required");
         errorField.textContent = "";
         errorField.style.display = 'none';
     } else {
         // startDateField.value = '';
         // endDateField.value = '';
-        endDateField.required = true;
+        errorField.textContent = "Please enter a valid date";
+        endDateField.classList.add('highlight');
+        errorField.style.display = 'block';
+        endDateField.setAttribute("required", "true");
     }
 
     validateEmploymentHistory();

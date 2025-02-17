@@ -1277,7 +1277,7 @@ function addSectionListener() {
     sections.forEach(section => {
         const inputs = section.querySelectorAll("input,textarea");
         inputs.forEach(input => {   
-        input.addEventListener("change", checkSections);});
+        input.addEventListener("input", checkSections);});
     });
 }
 

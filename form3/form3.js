@@ -179,6 +179,12 @@ function validatePage(formId, pageNumber) {
                 } else {
                     isValid = false;
                     input.classList.add('highlight');
+                } if (input.name === "home" || input.name === "cell") {
+                    const isPhoneValid = validateAndFormatPhoneNumber(input);
+                    if (!isPhoneValid) {
+                        console.log('inside phone number', input.id, input.name)
+                        isValid = false;
+                    }
                 }
             } else {
                 input.classList.remove('highlight');
@@ -760,26 +766,72 @@ function formatDateToDDMMYYYY(date) {
     return `${day}/${month}/${year}`;
 }
 
+// function validateAndFormatPhoneNumber(input) {
+//     const rawValue = input.value.replace(/\D/g, '');
+
+
+//     if (rawValue.length === 0) {
+//         input.value = '';
+//         const errorField = input.nextElementSibling;
+//         errorField.textContent = '';
+//         errorField.style.display = 'none';
+//         return;
+//     }
+
+
+//     if (rawValue.length > 10) {
+//         input.value = formatPhoneNumber(rawValue.substring(0, 10));
+//         return;
+//     }
+
+
+//     input.value = formatPhoneNumber(rawValue);
+// }
+
+// function formatPhoneNumber(value) {
+//     if (value.length <= 3) {
+//         return `(${value}`;
+//     } else if (value.length <= 6) {
+//         return `(${value.substring(0, 3)}) ${value.substring(3)}`;
+//     } else {
+//         return `(${value.substring(0, 3)}) ${value.substring(3, 6)}-${value.substring(6)}`;
+//     }
+// }
+
 function validateAndFormatPhoneNumber(input) {
-    const rawValue = input.value.replace(/\D/g, '');
+    let rawValue = input.value.replace(/\D/g, ''); // Remove non-numeric characters
+    const errorField = input.nextElementSibling; // Select the small tag for error messages
 
+    // Truncate to 10 digits if input exceeds 10 characters
+    if (rawValue.length > 10) {
+        rawValue = rawValue.substring(0, 10);
+    }
 
+    // Handle empty input (allows clearing)
     if (rawValue.length === 0) {
         input.value = '';
-        const errorField = input.nextElementSibling;
-        errorField.textContent = '';
-        errorField.style.display = 'none';
-        return;
+        input.classList.add('highlight');
+        errorField.textContent = 'Phone number must be exactly 10 digits.';
+        errorField.style.display = 'block';
+        return false;
     }
 
-
-    if (rawValue.length > 10) {
-        input.value = formatPhoneNumber(rawValue.substring(0, 10));
-        return;
+    // Validate and show error for invalid length
+    if (rawValue.length !== 10) {
+        input.classList.add('highlight');
+        errorField.textContent = 'Phone number must be exactly 10 digits.';
+        errorField.style.display = 'block';
+        input.value = formatPhoneNumber(rawValue); // Format partial input for better UX
+        return false;
     }
 
-
+    // Clear error message if input is valid
+    errorField.textContent = '';
+    errorField.style.display = 'none';
+    input.classList.remove('highlight');
+    // Format and set the phone number
     input.value = formatPhoneNumber(rawValue);
+    return true;
 }
 
 function formatPhoneNumber(value) {
@@ -791,5 +843,6 @@ function formatPhoneNumber(value) {
         return `(${value.substring(0, 3)}) ${value.substring(3, 6)}-${value.substring(6)}`;
     }
 }
+
 
 initializeForm('form1');

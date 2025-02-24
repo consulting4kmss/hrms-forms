@@ -1,253 +1,441 @@
-let totalFields = 0;
-let totalPages = 0;
+function drugTestPositive(value) {
+    if (value == 'yes') {
+        const affirmative = document.createElement('div');
+        affirmative.classList.add('col-12','mt-3');
+        affirmative.id = `affirmativeNotes`;
+        affirmative.innerHTML = `<label class="question-label">Additional Notes if Affirmative</label>
+                    <textarea required maxlength="250" name="affirmativeExplanation" id="defectiveVisionExplanation" rows="4"
+                        class="form-control txtfeild "></textarea>`
+        document.getElementById("drugTest").appendChild(affirmative);
 
-function initializeForm(formId) {
-    totalPages = document.querySelectorAll(`#${formId} .form-page`).length;
-
-    totalFields = Array.from(document.querySelectorAll(`#${formId} .form-page input`))
-        .filter((field, index, self) => {
-            if (field.type === 'checkbox' || field.type === 'radio') {
-                return self.findIndex(f => f.name === field.name) === index;
-            }
-            return true;
-        }).length;
-
-    updatePageInfo(formId, 1);
-
-    const fields = document.querySelectorAll(`#${formId} .form-page input, #${formId} .form-page select`);
-    fields.forEach(field => {
-        field.addEventListener('change', () => {
-            updateProgress(formId);
-            // toggleHighBpFields(formId);
-            toggleFields(formId, toggleFieldsConfig);
-        });
-    });
-
-    handleMutualExclusiveCheckboxes(formId);
-
-    updateProgress(formId);
+    }
 }
-function handleMutualExclusiveCheckboxes(formId) {
-    const checkboxes = document.querySelectorAll(`#${formId} input[type="checkbox"], #${formId} input[type="radio"]`);
 
-    const checkboxGroups = {};
-
-    checkboxes.forEach(checkbox => {
-        const groupName = checkbox.name;
-
-        if (!checkboxGroups[groupName]) {
-            checkboxGroups[groupName] = [];
+function drugTestNegative(value) {
+    if (value == 'no') {
+        const removeCertificate = document.getElementById(`affirmativeNotes`);
+        if (removeCertificate) {
+            removeCertificate.remove();
         }
-
-        checkboxGroups[groupName].push(checkbox);
-
-        checkbox.addEventListener('change', () => {
-            checkboxGroups[groupName].forEach(otherCheckbox => {
-                if (otherCheckbox !== checkbox && (otherCheckbox.type === checkbox.type)) {
-                    otherCheckbox.checked = false;
-                }
-            });
-
-            updateProgress(formId);
-            // toggleHighBpFields(formId); 
-            toggleFields(formId, toggleFieldsConfig);
-        });
-    });
+    }
 }
 
 
-function updatePageInfo(formId, currentPage) {
-    const currentPageText = document.getElementById('currentPageText');
-    const progressBar = document.getElementById('progressBar');
-    const percentageText = document.getElementById('currentPagePercentage');
+function handleDateChange(event) {
+    const input = event.target;
+    const selectedDate = new Date(input.value);
+    const year = selectedDate.getFullYear();
+    const errorField = input.nextElementSibling;
+    const thisYear = new Date().getFullYear();
+  
+    if (year > thisYear || year < 1900) {
+        input.classList.add('highlight');
+        errorField.textContent = 'Invalid date. Please enter a valid Year.';
+        errorField.style.display = 'block';
 
-    const fields = document.querySelectorAll(`#${formId} .form-page input`);
-    let filledFields = 0;
+        return false;
+    } else {
+        input.classList.remove('highlight');
+        errorField.style.display = 'none';
+        errorField.textContent = '';
+        return true
 
-    fields.forEach(field => {
-        if ((field.type === 'text' || field.type === 'email' || field.type === 'date') && field.value) {
-            filledFields++;
-        }
-        if (field.type === 'checkbox' && field.checked) {
-            filledFields++;
-        }
-    });
 
-    const percentage = (filledFields / fields.length) * 100;
-
-    currentPageText.textContent = `Page ${currentPage} of ${totalPages}`;
-    progressBar.style.width = percentage + '%';
-    percentageText.textContent = Math.round(percentage) + '%';
-
-    percentageText.style.left = `${percentage}%`;
+    }
 }
-function convertDateToFormat(inputId) {
-    const dateInput = document.getElementById(inputId);
-    if (!dateInput) {
-        console.error(`Element with id "${inputId}" not found.`);
+var canvas, context;
+var isDrawing = false;
+var signatureData;
+
+
+function getMousePosition(event) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    return {
+        x: (event.clientX - rect.left) * scaleX,
+        y: (event.clientY - rect.top) * scaleY
+    };
+}
+
+
+
+function initializeSignatureBox() {
+
+    canvas = document.getElementById('signBox');
+
+    if (!canvas) {
+        console.error("Canvas element not found. Ensure it's visible in the DOM.");
         return;
     }
 
-    const selectedDate = new Date(dateInput.value);
-    if (!dateInput.value) return;
+    context = canvas.getContext('2d');
+    context.lineWidth = 0.3;
+    context.lineCap = "round";
+    context.strokeStyle = "white";
 
-    const year = selectedDate.getFullYear();
-    const month = (selectedDate.getMonth() + 1).toString().padStart(2, '0');
-    const day = selectedDate.getDate().toString().padStart(2, '0');
 
-    const formattedDate = `${year}-${month}-${day}`;
+    canvas.addEventListener('mousedown', (event) => {
+        isDrawing = true;
+        context.beginPath();
+        const pos = getMousePosition(event);
+        context.moveTo(pos.x, pos.y);
+    });
 
-    dateInput.value = formattedDate;
-    updateProgress('form1');
+    canvas.addEventListener('mousemove', (event) => {
+        if (isDrawing) {
+            const pos = getMousePosition(event);
+            context.lineTo(pos.x, pos.y);
+            context.stroke();
+        }
+    });
+
+    canvas.addEventListener('mouseup', () => {
+        isDrawing = false;
+    });
+
+    canvas.addEventListener('mouseout', () => {
+        isDrawing = false;
+        saveSign();
+    });
+    clearSign() ;
+
 }
 
 
-function updateProgress(formId) {
+function clearSign() {
+    const clearButton = document.getElementById('clearButton');
+    clearButton.addEventListener('click', () => {
+        if (context) {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        } else {
+            console.error("Signature box is not initialized.");
+        }
+    });
+}
+
+function saveSign() {
+    if (canvas) {
+        signatureData = canvas.toDataURL('image/png');
+        validateCanvases('form1', 1);
+
+    } else {
+        console.error("Signature box is not initialized.");
+    }
+}
+
+function validateForm(formId, pageNumber) {
     const form = document.getElementById(formId);
-    const fields = form.querySelectorAll('.form-page input');
-    let filledFields = 0;
-    const processedGroups = new Set();
+    const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
+    const inputs = currentPage.querySelectorAll('input, select, textarea');
+    const canvases = currentPage.querySelectorAll('canvas');
+    let isValid = true;
 
-    fields.forEach(field => {
-        if ((field.type === 'text' || field.type === 'email' || field.type === 'date') && field.value.trim()) {
-            filledFields++;
+    inputs.forEach(input => {
+        // Skip hidden inputs
+        const isHidden = getComputedStyle(input).display === 'none' || input.closest('[style*="display: none"]');
+        if (isHidden) {
+            return;
         }
-        if ((field.type === 'checkbox' || field.type === 'radio') && field.checked) {
-            const groupName = field.name;
-            if (groupName && !processedGroups.has(groupName)) {
-                filledFields++;
-                processedGroups.add(groupName);
-            }
-        }
-    });
-    const percentage = (filledFields / totalFields) * 100;
-    console.log("Total Fields:", totalFields);
-    console.log("Filled Fields:", filledFields);
-    console.log("Percentage:", percentage);
 
-    const progressBar = document.querySelector('.progress-bar');
-    progressBar.style.width = `${percentage}%`;
+        const validateInput = () => {
 
-    const percentageText = document.getElementById('currentPagePercentage');
-    percentageText.textContent = `${Math.round(percentage)}%`;
-    percentageText.style.left = `${percentage}%`;
-}
-function nextPage(pageNumber) {
-    const form = document.getElementById('form1');
-    const currentPage = form.querySelector(`#form1-page${pageNumber - 1}`);
-    const nextPage = form.querySelector(`#form1-page${pageNumber}`);
-
-    currentPage.style.display = 'none';
-    nextPage.style.display = 'block';
-
-    updatePageInfo('form1', pageNumber);
-    updateProgress('form1');
-}
-
-function previousPage(pageNumber) {
-    const form = document.getElementById('form1');
-    const currentPage = form.querySelector(`#form1-page${pageNumber + 1}`);
-    const previousPage = form.querySelector(`#form1-page${pageNumber}`);
-
-    currentPage.style.display = 'none';
-    previousPage.style.display = 'block';
-
-    updatePageInfo('form1', pageNumber);
-    updateProgress('form1');
-}
-const toggleFieldsConfig = [
-    {
-        checkboxId: "visionYes",
-        fieldsToShow: ["defectiveVisionYearInput","defectiveVisionExplanationInput"],
-    },
-    {
-        checkboxId: "visionOtherYes",
-        fieldsToShow: ["visionOtherYearInput","visionOtherExplanationInput"],
-    },
-    {
-        checkboxId: "hearingYes",
-        fieldsToShow: ["hearingLossYearInput","hearingLossExplanationInput"],
-    },
-    {
-        checkboxId: "hearingotherYes",
-        fieldsToShow: ["hearingOtherYearInput","hearingOtherExplanationInput"],
-    },
-    {
-        checkboxId: "migrainesYes",
-        fieldsToShow: ["migrainesYearInput","migrainesExplanationInput"],
-    },
-    {
-        checkboxId: "headachesYes",
-        fieldsToShow: ["headachesYearInput","headachesExplanationInput"],
-    },
-    {
-        checkboxId: "tbiYes",
-        fieldsToShow: ["tbiYearInput","tbiExplanationInput"],
-    },
-    {
-        checkboxId: "thyroidYes",
-        fieldsToShow: ["thyroidYearInput","thyroidExplanationInput"],
-    },
-    {
-        checkboxId: "irregularHeartbeatYes",
-        fieldsToShow: ["irregularHeartbeatYearInput","irregularHeartbeatExplanationInput"],
-    },
-    {
-        checkboxId: "highBpYes",
-        fieldsToShow: ["highBpYearInput", "highBpExplanationInput"],
-    },
-    {
-        checkboxId: "heartDiseaseYes",
-        fieldsToShow: ["heartDiseaseYearInput","heartDiseaseExplanationInput"],
-    },
-    {
-        checkboxId: "heartFailureYes",
-        fieldsToShow: ["heartFailureYearInput","heartFailureExplanationInput"],
-    },
-];
-function toggleFields(formId, config) {
-    config.forEach(({ checkboxId, fieldsToShow }) => {
-        const checkbox = document.getElementById(checkboxId);
-
-        fieldsToShow.forEach(fieldId => {
-            const fieldElement = document.getElementById(fieldId);
-            if (checkbox && checkbox.checked) {
-                fieldElement.style.display = 'block';
+          if (input.type === 'radio') {
+                const radios = currentPage.querySelectorAll(`input[name="${input.name}"]`);
+                const isAnyChecked = Array.from(radios).some(radio => radio.checked);
+                if (!isAnyChecked) {
+                    isValid = false;
+                    radios.forEach(radio => radio.classList.add('highlight-feedback'));
+                } else {
+                    radios.forEach(radio => radio.classList.remove('highlight-feedback'));
+                }
+            } else if (input.required) {
+               if (input.tagName === 'TEXTAREA' && !input.value.trim()) {
+                    isValid = false;
+                    input.classList.add('highlight');
+                } else if (input.value.trim()) {
+                    input.classList.remove('highlight');
+                } else {
+                    isValid = false;
+                    input.classList.add('highlight');
+                }
+                if (input.type === "date") {
+                    const errorField = input.nextElementSibling;
+                    if (!handleDateChange2({ target: input })) {
+                        isValid = false;
+                        errorField.textContent = "Invalid date. Please enter a valid Date.";
+                        if (input.id === "companySeparation" || input.id === "companyStart") {
+                            errorField.textContent = "Please enter a valid Date.";
+                        }
+                        input.classList.add('highlight');
+                        errorField.style.display = 'block';
+                    } else {
+                        input.classList.remove('highlight');
+                        errorField.textContent = "";
+                        errorField.style.display = 'none';
+                    }
+                }
             } else {
-                fieldElement.style.display = 'none';
+                input.classList.remove('highlight');
             }
-        });
+          validateCanvases(formId, pageNumber);
+
+
+        };
+
+        input.addEventListener('input', validateInput);
+
+        validateInput();
     });
 
-    updateProgress(formId); 
+
+    canvases.forEach(canvas => {
+        const context = canvas.getContext('2d');
+        const pixelData = context.getImageData(0, 0, canvas.width, canvas.height).data;
+        const isCanvasEmpty = !pixelData.some(value => value !== 0);
+
+        if (isCanvasEmpty) {
+            isValid = false;
+            canvas.classList.add('highlight');
+        } else {
+            canvas.classList.remove('highlight');
+        }
+    });
+
+    //return true;
+     return isValid;
 }
-// function toggleHighBpFields(formId) {
-//     if (highBpYes.checked) {
-//         highBpYearInput.style.display = 'block';
-//         highBpExplanationInput.style.display = 'block';
-//     }
-//     else {
-//         highBpYearInput.style.display = 'none';
-//         highBpExplanationInput.style.display = 'none';
-//     }
-//     totalFields = Array.from(document.querySelectorAll(`#${formId} .form-page input`))
-//         .filter((field, index, self) => {
-//             if (field.type === 'checkbox' || field.type === 'radio') {
-//                 return self.findIndex(f => f.name === field.name) === index;
-//             }
-//             return true;
-//         }).length;
 
-//     if (highBpYearInput.style.display !== 'none') {
-//         totalFields++;  
-//     }
-//     if (highBpExplanationInput.style.display !== 'none') {
-//         totalFields++;  
-//     }
+function validateCanvases(formId,pageNumber){
+    const form = document.getElementById(formId);
+    const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
+    const canvases = currentPage.querySelectorAll('canvas');
+    canvases.forEach(canvas => {
+        const context = canvas.getContext('2d');
+        const pixelData = context.getImageData(0, 0, canvas.width, canvas.height).data;
+        const isCanvasEmpty = !pixelData.some(value => value !== 0);
 
-//     updateProgress(formId);
-// }
+        if (isCanvasEmpty) {
+           
+            canvas.classList.add('highlight');
+           
+        } else {
+            canvas.classList.remove('highlight');
+          
+        }
+    });
+}
+
+function Submission() {
+    const valid = validateForm('form1', 1);
+    if (valid) {
+        showSuccessModal();
+
+    } else {
+        showInvalidModal();
+    }
+}
+
+function handleDateChange2(event) {
+    const input = event.target;
+    const selectedDate = new Date(input.value);
+    const year = selectedDate.getFullYear();
+    const errorField = input.nextElementSibling;
+    const thisYear = new Date().getFullYear();
+    // input.setAttribute("max", today);
+    if (!input.value) {
+        return false;
+    }
+    if (year > thisYear || year < 1900) {
+        input.classList.add('highlight');
+        errorField.style.display = 'block';
+        errorField.textContent = 'Invalid date. Please enter a valid Year.';
+
+        return false;
+    } else {
+        input.classList.remove('highlight');
+        errorField.style.display = 'none';
+        errorField.style.display = 'none';
+        return true
 
 
+    }
+}
 
-initializeForm('form1');
+function formatDateToDDMMYYYY(date) {
+    if (!(date instanceof Date) || isNaN(date)) return "";
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+}
+
+function showSuccessModal() {
+   const drugPositive= document.getElementById('affirmativeNotes');
+   const overlay = document.getElementById('overlay1');
+   const valid=validateForm('form1', 1);
+    if(drugPositive && valid){
+        console.log("getting the drug test positive value", drugPositive.value);
+    const drugModal= document.getElementById('drugTestFailed');
+    if(drugModal){
+        drugModal.style.display='block';
+        document.body.style.overflow = 'hidden';
+        console.log('main division-   ',document.getElementById('main-division1'));
+        document.getElementById('form1').style.display="none";
+        document.getElementById('tabs1').style.display="none";
+
+
+    }
+    }
+    else if (valid) {
+        const successModal = document.getElementById('successModal1');
+        if (successModal && overlay) {
+            showCheckmark('form1Tick');
+            successModal.style.display = 'block';
+            overlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+    else {
+        hideCheckmark('form1Tick');
+        showInvalidModal();
+    }
+
+}
+
+function showInvalidModal() {
+    const invalidModal = document.getElementById('invalidModal1');
+    const overlay = document.getElementById('overlay1');
+    if (invalidModal && overlay) {
+        invalidModal.style.display = 'block';
+        overlay.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+}
+
+function validInput(input, regex, errorMessage) {
+    if (!(regex instanceof RegExp)) {
+        console.error("Invalid regex provided to validInput:", regex);
+        return;
+    }
+
+    const value = input.value;
+    const errorField = input.nextElementSibling;
+    let trimmedValue = value;
+    // Trim invalid characters (force only allowed characters)
+    if (errorMessage == "Only Letters are allowed.") {
+        trimmedValue = value.match(regex) ? value : value.replace(/[^a-zA-Z]/g, '');
+
+    } else if (errorMessage == "Only numbers are allowed.") {
+        trimmedValue = value.match(regex) ? value : value.replace(/[^0-9]/g, '');
+
+        trimmedValue = value.replace(/[^0-9]/g, '');
+    }
+    if (value !== trimmedValue) {
+        input.value = trimmedValue;
+        if (errorField) {
+            errorField.style.display = 'block';
+            errorField.textContent = errorMessage;
+        } // Set corrected value
+    } else {
+        input.classList.remove('highlight');
+        if (errorField) {
+            errorField.style.display = 'none';
+        }
+    }
+
+    if (!regex.test(trimmedValue)) {
+        input.classList.add('highlight');
+        if (errorField) {
+            errorField.style.display = 'block';
+            errorField.textContent = errorMessage;
+        }
+        return false;
+    } else {
+        input.classList.remove('highlight');
+        if (errorField) {
+            errorField.style.display = 'none';
+        }
+        return true;
+    }
+}
+
+function closeDialog(id) {
+    const modalContent = document.getElementById(id);
+    const overlay = document.getElementById('overlay1');
+    if (id=='thanksModal') {
+        modalContent.style.display = 'none';
+       document.body.style.overflow = 'auto';
+    }else{
+        if (modalContent && overlay) {
+            modalContent.style.display = 'none';
+            overlay.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        modalContent.style.display = 'none';
+        overlay.style.display = 'none';
+       document.body.style.overflow = 'auto';
+    }
+}
+function loadForm2(id) {
+    const modalContent = document.getElementById(id);
+    const overlay = document.getElementById('overlay1');
+    if (modalContent && overlay) {
+        modalContent.style.display = 'none';
+        overlay.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+    fetch('../form2/form2.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('form-container').innerHTML = html;
+            showCheckmark('form1Tick');
+            loadScript('../form2/form2.js');
+            loadStyleSheet("../form2/form2.css");
+            removeStyleSheet('../form1/form1.css');
+            document.body.style.overflow = 'auto';
+            // addForm1EventListeners();
+        })
+        .catch(error => console.error('Error loading Form 1:', error));
+}
+
+function loadStyleSheet(href) {
+    const existingLink = document.querySelector(`link[href="${href}"]`);
+    if (!existingLink) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = href;
+        document.head.appendChild(link);
+    }
+}
+
+// Function to remove a CSS file
+function removeStyleSheet(href) {
+    const link = document.querySelector(`link[href="${href}"]`);
+    if (link) {
+        link.parentNode.removeChild(link);
+    }
+}
+function loadScript(scriptUrl) {
+    const script = document.createElement('script');
+    script.src = scriptUrl;
+    document.body.appendChild(script);
+}
+
+function showCheckmark(formId) {
+    const checkmark = document.getElementById(formId);
+    if (checkmark) {
+        checkmark.classList.add('visible'); 
+    }
+}
+
+
+function hideCheckmark(formId) {
+    const checkmark = document.getElementById(formId);
+    if (checkmark) {
+        checkmark.classList.remove('visible');
+    }
+}
+
+
+initializeSignatureBox();

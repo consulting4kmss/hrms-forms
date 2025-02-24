@@ -1,0 +1,129 @@
+<div class="form-container text-white">
+    <div id='main-division4' class="main-division d-flex flex-row gap-1">
+        <div id="form4" class="form-card">
+            <div id="form4-page1" class="form-page2">
+                <h3 class="heading">DOT Medical Certificate and Driver's License </h3>
+                <div style="margin-top: 20px;">
+                    <h4 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px; color:white"> DOT
+                        Medical
+                        Certificate</h4>
+                </div>
+                <div id="driverCertificate">
+                    <div id="doneInSix" class="col-12 d-flex flex-column mt-4">
+
+                        <div>
+                            <label class="question-label">Is your exam done within the last SIX (6) Months?</label>
+                        </div>
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="radio" required value="no" id="sixMonthsNo"
+                                name="examination" onchange="removeAttachment(this.value)">
+                            <label class="form-check-label label ms-4" for="sixMonthsNo">No</label>
+                        </div>
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="radio" required value="yes" id="sixMonthsYes"
+                                name="examination" onchange="addAttachment(this.value)">
+                            <label class="form-check-label ms-4" for="sixMonthsYes">Yes</label>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <h4 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px; color:white">
+                            Driver's
+                            License</h4>
+                    </div>
+                    <div>
+
+                        <div>
+                            <label class="question-label">Please Upload a Picture of your driver's license
+                                below.</label>
+                        </div>
+                        <div class="mb-3 mt-4">
+                            <label class="question-label">Front of Driver's License</label>
+                            <input required type="file" id="licenseFront" class="form-control mt-2" />
+                        </div>
+
+
+                        <div class="mb-3 mt-4">
+                            <label class="question-label">Back of Driver's License</label>
+                            <input required type="file" id="licenseBack" class="form-control mt-2" />
+                        </div>
+                    </div>
+                </div>
+                <div class="button-row">
+                    <button class="submit-btn" onclick="Submission()">Submit</button>
+                </div>
+
+                <div id="invalidModal" class="invalid-modal">
+                    <div class="invalid-modal-content">
+                        <div class="modal-header">
+                            <h3 class="heading" class="modal-heading">Invalid!</h3>
+                            <span id="closeBtn" class="close-btn" onclick="closeDialog('invalidModal')">&#10006;</span>
+                        </div>
+
+                        <p class="modal-message">Please complete all required fields before proceeding.</p>
+
+                        <button id="colseBtn" class="colse-btn" onclick="closeDialog('invalidModal')">Close</button>
+                    </div>
+                </div>
+                <div id="overlay" class="overlay"></div>
+
+            </div>
+        </div>
+        <div id="tabs4" class="col-3" >
+            <div class="d-flex flex-row gap-1">
+                <div class="col-10">
+                    <a href="#" class="tab-link" id="form1Link" onclick="loadForm1()"><i class="fa-solid fa-file"></i>
+                        Drug and Alcohol Testing Information Request(Must Ask Question)</a>
+                </div>
+                <div class="col-2">
+                    <span id="form1Tick" class="checkmark visible"></span>
+                </div>
+            </div>
+            <div class="d-flex flex-row gap-1">
+                <div class="col-10">
+                    <!-- onclick="loadForm2()" -->
+                    <a href="#" class="tab-link" id="form2Link"><i class="fa-solid fa-file"></i>
+                        Pre-Employment Candidate Health Evaluation Questionnaire(HEQ)</a>
+                </div>
+                <div class="col-2">
+                    <span id="form2Tick" class="checkmark visible"></span>
+                </div>
+            </div>
+
+
+            <div class="d-flex flex-row gap-1">
+                <div class="col-10">
+                    <a href="#" class="tab-link" id="form3Link" ><i class="fa-solid fa-file"></i>
+                        Employment Application Supplement-Commercial Motor Vehicle(CMV)Driver</a>
+                </div>
+                <div class="col-2">
+                    <span id="form3Tick" class="checkmark visible"></span>
+                </div>
+            </div>
+            <div class="d-flex flex-row gap-1">
+                <div class="col-10">
+                    <a href="#" class="tab-link" style="background-color: #007bff; " id="form4Link" ><i class="fa-solid fa-file"></i>
+                        DOT Medical Certificate and Driver's License </a>
+                </div>
+                <div>
+                    <span id="form4Tick" class="checkmark"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="thanksModal" class="success-modal">
+        <div class="success-modal-content">
+            <div class="modal-header">
+                <h3 class="modal-heading heading">Thank You!</h3>
+                <span id="closeBtn" class="close-btn" onclick="closeDialog('thanksModal')">&#10006;</span>
+            </div>
+
+            <div class="icon-container">
+                <span class="modal-checkmark">&#10004;</span>
+            </div>
+
+            <p class="modal-message">You have successfully completed and submitted all required application!</p>
+        </div>
+    </div>
+</div>

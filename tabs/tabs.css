@@ -13,18 +13,18 @@ body
     display: inline-block;
     padding-top: 10px;
     margin: 0 5px;
-    background-color: #007bff;
+    /* background-color: #007bff; */
     color: white;
-    text-align: center;
+    /* text-align: center; */
     text-decoration: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-.tab-link:hover {
+/* .tab-link:hover {
     background-color: #004085;
-}
+} */
 
 .checkmark {
     display: inline-block;
@@ -71,22 +71,22 @@ body
     justify-content: center; 
     align-items: center; 
 } */
-.success-modal {
+/* .success-modal {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* background-color: white; */
+
     border-radius: 8px;
-    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+   
     z-index: 1000;
     width: 90%;
     max-width: 400px;
     padding: 20px;
     text-align: center;
     box-sizing: border-box;
-}
+} */
 
 /* .success-modal-content {
 
@@ -96,16 +96,16 @@ body
     justify-content: center;
 } */
 
-.success-modal-content {
+/* .success-modal-content {
     background-color: #1d4f91;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
     width: 400px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-}
+} */
 
-.modal-header {
+/* .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -163,14 +163,14 @@ body
 
 .continue-btn:hover {
     background-color: #003d7a;
-}
+} */
 
 @media (max-width:1440px) {
     .tab-link {
         display: inline-block;
         padding: 10px 20px;
         margin: 0 5px;
-        background-color: #007bff;
+        /* background-color: #007bff; */
         color: white;
         text-align: center;
         text-decoration: none;
@@ -200,7 +200,7 @@ body
         display: inline-block;
         padding:0px;
         margin: 0 5px;
-        background-color: #007bff;
+        /* background-color: #007bff; */
         color: white;
         text-align: center;
         text-decoration: none;

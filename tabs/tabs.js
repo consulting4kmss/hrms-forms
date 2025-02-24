@@ -2,7 +2,19 @@ let form1Completed = false;
 let form2Completed = false;
 
 function loadForm1() {
-    fetch('../form3/form3.html')
+    fetch('../form1/form1.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('form-container').innerHTML = html;
+            loadScript('../form1/form1.js');
+            // addForm1EventListeners();
+        })
+        .catch(error => console.error('Error loading Form 1:', error));
+}
+
+
+function loadForm4() {
+    fetch('../form4/form4.html')
         .then(response => response.text())
         .then(html => {
             document.getElementById('form-container').innerHTML = html;
@@ -11,7 +23,6 @@ function loadForm1() {
         })
         .catch(error => console.error('Error loading Form 1:', error));
 }
-
 function loadScript(scriptUrl) {
     const script = document.createElement('script');
     script.src = scriptUrl;
@@ -85,34 +96,34 @@ function loadForm2() {
 //     }
 // }
 
-function showCheckmark(formId) {
-    const checkmark = document.getElementById(formId);
-    if (checkmark) {
-        checkmark.classList.add('visible'); 
-    }
-}
+// function showCheckmark(formId) {
+//     const checkmark = document.getElementById(formId);
+//     if (checkmark) {
+//         checkmark.classList.add('visible'); 
+//     }
+// }
 
-function nextPage(pageNumber) {
-    const pages = document.querySelectorAll('.form-page');
-    pages.forEach(page => page.style.display = 'none');
-    document.getElementById(`form2-page${pageNumber}`).style.display = 'block'; 
-}
+// function nextPage(pageNumber) {
+//     const pages = document.querySelectorAll('.form-page');
+//     pages.forEach(page => page.style.display = 'none');
+//     document.getElementById(`form2-page${pageNumber}`).style.display = 'block'; 
+// }
 
-function previousPage(pageNumber) {
-    const pages = document.querySelectorAll('.form-page');
-    pages.forEach(page => page.style.display = 'none'); 
-    document.getElementById(`form2-page${pageNumber}`).style.display = 'block';  
-}
+// function previousPage(pageNumber) {
+//     const pages = document.querySelectorAll('.form-page');
+//     pages.forEach(page => page.style.display = 'none'); 
+//     document.getElementById(`form2-page${pageNumber}`).style.display = 'block';  
+// }
 
-function showSuccessModal() {
-    const successModal = document.getElementById('successModal');
-    successModal.style.display = 'block';  
-}
+// function showSuccessModal() {
+//     const successModal = document.getElementById('successModal');
+//     successModal.style.display = 'block';  
+// }
 
-function closeModal() {
-    const successModal = document.getElementById('successModal');
-    successModal.style.display = 'none';  
-}
+// function closeModal() {
+//     const successModal = document.getElementById('successModal');
+//     successModal.style.display = 'none';  
+// }
 
 
 

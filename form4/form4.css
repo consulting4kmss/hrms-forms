@@ -166,6 +166,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .modal-header {
     display: flex;
+    width:100%;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
@@ -244,26 +245,42 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .form-card {
     background-color: #1d4f91 !important;
-    width: 80% !important;
-    max-width: 80% !important;
+    width:70%;
     color: inherit;
-    padding: 30px;
+    padding: 15px;
     border-radius: 8px;
     border: 2px solid #003366 !important;
     box-sizing: border-box;
 }
+
 .form-container {
-    font-family:Segoe UI, Tahoma, Geneva, Verdana, sans-serif !important;
     width: 100%;  
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-left: 20px;
-    padding-top:20px ;
-    padding-bottom:20px;
-    padding-right: 5px;
-    color: white !important;
     box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    background-color: #004085 !important;
+    color: white !important;
+}
+.tabs{
+    width:25%;
+}
+
+.tab-link {
+    display: inline-block;
+    padding: 10px;
+    margin: 0 5px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.main-division1{
+    width:80%;
+    gap:5%;
 }
 
 .heading{

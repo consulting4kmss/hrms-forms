@@ -1,22 +1,39 @@
+.heading{
+    font-weight: 400 !important;
+    color:white !important;
+}
+
 .form-container {
     width: 100%;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-left: 20px;
-    padding-top:20px ;
-    padding-bottom:20px;
-    padding-right: 5px;
-    color: white !important;
     box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    background-color: #004085 !important;
+    color: white !important;
 }
 
+.tab-link {
+    display: inline-block;
+    padding: 10px;
+    margin: 0 5px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.main-division1{
+    width:80%;
+    gap:5%;
+}
 .form-card {
     background-color: #1d4f91 !important;
-    width:100%;
+    width:70%;
     color: inherit;
-    padding: 20px;
+    padding: 15px;
     border-radius: 8px;
     border: 2px solid #003366 !important;
     box-sizing: border-box;
@@ -26,7 +43,9 @@
     width: 100%;
     max-width: 100%;
 }
-
+.tabs{
+    width:25%;
+}
 .question-label {
     display: block;
     font-size: 1rem;
@@ -202,6 +221,7 @@ input::placeholder {
     width: 80px;
     height: 80px;
     background-color: #28a745;
+    color:white !important;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -209,14 +229,12 @@ input::placeholder {
     margin: 20px auto;
 }
 .invalid-modal {
-    /* display: none; */
+    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* background-color: white; */
     border-radius: 8px;
-    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
     z-index: 1001;
     width: 90%;
     max-width: 400px;
@@ -224,6 +242,8 @@ input::placeholder {
     text-align: center;
     box-sizing: border-box;
 }
+
+
 
 .invalid-modal-content {
     background-color: #1d4f91;
@@ -236,9 +256,21 @@ input::placeholder {
 
 .modal-header {
     display: flex;
+    width:100%;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+}
+
+.colse-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 50%;
 }
 
 .modal-heading {
@@ -324,14 +356,12 @@ input::placeholder {
 }
 
 .success-modal {
-    /* display: none; */
+    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* background-color: white; */
     border-radius: 8px;
-    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
     z-index: 1001;
     width: 90%;
     max-width: 400px;
@@ -348,6 +378,7 @@ input::placeholder {
     width: 400px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
+
 .checkmark {
     display: inline-block;
     width: 20px;
@@ -365,6 +396,12 @@ input::placeholder {
 
 .checkmark.visible {
     opacity: 1;
+}
+
+.close-btn {
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
 }
 
 .checkmark::before {

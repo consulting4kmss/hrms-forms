@@ -1,6 +1,6 @@
 <div class="form-container text-white">
-    <div id="main-division1" class="main-division d-flex flex-row gap-1">
-        <div id="form1" class="form-card col-9">
+    <div id="main-division1" class="main-division1 d-flex flex-row">
+        <div id="form1" class="form-card">
             <div id="form1-page1" class="form-page">
                 <div style="margin-top: 20px;">
                     <h4 style="border-bottom: 2px solid #8bafdf; width: 100%; padding-bottom: 5px; color:white">
@@ -113,11 +113,6 @@
                             to
                             test</label>
                     </div>
-                    <!-- <div id="affirmative" class="col-12 mt-3">
-                    <label class="question-label">Additional Notes if Affirmative</label>
-                    <textarea required maxlength="250" name="affirmativeExplanation" id="defectiveVisionExplanation" rows="4"
-                        class="form-control txtfeild "></textarea>
-                </div> -->
                 </div>
                 <div class="col-12 col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 mt-3">
                     <label class="question-label ">Date</label>
@@ -139,13 +134,14 @@
 
             </div>
         </div>
-        <div id="tabs1" class="col-3">
+        <div id="tabs1" class="tabs">
             <div class="d-flex flex-row gap-1">
-                <div class="col-10">
-                    <a href="#" class="tab-link" style="background-color: #007bff; " id="form1Link" onclick="loadForm1()"><i class="fa-solid fa-file"></i>
+                <div class="col-11">
+                    <a href="#" class="tab-link" style="background-color: #007bff; " id="form1Link"
+                        onclick="loadForm1()"><i class="fa-solid fa-file"></i>
                         Drug and Alcohol Testing Information Request(Must Ask Question)</a>
                 </div>
-                <div class="col-2">
+                <div class="col-1">
                     <span id="form1Tick" class="checkmark"></span>
                 </div>
             </div>
@@ -154,7 +150,7 @@
             <div class="d-flex flex-row gap-1 mt-2">
                 <div class="col-10">
                     <!-- onclick="loadForm2()" -->
-                    <a href="#" class="tab-link" id="form2Link" ><i class="fa-solid fa-file"></i>
+                    <a href="#" class="tab-link" id="form2Link"><i class="fa-solid fa-file"></i>
                         Pre-Employment Candidate Health Evaluation Questionnaire(HEQ)</a>
                 </div>
                 <div class="col-2">
@@ -186,8 +182,57 @@
         </div>
 
     </div>
+
+    <div id="invalidModal1" class="invalid-modal" style="display: none;">
+        <div class="invalid-modal-content">
+            <div class="modal-header">
+                <h4 class="modal-heading heading">Invalid!</h4>
+                <span id="closeBtn" class="close-btn" onclick="closeDialog('invalidModal1')">&#10006;</span>
+            </div>
+    
+            <p class="modal-message">Please complete all required fields before proceeding.</p>
+    
+            <button id="colseBtn" class="colse-button" onclick="closeDialog('invalidModal1')">Close</button>
+        </div>
+    </div>
+    
+    <div id="successModal1" class="success-modal" style="display: none;">
+        <div class="success-modal-content">
+            <div class="modal-header">
+                <h4 class="modal-heading heading">Successful!</h4>
+                <span id="closeBtn" class="close-btn" onclick="closeDialog('successModal1')">&#10006;</span>
+            </div>
+    
+            <div class="icon-container">
+                <span class="modal-checkmark">&#10004;</span>
+            </div>
+    
+            <p class="modal-message">You have successfully submitted this form. Please proceed to the next form.</p>
+    
+            <button id="continueBtn" class="continue-btn" onclick="loadForm2('successModal1')">Continue</button>
+        </div>
+    </div>
+    
+    <div id="overlay1" class="overlay"></div>
+    <div id="drugTestFailed" class="invalid-drug-test" style="display: none;">
+        <div class="invalid-drug-test-modal-content">
+            <div class="modal-header">
+                <h3 class="modal-heading heading">Further Investigation and Approval Will be Required
+                </h3>
+                <span id="closeBtn" class="close-btn" onclick="closeDialog('drugTestFailed')">&#10006;</span>
+            </div>
+    
+            <div class="warning-icon">
+                <span>!</span>
+            </div>
+    
+            <p class="modal-message">A member of the Corporate Safety & Health Services team will be in contact
+                with you for more information</p>
+            <p class="modal-message">You can call the Drug & Alcohol Hotline at 804-771-3020, option 2.</p>
+        </div>
+    </div>
 </div>
-<div id="invalidModal1" class="invalid-modal" style="display: none;">
+<!-- <div id="invalidModal1" class="invalid-modal" style="display: none;">
     <div class="invalid-modal-content">
         <div class="modal-header">
             <h3 class="heading" class="modal-heading">Invalid!</h3>
@@ -198,41 +243,6 @@
 
         <button id="colseBtn" class="submit-btn" onclick="closeDialog('invalidModal1')">Close</button>
     </div>
-</div>
+</div> -->
 
-<div id="successModal1" class="success-modal" style="display: none;">
-    <div class="success-modal-content">
-        <div class="modal-header">
-            <h3 class=" modal-heading heading">Successful!</h3>
-            <span id="closeBtn" class="close-btn" onclick="closeDialog('successModal1')">&#10006;</span>
-        </div>
 
-        <div class="icon-container">
-            <span class="modal-checkmark">&#10004;</span>
-        </div>
-
-        <p class="modal-message">You have successfully submitted this form. Please proceed to the next form.</p>
-
-        <button id="continueBtn" class="submit-btn" onclick="loadForm2(successModal1)">Continue</button>
-    </div>
-
-</div>
-<div id="overlay1" class="overlay"></div>
-<div id="drugTestFailed" class="invalid-drug-test" style="display: none;">
-    <div class="invalid-drug-test-modal-content">
-        <div class="modal-header">
-            <h3 class="modal-heading heading">Further Investigation and Approval Will be Required
-            </h3>
-            <span id="closeBtn" class="close-btn" onclick="closeDialog('drugTestFailed')">&#10006;</span>
-        </div>
-
-        <div class="warning-icon">
-            <span>!</span>
-        </div>
-
-        <p class="modal-message">A member of the Corporate Safety & Health Services team will be in contact
-            with you for more information</p>
-        <p class="modal-message">You can call the Drug & Alcohol Hotline at 804-771-3020, option 2.</p>
-    </div>
-</div>
-</div>

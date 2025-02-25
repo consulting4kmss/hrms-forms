@@ -1,32 +1,30 @@
-.tabs {
+/* .tabs {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
-}
+} */
 body
 {   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
     background-color: #004085 !important;
     color: white !important;
 }
-.tab-link {
+/* .tab-link {
     display: inline-block;
     padding-top: 10px;
     margin: 0 5px;
-    /* background-color: #007bff; */
     color: white;
-    /* text-align: center; */
     text-decoration: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-}
+} */
 
 /* .tab-link:hover {
     background-color: #004085;
 } */
 
-.checkmark {
+ .checkmark {
     display: inline-block;
     width: 20px;
     height: 20px;
@@ -55,7 +53,7 @@ body
     pointer-events: none;
     opacity: 0.5;
     cursor: not-allowed;
-}
+} 
 
 /* .success-modal {
     display: none; 
@@ -88,24 +86,24 @@ body
     box-sizing: border-box;
 } */
 
-/* .success-modal-content {
+.success-modal-content {
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-} */
+} 
 
-/* .success-modal-content {
+ .success-modal-content {
     background-color: #1d4f91;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
     width: 400px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-} */
+}
 
-/* .modal-header {
+.modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -163,14 +161,14 @@ body
 
 .continue-btn:hover {
     background-color: #003d7a;
-} */
+}
 
-@media (max-width:1440px) {
+/* @media (max-width:1440px) {
     .tab-link {
         display: inline-block;
         padding: 10px 20px;
         margin: 0 5px;
-        /* background-color: #007bff; */
+         background-color: #007bff; 
         color: white;
         text-align: center;
         text-decoration: none;
@@ -178,9 +176,9 @@ body
         cursor: pointer;
         transition: background-color 0.3s;
     }
-}
+} */
 
-@media (max-width:576px) {
+/* @media (max-width:576px) {
     .tab-link{
         font-size: small;
     }
@@ -193,14 +191,13 @@ body
         font-size: smaller;
     }
 
-}
+} */
 
-@media(max-width:380px){
+/* @media(max-width:380px){
     .tab-link {
         display: inline-block;
         padding:0px;
         margin: 0 5px;
-        /* background-color: #007bff; */
         color: white;
         text-align: center;
         text-decoration: none;
@@ -208,4 +205,4 @@ body
         cursor: pointer;
         transition: background-color 0.3s;
     }
-}
+} */

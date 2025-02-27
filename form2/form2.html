@@ -197,14 +197,18 @@
                     <div>
                         <label class="question-label">Height</label>
                         <!-- <input required id="weight" type="decimal" step="0.1" min="0" max="99.9"  autocomplete="off" maxlength="4" oninput="validInput(this, /^\d{0,2}(\.\d{0,1})?$/, 'Only numbers with up to 1 decimal are allowed');" /> -->
-                        <input required id="weight" type="text" step="0.1" min="0" max="99.9" autocomplete="off"
-                            maxlength="4"
-                            oninput="validInput(this, /^(\d{1,2}(\.\d{0,1})?)?$/, 'Only numbers with up to 1 decimal are allowed');" />
+                        <!-- <input required id="tall" type="number" min="1" max="999" autocomplete="off"
+                        data-validate="number" oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')" /> -->
+
+                        <input required type="text" id="tall"  autocomplete="off" maxlength="3" data-validate="number"
+                         
+                        oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')" onchange="updateProgress('form1')" />
+
                         <small class="error-message"></small>
                     </div>
                     <div>
                         <label class="question-label">Weight</label>
-                        <input required id="tall" type="decimal" step="0.01" min="0" max="999.99" autocomplete="off"
+                        <input required id="weight" type="decimal" step="0.01" min="0" max="999.99" autocomplete="off"
                             maxlength="6"
                             oninput="validInput(this, /^\d{0,3}(\.\d{0,2})?$/, 'Only numbers with up to 2 decimals are allowed');" />
                         <small class="error-message"></small>
@@ -2736,7 +2740,7 @@
                     <a href="#" class="tab-link" id="form1Link" ><i class="fa-solid fa-file"></i>
                         Drug and Alcohol Testing Information Request(Must Ask Question)</a>
                 </div>
-                <div class="col-2">
+                <div class="col-1 smallCheckMark">
                     <span id="form1Tick" class="checkmark visible"></span>
                 </div>
             </div>
@@ -2746,7 +2750,7 @@
                     <a href="#" class="tab-link" style="background-color: #007bff; " id="form2Link"><i class="fa-solid fa-file"></i>
                         Pre-Employment Candidate Health Evaluation Questionnaire(HEQ)</a>
                 </div>
-                <div class="col-2">
+                <div class="col-1 smallCheckMark">
                     <span id="form2Tick" class="checkmark"></span>
                 </div>
             </div>
@@ -2757,16 +2761,16 @@
                     <a href="#" class="tab-link" id="form3Link" ><i class="fa-solid fa-file"></i>
                         Employment Application Supplement-Commercial Motor Vehicle(CMV)Driver</a>
                 </div>
-                <div class="col-2">
+                <div class="col-1 smallCheckMark">
                     <span id="form3Tick" class="checkmark"></span>
                 </div>
             </div>
             <div class="d-flex flex-row gap-1 mt-2">
                 <div class="col-10">
-                    <a href="#" class="tab-link" id="form4Link" onclick="loadForm4()"><i class="fa-solid fa-file"></i>
+                    <a href="#" class="tab-link" id="form4Link"><i class="fa-solid fa-file"></i>
                         DOT Medical Certificate and Driver's License </a>
                 </div>
-                <div>
+                <div class="col-1 smallCheckMark">
                     <span id="form4Tick" class="checkmark"></span>
                 </div>
             </div>
@@ -2775,7 +2779,7 @@
 
 
 
-    <div id="invalidModal" class="invalid-modal" style="display: none;">
+    <!-- <div id="invalidModal" class="invalid-modal" style="display: none;">
         <div class="invalid-modal-content">
             <div class="modal-header">
                 <h4 class="modal-heading heading">Invalid!</h4>
@@ -2786,10 +2790,46 @@
 
             <button id="colseBtn" class="colse-btn" onclick="closeModal()">Close</button>
         </div>
+    </div> -->
+
+
+    <div id="invalidModal" class="invalid-modal" style="display: none;">
+        <div class="success-modal-content">
+            <div class="modal-header">
+                <h4 class="modal-heading-invalid heading">Invalid!</h4>
+                <span id="closeBtn" class="close-btn" onclick="closeModal()">&#10006;</span>
+            </div>
+    
+            <p class="modal-message">Please complete all required fields before proceeding.</p>
+    
+            <button id="continueBtn" class="continue-btn" onclick="closeModal()">Close</button>
+        </div>
     </div>
+
+
+
+    
+    <div id="successModal2" class="success-modal" style="display: none;">
+        <div class="success-modal-content">
+            <div class="modal-header">
+                <h4 class="modal-heading heading">Successful!</h4>
+                <span id="closeBtn" class="close-btn" onclick="closeDialog()">&#10006;</span>
+            </div>
+    
+            <div class="icon-container">
+                <span class="modal-checkmark">&#10004;</span>
+            </div>
+    
+            <p class="modal-message">You have successfully submitted this form. Please proceed to the next form.</p>
+    
+            <button id="continueBtn" class="continue-btn" onclick="loadForm3('successModal2')">Continue</button>
+        </div>
+    </div>
+
+
    <div id="overlay2" class="overlay" style="display: none;"></div>
 
-    <div id="successModal2" class="success-modal" style="display: none;">
+    <!-- <div id="successModal2" class="success-modal" style="display: none;">
         <div class="success-modal-content">
             <div class="modal-header">
                 <h4 class="modal-heading heading">Successful!</h4>
@@ -2804,6 +2844,6 @@
 
             <button id="continueBtn" class="continue-btn" onclick="loadForm3('successModal2')">Continue</button>
         </div>
-    </div>
+    </div> -->
 
 </div>

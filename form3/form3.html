@@ -75,129 +75,123 @@
                             Driver's Address</h4>
                     </div>
                 </div>
+
+
+
                 <div id="mainAddressContainer">
-                    <div id="subAddressContainer">
-                        <div class="form-row mt-3">
-                            <div>
-                                <label class="question-label">Number and Street (NO PO BOX)</label>
-                                <input required type="text" data-validate="text" autocomplete="off" name="address"
-                                    class="form-control" maxlength="250" placeholder="Enter Text"
-                                    onchange="updateProgress2('form2')">
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="col">
-                                <label class="question-label">City</label>
-                                <!-- <input required type="text" data-validate="text" autocomplete="off" name="city" onchange="updateProgress2('form2')"> -->
-                                <input required type="text" data-validate="text" name="city" maxlength="50"
-                                    autocomplete="off"
-                                    oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only Letters are allowed.')"
-                                    class="form-control" onchange="updateProgress2('form2')" placeholder="Enter Text" />
-                                <small class="error-message"></small>
-                            </div>
-                            <div class="col">
-                                <label class="question-label">State</label>
-                                <select required data-validate="text" name="States" id="addressState1"
-                                    class="state-feild">
-                                    <option value="">Select One</option>
-                                    <option value="state2">Alabama</option>
-                                    <option value="state3">Alaska</option>
-                                    <option value="state4">Arizona</option>
-                                    <option value="state5">Arkansas</option>
-                                    <option value="state6">California</option>
-                                    <option value="state7">Colorado</option>
-                                    <option value="state8">Connecticut</option>
-                                    <option value="state9">Delaware</option>
-                                    <option value="state10">Florida</option>
-                                    <option value="state11">Georgia</option>
-                                    <option value="state12">Hawaii</option>
-                                    <option value="state13">Idaho</option>
-                                    <option value="state14">Illinois</option>
-                                    <option value="state15">Indiana</option>
-                                    <option value="state16">Iowa</option>
-                                    <option value="state17">Kansas</option>
-                                    <option value="state18">Kentucky</option>
-                                    <option value="state19">Louisiana</option>
-                                    <option value="state20">Maine</option>
-                                    <option value="state21">Maryland</option>
-                                    <option value="state22">Massachusetts</option>
-                                    <option value="state23">Michigan</option>
-                                    <option value="state24">Minnesota</option>
-                                    <option value="state25">Mississippi</option>
-                                    <option value="state26">Missouri</option>
-                                    <option value="state27">Montana</option>
-                                    <option value="state28">Nebraska</option>
-                                    <option value="state29">Nevada</option>
-                                    <option value="state30">New Hampshire</option>
-                                    <option value="state31">New Jersey</option>
-                                    <option value="state32">New Mexico</option>
-                                    <option value="state33">New York</option>
-                                    <option value="state34">North Carolina</option>
-                                    <option value="state35">North Dakota</option>
-                                    <option value="state36">Ohio</option>
-                                    <option value="state37">Oklahoma</option>
-                                    <option value="state38">Oregon</option>
-                                    <option value="state39">Pennsylvania</option>
-                                    <option value="state40">Rhode Island</option>
-                                    <option value="state41">South Carolina</option>
-                                    <option value="state42">South Dakota</option>
-                                    <option value="state43">Tennessee</option>
-                                    <option value="state44">Texas</option>
-                                    <option value="state45">Utah</option>
-                                    <option value="state46">Vermont</option>
-                                    <option value="state47">Virginia</option>
-                                    <option value="state48">Washington</option>
-                                    <option value="state49">West Virginia</option>
-                                    <option value="state50">Wisconsin</option>
-                                    <option value="state51">Wyoming</option>
-                                </select>
-                            </div>
-                            <div class="col">
-                                <label class="question-label">Zip</label>
-                                <input required type="text" name="zip" autocomplete="off" maxlength="9"
-                                    data-validate="number" class="form-control" onchange="updateProgress2('form2')"
-                                    oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')"
-                                    placeholder="Enter Number" />
-                                <small class="error-message"></small>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div>
-                                <label class="question-label">From</label>
-
-                                <input required type="date" class="dab form-control " id="addressFrom" name="dob"
-                                    oninput="handleDateChange2(event)" onchange="validateAddressHistory()">
-                                <small class="error-message"></small>
-                            </div>
-                            <div>
-                                <label class="question-label">To</label>
-                                <input required type="date" class="to form-control" id="addressTo" name="to"
-                                    oninput="handleDateChange2(event)" onchange="validateAddressHistory()">
-                                <small class="error-message"></small>
-                            </div>
+                    <div class="form-row mt-3">
+                        <div>
+                            <label class="question-label">Number and Street (NO PO BOX)</label>
+                            <input required type="text" data-validate="text" autocomplete="off" name="address"
+                                class="form-control" maxlength="250" placeholder="Enter Text"
+                                onchange="updateProgress2('form2')">
                         </div>
                     </div>
-                </div>
-                   
-                    <!--   <div>
-                            <h6 class="just-color">
-                                <p class="question-label">Did you reside in any prior address in the THREE (3)years
-                                    preceding
-                                    the
-                                    date of
-                                    this application
-                                    ?(NO
-                                    PO BOXES)
-                                </p>
-                            </h6>
+
+                    <div class="form-row">
+                        <div class="col">
+                            <label class="question-label">City</label>
+                            <!-- <input required type="text" data-validate="text" autocomplete="off" name="city" onchange="updateProgress2('form2')"> -->
+                            <input required type="text" data-validate="text" name="city" maxlength="50"
+                                autocomplete="off"
+                                oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only Letters are allowed.')"
+                                class="form-control" onchange="updateProgress2('form2')" placeholder="Enter Text" />
+                            <small class="error-message"></small>
                         </div>
-            
-               <div id="mainAddressContainer">
+                        <div class="col">
+                            <label class="question-label">State</label>
+                            <select required data-validate="text" name="States" id="addressState1" class="state-feild">
+                                <option value="">Select One</option>
+                                <option value="state2">Alabama</option>
+                                <option value="state3">Alaska</option>
+                                <option value="state4">Arizona</option>
+                                <option value="state5">Arkansas</option>
+                                <option value="state6">California</option>
+                                <option value="state7">Colorado</option>
+                                <option value="state8">Connecticut</option>
+                                <option value="state9">Delaware</option>
+                                <option value="state10">Florida</option>
+                                <option value="state11">Georgia</option>
+                                <option value="state12">Hawaii</option>
+                                <option value="state13">Idaho</option>
+                                <option value="state14">Illinois</option>
+                                <option value="state15">Indiana</option>
+                                <option value="state16">Iowa</option>
+                                <option value="state17">Kansas</option>
+                                <option value="state18">Kentucky</option>
+                                <option value="state19">Louisiana</option>
+                                <option value="state20">Maine</option>
+                                <option value="state21">Maryland</option>
+                                <option value="state22">Massachusetts</option>
+                                <option value="state23">Michigan</option>
+                                <option value="state24">Minnesota</option>
+                                <option value="state25">Mississippi</option>
+                                <option value="state26">Missouri</option>
+                                <option value="state27">Montana</option>
+                                <option value="state28">Nebraska</option>
+                                <option value="state29">Nevada</option>
+                                <option value="state30">New Hampshire</option>
+                                <option value="state31">New Jersey</option>
+                                <option value="state32">New Mexico</option>
+                                <option value="state33">New York</option>
+                                <option value="state34">North Carolina</option>
+                                <option value="state35">North Dakota</option>
+                                <option value="state36">Ohio</option>
+                                <option value="state37">Oklahoma</option>
+                                <option value="state38">Oregon</option>
+                                <option value="state39">Pennsylvania</option>
+                                <option value="state40">Rhode Island</option>
+                                <option value="state41">South Carolina</option>
+                                <option value="state42">South Dakota</option>
+                                <option value="state43">Tennessee</option>
+                                <option value="state44">Texas</option>
+                                <option value="state45">Utah</option>
+                                <option value="state46">Vermont</option>
+                                <option value="state47">Virginia</option>
+                                <option value="state48">Washington</option>
+                                <option value="state49">West Virginia</option>
+                                <option value="state50">Wisconsin</option>
+                                <option value="state51">Wyoming</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label class="question-label">Zip</label>
+                            <input required type="text" name="zip" autocomplete="off" maxlength="9"
+                                data-validate="number" class="form-control" onchange="updateProgress2('form2')"
+                                oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')"
+                                placeholder="Enter Number" />
+                            <small class="error-message"></small>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div>
+                            <label class="question-label">From</label>
 
+                            <input required type="date" class="dab form-control " id="addressFrom" name="dob"
+                                oninput="handleDateChange2(event)" >
+                            <small class="error-message"></small>
+                        </div>
+                        <div>
+                            <label class="question-label">To</label>
+                            <input required type="date" class="to form-control" id="addressTo" name="to"
+                                oninput="handleDateChange2(event)">
+                            <small class="error-message"></small>
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <h6 class="just-color">
+                            <p class="question-label">Did you reside in any prior address in the THREE (3)years
+                                preceding the
+                                date of
+                                this application
+                                ?(NO
+                                PO BOXES)
+                            </p>
+                        </h6>
+                    </div>
                     <div class="col-12 d-flex flex-column mt-2">
-
-
                         <div class="form-check" d-flex align-items-end>
                             <input class="form-check-input" type="radio" required value="no" id="addressNo"
                                 name="priorAdress" onchange="removeHistoryElement(this.value)">
@@ -214,8 +208,7 @@
                             </label>
                         </div>
                     </div>
-                </div> -->
-
+                </div>
 
                 <div class="single-button-container">
                     <button onclick="nextPage2(2)">Next</button>
@@ -1241,10 +1234,10 @@
         <div class="col-3 tabs">
             <div class="d-flex flex-row gap-1">
                 <div class="col-10">
-                    <a href="#" class="tab-link" id="form1Link" onclick="loadForm1()"><i class="fa-solid fa-file"></i>
+                    <a href="#" class="tab-link" id="form1Link"><i class="fa-solid fa-file"></i>
                         Drug and Alcohol Testing Information Request(Must Ask Question)</a>
                 </div>
-                <div class="col-2">
+                <div class="col-1 smallCheckMark">
                     <span id="form1Tick" class="checkmark visible"></span>
                 </div>
             </div>
@@ -1254,7 +1247,7 @@
                     <a href="#" class="tab-link" id="form2Link"><i class="fa-solid fa-file"></i>
                         Pre-Employment Candidate Health Evaluation Questionnaire(HEQ)</a>
                 </div>
-                <div class="col-2">
+                <div class="col-1 smallCheckMark">
                     <span id="form2Tick" class="checkmark visible"></span>
                 </div>
             </div>
@@ -1266,17 +1259,17 @@
                             class="fa-solid fa-file"></i>
                         Employment Application Supplement-Commercial Motor Vehicle(CMV)Driver</a>
                 </div>
-                <div class="col-2">
+                <div class="col-1 smallCheckMark">
                     <span id="form3Tick" class="checkmark"></span>
                 </div>
             </div>
 
             <div class="d-flex flex-row gap-1 mt-2">
                 <div class="col-10">
-                    <a href="#" class="tab-link" id="form4Link" onclick="loadForm4()"><i class="fa-solid fa-file"></i>
+                    <a href="#" class="tab-link" id="form4Link"><i class="fa-solid fa-file"></i>
                         DOT Medical Certificate and Driver's License </a>
                 </div>
-                <div>
+                <div class="col-1 smallCheckMark">
                     <span id="form4Tick" class="checkmark"></span>
                 </div>
             </div>
@@ -1284,7 +1277,54 @@
 
     </div>
 
-    <div id="invalidModal" class="invalid-modal">
+    <div id="invalidModal" class="invalid-modal" style="display: none;">
+        <div class="success-modal-content">
+            <div class="modal-header">
+                <h4 class="modal-heading-invalid heading">Invalid!</h4>
+                <span id="closeBtn" class="close-btn" onclick="closeModal()">&#10006;</span>
+            </div>
+
+            <p class="modal-message">Please complete all required fields before proceeding.</p>
+
+            <button id="continueBtn" class="continue-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <div id="invalidDates" class="invalid-modal" style="display: none;">
+        <div class="success-modal-content">
+            <div class="modal-header">
+                <h4 class="modal-heading-invalid heading">Invalid!</h4>
+                <span id="closeBtn" class="close-btn" onclick="closeModal()">&#10006;</span>
+            </div>
+
+            <p class="modal-message">Please Enter Atleast 3 Years of Address History before proceeding.</p>
+
+            <button id="continueBtn" class="continue-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <div id="successModal3" class="success-modal" style="display: none;">
+        <div class="success-modal-content">
+            <div class="modal-header">
+                <h4 class="modal-heading heading">Successful!</h4>
+                <span id="closeBtn" class="close-btn" onclick="closeDialog()">&#10006;</span>
+            </div>
+
+            <div class="icon-container">
+                <span class="modal-checkmark">&#10004;</span>
+            </div>
+
+            <p class="modal-message">You have successfully submitted this form. Please proceed to the next form.</p>
+
+            <button id="continueBtn" class="continue-btn" onclick="loadForm4('successModal3')">Continue</button>
+        </div>
+    </div>
+
+
+    <div id="overlay3" class="overlay" style="display: none;"></div>
+
+
+    <!-- <div id="invalidModal" class="invalid-modal">
         <div class="invalid-modal-content">
             <div class="modal-header">
                 <h3 class="modal-heading heading">Invalid!</h3>
@@ -1313,7 +1353,7 @@
 
             <button id="continueBtn" class="continue-btn" onclick=" loadForm4('successModal3')">Continue</button>
         </div>
-    </div>
+    </div> -->
 
 
 

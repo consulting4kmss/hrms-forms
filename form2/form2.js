@@ -185,9 +185,9 @@ function validatePage(formId, pageNumber) {
                       
                         isValid = false;
                     }
-                } if (input.id === "tall" || input.id === "weight") {
+                } if (input.id === "weight") {
 
-                    const result = (input.id!=="tall")? validInput(input, /^(\d{1,2}(\.\d{0,1})?)?$/, 'Only numbers with up to 1 decimal are allowed'):validInput(input, /^\d{0,3}(\.\d{0,2})?$/, 'Only numbers with up to 2 decimals are allowed');
+                    const result = validInput(input,/^\d{0,3}(\.\d{0,2})?$/, 'Only numbers with up to 2 decimals are allowed');
                     console.log('called validinput for -', input.id)
                     if (!result) {
                         isValid = false;
@@ -235,7 +235,7 @@ function validatePage(formId, pageNumber) {
         }
     });
 
-    //return true;
+    // return true;
     return isValid;
 }
 
@@ -688,7 +688,7 @@ function showSuccessModal() {
 
 function closeDialog() {
     const successModal = document.getElementById('successModal2');
-    const overlay = document.getElementById('overlay');
+    const overlay = document.getElementById('overlay2');
     if (successModal && overlay) {
         successModal.style.display = 'none';
         overlay.style.display = 'none';

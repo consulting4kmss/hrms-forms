@@ -1,8 +1,3 @@
-.heading{
-    font-weight: 400 !important;
-    color:white !important;
-}
-
 .form-container {
     width: 100%;
     display: flex;
@@ -25,13 +20,25 @@
     transition: background-color 0.3s;
 }
 
+.tab-link :hover {
+    display: inline-block;
+    padding: 10px;
+    margin: 0 5px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
 .main-division1{
+    padding:20px;
     width:80%;
     gap:5%;
 }
 .form-card {
     background-color: #1d4f91 !important;
-    width:70%;
+    width:60%;
     color: inherit;
     padding: 15px;
     border-radius: 8px;
@@ -39,13 +46,15 @@
     box-sizing: border-box;
 }
 
+.tabs{
+    width:35%;
+}
+
 .form-page {
     width: 100%;
     max-width: 100%;
 }
-.tabs{
-    width:25%;
-}
+
 .question-label {
     display: block;
     font-size: 1rem;
@@ -217,17 +226,7 @@ input::placeholder {
     left: 50%;
     transform: translate(-50%, 10%);
 }
-.icon-container {
-    width: 80px;
-    height: 80px;
-    background-color: #28a745;
-    color:white !important;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px auto;
-}
+
 .invalid-modal {
     display: none;
     position: fixed;
@@ -254,13 +253,7 @@ input::placeholder {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.modal-header {
-    display: flex;
-    width:100%;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
+
 
 .colse-button {
     background-color: #007bff;
@@ -273,31 +266,12 @@ input::placeholder {
     width: 50%;
 }
 
-.modal-heading {
-    flex:3;
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-    margin: 0;
-}
-
 .close-mrk {
     font-size: 20px;
     color: white;
     cursor: pointer;
 }
 
-.modal-checkmark {
-    font-size: 40px;
-    color: white;
-    font-weight: bold;
-}
-
-.modal-message {
-    font-size: 16px;
-    color: white;
-    margin: 20px 0;
-}
 
 /* .colse-btn {
     background-color: #007bff;
@@ -379,6 +353,64 @@ input::placeholder {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+.modal-header {
+    display: flex;
+    width:100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-heading {
+    
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+}
+.modal-heading-invalid {
+    flex:3;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+}
+
+.heading{
+    font-weight: 400 !important;
+    color:white !important;
+}
+
+.close-btn {
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.icon-container {
+    width: 80px;
+    height: 80px;
+    background-color: #28a745;
+    color:white !important;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.modal-checkmark {
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+}
+
+.modal-message {
+    font-size: 16px;
+    color: white;
+    margin: 20px 0;
+}
+
 .checkmark {
     display: inline-block;
     width: 20px;
@@ -394,14 +426,14 @@ input::placeholder {
     opacity: 0;
 }
 
-.checkmark.visible {
-    opacity: 1;
+.smallCheckMark{
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.close-btn {
-    font-size: 20px;
-    color: white;
-    cursor: pointer;
+.checkmark.visible {
+    opacity: 1;
 }
 
 .checkmark::before {

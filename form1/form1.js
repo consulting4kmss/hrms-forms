@@ -117,7 +117,7 @@ function clearSign() {
 function saveSign() {
     if (canvas) {
         signatureData = canvas.toDataURL('image/png');
-        validateCanvases('form1', 1);
+       // validateCanvases('form1', 1);
 
     } else {
         console.error("Signature box is not initialized.");
@@ -178,7 +178,7 @@ function validateForm(formId, pageNumber) {
             } else {
                 input.classList.remove('highlight');
             }
-          validateCanvases(formId, pageNumber);
+         // validateCanvases(formId, pageNumber);
 
 
         };

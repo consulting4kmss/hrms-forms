@@ -54,13 +54,13 @@
                 </div>
 
                 <div class="mt-4">
-                    <label class="question-label">Name of New Hire Candidate or Transfer Employee Candidate for DOT
-                        Safety-Sensitive Position</label>
+
                     <!-- <input required type="text" data-validate="text" name="city" maxlength="50" autocomplete="off"
                     oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" class="form-control" />
                 <small class="error-message"></small> -->
                     <div>
-                        <label class="question-label">Number and Street (NO PO BOX)</label>
+                        <label class="question-label">Name of New Hire Candidate or Transfer Employee Candidate for DOT
+                            Safety-Sensitive Position</label>
                         <input required type="text" data-validate="text" autocomplete="off" name="address"
                             class="form-control" maxlength="250" placeholder="Enter Text" />
                     </div>
@@ -137,11 +137,10 @@
         <div id="tabs1" class="tabs">
             <div class="d-flex flex-row gap-1">
                 <div class="col-11">
-                    <a href="#" class="tab-link" style="background-color: #007bff; " id="form1Link"
-                        onclick="loadForm1()"><i class="fa-solid fa-file"></i>
+                    <a href="#" class="tab-link" style="background-color: #007bff; " id="form1Link"><i class="fa-solid fa-file"></i>
                         Drug and Alcohol Testing Information Request(Must Ask Question)</a>
                 </div>
-                <div class="col-1">
+                <div class="col-1 smallCheckMark">
                     <span id="form1Tick" class="checkmark"></span>
                 </div>
             </div>
@@ -153,7 +152,7 @@
                     <a href="#" class="tab-link" id="form2Link"><i class="fa-solid fa-file"></i>
                         Pre-Employment Candidate Health Evaluation Questionnaire(HEQ)</a>
                 </div>
-                <div class="col-2">
+                <div class="col-1 smallCheckMark">
                     <span id="form2Tick" class="checkmark"></span>
                 </div>
             </div>
@@ -161,10 +160,10 @@
 
             <div class="d-flex flex-row gap-1 mt-2">
                 <div class="col-10">
-                    <a href="#" class="tab-link" id="form3Link" onclick="loadForm3()"><i class="fa-solid fa-file"></i>
+                    <a href="#" class="tab-link" id="form3Link"><i class="fa-solid fa-file"></i>
                         Employment Application Supplement-Commercial Motor Vehicle(CMV)Driver</a>
                 </div>
-                <div class="col-2">
+                <div class="col-1 smallCheckMark">
                     <span id="form3Tick" class="checkmark"></span>
                 </div>
             </div>
@@ -172,10 +171,10 @@
 
             <div class="d-flex flex-row gap-1 mt-2">
                 <div class="col-10">
-                    <a href="#" class="tab-link" id="form4Link" onclick="loadForm4()"><i class="fa-solid fa-file"></i>
+                    <a href="#" class="tab-link" id="form4Link"><i class="fa-solid fa-file"></i>
                         DOT Medical Certificate and Driver's License </a>
                 </div>
-                <div>
+                <div class="col-1 smallCheckMark">
                     <span id="form4Tick" class="checkmark"></span>
                 </div>
             </div>
@@ -183,7 +182,7 @@
 
     </div>
 
-    <div id="invalidModal1" class="invalid-modal" style="display: none;">
+    <!-- <div id="invalidModal1" class="invalid-modal" style="display: none;">
         <div class="invalid-modal-content">
             <div class="modal-header">
                 <h4 class="modal-heading heading">Invalid!</h4>
@@ -194,7 +193,23 @@
     
             <button id="colseBtn" class="colse-button" onclick="closeDialog('invalidModal1')">Close</button>
         </div>
+    </div> -->
+
+    <div id="invalidModal1" class="invalid-modal" style="display: none;">
+        <div class="success-modal-content">
+            <div class="modal-header">
+                <h4 class="modal-heading-invalid heading">Invalid!</h4>
+                <span id="closeBtn" class="close-btn" onclick="closeDialog('invalidModal1')">&#10006;</span>
+            </div>
+    
+            <p class="modal-message">Please complete all required fields before proceeding.</p>
+    
+            <button id="continueBtn" class="continue-btn" onclick="closeDialog('invalidModal1')">Close</button>
+        </div>
     </div>
+
+
+
     
     <div id="successModal1" class="success-modal" style="display: none;">
         <div class="success-modal-content">

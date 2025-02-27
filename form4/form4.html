@@ -39,13 +39,13 @@
                         </div>
                         <div class="mb-3 mt-4">
                             <label class="question-label">Front of Driver's License</label>
-                            <input required type="file" id="licenseFront" class="form-control mt-2" />
+                            <input required type="file" id="licenseFront" class="form-control mt-2" accept="image/png, image/jpeg" />
                         </div>
 
 
                         <div class="mb-3 mt-4">
                             <label class="question-label">Back of Driver's License</label>
-                            <input required type="file" id="licenseBack" class="form-control mt-2" />
+                            <input required type="file" id="licenseBack" class="form-control mt-2" accept="image/png, image/jpeg"/>
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                     <button class="submit-btn" onclick="Submission()">Submit</button>
                 </div>
 
-                <div id="invalidModal" class="invalid-modal">
+                <!-- <div id="invalidModal" class="invalid-modal">
                     <div class="invalid-modal-content">
                         <div class="modal-header">
                             <h3 class="heading" class="modal-heading">Invalid!</h3>
@@ -64,6 +64,19 @@
 
                         <button id="colseBtn" class="colse-btn" onclick="closeDialog('invalidModal')">Close</button>
                     </div>
+                </div> -->
+
+                <div id="invalidModal" class="invalid-modal" style="display: none;">
+                    <div class="success-modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-heading-invalid heading">Invalid!</h4>
+                            <span id="closeBtn" class="close-btn" onclick="closeDialog('invalidModal')">&#10006;</span>
+                        </div>
+                
+                        <p class="modal-message">Please complete all required fields before proceeding.</p>
+                
+                        <button id="continueBtn" class="continue-btn" onclick="closeModal()">Close</button>
+                    </div>
                 </div>
                 <div id="overlay" class="overlay"></div>
 
@@ -72,10 +85,10 @@
         <div id="tabs4" class="col-3 tabs" >
             <div class="d-flex flex-row gap-1">
                 <div class="col-10">
-                    <a href="#" class="tab-link" id="form1Link" onclick="loadForm1()"><i class="fa-solid fa-file"></i>
+                    <a href="#" class="tab-link" id="form1Link"><i class="fa-solid fa-file"></i>
                         Drug and Alcohol Testing Information Request(Must Ask Question)</a>
                 </div>
-                <div class="col-2">
+                <div class="col-1 smallCheckMark">
                     <span id="form1Tick" class="checkmark visible"></span>
                 </div>
             </div>
@@ -85,7 +98,7 @@
                     <a href="#" class="tab-link" id="form2Link"><i class="fa-solid fa-file"></i>
                         Pre-Employment Candidate Health Evaluation Questionnaire(HEQ)</a>
                 </div>
-                <div class="col-2">
+                <div class="col-1 smallCheckMark">
                     <span id="form2Tick" class="checkmark visible"></span>
                 </div>
             </div>
@@ -96,7 +109,7 @@
                     <a href="#" class="tab-link" id="form3Link" ><i class="fa-solid fa-file"></i>
                         Employment Application Supplement-Commercial Motor Vehicle(CMV)Driver</a>
                 </div>
-                <div class="col-2">
+                <div class="col-1 smallCheckMark">
                     <span id="form3Tick" class="checkmark visible"></span>
                 </div>
             </div>
@@ -105,7 +118,7 @@
                     <a href="#" class="tab-link" style="background-color: #007bff; " id="form4Link" ><i class="fa-solid fa-file"></i>
                         DOT Medical Certificate and Driver's License </a>
                 </div>
-                <div>
+                <div class="col-1 smallCheckMark">
                     <span id="form4Tick" class="checkmark"></span>
                 </div>
             </div>

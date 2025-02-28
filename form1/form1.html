@@ -3,10 +3,10 @@
         <div id="form1" class="form-card">
             <div id="form1-page1" class="form-page">
                 <div style="margin-top: 20px;">
-                    <h4 style="border-bottom: 2px solid #8bafdf; width: 100%; padding-bottom: 5px; color:white">
+                    <p class="mainHeading">
                         Drug and Alcohol Testing Information Request(Must Ask
                         Question)-DOT Safety-Sensitive Position 49 CFR 40.25(j)
-                    </h4>
+                    </p>
                 </div>
 
                 <div>
@@ -122,10 +122,10 @@
                 </div>
 
                 <div class="mt-3">
-                    <label for="signBox" class="just-color form-check-label">Applicant's Signature</label>
+                    <label for="signBox" class="question-label">Applicant's Signature</label>
                     <canvas class="mt-1" id="signBox" width="400" height="200" style="border: 1px solid #ccc;"></canvas>
                     <br>
-                    <p id="clearButton" data-validate="text" class="clearSign">Clear Signature</p>
+                    <p id="clearButton" data-validate="text" class="question-label clearSign">Clear Signature</p>
                 </div>
 
                 <div class="button-row">
@@ -135,46 +135,47 @@
             </div>
         </div>
         <div id="tabs1" class="tabs">
-            <div class="d-flex flex-row gap-1">
-                <div class="col-10">
+          
+            <div class="tab-check">
+                <div class="tab-box" >
                     <a href="#" class="tab-link" style="background-color: #007bff; " id="form1Link"><i class="fa-solid fa-file"></i>
                         Drug and Alcohol Testing Information Request(Must Ask Question)</a>
                 </div>
-                <div class="col-1 smallCheckMark">
+
+                <div class="smallCheckMark">
                     <span id="form1Tick" class="checkmark"></span>
                 </div>
             </div>
 
 
-            <div class="d-flex flex-row gap-1 mt-2">
-                <div class="col-10">
-                    <!-- onclick="loadForm2()" -->
+            <div class="tab-check mt-2">
+                <div class="tab-box" >
                     <a href="#" class="tab-link" id="form2Link"><i class="fa-solid fa-file"></i>
                         Pre-Employment Candidate Health Evaluation Questionnaire(HEQ)</a>
                 </div>
-                <div class="col-1 smallCheckMark">
+                <div class="smallCheckMark">
                     <span id="form2Tick" class="checkmark"></span>
                 </div>
             </div>
 
 
-            <div class="d-flex flex-row gap-1 mt-2">
-                <div class="col-10">
+            <div class="tab-check mt-2">
+                <div class="tab-box">
                     <a href="#" class="tab-link" id="form3Link"><i class="fa-solid fa-file"></i>
                         Employment Application Supplement-Commercial Motor Vehicle(CMV)Driver</a>
                 </div>
-                <div class="col-1 smallCheckMark">
+                <div class="smallCheckMark">
                     <span id="form3Tick" class="checkmark"></span>
                 </div>
             </div>
 
 
-            <div class="d-flex flex-row gap-1 mt-2">
-                <div class="col-10">
+            <div class="tab-check mt-2">
+                <div class="tab-box">
                     <a href="#" class="tab-link" id="form4Link"><i class="fa-solid fa-file"></i>
                         DOT Medical Certificate and Driver's License </a>
                 </div>
-                <div class="col-1 smallCheckMark">
+                <div class="smallCheckMark">
                     <span id="form4Tick" class="checkmark"></span>
                 </div>
             </div>
@@ -215,10 +216,6 @@
                 <span id="closeBtn" class="close-btn" onclick="closeDialog('invalidModal1')">&#10006;</span>
             </div>
     
-            <div class="icon-container">
-                <span class="modal-checkmark">&#10004;</span>
-            </div>
-    
             <p class="modal-message">Please complete all required fields before proceeding.</p>
     
             <button id="continueBtn" class="continue-btn" onclick="closeDialog('invalidModal1')">Close</button>
@@ -247,8 +244,8 @@
     <div id="drugTestFailed" class="invalid-drug-test" style="display: none;">
         <div class="invalid-drug-test-modal-content">
             <div class="drug-header">
-                <h4 class="drug-heading heading">Further Investigation and Approval Will be Required
-                </h4>
+                <p class="drug-heading">Further Investigation and Approval Will be Required
+                </p>
                 <!-- <span id="closeBtn" class="close-btn" onclick="closeDialog('drugTestFailed')">&#10006;</span> -->
             </div>
     

@@ -2,11 +2,11 @@
     <div id='main-division4' class="main-division1 d-flex flex-row">
         <div id="form4" class="form-card">
             <div id="form4-page1" class="form-page2">
-                <h3 class="heading">DOT Medical Certificate and Driver's License </h3>
+                <p class="mainHeading">DOT Medical Certificate and Driver's License </p>
                 <div style="margin-top: 20px;">
-                    <h4 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px; color:white"> DOT
+                    <p class="mainHeading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px; color:white"> DOT
                         Medical
-                        Certificate</h4>
+                        Certificate</p>
                 </div>
                 <div id="driverCertificate">
                     <div id="doneInSix" class="col-12 d-flex flex-column mt-4">
@@ -27,9 +27,9 @@
                     </div>
 
                     <div style="margin-top: 20px;">
-                        <h4 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px; color:white">
+                        <p class="mainHeading" style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px; color:white">
                             Driver's
-                            License</h4>
+                            License</p>
                     </div>
                     <div>
 
@@ -85,10 +85,7 @@
                             <h4 class="modal-heading heading">Invalid!</h4>
                             <span id="closeBtn" class="close-btn" onclick="closeDialog('invalidModal')">&#10006;</span>
                         </div>
-            
-                        <div class="icon-container">
-                            <span class="modal-checkmark">&#10004;</span>
-                        </div>
+
             
                         <p class="modal-message">Please complete all required fields before proceeding. Please proceed to the next form.</p>
             
@@ -101,7 +98,57 @@
 
             </div>
         </div>
-        <div id="tabs4" class="col-3 tabs" >
+
+
+        <div id="tabs4" class="tabs">
+          
+            <div class="tab-check">
+                <div class="tab-box" >
+                    <a href="#" class="tab-link"  id="form1Link"><i class="fa-solid fa-file"></i>
+                        Drug and Alcohol Testing Information Request(Must Ask Question)</a>
+                </div>
+
+                <div class="smallCheckMark">
+                    <span id="form1Tick" class="checkmark visible"></span>
+                </div>
+            </div>
+
+
+            <div class="tab-check mt-2">
+                <div class="tab-box" >
+                    <a href="#" class="tab-link" id="form2Link"><i class="fa-solid fa-file"></i>
+                        Pre-Employment Candidate Health Evaluation Questionnaire(HEQ)</a>
+                </div>
+                <div class="smallCheckMark">
+                    <span id="form2Tick" class="checkmark visible"></span>
+                </div>
+            </div>
+
+
+            <div class="tab-check mt-2">
+                <div class="tab-box">
+                    <a href="#" class="tab-link" id="form3Link"><i class="fa-solid fa-file"></i>
+                        Employment Application Supplement-Commercial Motor Vehicle(CMV)Driver</a>
+                </div>
+                <div class="smallCheckMark">
+                    <span id="form3Tick" class="checkmark visible"></span>
+                </div>
+            </div>
+
+
+            <div class="tab-check mt-2">
+                <div class="tab-box">
+                    <a href="#" class="tab-link" style="background-color: #007bff;" id="form4Link"><i class="fa-solid fa-file"></i>
+                        DOT Medical Certificate and Driver's License </a>
+                </div>
+                <div class="smallCheckMark">
+                    <span id="form4Tick" class="checkmark"></span>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <div id="tabs4" class="col-3 tabs" >
             <div class="d-flex flex-row gap-1">
                 <div class="col-10">
                     <a href="#" class="tab-link" id="form1Link"><i class="fa-solid fa-file"></i>
@@ -113,7 +160,6 @@
             </div>
             <div class="d-flex flex-row gap-1">
                 <div class="col-10">
-                    <!-- onclick="loadForm2()" -->
                     <a href="#" class="tab-link" id="form2Link"><i class="fa-solid fa-file"></i>
                         Pre-Employment Candidate Health Evaluation Questionnaire(HEQ)</a>
                 </div>
@@ -141,7 +187,7 @@
                     <span id="form4Tick" class="checkmark"></span>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div id="thanksModal" class="success-modal">

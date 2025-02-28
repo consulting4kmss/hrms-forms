@@ -1,4 +1,4 @@
-.form-container {
+/* .form-container {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -54,7 +54,124 @@
     display:flex;
     align-items: center;
     justify-content: center;
+} */
+
+
+.mainHeading{
+    font-weight: 400!important;
+    font-size:1.3rem !important;
+    width: 100% !important; 
+    color:white !important;
 }
+.question-label {
+    display: block;
+    font-size: 0.9rem;
+    color: white !important;
+    margin-bottom: 5px !important;
+    font-weight: 400 !important;
+}
+
+.clearSign{
+    cursor:pointer;
+    color:white;
+}
+
+.form-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    background-color: #004085 !important;
+    color: white !important;
+}
+
+.tab-link {
+    font-size: 0.9rem;
+    font-weight: 400 !important;
+    display: inline-block;
+    padding: 0.625rem;
+    margin: 0 0.313rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.312rem;
+    pointer-events: none;
+    cursor: default;
+    transition: background-color 0.3s;
+}
+.tab-check{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+}
+.checkmark {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    border-radius: 50%;
+    background-color: #28a745;
+    color: white;
+    text-align: center;
+    line-height: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    opacity: 0;
+}
+
+.smallCheckMark{
+    width:10%;
+    display:flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.checkmark.visible {
+    opacity: 1;
+}
+
+.checkmark::before {
+    content: '\2713';
+    font-size: 16px;
+    color: white;
+}
+
+.tab-link :hover {
+    font-size: 0.9rem;
+    font-weight: 400 !important;
+    display: inline-block;
+    padding: 0.625rem;
+    margin: 0 0.313rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.312rem;
+    pointer-events: none;
+    cursor: default;
+    transition: background-color 0.3s;
+}
+.tab-box{
+    width:90%
+}
+.main-division1{
+    padding:20px;
+    width:79%;
+    gap:6%;
+}
+.form-card {
+    background-color: #1d4f91 !important;
+    width:65%;
+    color: inherit;
+    padding: 15px;
+    border-radius: 8px;
+    /* border: 2px solid #003366 !important; */
+    box-sizing: border-box;
+}
+
+.tabs{
+    width:30%;
+}
+
 
 .form-page {
     width: 100%;
@@ -79,8 +196,6 @@
     flex: 0.5;
 } 
 
-
-
 label{
 
     color: white !important;
@@ -103,7 +218,7 @@ input {
     border: none;
     border-bottom: 2px solid white !important;
     color:inherit;
-    font-size: 14px;
+    font-size: 0.9rem;
     transition: border-bottom 0.3s ease;
 }
 
@@ -117,8 +232,6 @@ input::placeholder {
     color: #cccccc;
     font-style: italic;
 }
-
-
 
 h3 {
 
@@ -169,7 +282,7 @@ h3 {
 }
 
 .page-count {
-    font-size: 16px;
+    font-size: 0.9rem;
     margin-bottom: 10px;
     text-align: center;
     display: flex;
@@ -230,14 +343,6 @@ button:disabled {
     background-color: #ccc !important;
     cursor: not-allowed;
 }
-
-.question-label {
-    display: block;
-    font-size: 1.1rem;
-    color: white !important;
-    font-weight: 400 !important;
-}
-
 .checkbox-group {
     display: flex;
     flex-direction: column;
@@ -644,7 +749,7 @@ canvas {
 
 .error-message {
     color: #f74f4f ;
-    font-size: 12px;
+    font-size: 0.9rem;
     display: none; 
     margin-top: 4px;
 }
@@ -684,7 +789,7 @@ input[type="number"]::-webkit-outer-spin-button {
     background-color: #003d7a;
 }
 
-.checkmark {
+/* .checkmark {
     display: inline-block;
     width: 20px;
     height: 20px;
@@ -707,4 +812,4 @@ input[type="number"]::-webkit-outer-spin-button {
     content: '\2713';
     font-size: 16px;
     color: white;
-}
+} */

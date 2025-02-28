@@ -570,9 +570,9 @@ function addressHistory(value) {
         addressHistory.id = `Address1`;
         addressHistory.innerHTML = `
             <div class="mt-3">
-                <h4 class="just-color" style="border-bottom: 2px solid #8bafdf; width: 100%; padding-bottom: 5px;">
+                <p class="mainHeading" style="border-bottom: 2px solid #8bafdf; width: 100%; padding-bottom: 5px;">
                     Address History Continued
-                </h4>
+                </p>
             </div>
             <div>
                 <h6 class="just-color">

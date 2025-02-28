@@ -235,7 +235,7 @@ function validatePage(formId, pageNumber) {
         }
     });
 
-    // return true;
+     //return true;
     return isValid;
 }
 

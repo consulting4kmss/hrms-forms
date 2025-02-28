@@ -2,7 +2,7 @@
     <div class="main-division1 d-flex flex-row">
         <div id="form1" class="form-card ">
             <div class="col-12">
-                <h4 class="heading">Pre-Employment Candidate Health Evaluation Questionnaire (HEQ)</h4>
+                <p class="mainHeading">Pre-Employment Candidate Health Evaluation Questionnaire (HEQ)</p>
             </div>
 
             <div class="page-count ">
@@ -223,9 +223,9 @@
 
             <div id="form1-page2" class="form-page" style="display: none;">
                 <div>
-                    <h4 class="heading">
+                    <p class="mainHeading">
                         Do you have or have you ever had any disease, injury, disorder, or surgery of the following?
-                    </h4>
+                    </p>
                 </div>
                 <div>
                     <div style="margin-top: 20px;">
@@ -841,10 +841,10 @@
             <div id="form1-page3" class="form-page" style="display: none;">
 
                 <div>
-                    <h4 class="heading">
+                    <p class="mainHeading">
                         Do you have or have you ever had any disease, injury, disorder, or surgery of the following?
 
-                    </h4>
+                    </p>
                 </div>
 
                 <div>
@@ -1919,10 +1919,10 @@
 
             <div id="form1-page4" class="form-page" style="display: none;">
                 <div>
-                    <h4 class="heading">
+                    <p class="mainHeading">
                         Do you have or have you ever had any disease, injury, disorder, or surgery of the following?
 
-                    </h4>
+                    </p>
                 </div>
 
                 <div>
@@ -2720,7 +2720,7 @@
                             <canvas id="signatureBox" width="400" height="200" style="border: 1px solid #ccc;"
                                 name="sign"></canvas>
                             <br>
-                            <p id="clearButton" class="clearSign">Clear Signature</p>
+                            <p id="clearButton" class="question-label clearSign">Clear Signature</p>
 
                         </div>
 
@@ -2734,7 +2734,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-3 tabs">
+        <!-- <div class="col-3 tabs">
             <div class="d-flex flex-row gap-1">
                 <div class="col-10">
                     <a href="#" class="tab-link" id="form1Link" ><i class="fa-solid fa-file"></i>
@@ -2746,7 +2746,6 @@
             </div>
             <div class="d-flex flex-row gap-1 mt-2">
                 <div class="col-10">
-                    <!-- onclick="loadForm2()" -->
                     <a href="#" class="tab-link" style="background-color: #007bff; " id="form2Link"><i class="fa-solid fa-file"></i>
                         Pre-Employment Candidate Health Evaluation Questionnaire(HEQ)</a>
                 </div>
@@ -2771,6 +2770,53 @@
                         DOT Medical Certificate and Driver's License </a>
                 </div>
                 <div class="col-1 smallCheckMark">
+                    <span id="form4Tick" class="checkmark"></span>
+                </div>
+            </div>
+        </div> -->
+
+        <div id="tabs1" class="tabs">
+          
+            <div class="tab-check">
+                <div class="tab-box" >
+                    <a href="#" class="tab-link"  id="form1Link"><i class="fa-solid fa-file"></i>
+                        Drug and Alcohol Testing Information Request(Must Ask Question)</a>
+                </div>
+
+                <div class="smallCheckMark">
+                    <span id="form1Tick" class="checkmark visible"></span>
+                </div>
+            </div>
+
+
+            <div class="tab-check mt-2">
+                <div class="tab-box" >
+                    <a href="#" class="tab-link" style="background-color: #007bff; " id="form2Link"><i class="fa-solid fa-file"></i>
+                        Pre-Employment Candidate Health Evaluation Questionnaire(HEQ)</a>
+                </div>
+                <div class="smallCheckMark">
+                    <span id="form2Tick" class="checkmark"></span>
+                </div>
+            </div>
+
+
+            <div class="tab-check mt-2">
+                <div class="tab-box">
+                    <a href="#" class="tab-link" id="form3Link"><i class="fa-solid fa-file"></i>
+                        Employment Application Supplement-Commercial Motor Vehicle(CMV)Driver</a>
+                </div>
+                <div class="smallCheckMark">
+                    <span id="form3Tick" class="checkmark"></span>
+                </div>
+            </div>
+
+
+            <div class="tab-check mt-2">
+                <div class="tab-box">
+                    <a href="#" class="tab-link" id="form4Link"><i class="fa-solid fa-file"></i>
+                        DOT Medical Certificate and Driver's License </a>
+                </div>
+                <div class="smallCheckMark">
                     <span id="form4Tick" class="checkmark"></span>
                 </div>
             </div>
@@ -2813,9 +2859,6 @@
                 <span id="closeBtn" class="close-btn" onclick="closeModal()">&#10006;</span>
             </div>
     
-            <div class="icon-container">
-                <span class="modal-checkmark">&#10004;</span>
-            </div>
     
             <p class="modal-message">Please complete all required fields before proceeding.</p>
     

@@ -393,6 +393,7 @@ function loadForm2(id) {
             loadScript('../form2/form2.js');
             loadStyleSheet("../form2/form2.css");
             removeStyleSheet('../form1/form1.css');
+            removeScript('../form1/form1.js')
             document.body.style.overflow = 'auto';
             // addForm1EventListeners();
         })
@@ -422,6 +423,12 @@ function loadScript(scriptUrl) {
     document.body.appendChild(script);
 }
 
+function removeScript(scriptUrl) {
+    const script = document.querySelector(`script[src="${scriptUrl}"]`);
+    if (script) {
+        script.parentNode.removeChild(script);
+    }
+}
 function showCheckmark(formId) {
     const checkmark = document.getElementById(formId);
     if (checkmark) {

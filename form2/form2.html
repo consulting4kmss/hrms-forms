@@ -2793,7 +2793,7 @@
     </div> -->
 
 
-    <div id="invalidModal" class="invalid-modal" style="display: none;">
+    <!-- <div id="invalidModal" class="invalid-modal" style="display: none;">
         <div class="success-modal-content">
             <div class="modal-header">
                 <h4 class="modal-heading-invalid heading">Invalid!</h4>
@@ -2804,9 +2804,24 @@
     
             <button id="continueBtn" class="continue-btn" onclick="closeModal()">Close</button>
         </div>
+    </div> -->
+
+    <div id="invalidModal" class="success-modal" style="display: none;">
+        <div class="success-modal-content">
+            <div class="modal-header">
+                <h4 class="modal-heading heading">Invalid!</h4>
+                <span id="closeBtn" class="close-btn" onclick="closeModal()">&#10006;</span>
+            </div>
+    
+            <div class="icon-container">
+                <span class="modal-checkmark">&#10004;</span>
+            </div>
+    
+            <p class="modal-message">Please complete all required fields before proceeding.</p>
+    
+            <button id="continueBtn" class="continue-btn" onclick="closeModal()">Close</button>
+        </div>
     </div>
-
-
 
     
     <div id="successModal2" class="success-modal" style="display: none;">

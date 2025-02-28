@@ -136,7 +136,7 @@
         </div>
         <div id="tabs1" class="tabs">
             <div class="d-flex flex-row gap-1">
-                <div class="col-11">
+                <div class="col-10">
                     <a href="#" class="tab-link" style="background-color: #007bff; " id="form1Link"><i class="fa-solid fa-file"></i>
                         Drug and Alcohol Testing Information Request(Must Ask Question)</a>
                 </div>
@@ -195,7 +195,7 @@
         </div>
     </div> -->
 
-    <div id="invalidModal1" class="invalid-modal" style="display: none;">
+    <!-- <div id="invalidModal1" class="invalid-modal" style="display: none;">
         <div class="success-modal-content">
             <div class="modal-header">
                 <h4 class="modal-heading-invalid heading">Invalid!</h4>
@@ -206,9 +206,24 @@
     
             <button id="continueBtn" class="continue-btn" onclick="closeDialog('invalidModal1')">Close</button>
         </div>
+    </div> -->
+
+    <div id="invalidModal1" class="success-modal" style="display: none;">
+        <div class="success-modal-content">
+            <div class="modal-header">
+                <h4 class="modal-heading heading">Invalid!</h4>
+                <span id="closeBtn" class="close-btn" onclick="closeDialog('invalidModal1')">&#10006;</span>
+            </div>
+    
+            <div class="icon-container">
+                <span class="modal-checkmark">&#10004;</span>
+            </div>
+    
+            <p class="modal-message">Please complete all required fields before proceeding.</p>
+    
+            <button id="continueBtn" class="continue-btn" onclick="closeDialog('invalidModal1')">Close</button>
+        </div>
     </div>
-
-
 
     
     <div id="successModal1" class="success-modal" style="display: none;">
@@ -231,10 +246,10 @@
     <div id="overlay1" class="overlay"></div>
     <div id="drugTestFailed" class="invalid-drug-test" style="display: none;">
         <div class="invalid-drug-test-modal-content">
-            <div class="modal-header">
-                <h3 class="modal-heading heading">Further Investigation and Approval Will be Required
-                </h3>
-                <span id="closeBtn" class="close-btn" onclick="closeDialog('drugTestFailed')">&#10006;</span>
+            <div class="drug-header">
+                <h4 class="drug-heading heading">Further Investigation and Approval Will be Required
+                </h4>
+                <!-- <span id="closeBtn" class="close-btn" onclick="closeDialog('drugTestFailed')">&#10006;</span> -->
             </div>
     
             <div class="warning-icon">

@@ -184,31 +184,31 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 
-.tab-link {
+.tab-link  {
     display: inline-block;
     padding: 10px;
     margin: 0 5px;
     color: white;
     text-decoration: none;
     border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    pointer-events: none;
+    cursor: default;
 }
-.tab-link :hover {
+.tab-link :hover  {
     display: inline-block;
     padding: 10px;
     margin: 0 5px;
     color: white;
     text-decoration: none;
     border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    pointer-events: none;
+    cursor: default;
 }
 
 .main-division1{
     padding:20px;
     width:80%;
-    gap:5%;
+    gap:7%;
 }
 .form-card {
     background-color: #1d4f91 !important;
@@ -221,7 +221,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .tabs{
-    width:35%;
+    width:33%;
 }
 
 .smallCheckMark{
@@ -463,3 +463,5 @@ button {
 .continue-btn:hover {
     background-color: #003d7a;
 }
+
+

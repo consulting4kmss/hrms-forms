@@ -31,30 +31,30 @@ function loadScript(scriptUrl) {
 
 
 
-function showSuccessModal() {
-    const successModal = document.getElementById('successModal');
-    if (successModal) {
-        successModal.style.display = 'block';
-    }
-}
+// function showSuccessModal() {
+//     const successModal = document.getElementById('successModal');
+//     if (successModal) {
+//         successModal.style.display = 'block';
+//     }
+// }
 
 
-function closeModal() {
-    const successModal = document.getElementById('successModal');
-    if (successModal) {
-        successModal.style.display = 'none';
-    }
-}
+// function closeModal() {
+//     const successModal = document.getElementById('successModal');
+//     if (successModal) {
+//         successModal.style.display = 'none';
+//     }
+// }
 
 
 
-function enableForm2() {
-    const form2Link = document.getElementById('form2Link');
-    form2Link.classList.remove('unclickable');  
-    form2Link.setAttribute('onclick', 'loadForm2()');  
-    form2Link.style.pointerEvents = 'auto';  
-    loadForm2();  
-}
+// function enableForm2() {
+//     const form2Link = document.getElementById('form2Link');
+//     form2Link.classList.remove('unclickable');  
+//     form2Link.setAttribute('onclick', 'loadForm2()');  
+//     form2Link.style.pointerEvents = 'auto';  
+//     loadForm2();  
+// }
 
 function loadForm2() {
     // if (!form1Completed) {

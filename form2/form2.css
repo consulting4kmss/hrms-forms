@@ -749,7 +749,6 @@ canvas {
 
 .error-message {
     color: #f74f4f ;
-    font-size: 0.9rem;
     display: none; 
     margin-top: 4px;
 }

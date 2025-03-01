@@ -58,7 +58,7 @@
                         </div>
                         <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                             <label class="question-label">Suffix</label>
-                            <input required type="text" data-validate="text" autocomplete="off" name="suffix"
+                            <input type="text" id="suffix" autocomplete="off" name="Suffix"
                                 maxlength="15" oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"
                                 class="form-control" onchange="updateProgress('form1')" />
                             <small class="error-message"></small>
@@ -94,56 +94,56 @@
                         <select required name="state" class="form-control select-feild" autocomplete="off"
                             onchange="updateProgress('form1')">
                             <option class="opt" value="">Select One</option>
-                            <option class="opt" value="state2">Alabama</option>
-                            <option class="opt" value="state3">Alaska</option>
-                            <option class="opt" value="state4">Arizona</option>
-                            <option class="opt" value="state5">Arkansas</option>
-                            <option class="opt" value="state6">California</option>
-                            <option class="opt" value="state7">Colorado</option>
-                            <option class="opt" value="state8">Connecticut</option>
-                            <option class="opt" value="state9">Delaware</option>
-                            <option class="opt" value="state10">Florida</option>
-                            <option class="opt" value="state11">Georgia</option>
-                            <option class="opt" value="state12">Hawaii</option>
-                            <option class="opt" value="state13">Idaho</option>
-                            <option class="opt" value="state14">Illinois</option>
-                            <option class="opt" value="state15">Indiana</option>
-                            <option class="opt" value="state16">Iowa</option>
-                            <option class="opt" value="state17">Kansas</option>
-                            <option class="opt" value="state18">Kentucky</option>
-                            <option class="opt" value="state19">Louisiana</option>
-                            <option class="opt" value="state20">Maine</option>
-                            <option class="opt" value="state21">Maryland</option>
-                            <option class="opt" value="state22">Massachusetts</option>
-                            <option class="opt" value="state23">Michigan</option>
-                            <option class="opt" value="state24">Minnesota</option>
-                            <option class="opt" value="state25">Mississippi</option>
-                            <option class="opt" value="state26">Missouri</option>
-                            <option class="opt" value="state27">Montana</option>
-                            <option class="opt" value="state28">Nebraska</option>
-                            <option class="opt" value="state29">Nevada</option>
-                            <option class="opt" value="state30">New Hampshire</option>
-                            <option class="opt" value="state31">New Jersey</option>
-                            <option class="opt" value="state32">New Mexico</option>
-                            <option class="opt" value="state33">New York</option>
-                            <option class="opt" value="state34">North Carolina</option>
-                            <option class="opt" value="state35">North Dakota</option>
-                            <option class="opt" value="state36">Ohio</option>
-                            <option class="opt" value="state37">Oklahoma</option>
-                            <option class="opt" value="state38">Oregon</option>
-                            <option class="opt" value="state39">Pennsylvania</option>
-                            <option class="opt" value="state40">Rhode Island</option>
-                            <option class="opt" value="state41">South Carolina</option>
-                            <option class="opt" value="state42">South Dakota</option>
-                            <option class="opt" value="state43">Tennessee</option>
-                            <option class="opt" value="state44">Texas</option>
-                            <option class="opt" value="state45">Utah</option>
-                            <option class="opt" value="state46">Vermont</option>
-                            <option class="opt" value="state47">Virginia</option>
-                            <option class="opt" value="state48">Washington</option>
-                            <option class="opt" value="state49">West Virginia</option>
-                            <option class="opt" value="state50">Wisconsin</option>
-                            <option class="opt" value="state51">Wyoming</option>
+                            <option class="opt" value="Alabama">Alabama</option>
+                            <option class="opt" value="Alaska">Alaska</option>
+                            <option class="opt" value="Arizona">Arizona</option>
+                            <option class="opt" value="Arkansas">Arkansas</option>
+                            <option class="opt" value="California">California</option>
+                            <option class="opt" value="Colorado">Colorado</option>
+                            <option class="opt" value="Connecticut">Connecticut</option>
+                            <option class="opt" value="Delaware">Delaware</option>
+                            <option class="opt" value="Florida">Florida</option>
+                            <option class="opt" value="Georgia">Georgia</option>
+                            <option class="opt" value="Hawaii">Hawaii</option>
+                            <option class="opt" value="Idaho">Idaho</option>
+                            <option class="opt" value="Illinois">Illinois</option>
+                            <option class="opt" value="Indiana">Indiana</option>
+                            <option class="opt" value="Iowa">Iowa</option>
+                            <option class="opt" value="Kansas">Kansas</option>
+                            <option class="opt" value="Kentucky">Kentucky</option>
+                            <option class="opt" value="Louisiana">Louisiana</option>
+                            <option class="opt" value="Maine">Maine</option>
+                            <option class="opt" value="Maryland">Maryland</option>
+                            <option class="opt" value="Massachusetts">Massachusetts</option>
+                            <option class="opt" value="Michigan">Michigan</option>
+                            <option class="opt" value="Minnesota">Minnesota</option>
+                            <option class="opt" value="Mississippi">Mississippi</option>
+                            <option class="opt" value="Missouri">Missouri</option>
+                            <option class="opt" value="Montana">Montana</option>
+                            <option class="opt" value="Nebraska">Nebraska</option>
+                            <option class="opt" value="Nevada">Nevada</option>
+                            <option class="opt" value="New Hampshire">New Hampshire</option>
+                            <option class="opt" value="New Jersey">New Jersey</option>
+                            <option class="opt" value="New Mexico">New Mexico</option>
+                            <option class="opt" value="New York">New York</option>
+                            <option class="opt" value="North Carolina">North Carolina</option>
+                            <option class="opt" value="North Dakota">North Dakota</option>
+                            <option class="opt" value="Ohio">Ohio</option>
+                            <option class="opt" value="Oklahoma">Oklahoma</option>
+                            <option class="opt" value="Oregon">Oregon</option>
+                            <option class="opt" value="Pennsylvania">Pennsylvania</option>
+                            <option class="opt" value="Rhode Island">Rhode Island</option>
+                            <option class="opt" value="South Carolina">South Carolina</option>
+                            <option class="opt" value="South Dakota">South Dakota</option>
+                            <option class="opt" value="Tennessee">Tennessee</option>
+                            <option class="opt" value="Texas">Texas</option>
+                            <option class="opt" value="Utah">Utah</option>
+                            <option class="opt" value="Vermont">Vermont</option>
+                            <option class="opt" value="Virginia">Virginia</option>
+                            <option class="opt" value="Washington">Washington</option>
+                            <option class="opt" value="West Virginia">West Virginia</option>
+                            <option class="opt" value="Wisconsin">Wisconsin</option>
+                            <option class="opt" value="Wyoming">Wyoming</option>
                         </select>
                         <small class="error-message"></small>
                     </div>
@@ -200,7 +200,7 @@
                         <!-- <input required id="tall" type="number" min="1" max="999" autocomplete="off"
                         data-validate="number" oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')" /> -->
 
-                        <input required type="text" id="tall"  autocomplete="off" maxlength="3" data-validate="number"
+                        <input required type="text" id="tall" name="height" autocomplete="off" maxlength="3" data-validate="number"
                          
                         oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')" onchange="updateProgress('form1')" />
 
@@ -208,7 +208,7 @@
                     </div>
                     <div>
                         <label class="question-label">Weight</label>
-                        <input required id="weight" type="decimal" step="0.01" min="0" max="999.99" autocomplete="off"
+                        <input required id="weight" name="weight" type="decimal" step="0.01" min="0" max="999.99" autocomplete="off"
                             maxlength="6"
                             oninput="validInput(this, /^\d{0,3}(\.\d{0,2})?$/, 'Only numbers with up to 2 decimals are allowed');" />
                         <small class="error-message"></small>
@@ -2717,7 +2717,7 @@
 
                         <div>
                             <label class="question-label" for="signatureBox">Applicant Signature</label>
-                            <canvas id="signatureBox" width="400" height="200" style="border: 1px solid #ccc;"
+                            <canvas id="signatureBox2" width="400" height="200" style="border: 1px solid #ccc;"
                                 name="sign"></canvas>
                             <br>
                             <p id="clearButton" class="question-label clearSign">Clear Signature</p>

@@ -1,7 +1,7 @@
 <div class="form-container text-white">
     <div id="main-division1" class="main-division1 d-flex flex-row">
-        <div id="form1" class="form-card">
-            <div id="form1-page1" class="form-page">
+        <div id="firstForm" class="form-card">
+            <div id="firstForm-page1" class="form-page">
                 <div style="margin-top: 20px;">
                     <p class="mainHeading">
                         Drug and Alcohol Testing Information Request(Must Ask
@@ -61,7 +61,7 @@
                     <div>
                         <label class="question-label">Name of New Hire Candidate or Transfer Employee Candidate for DOT
                             Safety-Sensitive Position</label>
-                        <input required type="text" data-validate="text" autocomplete="off" name="address"
+                        <input required type="text" data-validate="text" autocomplete="off" name="new candidate name" id="newCandidate"
                             class="form-control" maxlength="250" placeholder="Enter Text" />
                     </div>
                 </div>
@@ -72,13 +72,13 @@
                         <label class="question-label">Classification</label>
                     </div>
                     <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" required value="no" id="newCandidate"
-                            name="candidates">
+                        <input class="form-check-input" type="radio" required value="new candidate" id="newCandidate"
+                            name="Classification">
                         <label class="question-label ms-4" for="newCandidate">New Hire Candidate</label>
                     </div>
                     <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" required value="yes" id="oldCandidate"
-                            name="candidates">
+                        <input class="form-check-input" type="radio" required value="Transfer Employee Candidate" id="oldCandidate"
+                            name="Classification">
                         <label class="question-label ms-4" for="oldCandidate">Transfer Employee Candidate</label>
                     </div>
                 </div>
@@ -123,7 +123,7 @@
 
                 <div class="mt-3">
                     <label for="signBox" class="question-label">Applicant's Signature</label>
-                    <canvas class="mt-1" id="signBox" width="400" height="200" style="border: 1px solid #ccc;"></canvas>
+                    <canvas class="mt-1" id="signBox1" width="400" height="200" style="border: 1px solid #ccc;"></canvas>
                     <br>
                     <p id="clearButton" data-validate="text" class="question-label clearSign">Clear Signature</p>
                 </div>

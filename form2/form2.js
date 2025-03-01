@@ -109,10 +109,8 @@ function caluclateTotalFeilds() {
             return true;
         })
         .filter(field => field.style.display !== 'none') // Only count fields that are visible (displayed)
-        .filter(field => field.id !== 'midName' && field.id !== 'add2')
+        .filter(field => field.id !== 'midName' && field.id !== 'add2' && field.id !=='suffix')
         .length;
-
-   // console.log("Total Fields in calculation:", totalFields);
 
     updateProgress('form1');
 }
@@ -127,7 +125,7 @@ function caluclateFilledFeilds() {
             return;
         }
         if ((field.type === 'text' || field.type === 'email' || field.type === 'date' || field.type === 'number' || field.type === 'decimal' || field.tagName === 'SELECT' || field.tagName === 'TEXTAREA' || field.id === 'weight' || field.id === 'height') && field.value.trim()) {
-            if (field.id === 'midName' || field.id === 'add2') {
+            if (field.id === 'midName' || field.id === 'add2'|| field.id==='suffix') {
               
                 return;
             }
@@ -188,10 +186,8 @@ function validatePage(formId, pageNumber) {
                 } if (input.id === "weight") {
 
                     const result = validInput(input,/^\d{0,3}(\.\d{0,2})?$/, 'Only numbers with up to 2 decimals are allowed');
-                    console.log('called validinput for -', input.id)
                     if (!result) {
                         isValid = false;
-                        console.log('checking result for height- ',input.id , 'isvalid- ', isValid);
                     }
                 }
             } else {
@@ -235,7 +231,7 @@ function validatePage(formId, pageNumber) {
         }
     });
 
-     //return true;
+    //return true;
     return isValid;
 }
 
@@ -272,6 +268,7 @@ function nextPage(formId, pageNumber) {
         clearSign();
         addForm1EventListeners();
     }
+    collectFormData(formId, pageNumber-1);
     const form = document.getElementById(formId);
     const currentPage = form.querySelector(`#${formId}-page${pageNumber - 1}`);
     const nextPage = form.querySelector(`#${formId}-page${pageNumber}`);
@@ -561,7 +558,7 @@ function getMousePosition(event) {
 
 function initializeSignatureBox() {
 
-    canvas = document.getElementById('signatureBox');
+    canvas = document.getElementById('signatureBox2');
 
     if (!canvas) {
         console.error("Canvas element not found. Ensure it's visible in the DOM.");
@@ -578,6 +575,7 @@ function initializeSignatureBox() {
         isDrawing = true;
         context.beginPath();
         const pos = getMousePosition(event);
+        removeCanvasHighlight();
         context.moveTo(pos.x, pos.y);
     });
 
@@ -585,6 +583,7 @@ function initializeSignatureBox() {
         if (isDrawing) {
             const pos = getMousePosition(event);
             context.lineTo(pos.x, pos.y);
+            removeCanvasHighlight();
             context.stroke();
         }
     });
@@ -616,6 +615,10 @@ function saveSign() {
         console.error("Signature box is not initialized.");
     }
     updateProgress('form1');
+}
+
+function removeCanvasHighlight() {
+    canvas.classList.remove('highlight');
 }
 
 function clearSign() {
@@ -662,6 +665,7 @@ function addForm1EventListeners() {
 
               showCheckmark('form2Tick');
                 showSuccessModal();
+               collectFormData('form1', 4);
                 form1Completed = true;
             }
             else {
@@ -718,7 +722,6 @@ function hideCheckmark(formId) {
 function validInput(input, regex, errorMessage) {
     if (!(regex instanceof RegExp)) {
         console.error("Invalid regex provided to validInput:", regex);
-        console.log('checking result via next invalid regex- ', input.id)
         return;
     }
 
@@ -738,14 +741,12 @@ function validInput(input, regex, errorMessage) {
         } catch (error) {
             console.error("Error processing regex:", error);
         }
-        console.log('Inside Returning false- ', input.id)
         return false;
     } else {
         input.classList.remove('highlight');
         if (errorField) {
             errorField.style.display = 'none';
         }
-        console.log('Inside Returning true ', input.id)
         return true;
     }
 }
@@ -908,5 +909,65 @@ function loadScript(scriptUrl) {
     script.src = scriptUrl;
     document.body.appendChild(script);
 }
+
+
+function collectFormData(formId,pageNumber) {
+    const formData = new FormData();
+   // const form = document.getElementById("firstForm-page1");
+
+
+    const form = document.getElementById(formId);
+    const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
+
+    if (!currentPage) {
+        console.error("Page not found.");
+        return;
+    }
+    const fields = currentPage.querySelectorAll('input, select, textarea');
+    // Collect all input, select, and textarea fields
+    //const fields = form.querySelectorAll("input, select, textarea");
+
+    fields.forEach(field => {
+        if (window.getComputedStyle(field).display === 'none') {
+            return;
+        }
+        if (field.type === "radio" || field.type === "checkbox") {
+            if (field.checked) {
+                formData.append(field.name, field.value);
+            }
+        } else {
+            formData.append(field.name, field.value);
+        }
+    });
+
+
+    // Convert signature canvas to Blob and append
+    const canvas=document.getElementById("signatureBox2")
+    //const canvas = document.getElementById("signBox1");
+    if (canvas && pageNumber==4) {
+        canvas.toBlob((blob) => {
+            formData.append("signature", blob, "signature.png");
+
+            //Properly display `FormData`
+            console.log("FormData after adding signature:");
+            for (let pair of formData.entries()) {
+                console.log(pair[0] + ": ", pair[1]); // Logs each key-value pair
+            }
+
+            // Send data to API
+            //sendFormDataToAPI(formData);
+        }, "image/png");
+    } else {
+        console.error("Signature canvas not found.");
+
+        //Display `FormData` even if signature is missing
+        console.log("FormData without signature:");
+        for (let pair of formData.entries()) {
+            console.log(pair[0] + ": ", pair[1]);
+        }
+       // sendFormDataToAPI(formData);
+    }
+}
+
 
 initializeForm('form1');

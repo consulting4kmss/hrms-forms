@@ -4,7 +4,7 @@ function addAttachment(value) {
         attachCertificate.classList.add('mb-3', 'mt-4');
         attachCertificate.id = `attachCertificate`;
         attachCertificate.innerHTML = ` <label class="question-label">Attach Certificate (The Exam has to be done within the last SIX(6) Months) </label>
-                        <input required type="file" id="medicalCertificate" class="form-control mt-2" />`
+                        <input required type="file" id="medicalCertificate" name="medicalCertificate" class="form-control mt-2" />`
         document.getElementById("doneInSix").appendChild(attachCertificate);
 
     }
@@ -21,6 +21,7 @@ function removeAttachment(value) {
 function Submission() {
     const valid = validateForm('form4', 1);
     if (valid) {
+        collectFormData();
         showThanksModal();
 
     } else {
@@ -253,3 +254,55 @@ function hideCheckmark(formId) {
         checkmark.classList.remove('visible');
     }
 }
+
+function collectFormData() {
+    const formData = new FormData();
+    const form = document.getElementById("form4-page1"); // Ensure this is the correct form ID
+
+    if (!form) {
+        console.error("Form not found.");
+        return;
+    }
+
+    // Collect all input, select, and textarea fields
+    const fields = form.querySelectorAll("input, select, textarea");
+
+    fields.forEach(field => {
+        if (field.type === "radio" || field.type === "checkbox") {
+            if (field.checked) {
+                formData.append(field.name, field.value);
+            }
+        } else if (field.type === "file") {
+            if (field.files.length > 0) {
+                formData.append(field.name, field.files[0]); // Append file
+            }
+        } else {
+            formData.append(field.name, field.value);
+        }
+    });
+
+    //Log FormData contents
+    console.log("FormData before sending:");
+    for (let pair of formData.entries()) {
+        console.log(pair[0] + ": ", pair[1]);
+    }
+
+    // Send to API
+   // sendFormDataToAPI(formData);
+}
+
+// function sendFormDataToAPI(formData) {
+//     fetch("url", { // Replace with your API URL
+//         method: "POST",
+//         body: formData, // Sending multipart/form-data
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log("Success:", data);
+//         alert("Form submitted successfully!");
+//     })
+//     .catch(error => {
+//         console.error("Error:", error);
+//         alert("Failed to submit form.");
+//     });
+// }

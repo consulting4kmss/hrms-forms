@@ -34,7 +34,7 @@
                         <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-2">
                             <label class="question-label">Applicant Name</label>
 
-                            <input required type="text" placeholder="Enter Text" data-validate="text" name="firstName"
+                            <input required type="text" placeholder="Enter Text" data-validate="text" name="applicant name"
                                 autocomplete="off" maxlength="50"
                                 oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.')"
                                 class="form-control" onchange="updateProgress2('form2')" />
@@ -61,7 +61,7 @@
 
                         <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
                             <label class="question-label">Phone</label>
-                            <input required datavalidate='' type="text" name="home" autocomplete="off"
+                            <input required datavalidate='' type="text" name="phone-number" autocomplete="off"
                                 placeholder="(xxx) xxx-xxxx" oninput="validateAndFormatPhoneNumber(this);"
                                 class="form-control" onchange="updateProgress2('form2')" />
                             <small class="error-message" style="color: rgb(255, 94, 94); display: none;"></small>
@@ -82,7 +82,7 @@
                     <div class="form-row mt-3">
                         <div>
                             <label class="question-label">Number and Street (NO PO BOX)</label>
-                            <input required type="text" data-validate="text" autocomplete="off" name="address"
+                            <input required type="text" data-validate="text" autocomplete="off" name="number and street"
                                 class="form-control" maxlength="250" placeholder="Enter Text"
                                 onchange="updateProgress2('form2')">
                         </div>
@@ -100,58 +100,58 @@
                         </div>
                         <div class="col">
                             <label class="question-label">State</label>
-                            <select required data-validate="text" name="States" id="addressState1" class="state-feild">
+                            <select required data-validate="text" name="state" id="addressState1" class="state-feild">
                                 <option value="">Select One</option>
-                                <option value="state2">Alabama</option>
-                                <option value="state3">Alaska</option>
-                                <option value="state4">Arizona</option>
-                                <option value="state5">Arkansas</option>
-                                <option value="state6">California</option>
-                                <option value="state7">Colorado</option>
-                                <option value="state8">Connecticut</option>
-                                <option value="state9">Delaware</option>
-                                <option value="state10">Florida</option>
-                                <option value="state11">Georgia</option>
-                                <option value="state12">Hawaii</option>
-                                <option value="state13">Idaho</option>
-                                <option value="state14">Illinois</option>
-                                <option value="state15">Indiana</option>
-                                <option value="state16">Iowa</option>
-                                <option value="state17">Kansas</option>
-                                <option value="state18">Kentucky</option>
-                                <option value="state19">Louisiana</option>
-                                <option value="state20">Maine</option>
+                                <option value="Alabama">Alabama</option>
+                                <option value="Alaska">Alaska</option>
+                                <option value="Arizona">Arizona</option>
+                                <option value="Arkansas">Arkansas</option>
+                                <option value="California">California</option>
+                                <option value="Colorado">Colorado</option>
+                                <option value="Connecticut">Connecticut</option>
+                                <option value="Delaware">Delaware</option>
+                                <option value="Florida">Florida</option>
+                                <option value="Georgia">Georgia</option>
+                                <option value="Hawaii">Hawaii</option>
+                                <option value="Idaho">Idaho</option>
+                                <option value="Illinois">Illinois</option>
+                                <option value="Indiana">Indiana</option>
+                                <option value="Iowa">Iowa</option>
+                                <option value="Kansas">Kansas</option>
+                                <option value="Kentucky">Kentucky</option>
+                                <option value="Louisiana">Louisiana</option>
+                                <option value="Maine">Maine</option>
                                 <option value="state21">Maryland</option>
-                                <option value="state22">Massachusetts</option>
-                                <option value="state23">Michigan</option>
-                                <option value="state24">Minnesota</option>
-                                <option value="state25">Mississippi</option>
-                                <option value="state26">Missouri</option>
-                                <option value="state27">Montana</option>
-                                <option value="state28">Nebraska</option>
-                                <option value="state29">Nevada</option>
-                                <option value="state30">New Hampshire</option>
-                                <option value="state31">New Jersey</option>
-                                <option value="state32">New Mexico</option>
-                                <option value="state33">New York</option>
-                                <option value="state34">North Carolina</option>
-                                <option value="state35">North Dakota</option>
-                                <option value="state36">Ohio</option>
-                                <option value="state37">Oklahoma</option>
-                                <option value="state38">Oregon</option>
-                                <option value="state39">Pennsylvania</option>
-                                <option value="state40">Rhode Island</option>
-                                <option value="state41">South Carolina</option>
-                                <option value="state42">South Dakota</option>
-                                <option value="state43">Tennessee</option>
-                                <option value="state44">Texas</option>
-                                <option value="state45">Utah</option>
-                                <option value="state46">Vermont</option>
-                                <option value="state47">Virginia</option>
-                                <option value="state48">Washington</option>
-                                <option value="state49">West Virginia</option>
-                                <option value="state50">Wisconsin</option>
-                                <option value="state51">Wyoming</option>
+                                <option value="Maryland">Massachusetts</option>
+                                <option value="Michigan">Michigan</option>
+                                <option value="Minnesota">Minnesota</option>
+                                <option value="Mississippi">Mississippi</option>
+                                <option value="Missouri">Missouri</option>
+                                <option value="Montana">Montana</option>
+                                <option value="Nebraska">Nebraska</option>
+                                <option value="Nevada">Nevada</option>
+                                <option value="New Hampshire">New Hampshire</option>
+                                <option value="New Jersey">New Jersey</option>
+                                <option value="New Mexico">New Mexico</option>
+                                <option value="New York">New York</option>
+                                <option value="North Carolina">North Carolina</option>
+                                <option value="North Dakota">North Dakota</option>
+                                <option value="Ohio">Ohio</option>
+                                <option value="Oklahoma">Oklahoma</option>
+                                <option value="Oregon">Oregon</option>
+                                <option value="Pennsylvania">Pennsylvania</option>
+                                <option value="Rhode Island">Rhode Island</option>
+                                <option value="South Carolina">South Carolina</option>
+                                <option value="South Dakota">South Dakota</option>
+                                <option value="Tennessee">Tennessee</option>
+                                <option value="Texas">Texas</option>
+                                <option value="Utah">Utah</option>
+                                <option value="Vermont">Vermont</option>
+                                <option value="Virginia">Virginia</option>
+                                <option value="Washington">Washington</option>
+                                <option value="West Virginia">West Virginia</option>
+                                <option value="Wisconsin">Wisconsin</option>
+                                <option value="Wyoming">Wyoming</option>
                             </select>
                         </div>
                         <div class="col">
@@ -167,13 +167,13 @@
                         <div>
                             <label class="question-label">From</label>
 
-                            <input required type="date" class="dab form-control " id="addressFrom" name="dob"
+                            <input required type="date" class="dab form-control " id="addressFrom" name="addressFrom"
                                 oninput="handleDateChange2(event)" >
                             <small class="error-message"></small>
                         </div>
                         <div>
                             <label class="question-label">To</label>
-                            <input required type="date" class="to form-control" id="addressTo" name="to"
+                            <input required type="date" class="to form-control" id="addressTo" name="addressTo"
                                 oninput="handleDateChange2(event)">
                             <small class="error-message"></small>
                         </div>
@@ -226,64 +226,64 @@
                 <div class="address-container mt-2" id="dl">
                     <div class="col-12 ">
                         <label class="question-label">Current DL Issuing State</label>
-                        <select required data-validate="text" name="states" id="dlState" class="state-feild">
+                        <select required data-validate="text" name="current dl state" id="dlState" class="state-feild">
                             <option value="">Select One</option>
-                            <option value="state2">Alabama</option>
-                            <option value="state3">Alaska</option>
-                            <option value="state4">Arizona</option>
-                            <option value="state5">Arkansas</option>
-                            <option value="state6">California</option>
-                            <option value="state7">Colorado</option>
-                            <option value="state8">Connecticut</option>
-                            <option value="state9">Delaware</option>
-                            <option value="state10">Florida</option>
-                            <option value="state11">Georgia</option>
-                            <option value="state12">Hawaii</option>
-                            <option value="state13">Idaho</option>
-                            <option value="state14">Illinois</option>
-                            <option value="state15">Indiana</option>
-                            <option value="state16">Iowa</option>
-                            <option value="state17">Kansas</option>
-                            <option value="state18">Kentucky</option>
-                            <option value="state19">Louisiana</option>
-                            <option value="state20">Maine</option>
+                            <option value="Alabama">Alabama</option>
+                            <option value="Alaska">Alaska</option>
+                            <option value="Arizona">Arizona</option>
+                            <option value="Arkansas">Arkansas</option>
+                            <option value="California">California</option>
+                            <option value="Colorado">Colorado</option>
+                            <option value="Connecticut">Connecticut</option>
+                            <option value="Delaware">Delaware</option>
+                            <option value="Florida">Florida</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Hawaii">Hawaii</option>
+                            <option value="Idaho">Idaho</option>
+                            <option value="Illinois">Illinois</option>
+                            <option value="Indiana">Indiana</option>
+                            <option value="Iowa">Iowa</option>
+                            <option value="Kansas">Kansas</option>
+                            <option value="Kentucky">Kentucky</option>
+                            <option value="Louisiana">Louisiana</option>
+                            <option value="Maine">Maine</option>
                             <option value="state21">Maryland</option>
-                            <option value="state22">Massachusetts</option>
-                            <option value="state23">Michigan</option>
-                            <option value="state24">Minnesota</option>
-                            <option value="state25">Mississippi</option>
-                            <option value="state26">Missouri</option>
-                            <option value="state27">Montana</option>
-                            <option value="state28">Nebraska</option>
-                            <option value="state29">Nevada</option>
-                            <option value="state30">New Hampshire</option>
-                            <option value="state31">New Jersey</option>
-                            <option value="state32">New Mexico</option>
-                            <option value="state33">New York</option>
-                            <option value="state34">North Carolina</option>
-                            <option value="state35">North Dakota</option>
-                            <option value="state36">Ohio</option>
-                            <option value="state37">Oklahoma</option>
-                            <option value="state38">Oregon</option>
-                            <option value="state39">Pennsylvania</option>
-                            <option value="state40">Rhode Island</option>
-                            <option value="state41">South Carolina</option>
-                            <option value="state42">South Dakota</option>
-                            <option value="state43">Tennessee</option>
-                            <option value="state44">Texas</option>
-                            <option value="state45">Utah</option>
-                            <option value="state46">Vermont</option>
-                            <option value="state47">Virginia</option>
-                            <option value="state48">Washington</option>
-                            <option value="state49">West Virginia</option>
-                            <option value="state50">Wisconsin</option>
-                            <option value="state51">Wyoming</option>
+                            <option value="Maryland">Massachusetts</option>
+                            <option value="Michigan">Michigan</option>
+                            <option value="Minnesota">Minnesota</option>
+                            <option value="Mississippi">Mississippi</option>
+                            <option value="Missouri">Missouri</option>
+                            <option value="Montana">Montana</option>
+                            <option value="Nebraska">Nebraska</option>
+                            <option value="Nevada">Nevada</option>
+                            <option value="New Hampshire">New Hampshire</option>
+                            <option value="New Jersey">New Jersey</option>
+                            <option value="New Mexico">New Mexico</option>
+                            <option value="New York">New York</option>
+                            <option value="North Carolina">North Carolina</option>
+                            <option value="North Dakota">North Dakota</option>
+                            <option value="Ohio">Ohio</option>
+                            <option value="Oklahoma">Oklahoma</option>
+                            <option value="Oregon">Oregon</option>
+                            <option value="Pennsylvania">Pennsylvania</option>
+                            <option value="Rhode Island">Rhode Island</option>
+                            <option value="South Carolina">South Carolina</option>
+                            <option value="South Dakota">South Dakota</option>
+                            <option value="Tennessee">Tennessee</option>
+                            <option value="Texas">Texas</option>
+                            <option value="Utah">Utah</option>
+                            <option value="Vermont">Vermont</option>
+                            <option value="Virginia">Virginia</option>
+                            <option value="Washington">Washington</option>
+                            <option value="West Virginia">West Virginia</option>
+                            <option value="Wisconsin">Wisconsin</option>
+                            <option value="Wyoming">Wyoming</option>
                         </select>
                     </div>
 
                     <div class="col-12 mt-3">
                         <label class="question-label">Current DL Number</label>
-                        <input required type="text" name="dlNumber" autocomplete="off" data-validate="number"
+                        <input required type="text" name="current dl Number" autocomplete="off" data-validate="number"
                             class="form-control" maxlength="16" onchange="updateProgress2('form2')"
                             oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')"
                             placeholder="Enter Number" />
@@ -292,7 +292,7 @@
 
                     <div class="col-12 mt-3 mb-3">
                         <label class="question-label">Current DL Expiration Date </label>
-                        <input required type="date" class="dab " name="dlExpiry" id="dlxpiry"
+                        <input required type="date" class="dab " name="current dl expiry" id="dlxpiry"
                             oninput="handleDateChange2(event)" onchange="updateProgress2('form2')">
                         <small class="error-message"></small>
                     </div>
@@ -303,64 +303,64 @@
                 <div class="address-container mt-3" id="dl1">
                     <div class="col-12 ">
                         <label class="question-label">Previous DL Issuing State</label>
-                        <select required data-validate="text" name="state" id="preDlState" class="state-feild">
+                        <select required data-validate="text" name="pre dl state" id="preDlState" class="state-feild">
                             <option value="">Select One</option>
-                            <option value="state2">Alabama</option>
-                            <option value="state3">Alaska</option>
-                            <option value="state4">Arizona</option>
-                            <option value="state5">Arkansas</option>
-                            <option value="state6">California</option>
-                            <option value="state7">Colorado</option>
-                            <option value="state8">Connecticut</option>
-                            <option value="state9">Delaware</option>
-                            <option value="state10">Florida</option>
-                            <option value="state11">Georgia</option>
-                            <option value="state12">Hawaii</option>
-                            <option value="state13">Idaho</option>
-                            <option value="state14">Illinois</option>
-                            <option value="state15">Indiana</option>
-                            <option value="state16">Iowa</option>
-                            <option value="state17">Kansas</option>
-                            <option value="state18">Kentucky</option>
-                            <option value="state19">Louisiana</option>
-                            <option value="state20">Maine</option>
+                            <option value="Alabama">Alabama</option>
+                            <option value="Alaska">Alaska</option>
+                            <option value="Arizona">Arizona</option>
+                            <option value="Arkansas">Arkansas</option>
+                            <option value="California">California</option>
+                            <option value="Colorado">Colorado</option>
+                            <option value="Connecticut">Connecticut</option>
+                            <option value="Delaware">Delaware</option>
+                            <option value="Florida">Florida</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Hawaii">Hawaii</option>
+                            <option value="Idaho">Idaho</option>
+                            <option value="Illinois">Illinois</option>
+                            <option value="Indiana">Indiana</option>
+                            <option value="Iowa">Iowa</option>
+                            <option value="Kansas">Kansas</option>
+                            <option value="Kentucky">Kentucky</option>
+                            <option value="Louisiana">Louisiana</option>
+                            <option value="Maine">Maine</option>
                             <option value="state21">Maryland</option>
-                            <option value="state22">Massachusetts</option>
-                            <option value="state23">Michigan</option>
-                            <option value="state24">Minnesota</option>
-                            <option value="state25">Mississippi</option>
-                            <option value="state26">Missouri</option>
-                            <option value="state27">Montana</option>
-                            <option value="state28">Nebraska</option>
-                            <option value="state29">Nevada</option>
-                            <option value="state30">New Hampshire</option>
-                            <option value="state31">New Jersey</option>
-                            <option value="state32">New Mexico</option>
-                            <option value="state33">New York</option>
-                            <option value="state34">North Carolina</option>
-                            <option value="state35">North Dakota</option>
-                            <option value="state36">Ohio</option>
-                            <option value="state37">Oklahoma</option>
-                            <option value="state38">Oregon</option>
-                            <option value="state39">Pennsylvania</option>
-                            <option value="state40">Rhode Island</option>
-                            <option value="state41">South Carolina</option>
-                            <option value="state42">South Dakota</option>
-                            <option value="state43">Tennessee</option>
-                            <option value="state44">Texas</option>
-                            <option value="state45">Utah</option>
-                            <option value="state46">Vermont</option>
-                            <option value="state47">Virginia</option>
-                            <option value="state48">Washington</option>
-                            <option value="state49">West Virginia</option>
-                            <option value="state50">Wisconsin</option>
-                            <option value="state51">Wyoming</option>
+                            <option value="Maryland">Massachusetts</option>
+                            <option value="Michigan">Michigan</option>
+                            <option value="Minnesota">Minnesota</option>
+                            <option value="Mississippi">Mississippi</option>
+                            <option value="Missouri">Missouri</option>
+                            <option value="Montana">Montana</option>
+                            <option value="Nebraska">Nebraska</option>
+                            <option value="Nevada">Nevada</option>
+                            <option value="New Hampshire">New Hampshire</option>
+                            <option value="New Jersey">New Jersey</option>
+                            <option value="New Mexico">New Mexico</option>
+                            <option value="New York">New York</option>
+                            <option value="North Carolina">North Carolina</option>
+                            <option value="North Dakota">North Dakota</option>
+                            <option value="Ohio">Ohio</option>
+                            <option value="Oklahoma">Oklahoma</option>
+                            <option value="Oregon">Oregon</option>
+                            <option value="Pennsylvania">Pennsylvania</option>
+                            <option value="Rhode Island">Rhode Island</option>
+                            <option value="South Carolina">South Carolina</option>
+                            <option value="South Dakota">South Dakota</option>
+                            <option value="Tennessee">Tennessee</option>
+                            <option value="Texas">Texas</option>
+                            <option value="Utah">Utah</option>
+                            <option value="Vermont">Vermont</option>
+                            <option value="Virginia">Virginia</option>
+                            <option value="Washington">Washington</option>
+                            <option value="West Virginia">West Virginia</option>
+                            <option value="Wisconsin">Wisconsin</option>
+                            <option value="Wyoming">Wyoming</option>
                         </select>
                     </div>
 
                     <div class="col-12 mt-3">
                         <label class="question-label">Previous DL Number</label>
-                        <input required type="text" name="preDlNumber" autocomplete="off" data-validate="number"
+                        <input required type="text" name="pre dl number" autocomplete="off" data-validate="number"
                             class="form-control" maxlength="16" onchange="updateProgress2('form2')"
                             oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')"
                             placeholder="Enter Number" />
@@ -369,7 +369,7 @@
 
                     <div class="col-12 mt-3 mb-3">
                         <label class="question-label">Previous DL Expiration Date </label>
-                        <input required type="date" class="dab  " name="preDlExpiry" id="preDlExpiry"
+                        <input required type="date" class="dab  " name="pre dl Expiry" id="preDlExpiry"
                             oninput="handleDateChange2(event)" onchange="updateProgress2('form2')">
                         <small class="error-message"></small>
                     </div>
@@ -383,7 +383,7 @@
                             <div class=" form-check col-12 mt-2">
                                 <div class="checkbox ">
                                     <input class="form-check-input box" type="radio" required id="non-commercial"
-                                        name="dlType" value="None" onchange="updateProgress2('form2')">
+                                        name="dlType" value="non-commercial" onchange="updateProgress2('form2')">
                                 </div>
                                 <div class="label ms-3">
                                     <label class="form-check-label" for="non-commercial">Non-Commercial</label>
@@ -392,7 +392,7 @@
                             <div class=" form-check col-12 mt-2">
                                 <div class="checkbox">
                                     <input class="form-check-input box" type="radio" required id="commercial"
-                                        name="dlType" value="Tank Vechile" onchange="updateProgress2('form2')">
+                                        name="dlType" value="Commercial: CDL A,B or C" onchange="updateProgress2('form2')">
                                 </div>
                                 <div class="label ms-3">
                                     <label class="form-check-label" for="commercial">Commercial: CDL A,B or C</label>
@@ -402,7 +402,7 @@
                             <div class=" form-check col-12 mt-2">
                                 <div class="checkbox ">
                                     <input class="form-check-input box" type="radio" required id="commercialLearner"
-                                        name="dlType" value="Hazardous Materials" onchange="updateProgress2('form2')">
+                                        name="dlType" value="Commercial Lerner's(CLP)" onchange="updateProgress2('form2')">
                                 </div>
                                 <div class="label ms-3">
                                     <label class="form-check-label" for="commercialLearner">Commercial
@@ -413,7 +413,7 @@
                             <div class=" form-check col-12 mt-2">
                                 <div class="checkbox">
                                     <input class="form-check-input box" type="radio" required id="nonInState"
-                                        name="dlType" value="Other" onchange="updateProgress2('form2')">
+                                        name="dlType" value="Non-In-state only commercial,limited to 10-26k lbs." onchange="updateProgress2('form2')"/>
                                 </div>
                                 <div class="label ms-3">
                                     <label class="form-check-label" for="nonInState">Non-In-state only
@@ -432,7 +432,7 @@
                             <div class=" form-check col-12 mt-2">
                                 <div class="checkbox ">
                                     <input class="form-check-input box" type="radio" required id="none"
-                                        name="endorsements" value="None" onchange="updateProgress2('form2')">
+                                        name="endorsements" value="none" onchange="updateProgress2('form2')">
                                 </div>
                                 <div class="label ms-3">
                                     <label class="form-check-label" for="none">None</label>
@@ -441,7 +441,7 @@
                             <div class=" form-check col-12 mt-2">
                                 <div class="checkbox">
                                     <input class="form-check-input box" type="radio" required id="tankV"
-                                        name="endorsements" value="Tank Vechile" onchange="updateProgress2('form2')">
+                                        name="endorsements" value="tank vechile" onchange="updateProgress2('form2')">
                                 </div>
                                 <div class="label ms-3">
                                     <label class="form-check-label" for="tankV">Tank Vechile</label>
@@ -451,7 +451,7 @@
                             <div class=" form-check col-12 mt-2">
                                 <div class="checkbox ">
                                     <input class="form-check-input box" type="radio" required id="hazardousM"
-                                        name="endorsements" value="Hazardous Materials"
+                                        name="endorsements" value="hazardous materials"
                                         onchange="updateProgress2('form2')">
                                 </div>
                                 <div class="label ms-3">
@@ -462,7 +462,7 @@
                             <div class=" form-check col-12 mt-2">
                                 <div class="checkbox">
                                     <input class="form-check-input box" type="radio" required id="otherE"
-                                        name="endorsements" value="Other" onchange="updateProgress2('form2')">
+                                        name="endorsements" value="other" onchange="updateProgress2('form2')">
                                 </div>
                                 <div class="label ms-3">
                                     <label class="form-check-label" for="otherE">Other</label>
@@ -503,12 +503,12 @@
                         you have been convicted or forfeited bond or collateral during the past THREE (3) years?</label>
                     <div class="form-check d-flex align-items-end">
                         <input class="form-check-input" type="radio" required value="no" id="voilationNo"
-                            name="trafficVoilation" onchange="handleRadioChange(event)">
+                            name="trafficVoilation-1" onchange="handleRadioChange(event)">
                         <label class="form-check-label label ms-4" for="voilationNo">No</label>
                     </div>
                     <div class="form-check mt-2">
                         <input class="form-check-input" type="radio" required value="yes" id="voilationYes"
-                            name="trafficVoilation" onchange="handleRadioChange(event)">
+                            name="trafficVoilation-1" onchange="handleRadioChange(event)">
                         <label class="form-check-label ms-4" for="voilationYes">Yes</label>
                     </div>
                 </div>
@@ -739,56 +739,56 @@
                                         <select required data-validate="text" name="companyState" id="companyState"
                                             class=" state-feild">
                                             <option value="">Select One</option>
-                                            <option value="state2">Alabama</option>
-                                            <option value="state3">Alaska</option>
-                                            <option value="state4">Arizona</option>
-                                            <option value="state5">Arkansas</option>
-                                            <option value="state6">California</option>
-                                            <option value="state7">Colorado</option>
-                                            <option value="state8">Connecticut</option>
-                                            <option value="state9">Delaware</option>
-                                            <option value="state10">Florida</option>
-                                            <option value="state11">Georgia</option>
-                                            <option value="state12">Hawaii</option>
-                                            <option value="state13">Idaho</option>
-                                            <option value="state14">Illinois</option>
-                                            <option value="state15">Indiana</option>
-                                            <option value="state16">Iowa</option>
-                                            <option value="state17">Kansas</option>
-                                            <option value="state18">Kentucky</option>
-                                            <option value="state19">Louisiana</option>
-                                            <option value="state20">Maine</option>
+                                            <option value="Alabama">Alabama</option>
+                                            <option value="Alaska">Alaska</option>
+                                            <option value="Arizona">Arizona</option>
+                                            <option value="Arkansas">Arkansas</option>
+                                            <option value="California">California</option>
+                                            <option value="Colorado">Colorado</option>
+                                            <option value="Connecticut">Connecticut</option>
+                                            <option value="Delaware">Delaware</option>
+                                            <option value="Florida">Florida</option>
+                                            <option value="Georgia">Georgia</option>
+                                            <option value="Hawaii">Hawaii</option>
+                                            <option value="Idaho">Idaho</option>
+                                            <option value="Illinois">Illinois</option>
+                                            <option value="Indiana">Indiana</option>
+                                            <option value="Iowa">Iowa</option>
+                                            <option value="Kansas">Kansas</option>
+                                            <option value="Kentucky">Kentucky</option>
+                                            <option value="Louisiana">Louisiana</option>
+                                            <option value="Maine">Maine</option>
                                             <option value="state21">Maryland</option>
-                                            <option value="state22">Massachusetts</option>
-                                            <option value="state23">Michigan</option>
-                                            <option value="state24">Minnesota</option>
-                                            <option value="state25">Mississippi</option>
-                                            <option value="state26">Missouri</option>
-                                            <option value="state27">Montana</option>
-                                            <option value="state28">Nebraska</option>
-                                            <option value="state29">Nevada</option>
-                                            <option value="state30">New Hampshire</option>
-                                            <option value="state31">New Jersey</option>
-                                            <option value="state32">New Mexico</option>
-                                            <option value="state33">New York</option>
-                                            <option value="state34">North Carolina</option>
-                                            <option value="state35">North Dakota</option>
-                                            <option value="state36">Ohio</option>
-                                            <option value="state37">Oklahoma</option>
-                                            <option value="state38">Oregon</option>
-                                            <option value="state39">Pennsylvania</option>
-                                            <option value="state40">Rhode Island</option>
-                                            <option value="state41">South Carolina</option>
-                                            <option value="state42">South Dakota</option>
-                                            <option value="state43">Tennessee</option>
-                                            <option value="state44">Texas</option>
-                                            <option value="state45">Utah</option>
-                                            <option value="state46">Vermont</option>
-                                            <option value="state47">Virginia</option>
-                                            <option value="state48">Washington</option>
-                                            <option value="state49">West Virginia</option>
-                                            <option value="state50">Wisconsin</option>
-                                            <option value="state51">Wyoming</option>
+                                            <option value="Maryland">Massachusetts</option>
+                                            <option value="Michigan">Michigan</option>
+                                            <option value="Minnesota">Minnesota</option>
+                                            <option value="Mississippi">Mississippi</option>
+                                            <option value="Missouri">Missouri</option>
+                                            <option value="Montana">Montana</option>
+                                            <option value="Nebraska">Nebraska</option>
+                                            <option value="Nevada">Nevada</option>
+                                            <option value="New Hampshire">New Hampshire</option>
+                                            <option value="New Jersey">New Jersey</option>
+                                            <option value="New Mexico">New Mexico</option>
+                                            <option value="New York">New York</option>
+                                            <option value="North Carolina">North Carolina</option>
+                                            <option value="North Dakota">North Dakota</option>
+                                            <option value="Ohio">Ohio</option>
+                                            <option value="Oklahoma">Oklahoma</option>
+                                            <option value="Oregon">Oregon</option>
+                                            <option value="Pennsylvania">Pennsylvania</option>
+                                            <option value="Rhode Island">Rhode Island</option>
+                                            <option value="South Carolina">South Carolina</option>
+                                            <option value="South Dakota">South Dakota</option>
+                                            <option value="Tennessee">Tennessee</option>
+                                            <option value="Texas">Texas</option>
+                                            <option value="Utah">Utah</option>
+                                            <option value="Vermont">Vermont</option>
+                                            <option value="Virginia">Virginia</option>
+                                            <option value="Washington">Washington</option>
+                                            <option value="West Virginia">West Virginia</option>
+                                            <option value="Wisconsin">Wisconsin</option>
+                                            <option value="Wyoming">Wyoming</option>
                                         </select>
                                     </div>
                                     <div class="col">
@@ -823,7 +823,7 @@
                                         <div class="row">
                                             <div class="col-auto checkbox notbox">
                                                 <input class="form-check-input box" type="checkbox" id="stillEmployee"
-                                                    name="endorsements" value="None" onchange="toggleEmploymentDates()">
+                                                    name="stillEmployee" value="currentlyEmployee" onchange="toggleEmploymentDates()">
                                             </div>
                                             <div class="col">
                                                 <label class="form-check-label still" for="stillEmployee">Currently

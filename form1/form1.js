@@ -62,7 +62,7 @@ function getMousePosition(event) {
 
 function initializeSignatureBox() {
 
-    canvas = document.getElementById('signBox');
+    canvas = document.getElementById('signBox1');
 
     if (!canvas) {
         console.error("Canvas element not found. Ensure it's visible in the DOM.");
@@ -79,6 +79,7 @@ function initializeSignatureBox() {
         isDrawing = true;
         context.beginPath();
         const pos = getMousePosition(event);
+        removeCanvasHighlight();
         context.moveTo(pos.x, pos.y);
     });
 
@@ -86,6 +87,7 @@ function initializeSignatureBox() {
         if (isDrawing) {
             const pos = getMousePosition(event);
             context.lineTo(pos.x, pos.y);
+            removeCanvasHighlight();
             context.stroke();
         }
     });
@@ -114,9 +116,14 @@ function clearSign() {
     });
 }
 
+function removeCanvasHighlight() {
+    canvas.classList.remove('highlight');
+}
+
 function saveSign() {
     if (canvas) {
         signatureData = canvas.toDataURL('image/png');
+        console.log('sign Data', signatureData);
        // validateCanvases('form1', 1);
 
     } else {
@@ -124,11 +131,11 @@ function saveSign() {
     }
 }
 
-function validateForm(formId, pageNumber) {
-    const form = document.getElementById(formId);
-    const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
+function validateForm() {
+   // const form = document.getElementById(formId);
+    const currentPage = document.getElementById(`firstForm-page1`);
     const inputs = currentPage.querySelectorAll('input, select, textarea');
-    const canvases = currentPage.querySelectorAll('canvas');
+    const canvases = document.getElementById('signBox1');
     let isValid = true;
 
     inputs.forEach(input => {
@@ -179,7 +186,17 @@ function validateForm(formId, pageNumber) {
                 input.classList.remove('highlight');
             }
          // validateCanvases(formId, pageNumber);
-
+            const context = canvases.getContext('2d');
+            const pixelData = context.getImageData(0, 0, canvases.width, canvases.height).data;
+            const isCanvasEmpty = !pixelData.some(value => value !== 0);
+    
+            if (isCanvasEmpty) {
+                isValid = false;
+                canvases.classList.add('highlight');
+            } else {
+                canvases.classList.remove('highlight');
+            }
+   
 
         };
 
@@ -189,18 +206,7 @@ function validateForm(formId, pageNumber) {
     });
 
 
-    canvases.forEach(canvas => {
-        const context = canvas.getContext('2d');
-        const pixelData = context.getImageData(0, 0, canvas.width, canvas.height).data;
-        const isCanvasEmpty = !pixelData.some(value => value !== 0);
 
-        if (isCanvasEmpty) {
-            isValid = false;
-            canvas.classList.add('highlight');
-        } else {
-            canvas.classList.remove('highlight');
-        }
-    });
 
     //return true;
      return isValid;
@@ -227,9 +233,10 @@ function validateCanvases(formId,pageNumber){
 }
 
 function Submission() {
-    const valid = validateForm('form1', 1);
+    const valid = validateForm();
     if (valid) {
         showSuccessModal();
+        collectFormData();
 
     } else {
         showInvalidModal();
@@ -273,7 +280,7 @@ function formatDateToDDMMYYYY(date) {
 function showSuccessModal() {
    const drugPositive= document.getElementById('affirmativeNotes');
    const overlay = document.getElementById('overlay1');
-   const valid=validateForm('form1', 1);
+   const valid=validateForm();
     if(drugPositive && valid){
         console.log("getting the drug test positive value", drugPositive.value);
     const drugModal= document.getElementById('drugTestFailed');
@@ -281,7 +288,7 @@ function showSuccessModal() {
         drugModal.style.display='block';
         document.body.style.overflow = 'hidden';
         console.log('main division-   ',document.getElementById('main-division1'));
-        document.getElementById('form1').style.display="none";
+        document.getElementById('firstForm').style.display="none";
         document.getElementById('tabs1').style.display="none";
 
 
@@ -443,6 +450,71 @@ function hideCheckmark(formId) {
         checkmark.classList.remove('visible');
     }
 }
+
+function collectFormData() {
+    const formData = new FormData();
+    const form = document.getElementById("firstForm-page1");
+
+    if (!form) {
+        console.error("Form not found.");
+        return;
+    }
+
+    // Collect all input, select, and textarea fields
+    const fields = form.querySelectorAll("input, select, textarea");
+
+    fields.forEach(field => {
+        if (field.type === "radio" || field.type === "checkbox") {
+            if (field.checked) {
+                formData.append(field.name, field.value);
+            }
+        } else {
+            formData.append(field.name, field.value);
+        }
+    });
+
+    // Convert signature canvas to Blob and append
+    const canvas = document.getElementById("signBox1");
+    if (canvas) {
+        canvas.toBlob((blob) => {
+            formData.append("signature", blob, "signature.png");
+
+            //Properly display `FormData`
+            console.log("FormData after adding signature:");
+            for (let pair of formData.entries()) {
+                console.log(pair[0] + ": ", pair[1]); // Logs each key-value pair
+            }
+
+            // Send data to API
+            //sendFormDataToAPI(formData);
+        }, "image/png");
+    } else {
+        console.error("Signature canvas not found.");
+
+        //Display `FormData` even if signature is missing
+        console.log("FormData without signature:");
+        for (let pair of formData.entries()) {
+            console.log(pair[0] + ": ", pair[1]);
+        }
+       // sendFormDataToAPI(formData);
+    }
+}
+
+// function sendFormDataToAPI(formData) {
+//     fetch("url", { // Replace with your API URL
+//         method: "POST",
+//         body: formData, // Sending multipart/form-data
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log("Success:", data);
+//         alert("Form submitted successfully!");
+//     })
+//     .catch(error => {
+//         console.error("Error:", error);
+//         alert("Failed to submit form.");
+//     });
+// }
 
 
 initializeSignatureBox();

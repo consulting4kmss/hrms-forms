@@ -32,6 +32,7 @@ function nextPage2(pageNumber) {
         }
         if(pageNumber-1==1){
             if (validateAddressHistory()){
+                collectFormData('form2', pageNumber - 1);
                 const currentPage = document.querySelector(`#form2-page${pageNumber - 1}`);
                 const nextPage = document.querySelector(`#form2-page${pageNumber}`);
                 currentPage.style.display = 'none';
@@ -41,7 +42,6 @@ function nextPage2(pageNumber) {
             };
         }
         else {
-            console.log('pageNumber-1' ,pageNumber-1);
             collectFormData('form2', pageNumber - 1);
             const currentPage = document.querySelector(`#form2-page${pageNumber - 1}`);
             const nextPage = document.querySelector(`#form2-page${pageNumber}`);
@@ -161,9 +161,6 @@ function maxDate() {
 
 function initializeForm2(formId) {
     totalPages2 = document.querySelectorAll(`#${formId} .form-page2 `).length;
-    console.log("Form 2 initialized");
-
-
     maxDate();
 
     caluclateTotalFeilds()
@@ -481,7 +478,6 @@ function caluclateTotalFeilds() {
 
 
 function validateAddressHistory() {
-    console.log("entered In addressHistory");
     let fromDates = [];
     let toDates = [];
 
@@ -499,11 +495,8 @@ function validateAddressHistory() {
     // Get the earliest 'From' date and the latest 'To' date
     let earliestStartDate = new Date(Math.min(...fromDates));
     let latestEndDate = new Date(Math.max(...toDates));
-    console.log("Earliest Start" ,earliestStartDate);
-     console.log("Latest End Date",latestEndDate);
     if (earliestStartDate && latestEndDate) {
         let totalYears = (latestEndDate - earliestStartDate) / (1000 * 60 * 60 * 24 * 365);
-        console.log(`Total Address Duration: ${totalYears.toFixed(2)} years`);
 
          if (totalYears >= 3) {
             return true;
@@ -553,7 +546,6 @@ function handleAddressChange(radio) {
         document.querySelectorAll('#addressSon').forEach(el => {
             if (parseInt(el.dataset.templateId, 10) > currentTemplateId) {
                 addressCounter--;
-                console.log(addressCounter);
                 el.remove();
                 caluclateTotalFeilds();
             }
@@ -717,7 +709,6 @@ function removeHistoryElement(value) {
         const Element = document.getElementById('Address1');
         if (Element) {
             addressCounter = 1;
-            console.log(addressCounter);
             Element.remove();
         }
 
@@ -757,7 +748,7 @@ function licenseDenied(value) {
         licenseElement.classList.add('mt-3');
         licenseElement.innerHTML = `
                     <label class="question-label">Disclosure</label>
-                    <textarea maxlength="250" required id="licenseDenyExplanation" rows="4" class="form-control mt-2 txtfeild "></textarea>
+                    <textarea maxlength="250" required id="licenseDenyExplanation" name="licenseDenyExplanation" rows="4" class="form-control mt-2 txtfeild "></textarea>
                 `;
         const MainContainer = document.getElementById('licenseContainer');
         MainContainer.appendChild(licenseElement);
@@ -775,7 +766,7 @@ function licenseSuspended(value) {
 
         suspendExplain.innerHTML = `
                     <label class="question-label">Disclosure</label>
-                    <textarea maxlength="250" required id="licenseSuspendedExplanation" rows="4" class="form-control mt-2 txtfeild "></textarea>
+                    <textarea maxlength="250" required id="licenseSuspendedExplanation"  name="licenseSuspendedExplanation" rows="4" class="form-control mt-2 txtfeild "></textarea>
               `
         document.getElementById('suspendContainer').appendChild(suspendExplain);
         maxDate();
@@ -997,7 +988,6 @@ function validatePage(formId, pageNumber) {
                 const endDateField = document.getElementById('companySeparation');
                 toggleEmploymentDates();
                 if (endDateField.required && input.id === 'stillEmployee') {
-                    console.log("endDateField", endDateField.required);
                     // isAnyChecked = Array.from(checkboxes)
                     //     .filter(checkbox => checkbox.id !== 'stillEmployee') // Exclude 'stillEmployee'
                     //     .some(checkbox => checkbox.checked); 
@@ -1036,14 +1026,12 @@ function validatePage(formId, pageNumber) {
                 if (input.name === "home" || input.name === "supervisorNo") {
                     const isPhoneValid = validateAndFormatPhoneNumber(input);
                     if (!isPhoneValid) {
-                        console.log('inside phone number', input.id, input.name)
                         isValid = false;
                     }
                 }
                 if (input.name === "ssn") {
                     const isSSNValid = validateAndFormatSSN(input);
                     if (!isSSNValid) {
-                        console.log('inside ssn', input.id, input.name)
                         isValid = false;
                     }
                 }
@@ -1152,7 +1140,7 @@ function collectFormData(formId, pageNumber) {
     return data;
 }
 
-let violationCount = 0;
+let violationCount = 1;
 
 function handleRadioChange(event) {
     const container = document.getElementById("violation-container");
@@ -1170,7 +1158,7 @@ function handleRadioChange(event) {
                 <div class="address-container mt-3">
                     <div class="col-12">
                         <label class="question-label">Date of Conviction</label>
-                        <input required type="date"  class="dab" name="applicantdob-${violationCount}" id="voilationDate-${violationCount}" oninput="handleDateChange2(event)" onchange="updateProgress2('form2')">
+                        <input required type="date"  class="dab" name="date-of-conviction-${violationCount}" id="voilationDate-${violationCount}" oninput="handleDateChange2(event)" onchange="updateProgress2('form2')">
                          <small class="error-message"></small>
                     </div>
                     <div class="col-12 mt-3">
@@ -1219,7 +1207,7 @@ function handleRadioChange(event) {
             while (container.firstChild) {
                 container.removeChild(container.firstChild);
             }
-            violationCount = 0;
+            violationCount = 1;
             caluclateTotalFeilds();
             return;
         }
@@ -1630,7 +1618,6 @@ function checkSections() {
         const dateFrom = section.querySelector("input[id*='fromDate']");
         const dateTo = section.querySelector("input[id*='toDate']");
         const milesInput = section.querySelector("input[id*='approxMiles']");
-        console.log("after getting date feilds  ", section.id);
         dateFeilds = false;
         if ((dateFrom && dateTo) && (dateFrom.value && dateTo.value)) {
             dateFeilds = true;
@@ -1640,7 +1627,6 @@ function checkSections() {
             dateTo?.setAttribute("required", "true");
         } else if (milesInput && milesInput.value) {
             dateFeilds = true;
-            console.log("MilesInput");
             milesInput?.setAttribute("required", "true");
             dateFrom?.removeAttribute("required");
             dateTo?.removeAttribute("required");
@@ -1649,14 +1635,12 @@ function checkSections() {
 
 
         const atLeastOneCheckboxChecked = checkboxes.length > 0 ? checkboxes.some(input => input.checked) : true;
-        console.log("checkboxes ", checkboxes);
         if (section.id === 'section4') {
             const textInputs = [...inputs].filter(input => input.type !== "checkbox");
             const allTextFieldsFilled = textInputs.every(input => input.value.trim() !== "");
 
             if (allTextFieldsFilled && atLeastOneCheckboxChecked && dateFeilds) {
                 lastFilledSection = section;
-                console.log("Filled Section:", lastFilledSection.id);
                 removeDateHighlight(dateFrom);
                 removeDateHighlight(dateTo);
                 break;
@@ -1672,7 +1656,6 @@ function checkSections() {
             break;
 
         } else {
-            console.log("Entered in Else Block");
             lastFilledSection = null;
 
 
@@ -1948,21 +1931,21 @@ function addUnemployment(presentId, value) {
                                     <div>
                                         <label class="question-label">Unemployed From</label>
 
-                                        <input required type="date"  class="dab form-control " id="unemployedFrom"
-                                            name="unemployment" onchange="handleDateChange2(event)">
+                                        <input required type="date"  class="dab form-control " id="unemployedFrom_${formCounter}"
+                                            name="unemploymentFrom_${formCounter}" onchange="handleDateChange2(event)">
                                         <small class="error-message"></small>
                                     </div>
                                     <div>
                                         <label class="question-label"> Unemployed To</label>
-                                        <input required type="date"  class="to form-control" id="unemployedTo "
-                                            name="unemployment" onchange="handleDateChange2(event)">
+                                        <input required type="date"  class="to form-control" id="unemployedTo_${formCounter}"
+                                            name="unemploymentTo_${formCounter}" onchange="handleDateChange2(event)">
                                         <small class="error-message"></small>
                                     </div>
                                 </div>
 
                                 <div class="col-12 mt-4">
                                     <label class="question-label">Reason for Unemployment</label>
-                                    <textarea maxlength="250" required required name="unemploymentReason" id="unemployReason" placeholder="Enter Text"
+                                    <textarea maxlength="250" required required name="unemploymentReason_${formCounter}" id="unemployReason_${formCounter}" placeholder="Enter Text"
                                         rows="4" class="form-control mt-2 txtfeild"></textarea>
                                 </div>`
         document.getElementById(presentId).appendChild(unemploy);
@@ -2036,18 +2019,18 @@ function toggleEmploymentDates() {
     const errorField = endDateField.nextElementSibling;
 
     if (stillEmployeeCheckbox.checked) {
-        // const currentDate = new Date();
+         const currentDate = new Date();
         // const startDate = new Date(currentDate.setFullYear(currentDate.getFullYear() - 10));
         // startDateField.value = startDate.toISOString().split('T')[0];
 
-        endDateField.value = '';
+        endDateField.value =currentDate.toISOString().split('T')[0];;
         endDateField.classList.remove('highlight');
         endDateField.removeAttribute("required");
         errorField.textContent = "";
         errorField.style.display = 'none';
     } else {
         // startDateField.value = '';
-        // endDateField.value = '';
+         endDateField.value = '';
         errorField.textContent = "Please enter a valid date";
         endDateField.classList.add('highlight');
         errorField.style.display = 'block';
@@ -2128,12 +2111,14 @@ function initializeSignatureBox() {
         isDrawing = true;
         context.beginPath();
         const pos = getMousePosition(event);
+        removeCanvasHighlight();
         context.moveTo(pos.x, pos.y);
     });
 
     canvas.addEventListener('mousemove', (event) => {
         if (isDrawing) {
             const pos = getMousePosition(event);
+            removeCanvasHighlight();
             context.lineTo(pos.x, pos.y);
             context.stroke();
         }
@@ -2149,7 +2134,9 @@ function initializeSignatureBox() {
     });
 
 }
-
+function removeCanvasHighlight() {
+    canvas.classList.remove('highlight');
+}
 
 function clearSign() {
     const clearButton = document.getElementById('clearButton');
@@ -2165,7 +2152,7 @@ function clearSign() {
 function saveSign() {
     if (canvas) {
         signatureData = canvas.toDataURL('image/png');
-
+        console.log('sign Data', signatureData);
     } else {
         console.error("Signature box is not initialized.");
     }

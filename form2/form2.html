@@ -34,7 +34,7 @@
 
                             <input id="firstName" required type="text" data-validate="text" name="firstName"
                                 autocomplete="off" maxlength="30"
-                                oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"
+                                oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed',true)"
                                 class="form-control" onchange="updateProgress('form1')" />
                             <small class="error-message"></small>
                         </div>
@@ -42,7 +42,7 @@
                             <label class="question-label">Last Name</label>
                             <input id="lastName" required type="text" data-validate="text" autocomplete="off"
                                 name="lastName" autocomplete="off" maxlength="30"
-                                oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"
+                                oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed',true)"
                                 class="form-control" onchange="updateProgress('form1')" />
                             <small class="error-message"></small>
 
@@ -52,14 +52,14 @@
                         <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                             <label class="question-label">Middle Name</label>
                             <input type="text" name="middleName" id="midName" autocomplete="off" maxlength="30"
-                                oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"
+                                oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed',true)"
                                 class="form-control" onchange="updateProgress('form1')" />
                             <small class="error-message"></small>
                         </div>
                         <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                             <label class="question-label">Suffix</label>
                             <input type="text" id="suffix" autocomplete="off" name="Suffix"
-                                maxlength="15" oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed')"
+                                maxlength="15" oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed',true)"
                                 class="form-control" onchange="updateProgress('form1')" />
                             <small class="error-message"></small>
                         </div>
@@ -84,7 +84,7 @@
                         <label class="question-label">City</label>
 
                         <input required type="text" data-validate="text" name="city" maxlength="50" autocomplete="off"
-                            oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" class="form-control"
+                            oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed',true)" class="form-control"
                             onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
                     </div>
@@ -152,7 +152,7 @@
 
                         <input required type="text" name="zip" autocomplete="off" maxlength="9" data-validate="number"
                             class="form-control" onchange="updateProgress('form1')"
-                            oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')" />
+                            oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed',true)" />
                         <small class="error-message"></small>
                     </div>
                 </div>
@@ -161,14 +161,14 @@
                         <label class="question-label">Home Phone No.</label>
 
                         <input required type="text" name="home" autocomplete="off"
-                            oninput="validateAndFormatPhoneNumber(this);" class="form-control"
+                            oninput="validateAndFormatPhoneNumber(this,true);" class="form-control"
                             onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
                     </div>
                     <div>
                         <label class="question-label">Cell Phone No.</label>
                         <input required type="text" name="cell" autocomplete="off"
-                            oninput="validateAndFormatPhoneNumber(this);" class="form-control"
+                            oninput="validateAndFormatPhoneNumber(this,true);" class="form-control"
                             onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
 
@@ -188,7 +188,7 @@
                         <label class="question-label">Gender</label>
 
                         <input required type="text" data-validate="text" name="gender" maxlength="10" autocomplete="off"
-                            oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" class="form-control"
+                            oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed',true)" class="form-control"
                             onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
                     </div>
@@ -202,7 +202,7 @@
 
                         <input required type="text" id="tall" name="height" autocomplete="off" maxlength="3" data-validate="number"
                          
-                        oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')" onchange="updateProgress('form1')" />
+                        oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed',true)" onchange="updateProgress('form1')" />
 
                         <small class="error-message"></small>
                     </div>
@@ -210,12 +210,12 @@
                         <label class="question-label">Weight</label>
                         <input required id="weight" name="weight" type="decimal" step="0.01" min="0" max="999.99" autocomplete="off"
                             maxlength="6"
-                            oninput="validInput(this, /^\d{0,3}(\.\d{0,2})?$/, 'Only numbers with up to 2 decimals are allowed');" />
+                            oninput="validInput(this, /^\d{0,3}(\.\d{0,2})?$/, 'Only numbers with up to 2 decimals are allowed',true);" />
                         <small class="error-message"></small>
                     </div>
                 </div>
                 <div class="single-button-container">
-                    <button onclick="nextPage('form1',2)">Next</button>
+                    <button class="notValid-btn" id="next1" onclick="nextPage('form1',2)">Next</button>
                 </div>
             </div>
 
@@ -229,7 +229,7 @@
                 </div>
                 <div>
                     <div style="margin-top: 20px;">
-                        <label class="question-label"
+                        <label class="question-header"
                             style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Eyes</label>
                     </div>
 
@@ -321,7 +321,7 @@
                         </div>
                         <div>
                             <div class="mt-3">
-                                <label class="question-label"
+                                <label class="question-header"
                                     style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
                                     Ear,Nose,Throat
                                 </label>
@@ -423,7 +423,7 @@
                                     </div>
                                     <div>
                                         <div class="mt-3">
-                                            <label class="question-label"
+                                            <label class="question-header"
                                                 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
                                                 Head</label>
                                         </div>
@@ -572,7 +572,7 @@
                                     </div>
                                     <div>
                                         <div class="mt-3">
-                                            <label class="question-label"
+                                            <label class="question-header"
                                                 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
                                                 Neck</label>
                                         </div>
@@ -626,7 +626,7 @@
                                     </div>
                                     <div>
                                         <div class="mt-3">
-                                            <label class="question-label"
+                                            <label class="question-header"
                                                 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">
                                                 Heart
                                             </label>
@@ -824,9 +824,8 @@
                                     </div>
 
                                     <div class="button-row">
-                                        <button onclick="previousPage('form1',1)"
-                                            style="background: none;">Back</button>
-                                        <button onclick="nextPage('form1',3)">Next</button>
+                                        <button onclick="previousPage('form1',1)" class="valid-btn" style="background: none;">Back</button>
+                                        <button class="notValid-btn" id="next2" onclick="nextPage('form1',3)">Next</button>
                                     </div>
                                 </div>
                             </div>
@@ -850,7 +849,7 @@
                 <div>
 
                     <div style="margin-top: 20px;">
-                        <label class="question-label"
+                        <label class="question-header"
                             style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Lungs</label>
                     </div>
                     <div>
@@ -1005,7 +1004,7 @@
                 <div>
 
                     <div style="margin-top: 20px;">
-                        <label class="question-label"
+                        <label class="question-header"
                             style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Bones/Joints</label>
                     </div>
                     <div>
@@ -1293,7 +1292,7 @@
                 <div>
 
                     <div style="margin-top: 20px;">
-                        <label class="question-label"
+                        <label class="question-header"
                             style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Blood
                             Diseases</label>
                     </div>
@@ -1441,7 +1440,7 @@
                 </div>
                 <div>
                     <div style="margin-top: 20px;">
-                        <label class="question-label"
+                        <label class="question-header"
                             style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Hernia</label>
                     </div>
                     <div>
@@ -1495,7 +1494,7 @@
                 <div>
 
                     <div style="margin-top: 20px;">
-                        <label class="question-label"
+                        <label class="question-header"
                             style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Epilepsy/Seizures</label>
                     </div>
                     <div>
@@ -1656,7 +1655,7 @@
                 <div>
 
                     <div style="margin-top: 20px;">
-                        <label class="question-label"
+                        <label class="question-header"
                             style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Fainting
                             Spells</label>
                     </div>
@@ -1713,7 +1712,7 @@
                 <div>
 
                     <div style="margin-top: 20px;">
-                        <label class="question-label"
+                        <label class="question-header"
                             style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Mental
                             Health</label>
                     </div>
@@ -1908,8 +1907,8 @@
 
 
                 <div class="button-row">
-                    <button onclick="previousPage('form1',2)" style="background: none;">Back</button>
-                    <button onclick="nextPage('form1',4)">Next</button>
+                    <button onclick="previousPage('form1',2)" class="valid-btn" style="background: none;">Back</button>
+                    <button class="notValid-btn" id="next3" onclick="nextPage('form1',4)">Next</button>
                 </div>
 
 
@@ -1928,7 +1927,7 @@
                 <div>
 
                     <div style="margin-top: 20px;">
-                        <label class="question-label"
+                        <label class="question-header"
                             style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Gastrointestinal</label>
                     </div>
                     <div>
@@ -2026,7 +2025,7 @@
                     </div>
                     <div>
                         <div style="margin-top: 20px;">
-                            <label class="question-label"
+                            <label class="question-header"
                                 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Liver</label>
                         </div>
                         <div class="mt-3">
@@ -2126,7 +2125,7 @@
 
                     <div>
                         <div style="margin-top: 20px;">
-                            <label class="question-label"
+                            <label class="question-header"
                                 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Kidney</label>
                         </div>
                         <div>
@@ -2186,7 +2185,7 @@
                         <div>
                             <div class="col-12">
                                 <div class="col-12">
-                                    <label class="question-label mt-2">Skin</label>
+                                    <label class="question-header mt-2">Skin</label>
                                 </div>
                             </div>
                             <div class="col-12 d-flex flex-column mt-2">
@@ -2234,7 +2233,7 @@
 
                     <div>
                         <div style="margin-top: 20px;">
-                            <label class="question-label"
+                            <label class="question-header"
                                 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Allergies</label>
                         </div>
                         <div>
@@ -2334,7 +2333,7 @@
 
                     <div>
                         <div style="margin-top: 20px;">
-                            <label class="question-label"
+                            <label class="question-header"
                                 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Other Health
                                 Conditions Not Listed</label>
                         </div>
@@ -2389,7 +2388,7 @@
 
                     <div>
                         <div style="margin-top: 20px;">
-                            <label class="question-label"
+                            <label class="question-header"
                                 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">When was your
                                 last
                             </label>
@@ -2491,7 +2490,7 @@
                     <div>
 
                         <div style="margin-top: 20px;">
-                            <label class="question-label"
+                            <label class="question-header"
                                 style="border-bottom: 2px solid white; width: 100%; padding-bottom: 5px;">Check the
                                 Appropriate Box
                             </label>
@@ -2729,8 +2728,8 @@
                 </div>
 
                 <div class="button-row">
-                    <button onclick="previousPage('form1',3)" style="background: none;">Back</button>
-                    <button class="submit-btn">Submit</button>
+                    <button onclick="previousPage('form1',3)" class="valid-btn" style="background: none;">Back</button>
+                    <button id="next4" class="notValid-btn">Submit</button>
                 </div>
             </div>
         </div>

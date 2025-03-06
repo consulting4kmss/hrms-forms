@@ -170,6 +170,17 @@ canvas {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+.submit-valid{
+    padding: 10px 20px;
+  
+    background-color: #0056b3!important;
+    color: inherit;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
 .button-row {
     display: flex;

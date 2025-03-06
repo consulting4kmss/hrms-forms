@@ -71,6 +71,14 @@
     font-weight: 400 !important;
 }
 
+.question-header {
+    display: block;
+    font-size: 0.9rem;
+    color: white !important;
+    margin-bottom: 5px !important;
+    font-weight: 600 !important;
+}
+
 .clearSign{
     cursor:pointer;
     color:white;
@@ -296,7 +304,7 @@ h3 {
     font-size: 14px;
 }
 
-.form-page button {
+/* .form-page button {
     padding: 10px 20px;
     background-color: #4A72A7 !important;
     color: inherit;
@@ -305,7 +313,7 @@ h3 {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
-}
+} */
 
 .single-button-container {
     display: flex;
@@ -314,9 +322,9 @@ h3 {
     border-radius: 20px;
 }
 
-.form-page button:hover {
+/* .form-page button:hover {
     background-color: #0056b3 !important;
-}
+} */
 
 .button-row {
     display: flex;
@@ -324,7 +332,7 @@ h3 {
     margin-top: 20px;
 }
 
-button {
+.notValid-btn{
     padding: 10px 20px;
     background-color: #4A72A7 !important;
     color: inherit;
@@ -335,14 +343,21 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+.valid-btn{
+    padding: 10px 20px;
     background-color: #0056b3 !important;
+    color: inherit;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-button:disabled {
+/* button:disabled {
     background-color: #ccc !important;
     cursor: not-allowed;
-}
+} */
 .checkbox-group {
     display: flex;
     flex-direction: column;

@@ -168,13 +168,13 @@
                             <label class="question-label">From</label>
 
                             <input required type="date" class="dab form-control " id="addressFrom" name="addressFrom"
-                                oninput="handleDateChange2(event)" >
+                                oninput="handleDateChange2(event)"/>
                             <small class="error-message"></small>
                         </div>
                         <div>
                             <label class="question-label">To</label>
                             <input required type="date" class="to form-control" id="addressTo" name="addressTo"
-                                oninput="handleDateChange2(event)">
+                                oninput="handleDateChange2(event)"/>
                             <small class="error-message"></small>
                         </div>
                     </div>
@@ -211,7 +211,7 @@
                 </div>
 
                 <div class="single-button-container">
-                    <button onclick="nextPage2(2)">Next</button>
+                    <button id="next1" class="notValid-btn" onclick="nextPage2(2)">Next</button>
                 </div>
 
             </div>
@@ -285,11 +285,11 @@
                         <label class="question-label">Current DL Number</label>
                         <input required type="text" name="current dl Number" autocomplete="off" data-validate="number"
                             class="form-control" maxlength="16" onchange="updateProgress2('form2')"
-                            oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')"
+
                             placeholder="Enter Number" />
                         <small class="error-message"></small>
                     </div>
-
+                    <!-- oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')" -->
                     <div class="col-12 mt-3 mb-3">
                         <label class="question-label">Current DL Expiration Date </label>
                         <input required type="date" class="dab " name="current dl expiry" id="dlxpiry"
@@ -362,11 +362,11 @@
                         <label class="question-label">Previous DL Number</label>
                         <input required type="text" name="pre dl number" autocomplete="off" data-validate="number"
                             class="form-control" maxlength="16" onchange="updateProgress2('form2')"
-                            oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')"
+                            
                             placeholder="Enter Number" />
                         <small class="error-message"></small>
                     </div>
-
+                    <!-- oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')" -->
                     <div class="col-12 mt-3 mb-3">
                         <label class="question-label">Previous DL Expiration Date </label>
                         <input required type="date" class="dab  " name="pre dl Expiry" id="preDlExpiry"
@@ -473,8 +473,8 @@
                 </div>
 
                 <div class="button-row">
-                    <button onclick="previousPage2(1)" style="background: none;">Back</button>
-                    <button onclick="nextPage2(3)">Next</button>
+                    <button class="valid-btn" class="valid-btn" onclick="previousPage2(1)" style="background: none;">Back</button>
+                    <button id='next2' class="notValid-btn" onclick="nextPage2(3)">Next</button>
                 </div>
             </div>
             <!-- form - 2 page - 3 -->
@@ -516,8 +516,8 @@
                 <div id="violation-container"></div>
 
                 <div class="button-row">
-                    <button onclick="previousPage2(2)" style="background: none;">Back</button>
-                    <button onclick="nextPage2(4)">Next</button>
+                    <button class="valid-btn" onclick="previousPage2(2)" style="background: none;">Back</button>
+                    <button id='next3' class="notValid-btn" onclick="nextPage2(4)">Next</button>
                 </div>
             </div>
 
@@ -556,8 +556,8 @@
                 <div id="accident-container"></div>
 
                 <div class="button-row">
-                    <button onclick="previousPage2(3)">Back</button>
-                    <button onclick="nextPage2(5)">Next</button>
+                    <button class="valid-btn" onclick="previousPage2(3)">Back</button>
+                    <button id="next4" class="notValid-btn" onclick="nextPage2(5)">Next</button>
                 </div>
             </div>
 
@@ -641,8 +641,8 @@
                     </h6>
                 </div>
                 <div class="button-row">
-                    <button onclick="previousPage2(4)" style="background: none;">Back</button>
-                    <button onclick="nextPage2(6)">Next</button>
+                    <button class="valid-btn" onclick="previousPage2(4)" style="background: none;">Back</button>
+                    <button id="next5" class="notValid-btn" onclick="nextPage2(6)">Next</button>
                 </div>
             </div>
 
@@ -671,8 +671,8 @@
                     </div>
                 </div>
                 <div class="button-row">
-                    <button onclick="previousPage2(5)" style="background: none;">Back</button>
-                    <button onclick="nextPage2(7)">Next</button>
+                    <button class="valid-btn" onclick="previousPage2(5)" style="background: none;">Back</button>
+                    <button id="next6" class="notValid-btn" onclick="nextPage2(7)">Next</button>
                 </div>
             </div>
 
@@ -805,16 +805,14 @@
                                     <div class="col">
                                         <label class="question-label">Start Date</label>
                                         <input required type="date" class="dab form-control" id="companyStart"
-                                            name="startDate" oninput="handleDateChange2(event)"
-                                            onchange="validateEmploymentHistory()">
+                                            name="startDate" onchange="validateEmploymentHistory()" oninput="handleDateChange2(event)"/>
                                         <small class="error-message"></small>
                                     </div>
 
                                     <div class="col">
                                         <label class="question-label">Separation Date</label>
-                                        <input required type="date" class="form-control" id="companySeparation"
-                                            name="separationDate" oninput="handleDateChange2(event)"
-                                            onchange="validateEmploymentHistory()">
+                                        <input required type="date" class="dab form-control" id="companySeparation"
+                                            name="separationDate" onchange="validateEmploymentHistory()" oninput="handleDateChange2(event)"/>
                                         <small class="error-message"></small>
                                     </div>
 
@@ -984,8 +982,8 @@
 
 
                 <div class="button-row">
-                    <button onclick="previousPage2(6)" style="background: none;">Back</button>
-                    <button onclick="nextPage2(8)">Next</button>
+                    <button class="valid-btn" onclick="previousPage2(6)" style="background: none;">Back</button>
+                    <button id="next7" class="notValid-btn" onclick="nextPage2(8)">Next</button>
                 </div>
             </div>
 
@@ -1161,8 +1159,8 @@
 
                 </div>
                 <div class="button-row">
-                    <button onclick="previousPage2(7)" style="background: none;">Back</button>
-                    <button onclick="nextPage2(9)">Next</button>
+                    <button class="valid-btn" onclick="previousPage2(7)" style="background: none;">Back</button>
+                    <button id="next8" class="notValid-btn" onclick="nextPage2(9)">Next</button>
                 </div>
 
             </div>
@@ -1221,8 +1219,8 @@
                 </div>
 
                 <div class="button-row">
-                    <button onclick="previousPage2(8)" style="background: none;">Back</button>
-                    <button class="submit-btn" onclick="">Submit</button>
+                    <button class="valid-btn" onclick="previousPage2(8)" style="background: none;">Back</button>
+                    <button class="notValid-btn" id="next9" onclick="">Submit</button>
                 </div>
 
             </div>

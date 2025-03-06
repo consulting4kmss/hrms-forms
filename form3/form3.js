@@ -4,7 +4,7 @@ let formCounter = 1;
 let years = 0;
 let totalYears = 0;
 function nextPage2(pageNumber) {
-    if (validatePage('form2', pageNumber - 1)) {
+    if (validatePage('form2', pageNumber - 1,true)) {
         if (pageNumber == 9) {
             initializeSignatureBox();
             clearSign();
@@ -14,7 +14,7 @@ function nextPage2(pageNumber) {
         if (pageNumber == 7) {
             addSectionListener();
             checkSections();
-            validateEmploymentHistory();
+          validateEmploymentHistory();
         }
         if (pageNumber - 1 == 7) {
             reason = document.getElementById('employHistroy');
@@ -35,6 +35,12 @@ function nextPage2(pageNumber) {
                 collectFormData('form2', pageNumber - 1);
                 const currentPage = document.querySelector(`#form2-page${pageNumber - 1}`);
                 const nextPage = document.querySelector(`#form2-page${pageNumber}`);
+                const inputs = nextPage.querySelectorAll('input, select, textarea');
+                inputs.forEach(input=>{
+                input.addEventListener('input',()=>{
+                    validatePage('form2',pageNumber,false)
+                })
+            })
                 currentPage.style.display = 'none';
                 nextPage.style.display = 'block';
                 updatePageInfo2('form2', pageNumber);
@@ -42,9 +48,18 @@ function nextPage2(pageNumber) {
             };
         }
         else {
+    //         const form = document.getElementById(formId);
+    // const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
+
             collectFormData('form2', pageNumber - 1);
             const currentPage = document.querySelector(`#form2-page${pageNumber - 1}`);
             const nextPage = document.querySelector(`#form2-page${pageNumber}`);
+            const inputs = nextPage.querySelectorAll('input, select, textarea');
+            inputs.forEach(input=>{
+                input.addEventListener('input',()=>{
+                    validatePage('form2',pageNumber,false)
+                })
+            })
             currentPage.style.display = 'none';
             nextPage.style.display = 'block';
             updatePageInfo2('form2', pageNumber);
@@ -176,6 +191,13 @@ function initializeForm2(formId) {
             updateProgress2(formId);
         });
     });
+    const nextPage = document.querySelector(`#form2-page1`);
+    const inputs = nextPage.querySelectorAll('input, select, textarea');
+            inputs.forEach(input=>{
+                input.addEventListener('input',()=>{
+                    validatePage('form2',1,false)
+                })
+            })
 
     handleMutualExclusiveCheckboxes2(formId);
 
@@ -477,34 +499,62 @@ function caluclateTotalFeilds() {
 // }
 
 
+// function validateAddressHistory() {
+//     let fromDates = [];
+//     let toDates = [];
+
+//     // Collect all 'From' and 'To' dates from the address fields
+//     document.querySelectorAll('[id^="addressFrom"]').forEach(input => {
+//         if (input.value) fromDates.push(new Date(input.value));
+//     });
+
+//     document.querySelectorAll('[id^="addressTo"]').forEach(input => {
+//         if (input.value) toDates.push(new Date(input.value));
+//     });
+
+//     if (fromDates.length === 0 || toDates.length === 0) return; // Exit if no valid dates
+
+//     // Get the earliest 'From' date and the latest 'To' date
+//     let earliestStartDate = new Date(Math.min(...fromDates));
+//     let latestEndDate = new Date(Math.max(...toDates));
+//     if (earliestStartDate && latestEndDate) {
+//         let totalYears = (latestEndDate - earliestStartDate) / (1000 * 60 * 60 * 24 * 365);
+
+//          if (totalYears >= 3) {
+//             return true;
+//         }// Returns true if total address duration is less than 3 years, otherwise false
+//     }
+//     showInvalidDates();
+
+//     // return false;
+// }
+
 function validateAddressHistory() {
-    let fromDates = [];
-    let toDates = [];
-
-    // Collect all 'From' and 'To' dates from the address fields
-    document.querySelectorAll('[id^="addressFrom"]').forEach(input => {
-        if (input.value) fromDates.push(new Date(input.value));
+    let totalDays = 0; // Store total address days
+    console.log(' document.querySelectorAll addressSon  ', document.querySelectorAll('#addressSon',));
+    document.querySelectorAll('#mainAddressContainer, #addressSon').forEach(container => {
+        let fromInput = container.querySelector('[id^="addressFrom"]');
+        let toInput = container.querySelector('[id^="addressTo"]');
+       console.log("fromInput?.value && toInput?.value " , fromInput?.value , toInput?.value);
+        if (fromInput?.value && toInput?.value) {
+            let fromDate = new Date(fromInput.value);
+            let toDate = new Date(toInput.value);
+          console.log("fromInput", fromInput.value);
+          console.log("fromInput", toInput.value);
+            if (fromDate <= toDate) {
+                totalDays += (toDate - fromDate) / (1000 * 60 * 60 * 24); // Convert to days
+            }
+        }
     });
 
-    document.querySelectorAll('[id^="addressTo"]').forEach(input => {
-        if (input.value) toDates.push(new Date(input.value));
-    });
-
-    if (fromDates.length === 0 || toDates.length === 0) return; // Exit if no valid dates
-
-    // Get the earliest 'From' date and the latest 'To' date
-    let earliestStartDate = new Date(Math.min(...fromDates));
-    let latestEndDate = new Date(Math.max(...toDates));
-    if (earliestStartDate && latestEndDate) {
-        let totalYears = (latestEndDate - earliestStartDate) / (1000 * 60 * 60 * 24 * 365);
-
-         if (totalYears >= 3) {
-            return true;
-        }// Returns true if total address duration is less than 3 years, otherwise false
+ let totalYears = totalDays / 365; // Convert total days to years
+ console.log("total Days ",totalDays);
+    if (totalYears >= 3) {
+        return true; // Validation passes
     }
-    showInvalidDates();
 
-    // return false;
+    showInvalidDates(); // Show validation error if total duration is less than 3 years
+    return false;
 }
 
 var addressCounter = 1; // Counter for unique IDs
@@ -701,6 +751,8 @@ function addressHistory(value) {
         mainContainer.appendChild(addressHistory);
         maxDate();
         caluclateTotalFeilds();
+        validatePage('form2',1,false);
+        addNextButtonListner(addressHistory.id,1);
     }
 }
 
@@ -711,7 +763,7 @@ function removeHistoryElement(value) {
             addressCounter = 1;
             Element.remove();
         }
-
+        validatePage('form2',1,false);
         caluclateTotalFeilds();
     }
 
@@ -737,6 +789,7 @@ function licenseAccepted(value) {
         if (document.getElementById('denyExplanation')) {
             document.getElementById('denyExplanation').remove();
             caluclateTotalFeilds();
+            validatePage('form2',1,false);
         }
     }
 }
@@ -754,6 +807,9 @@ function licenseDenied(value) {
         MainContainer.appendChild(licenseElement);
         maxDate();
         caluclateTotalFeilds();
+        validatePage('form2',5,false);
+        addNextButtonListner('licenseContainer',5);
+        
     }
 
 }
@@ -771,6 +827,8 @@ function licenseSuspended(value) {
         document.getElementById('suspendContainer').appendChild(suspendExplain);
         maxDate();
         caluclateTotalFeilds();
+        validatePage('form2',5,false);
+        addNextButtonListner('suspendContainer',5);
 
 
     }
@@ -781,13 +839,14 @@ function licenseNotSuspended(value) {
         suspendExplainBox = document.getElementById('suspendedExplanation');
         if (suspendExplainBox) {
             suspendExplainBox.remove();
+            validatePage('form2',5,false);
             caluclateTotalFeilds();
         }
     }
 }
 
 
-function handleDateChange2(event) {
+function handleDateChange2(event,bool) {
     const input = event.target;
     const selectedDate = new Date(input.value);
     const year = selectedDate.getFullYear();
@@ -798,9 +857,11 @@ function handleDateChange2(event) {
         return false;
     }
     if (year > thisYear || year < 1900) {
+        if(bool){
         input.classList.add('highlight');
         errorField.style.display = 'block';
         errorField.textContent = 'Invalid date. Please enter a valid Year.';
+        }
 
         return false;
     } else {
@@ -821,7 +882,7 @@ function formatDateToDDMMYYYY(date) {
     return `${day}/${month}/${year}`;
 }
 
-function validateAndFormatPhoneNumber(input) {
+function validateAndFormatPhoneNumber(input,bool) {
     let rawValue = input.value.replace(/\D/g, ''); // Remove non-numeric characters
     const errorField = input.nextElementSibling; // Select the small tag for error messages
 
@@ -833,18 +894,22 @@ function validateAndFormatPhoneNumber(input) {
     // Handle empty input (allows clearing)
     if (rawValue.length === 0) {
         input.value = '';
+        if(bool){
         input.classList.add('highlight');
         errorField.textContent = 'Phone number must be exactly 10 digits.';
         errorField.style.display = 'block';
+        }
         return false;
     }
 
     // Validate and show error for invalid length
     if (rawValue.length !== 10) {
+        if(bool){
         input.classList.add('highlight');
         errorField.textContent = 'Phone number must be exactly 10 digits.';
         errorField.style.display = 'block';
-        input.value = formatPhoneNumber(rawValue); // Format partial input for better UX
+        input.value = formatPhoneNumber(rawValue);
+        } // Format partial input for better UX
         return false;
     }
 
@@ -901,11 +966,13 @@ function validInput(input, regex, errorMessage) {
     }
 
     if (!regex.test(trimmedValue)) {
+        if(bool){
         input.classList.add('highlight');
         if (errorField) {
             errorField.style.display = 'block';
             errorField.textContent = errorMessage;
         }
+    }
         return false;
     } else {
         input.classList.remove('highlight');
@@ -917,7 +984,7 @@ function validInput(input, regex, errorMessage) {
 }
 
 
-function validateAndFormatSSN(input) {
+function validateAndFormatSSN(input,bool) {
     let rawValue = input.value.replace(/\D/g, ''); // Remove all non-numeric characters
     const errorField = input.nextElementSibling; // Select the small tag for error messages
 
@@ -929,18 +996,22 @@ function validateAndFormatSSN(input) {
     // Handle empty input (allows clearing)
     if (rawValue.length === 0) {
         input.value = '';
+        if(bool){
         input.classList.add('highlight');
         errorField.textContent = 'SSN must be exactly 9 digits.'; // Clear error message
         errorField.style.display = 'block';
+        }
         return false;
     }
 
     // Validate and show error for invalid length (less than 9 digits)
     if (rawValue.length !== 9) {
+        if(bool){
         input.classList.add('highlight');
         errorField.textContent = 'SSN must be exactly 9 digits.';
         errorField.style.display = 'block';
         input.value = formatSSN(rawValue); // Format partial input for better UX
+        }
         return false;
     }
 
@@ -967,7 +1038,7 @@ function formatSSN(value) {
 
 
 
-function validatePage(formId, pageNumber) {
+function validatePage(formId, pageNumber,bool) {
     const form = document.getElementById(formId);
     const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
     const inputs = currentPage.querySelectorAll('input, select, textarea');
@@ -986,7 +1057,7 @@ function validatePage(formId, pageNumber) {
                 const checkboxes = currentPage.querySelectorAll(`input[name="${input.name}"]`);
                 let isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
                 const endDateField = document.getElementById('companySeparation');
-                toggleEmploymentDates();
+               // toggleEmploymentDates();
                 if (endDateField.required && input.id === 'stillEmployee') {
                     // isAnyChecked = Array.from(checkboxes)
                     //     .filter(checkbox => checkbox.id !== 'stillEmployee') // Exclude 'stillEmployee'
@@ -997,7 +1068,9 @@ function validatePage(formId, pageNumber) {
                 if (!isAnyChecked) {
 
                     isValid = false;
+                    if(bool){
                     checkboxes.forEach(checkbox => checkbox.classList.add('highlight-feedback'));
+                    }
                 } else {
                     checkboxes.forEach(checkbox => checkbox.classList.remove('highlight-feedback'));
                 }
@@ -1006,45 +1079,55 @@ function validatePage(formId, pageNumber) {
                 const isAnyChecked = Array.from(radios).some(radio => radio.checked);
                 if (!isAnyChecked) {
                     isValid = false;
+                    if(bool){  
                     radios.forEach(radio => radio.classList.add('highlight-feedback'));
+                    }
                 } else {
                     radios.forEach(radio => radio.classList.remove('highlight-feedback'));
                 }
             } else if (input.required) {
                 if (input.tagName === 'SELECT' && !input.value) {
                     isValid = false;
+                    if(bool){
                     input.classList.add('highlight');
+                    }
                 } else if (input.tagName === 'TEXTAREA' && !input.value.trim()) {
                     isValid = false;
+                    if(bool){
                     input.classList.add('highlight');
+                    }
                 } else if (input.value.trim()) {
                     input.classList.remove('highlight');
                 } else {
                     isValid = false;
+                    if(bool){
                     input.classList.add('highlight');
+                    }
                 }
                 if (input.name === "home" || input.name === "supervisorNo") {
-                    const isPhoneValid = validateAndFormatPhoneNumber(input);
+                    const isPhoneValid = validateAndFormatPhoneNumber(input,bool);
                     if (!isPhoneValid) {
                         isValid = false;
                     }
                 }
                 if (input.name === "ssn") {
-                    const isSSNValid = validateAndFormatSSN(input);
+                    const isSSNValid = validateAndFormatSSN(input,bool);
                     if (!isSSNValid) {
                         isValid = false;
                     }
                 }
                 if (input.type === "date") {
                     const errorField = input.nextElementSibling;
-                    if (!handleDateChange2({ target: input })) {
+                    if (!handleDateChange2({ target: input },bool)) {
                         isValid = false;
                         errorField.textContent = "Invalid date. Please enter a valid Date.";
                         if (input.id === "companySeparation" || input.id === "companyStart") {
                             errorField.textContent = "Please enter a valid Date.";
                         }
+                        if(bool){
                         input.classList.add('highlight');
                         errorField.style.display = 'block';
+                        }
                     } else {
                         input.classList.remove('highlight');
                         errorField.textContent = "";
@@ -1072,14 +1155,25 @@ function validatePage(formId, pageNumber) {
 
         if (isCanvasEmpty) {
             isValid = false;
+            if(bool){
             canvas.classList.add('highlight');
+            }
         } else {
             canvas.classList.remove('highlight');
         }
     });
-
-    //return true;
-     return isValid;
+    if(!bool){
+        const nextBtn=document.getElementById(`next${pageNumber}`)
+           if(isValid){
+               nextBtn.classList.remove('notValid-btn');
+               nextBtn.classList.add('valid-btn');
+           }else{
+               nextBtn.classList.add('notValid-btn');
+               nextBtn.classList.remove('valid-btn');
+           }
+       }
+    return true;
+    //return isValid;
 }
 
 
@@ -1199,6 +1293,8 @@ function handleRadioChange(event) {
         container.insertAdjacentHTML("beforeend", template);
         maxDate();
         caluclateTotalFeilds();
+       validatePage('form2',3,false);
+       addNextButtonListner("violation-container",3);
     } else if (event.target.value === "no") {
         const currentViolation = event.target.closest(".violation-detail");
 
@@ -1226,10 +1322,24 @@ function handleRadioChange(event) {
 
         // Update the violationCount to match the remaining violations
         violationCount = currentViolationIndex;
+        validatePage('form2',3,false);
     }
 }
 
+function addNextButtonListner(id,pageNumber){
+    const Element=document.getElementById(id);
+    inputFeilds=Element.querySelectorAll('input, select, textarea');
+    // inputs.forEach(input=>{
+    // input.addEventListener('input',()=>{
+    //     validatePage('form2',pageNumber,false)
+    // })
+    inputFeilds.forEach(input=>{
+        input.addEventListener('input',()=>{
+            validatePage('form2',pageNumber,false);   
+        })
+    })
 
+}
 let accidentCount = 0;
 
 function handleAccidentChange(event) {
@@ -1257,11 +1367,11 @@ function handleAccidentChange(event) {
                             <label class="question-label">Fatalities or Personal Injuries</label>
                         </div>
                         <div class="form-check mt-2">
-                            <input class="form-check-input" type="radio" required value="no" id="fatalities-${accidentCount}" name="fatalities-${accidentCount}" onchange="updateProgress2('form2')">
+                            <input class="form-check-input" type="radio" required value="Fatalities" id="fatalities-${accidentCount}" name="fatalities-${accidentCount}" onchange="updateProgress2('form2')">
                             <label class="form-check-label label ms-4" for="fatalities-${accidentCount}">Fatalities</label>
                         </div>
                         <div class="form-check mt-2">
-                            <input class="form-check-input" type="radio" required value="yes" id="injuries-${accidentCount}" name="fatalities-${accidentCount}" onchange="updateProgress2('form2')">
+                            <input class="form-check-input" type="radio" required value=">Personal Injuries" id="injuries-${accidentCount}" name="fatalities-${accidentCount}" onchange="updateProgress2('form2')">
                             <label class="form-check-label ms-4" for="injuries-${accidentCount}">Personal Injuries</label>
                         </div>
                         <div class="col-12 mt-4">
@@ -1270,7 +1380,7 @@ function handleAccidentChange(event) {
                         </div>
                         <div class="mb-3 mt-4">
                             <label class="question-label">Attachment (Optional)</label>
-                            <input type="file" id="fileInput-${accidentCount}" class="form-control mt-2" />
+                            <input type="file"  id="fileInput-${accidentCount}" name="Attachment_${accidentCount}" class="form-control mt-2" />
                         </div>
                     </div>
                 </div>
@@ -1292,6 +1402,8 @@ function handleAccidentChange(event) {
         container.insertAdjacentHTML("beforeend", template);
         maxDate();
         caluclateTotalFeilds();
+        validatePage('form2',4,false);
+        addNextButtonListner("accident-container",4);
     } else if (event.target.value === "no") {
         const currentAccident = event.target.closest(".accident-detail");
 
@@ -1319,7 +1431,9 @@ function handleAccidentChange(event) {
 
         // Update the accidentCount to match the remaining accidents
         accidentCount = currentAccidentIndex;
+       
     }
+    validatePage('form2',4,false);
 }
 //<------------------------------------------------------------------PAGE 6---------------------------------->
 
@@ -1580,6 +1694,8 @@ function militaryDriver(value) {
         document.getElementById('militaryDriving').appendChild(militaryElement);
         maxDate();
         addSectionListener();
+        validatePage('form2',6,false);
+        addNextButtonListner("militaryDriving",6);
         caluclateTotalFeilds();
     }
 }
@@ -1589,6 +1705,7 @@ function notMilitaryDriver(value) {
         if (militaryElement) {
             militaryElement.remove();
             caluclateTotalFeilds();
+            validatePage('form2',6,false);
         }
 
 
@@ -1759,8 +1876,10 @@ function addNewEmploymentForm() {
     maxDate();
 
 
-    validateEmploymentHistory();
+   validateEmploymentHistory();
     caluclateTotalFeilds();
+    validatePage('form2',7,false);
+    addNextButtonListner("employmentFormsContainer",7);
 }
 
 
@@ -1798,7 +1917,7 @@ function clearAdditionalForms(currentFormId) {
         formCounter = 1;
     }
 
-    validateEmploymentHistory();
+   validateEmploymentHistory();
     caluclateTotalFeilds();
 
 }
@@ -1902,6 +2021,8 @@ function addDotMode(presentId, value) {
                                         </div>
                                     </div>`
         document.getElementById(presentId).appendChild(dotMode);
+        validatePage('form2',7,false);
+        addNextButtonListner(presentId,7);
         maxDate();
         caluclateTotalFeilds();
 
@@ -1914,6 +2035,7 @@ function removeDotMode(presentId, value) {
         if (removeDot) {
             removeDot.remove();
             caluclateTotalFeilds();
+            validatePage('form2',7,false);
         }
         else {
         }
@@ -1931,26 +2053,28 @@ function addUnemployment(presentId, value) {
                                     <div>
                                         <label class="question-label">Unemployed From</label>
 
-                                        <input required type="date"  class="dab form-control " id="unemployedFrom_${formCounter}"
-                                            name="unemploymentFrom_${formCounter}" onchange="handleDateChange2(event)">
+                                        <input required type="date"  class="dab form-control " id="unemployedFrom_${(unemployNumber) ? ('_' + unemployNumber) : ''}"
+                                            name="unemploymentFrom_${(unemployNumber) ? ('_' + unemployNumber) : ''}" onchange="handleDateChange2(event)">
                                         <small class="error-message"></small>
                                     </div>
                                     <div>
                                         <label class="question-label"> Unemployed To</label>
-                                        <input required type="date"  class="to form-control" id="unemployedTo_${formCounter}"
-                                            name="unemploymentTo_${formCounter}" onchange="handleDateChange2(event)">
+                                        <input required type="date"  class="to form-control" id="unemployedTo_${(unemployNumber) ? ('_' + unemployNumber) : ''}"
+                                            name="unemploymentTo_${(unemployNumber) ? ('_' + unemployNumber) : ''}" onchange="handleDateChange2(event)">
                                         <small class="error-message"></small>
                                     </div>
                                 </div>
 
                                 <div class="col-12 mt-4">
                                     <label class="question-label">Reason for Unemployment</label>
-                                    <textarea maxlength="250" required required name="unemploymentReason_${formCounter}" id="unemployReason_${formCounter}" placeholder="Enter Text"
+                                    <textarea maxlength="250" required name="unemploymentReason_${(unemployNumber) ? ('_' + unemployNumber) : ''}" id="unemployReason_${(unemployNumber) ? ('_' + unemployNumber) : ''}" placeholder="Enter Text"
                                         rows="4" class="form-control mt-2 txtfeild"></textarea>
                                 </div>`
         document.getElementById(presentId).appendChild(unemploy);
         maxDate();
         caluclateTotalFeilds();
+        validatePage('form2',7,false);
+        addNextButtonListner(presentId,7);
     }
 }
 
@@ -1961,56 +2085,208 @@ function removeUnemployment(presentId, value) {
         if (reasonbox) {
             reasonbox.remove();
             caluclateTotalFeilds();
+            validatePage('form2',7,false);
         }
     }
 }
 
 
 
+// function validateEmploymentHistory() {
+//     const container = document.getElementById('employmentFormsContainer');
+//     const forms = container.querySelectorAll('[id^="employmentForm"]');
+//     const currentlyEmployed = document.getElementById('stillEmployee');
+
+//     let earliestStartDate = null;
+//     let latestEndDate = null;
+//     if (currentlyEmployed.checked) {
+//         latestEndDate = new Date();
+
+//     }
+
+//     forms.forEach((form) => {
+//         const startDateField = form.querySelector('[id^="companyStart"]');
+//         const endDateField = form.querySelector('[id^="companySeparation"]');
+
+//         const startDate = startDateField ? new Date(startDateField.value) : null;
+//         const endDate = endDateField ? new Date(endDateField.value) : null;
+
+//         if (startDate && !isNaN(startDate)) {
+//             if (!earliestStartDate || startDate < earliestStartDate) {
+//                 earliestStartDate = startDate;
+//             }
+//         }
+
+//         if (endDate && !isNaN(endDate)) {
+//             if (!latestEndDate || endDate > latestEndDate) {
+//                 latestEndDate = endDate;
+//             }
+//         }
+//     });
+
+//     if (earliestStartDate && latestEndDate) {
+//         totalYears = (latestEndDate - earliestStartDate) / (1000 * 60 * 60 * 24 * 365);
+
+//         if (totalYears < 10) {
+//             addEmploymentValidation();
+//         } else {
+//             removeEmploymentValidation();
+//         }
+//     } else {
+//         addEmploymentValidation();
+//     }
+// }
+
+// function validateEmploymentHistory() {
+//     let totalYears = 0;
+//     const forms = document.querySelectorAll('[id^="employmentForm"]');
+//     const currentlyEmployed = document.getElementById('stillEmployee');
+//     //const stillEmployedField = form.querySelector('[id^="stillEmployee"]');
+//     forms.forEach((form) => {
+//         const startDateField = form.querySelector('[id^="companyStart"]');
+//         const endDateField = form.querySelector('[id^="companySeparation"]');
+      
+
+//         const startDate = startDateField ? new Date(startDateField.value) : null;
+//         let endDate = endDateField ? new Date(endDateField.value) : null;
+
+//         // If "Currently Employed" is checked, use the current date as the end date
+//         if (currentlyEmployed && currentlyEmployed.checked && form.id==='employmentForm_1' ) {
+//             endDate = new Date();
+//         }
+        
+//         if (startDate && !isNaN(startDate) && endDate && !isNaN(endDate) && endDate >= startDate) {
+//             console.log('startDAte ' ,startDate ,'End datee',endDate);
+//             let yearsWorked = (endDate - startDate) / (1000 * 60 * 60 * 24 * 365);
+//             console.log('yearsWorked ',yearsWorked)
+//             totalYears += yearsWorked;
+//         }
+//     });
+//     console.log('total Years ',years);
+//     if (totalYears < 10) {
+//         addEmploymentValidation();
+//     } else {
+//         removeEmploymentValidation();
+//     }
+// }
+
+// function validateEmploymentHistory() {
+//     let totalDays=0;
+//     const forms = document.querySelectorAll('[id^="employmentForm"]');
+
+//     forms.forEach((form) => {
+//         const startDateField = form.querySelector('[id^="companyStart"]');
+//         const endDateField = form.querySelector('[id^="companySeparation"]');
+//         const currentlyEmployed = form.querySelector('[id^="stillEmployee"]');
+
+
+//         console.log("startDateField", startDateField.value);
+//         console.log("endDateField", endDateField.value);
+//         if (startDateField?.value  && endDateField?.value) {
+
+//             let startDate = new Date(startDateField.value);
+//             let endDate = new Date(endDateField.value);
+//             if (currentlyEmployed && currentlyEmployed.checked && form.id=="employmentForm_1") {
+//                 endDate = new Date();
+//             }
+//             startDate.setHours(0, 0, 0, 0);
+//             endDate.setHours(0, 0, 0, 0);
+//           console.log("startDate", startDateField.value);
+//           console.log("endDate", endDateField.value);
+//           if (startDate <= endDate ) {
+//             totalDays += (endDate - startDate) / (1000 * 60 * 60 * 24); // Convert to days
+//         }
+//         }
+
+//     });
+
+//      let totalYears=totalDays/(365);
+//     console.log('Total Employment Years:', totalYears);
+
+//     if (totalYears < 10) {
+//         addEmploymentValidation();
+//     } else {
+//         removeEmploymentValidation();
+//     }
+// }
+
+
 function validateEmploymentHistory() {
-    const container = document.getElementById('employmentFormsContainer');
-    const forms = container.querySelectorAll('[id^="employmentForm"]');
+    let totalDays = 0; // Store total address days
     const currentlyEmployed = document.getElementById('stillEmployee');
-
-    let earliestStartDate = null;
-    let latestEndDate = null;
-    if (currentlyEmployed.checked) {
-        latestEndDate = new Date();
-
-    }
-
-    forms.forEach((form) => {
-        const startDateField = form.querySelector('[id^="companyStart"]');
-        const endDateField = form.querySelector('[id^="companySeparation"]');
-
-        const startDate = startDateField ? new Date(startDateField.value) : null;
-        const endDate = endDateField ? new Date(endDateField.value) : null;
-
-        if (startDate && !isNaN(startDate)) {
-            if (!earliestStartDate || startDate < earliestStartDate) {
-                earliestStartDate = startDate;
+    document.querySelectorAll('[id^="employmentForm"]').forEach(container => {
+        let startDateField = container.querySelector('[id^="companyStart"]');
+        let endDateField = container.querySelector('[id^="companySeparation"]');
+       console.log("startDateField?.value&& endDateField.value " , startDateField?.value, endDateField.value);
+        if (startDateField?.value && endDateField?.value) {
+            let startDate = new Date(startDateField.value);
+            let endDate = new Date(endDateField.value);
+        if (currentlyEmployed && currentlyEmployed.checked && form.id=="employmentForm_1") {
+                endDate = new Date();
             }
-        }
-
-        if (endDate && !isNaN(endDate)) {
-            if (!latestEndDate || endDate > latestEndDate) {
-                latestEndDate = endDate;
+            startDate.setHours(0, 0, 0, 0);
+            endDate.setHours(0, 0, 0, 0);
+          console.log("startDate", startDate);
+          console.log("endDate", endDate);
+            if (startDate <= endDate) {
+                console.log("endDate - startDate", endDate - startDate);
+                totalDays += (endDate - startDate) / (1000 * 60 * 60 * 24); // Convert to days
             }
         }
     });
 
-    if (earliestStartDate && latestEndDate) {
-        totalYears = (latestEndDate - earliestStartDate) / (1000 * 60 * 60 * 24 * 365);
-
-        if (totalYears < 10) {
-            addEmploymentValidation();
-        } else {
-            removeEmploymentValidation();
-        }
-    } else {
+ let totalYears = totalDays / 365; // Convert total days to years
+ console.log("total Days ",totalDays);
+ console.log("total Years ",totalYears);
+    if (totalYears/2 < 10) {
         addEmploymentValidation();
     }
+    else{
+        removeEmploymentValidation();
+    }
 }
+
+// function validateEmploymentHistory() {
+//     let totalDays = 0;
+//     const forms = document.querySelectorAll('[id^="employmentForm"]');
+
+//     forms.forEach((form) => {
+//         const startDateField = form.querySelector('[id^="companyStart"]');
+//         const endDateField = form.querySelector('[id^="companySeparation"]');
+//         const currentlyEmployed = form.querySelector('[id^="stillEmployee"]');
+
+//         if (startDateField?.value) {
+//             let startDate = new Date(startDateField.value);
+//             let endDate = endDateField?.value ? new Date(endDateField.value) : new Date(); // Default to today if empty
+
+//             // If "Currently Employed" is checked, use today's date
+//             if (currentlyEmployed && currentlyEmployed.checked && ) {
+//                 endDate = new Date();
+//             }
+
+//             // Normalize to remove time components
+//             startDate.setHours(0, 0, 0, 0);
+//             endDate.setHours(0, 0, 0, 0);
+
+//             console.log("startDate:", startDate.toISOString().split("T")[0]);
+//             console.log("endDate:", endDate.toISOString().split("T")[0]);
+
+//             if (startDate <= endDate) {
+//                 totalDays += Math.floor((endDate - startDate) / (1000 * 60 * 60 * 24)); // Convert to whole days
+//             }
+//         }
+//     });
+
+//     let totalYears = totalDays / 365;
+//     console.log('Total Employment Years:', totalYears);
+
+//     if (totalYears < 10) {
+//         addEmploymentValidation();
+//     } else {
+//         removeEmploymentValidation();
+//     }
+// }
+
 
 function toggleEmploymentDates() {
     const stillEmployeeCheckbox = document.getElementById('stillEmployee');
@@ -2112,6 +2388,7 @@ function initializeSignatureBox() {
         context.beginPath();
         const pos = getMousePosition(event);
         removeCanvasHighlight();
+        validatePage('form2',9,false);
         context.moveTo(pos.x, pos.y);
     });
 
@@ -2119,6 +2396,7 @@ function initializeSignatureBox() {
         if (isDrawing) {
             const pos = getMousePosition(event);
             removeCanvasHighlight();
+            validatePage('form2',9,false);
             context.lineTo(pos.x, pos.y);
             context.stroke();
         }
@@ -2191,11 +2469,11 @@ function closeModal() {
 }
 
 function addForm2EventListeners() {
-    const form1SubmitButton = document.querySelector('.submit-btn');
+    const form1SubmitButton = document.getElementById('next9');
     if (form1SubmitButton) {
         form1SubmitButton.addEventListener('click', function (event) {
             event.preventDefault();
-            if (validatePage('form2', 9)) {
+            if (validatePage('form2', 9,true)) {
 
                 showCheckmark('form3Tick');
                 showSuccessModal();
@@ -2210,7 +2488,7 @@ function addForm2EventListeners() {
 }
 
 function showSuccessModal() {
-    if (validatePage('form2', 9)) {
+    if (validatePage('form2', 9 ,true)) {
         const successModal = document.getElementById('successModal3');
         const overlay = document.getElementById('overlay3');
         if (successModal && overlay) {

@@ -9,13 +9,20 @@ function initializeForm(formId) {
 
     caluclateTotalFeilds();
     updatePageInfo(formId, 1);
+    const firstPage = document.querySelector(`#${formId}-page1`);
+    const inputs = firstPage.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+        input.addEventListener('input', () => {
+         validatePage(formId,1,false);
+        });
+    });
 
     const fields = document.querySelectorAll(`#${formId} .form-page input, #${formId} .form-page select,#${formId} .form-page textarea,#${formId} .form-page canvas`);
     fields.forEach(field => {
         field.addEventListener('change', () => {
             updateProgress(formId);
 
-            toggleFields(formId, toggleFieldsConfig);
+          //  toggleFields(formId, toggleFieldsConfig);
         });
     });
 
@@ -47,7 +54,7 @@ function handleMutualExclusiveCheckboxes(formId) {
 
             updateProgress(formId);
 
-            toggleFields(formId, toggleFieldsConfig);
+           // toggleFields(formId, toggleFieldsConfig);
         });
     });
 }
@@ -144,8 +151,8 @@ function caluclateFilledFeilds() {
         }
     });
 }
-function validatePage(formId, pageNumber) {
-
+function validatePage(formId, pageNumber,bool) {
+   console.log('FORMID , PAGENUMBER , BOOL ',formId, pageNumber, bool)
     const form = document.getElementById(formId);
     const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
     const inputs = currentPage.querySelectorAll('input, select, textarea');
@@ -160,32 +167,54 @@ function validatePage(formId, pageNumber) {
     
                 if (!isAnyChecked) {
                     isValid = false;
+                    if(bool){
                     checkboxes.forEach(checkbox => checkbox.classList.add('highlight-feedback'));
+                    }
                 } else {
                     checkboxes.forEach(checkbox => checkbox.classList.remove('highlight-feedback'));
+                }
+                if (input.required && input.offsetParent !== null) {  
+                    // **Check if the field is visible**
+                    if (input.tagName === 'SELECT' && !input.value.trim()) {
+                        isValid = false;
+                        if(bool){
+                        input.classList.add('highlight');
+                        }
+                    } else if (input.tagName === 'TEXTAREA' && !input.value.trim()) {
+                        isValid = false;
+                        if(bool){
+                        input.classList.add('highlight');
+                        }
+                    }
                 }
             } else if (input.required && input.offsetParent !== null) {  
                 // **Check if the field is visible**
                 if (input.tagName === 'SELECT' && !input.value.trim()) {
                     isValid = false;
+                    if(bool){
                     input.classList.add('highlight');
+                    }
                 } else if (input.tagName === 'TEXTAREA' && !input.value.trim()) {
                     isValid = false;
+                    if(bool){
                     input.classList.add('highlight');
+                    }
                 } else if (input.value.trim()) {
                     input.classList.remove('highlight');
                 } else {
                     isValid = false;
+                    if(bool){
                     input.classList.add('highlight');
+                    }
                 } if (input.name === "home" || input.name === "cell") {
-                    const isPhoneValid = validateAndFormatPhoneNumber(input);
+                    const isPhoneValid = validateAndFormatPhoneNumber(input,bool);
                     if (!isPhoneValid) {
                       
                         isValid = false;
                     }
                 } if (input.id === "weight") {
 
-                    const result = validInput(input,/^\d{0,3}(\.\d{0,2})?$/, 'Only numbers with up to 2 decimals are allowed');
+                    const result = validInput(input,/^\d{0,3}(\.\d{0,2})?$/, 'Only numbers with up to 2 decimals are allowed',bool);
                     if (!result) {
                         isValid = false;
                     }
@@ -210,7 +239,7 @@ function validatePage(formId, pageNumber) {
     inputsToValidate.forEach((input) => {
         const rule = getValidationRule(input);
         if (rule) {
-            const result = validInput(input, rule.regex, rule.errorMessage);
+            const result = validInput(input, rule.regex, rule.errorMessage ,bool);
             if (!result) {
                 isValid = false;
             }
@@ -225,14 +254,26 @@ function validatePage(formId, pageNumber) {
 
         if (isCanvasEmpty) {
             isValid = false;
+            if(bool){
             canvas.classList.add('highlight');
+            }
         } else {
             canvas.classList.remove('highlight');
         }
     });
-
+ if(!bool){
+ const nextBtn=document.getElementById(`next${pageNumber}`)
+    if(isValid){
+        nextBtn.classList.remove('notValid-btn');
+        nextBtn.classList.add('valid-btn');
+    }else{
+        nextBtn.classList.add('notValid-btn');
+        nextBtn.classList.remove('valid-btn');
+    }
+}
     //return true;
     return isValid;
+
 }
 
 function getValidationRule(input) {
@@ -260,7 +301,7 @@ function getValidationRule(input) {
 function nextPage(formId, pageNumber) {
    
 
-    if (validatePage(formId, pageNumber - 1)) {
+    if (validatePage(formId, pageNumber - 1,true)) {
    
     if (pageNumber == 4) {
     
@@ -272,7 +313,18 @@ function nextPage(formId, pageNumber) {
     const form = document.getElementById(formId);
     const currentPage = form.querySelector(`#${formId}-page${pageNumber - 1}`);
     const nextPage = form.querySelector(`#${formId}-page${pageNumber}`);
-
+    const inputs = nextPage.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+        input.addEventListener('input', () => {
+         validatePage(formId,pageNumber,false);
+        });
+        if(input.type==='checkbox'){
+        input.addEventListener('change',()=>{
+        toggleFields(pageNumber, toggleFieldsConfig);
+        })
+        }
+    });
+    
     currentPage.style.display = 'none';
     nextPage.style.display = 'block';
 
@@ -497,26 +549,36 @@ var toggleFieldsConfig = [
 
 ];
 
-function toggleFields(formId, config) {
+function toggleFields(pageNumber, config) {
     config.forEach(({ checkboxId, fieldsToShow }) => {
         const checkbox = document.getElementById(checkboxId);
 
         fieldsToShow.forEach(fieldId => {
             const fieldElement = document.getElementById(fieldId);
             const childElements = fieldElement.querySelectorAll('*');  // Select all child elements
-
+            const inputs =fieldElement.querySelectorAll('select,textarea')
             if (checkbox && checkbox.checked) {
                 fieldElement.style.display = 'block';  // Make the field visible
                 // Make sure all child elements within this field are also displayed
                 childElements.forEach(child => {
                     child.style.display = 'block';  // Ensure child elements are also visible
                 });
+                inputs.forEach(input=>{
+                    input.addEventListener('input',()=>{
+                        validatePage('form1',pageNumber,false);
+                    })
+                })
                 // Set required attribute for the first child element (if needed)
                 const firstChild = childElements[0];
                 if (firstChild && firstChild.id) {
                     document.getElementById(firstChild.id).required = true;
                 }
             } else {
+                inputs.forEach(input=>{
+                    input.removeEventListener('input',()=>{
+                        validatePage('form1',pageNumber,false);
+                    })
+                })
                 fieldElement.style.display = 'none';  // Hide the field
                 // Hide all child elements when the parent is hidden
                 childElements.forEach(child => {
@@ -535,9 +597,10 @@ function toggleFields(formId, config) {
             }
         });
     });
-
+  
     caluclateTotalFeilds();
-    caluclateFilledFeilds(); // Recalculate total fields count
+    caluclateFilledFeilds();
+    validatePage('form1',pageNumber,false); // Recalculate total fields count
 }
 
 var canvas, context;
@@ -576,6 +639,7 @@ function initializeSignatureBox() {
         context.beginPath();
         const pos = getMousePosition(event);
         removeCanvasHighlight();
+        validatePage('form1',4,false);
         context.moveTo(pos.x, pos.y);
     });
 
@@ -584,6 +648,7 @@ function initializeSignatureBox() {
             const pos = getMousePosition(event);
             context.lineTo(pos.x, pos.y);
             removeCanvasHighlight();
+            validatePage('form1',4,false);
             context.stroke();
         }
     });
@@ -631,6 +696,7 @@ function clearSign() {
         } else {
             console.error("Signature box is not initialized.");
         }
+        validatePage('form1',4,false);
     });
 
 }
@@ -657,11 +723,11 @@ function closeModal() {
 
 
 function addForm1EventListeners() {
-    const form1SubmitButton = document.querySelector('.submit-btn');
+    const form1SubmitButton = document.getElementById('next4');
     if (form1SubmitButton) {
         form1SubmitButton.addEventListener('click', function (event) {
             event.preventDefault();
-            if (validatePage('form1', 4)) {
+            if (validatePage('form1', 4,true)) {
 
               showCheckmark('form2Tick');
                 showSuccessModal();
@@ -719,7 +785,7 @@ function hideCheckmark(formId) {
 
 
 
-function validInput(input, regex, errorMessage) {
+function validInput(input, regex, errorMessage,bool) {
     if (!(regex instanceof RegExp)) {
         console.error("Invalid regex provided to validInput:", regex);
         return;
@@ -728,12 +794,14 @@ function validInput(input, regex, errorMessage) {
     const value = input.value;
     const errorField = input.nextElementSibling;
 
-    if (!regex.test(value) || !value) {
+    if ((!regex.test(value) || !value)) {
+        if(bool){
         input.classList.add('highlight');
         if (errorField) {
             errorField.style.display = 'block';
             errorField.textContent = errorMessage;
         }
+    }
 
         // Ensure regex is properly defined before modifying input value
         try {
@@ -818,30 +886,36 @@ function formatDateToDDMMYYYY(date) {
 //     }
 // }
 
-function validateAndFormatPhoneNumber(input) {
-    let rawValue = input.value.replace(/\D/g, ''); // Remove non-numeric characters
-    const errorField = input.nextElementSibling; // Select the small tag for error messages
+function validateAndFormatPhoneNumber(input,bool) {
+    const errorField = input.nextElementSibling;
+
+     var rawValue = input.value.replace(/\D/g, ''); // Remove non-numeric characters
+    // Select the small tag for error messages
 
     // Truncate to 10 digits if input exceeds 10 characters
-    if (rawValue.length > 10) {
+    if (bool && rawValue.length > 10) {
         rawValue = rawValue.substring(0, 10);
     }
 
     // Handle empty input (allows clearing)
     if (rawValue.length === 0) {
+        if(bool){
         input.value = '';
         input.classList.add('highlight');
         errorField.textContent = 'Phone number must be exactly 10 digits.';
         errorField.style.display = 'block';
+        }
         return false;
     }
 
     // Validate and show error for invalid length
     if (rawValue.length !== 10) {
+        if(bool){
         input.classList.add('highlight');
         errorField.textContent = 'Phone number must be exactly 10 digits.';
         errorField.style.display = 'block';
-        input.value = formatPhoneNumber(rawValue); // Format partial input for better UX
+        input.value = formatPhoneNumber(rawValue);
+        } // Format partial input for better UX
         return false;
     }
 
@@ -850,7 +924,9 @@ function validateAndFormatPhoneNumber(input) {
     errorField.style.display = 'none';
     input.classList.remove('highlight');
     // Format and set the phone number
+    if(bool){
     input.value = formatPhoneNumber(rawValue);
+    }
     return true;
 }
 

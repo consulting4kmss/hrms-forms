@@ -10,6 +10,18 @@ function drugTestPositive(value) {
 
     }
 }
+ function addChangeEvent() {
+    console.log("Entered event Listener");
+    // Select all input fields (including text, radio, and date)
+    const inputs = document.querySelectorAll("input");
+
+    // Add the onchange event to each input field
+    inputs.forEach(input => {
+        input.addEventListener("input", function () {
+            validateForm(false);
+        });
+    });
+};
 
 function drugTestNegative(value) {
     if (value == 'no') {
@@ -19,7 +31,6 @@ function drugTestNegative(value) {
         }
     }
 }
-
 
 function handleDateChange(event) {
     const input = event.target;
@@ -57,8 +68,6 @@ function getMousePosition(event) {
         y: (event.clientY - rect.top) * scaleY
     };
 }
-
-
 
 function initializeSignatureBox() {
 
@@ -117,6 +126,7 @@ function clearSign() {
 }
 
 function removeCanvasHighlight() {
+    validateForm(false);
     canvas.classList.remove('highlight');
 }
 
@@ -131,7 +141,7 @@ function saveSign() {
     }
 }
 
-function validateForm() {
+function validateForm(bool) {
    // const form = document.getElementById(formId);
     const currentPage = document.getElementById(`firstForm-page1`);
     const inputs = currentPage.querySelectorAll('input, select, textarea');
@@ -152,21 +162,26 @@ function validateForm() {
                 const isAnyChecked = Array.from(radios).some(radio => radio.checked);
                 if (!isAnyChecked) {
                     isValid = false;
+                    if(bool){
                     radios.forEach(radio => radio.classList.add('highlight-feedback'));
-                } else {
+                    }
+                } else{
                     radios.forEach(radio => radio.classList.remove('highlight-feedback'));
                 }
             } else if (input.required) {
                if (input.tagName === 'TEXTAREA' && !input.value.trim()) {
                     isValid = false;
-                    input.classList.add('highlight');
-                } else if (input.value.trim()) {
+                    if(bool){
+                    input.classList.add('highlight');}
+                } else if (input.value.trim()) {      
                     input.classList.remove('highlight');
                 } else {
                     isValid = false;
+                    if(bool){
                     input.classList.add('highlight');
+                    }
                 }
-                if (input.type === "date") {
+                if (input.type === "date" && bool) {
                     const errorField = input.nextElementSibling;
                     if (!handleDateChange2({ target: input })) {
                         isValid = false;
@@ -174,10 +189,13 @@ function validateForm() {
                         if (input.id === "companySeparation" || input.id === "companyStart") {
                             errorField.textContent = "Please enter a valid Date.";
                         }
+                        if(bool){
                         input.classList.add('highlight');
+                        }
                         errorField.style.display = 'block';
                     } else {
                         input.classList.remove('highlight');
+                        
                         errorField.textContent = "";
                         errorField.style.display = 'none';
                     }
@@ -192,7 +210,9 @@ function validateForm() {
     
             if (isCanvasEmpty) {
                 isValid = false;
+                if(bool){
                 canvases.classList.add('highlight');
+                }
             } else {
                 canvases.classList.remove('highlight');
             }
@@ -205,35 +225,41 @@ function validateForm() {
         validateInput();
     });
 
-
-
+    const Element= document.getElementById('submit1').classList;
+    if(isValid){
+      Element.add('submit-valid');
+      Element.remove('submit-btn');
+    }else{
+        Element.add('submit-btn');
+        Element.remove('submit-valid');
+    }
 
     //return true;
      return isValid;
 }
 
-function validateCanvases(formId,pageNumber){
-    const form = document.getElementById(formId);
-    const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
-    const canvases = currentPage.querySelectorAll('canvas');
-    canvases.forEach(canvas => {
-        const context = canvas.getContext('2d');
-        const pixelData = context.getImageData(0, 0, canvas.width, canvas.height).data;
-        const isCanvasEmpty = !pixelData.some(value => value !== 0);
+// function validateCanvases(formId,pageNumber){
+//     const form = document.getElementById(formId);
+//     const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
+//     const canvases = currentPage.querySelectorAll('canvas');
+//     canvases.forEach(canvas => {
+//         const context = canvas.getContext('2d');
+//         const pixelData = context.getImageData(0, 0, canvas.width, canvas.height).data;
+//         const isCanvasEmpty = !pixelData.some(value => value !== 0);
 
-        if (isCanvasEmpty) {
+//         if (isCanvasEmpty) {
            
-            canvas.classList.add('highlight');
+//             canvas.classList.add('highlight');
            
-        } else {
-            canvas.classList.remove('highlight');
+//         } else {
+//             canvas.classList.remove('highlight');
           
-        }
-    });
-}
+//         }
+//     });
+// }
 
 function Submission() {
-    const valid = validateForm();
+    const valid = validateForm(true);
     if (valid) {
         showSuccessModal();
         collectFormData();
@@ -280,7 +306,7 @@ function formatDateToDDMMYYYY(date) {
 function showSuccessModal() {
    const drugPositive= document.getElementById('affirmativeNotes');
    const overlay = document.getElementById('overlay1');
-   const valid=validateForm();
+   const valid=validateForm(true);
     if(drugPositive && valid){
         console.log("getting the drug test positive value", drugPositive.value);
     const drugModal= document.getElementById('drugTestFailed');
@@ -518,3 +544,4 @@ function collectFormData() {
 
 
 initializeSignatureBox();
+addChangeEvent();

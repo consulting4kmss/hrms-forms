@@ -1172,8 +1172,8 @@ function validatePage(formId, pageNumber,bool) {
                nextBtn.classList.remove('valid-btn');
            }
        }
-    return true;
-    //return isValid;
+    //return true;
+    return isValid;
 }
 
 

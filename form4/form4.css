@@ -115,7 +115,7 @@ input[type="number"]::-webkit-outer-spin-button {
     border-left: none !important;
     border-right: none !important;
     background-color: #4A72A7 !important;
-    border-bottom: 2px solid !important;
+    border-bottom: 2px solid;
     border-color:white ;
     color: white !important;
 

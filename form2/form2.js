@@ -840,8 +840,11 @@ function handleDateChange(event) {
         return;
     }else{
         input.classList.remove('highlight');
-        errorField.style.display = 'none';
-        errorField.style.display = 'none';
+        if(errorField){        
+            errorField.style.display = 'none';
+            errorField.style.display = 'none';
+        }
+
 
     }
 }

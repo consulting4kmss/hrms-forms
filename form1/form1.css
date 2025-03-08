@@ -107,7 +107,6 @@
     color: inherit;
     padding: 15px;
     border-radius: 8px;
-    /* border: 2px solid #003366 !important; */
     box-sizing: border-box;
 }
 
@@ -194,10 +193,10 @@ canvas {
 }
 
 input::placeholder {
-    color:white !important;        /* Change the placeholder text color */
-    font-style: normal !important; /* Add italic style to the placeholder */
-    font-size: 14px;    /* Adjust the font size of the placeholder */
-    opacity: 1;         /* Ensure the placeholder is fully visible */
+    color:white !important;        
+    font-style: normal !important; 
+    font-size: 14px;  
+    opacity: 1;        
 }
  
 input {
@@ -210,16 +209,6 @@ input {
     font-size: 14px;
     transition: border-bottom 0.3s ease;
 } 
-/* input {
-    width: 100%;
-    padding: 5px 0;
-    background-color: #4A72A7 !important;
-    border: none;
-    border-bottom: 2px solid white !important;
-
-    font-size: 14px;
-    transition: border-bottom 0.3s ease;
-} */
 
 input:focus {
     border-bottom: 2px solid #66b2ff !important;
@@ -233,14 +222,9 @@ input::placeholder {
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1); /* Invert the color of the calendar icon to make it white */
+    filter: invert(1); 
 }
-/* .error-message {
-    color: #f74f4f ;
-    font-size: 12px;
-    display: none; 
-    margin-top: 4px;
-} */
+
 .form-control{
     border-top: none !important;
     border-left: none !important;
@@ -271,7 +255,7 @@ input::placeholder {
     display: inline-block;
     width: 80px;
     height: 80px;
-    background-color: #F39200; /* Exact orange color */
+    background-color: #F39200; 
     clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
     position: relative;
     text-align: center;
@@ -335,17 +319,6 @@ input::placeholder {
     cursor: pointer;
 }
 
-
-/* .colse-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-} */
 
 .colse-btn:hover {
     background-color: #003d7a;

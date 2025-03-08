@@ -4,7 +4,7 @@ let formCounter = 1;
 let years = 0;
 let totalYears = 0;
 function nextPage2(pageNumber) {
-    if (validatePage('form2', pageNumber - 1,true)) {
+    if (validatePage('form2', pageNumber - 1, true)) {
         if (pageNumber == 9) {
             initializeSignatureBox();
             clearSign();
@@ -14,7 +14,7 @@ function nextPage2(pageNumber) {
         if (pageNumber == 7) {
             addSectionListener();
             checkSections();
-          validateEmploymentHistory();
+            validateEmploymentHistory();
         }
         if (pageNumber - 1 == 7) {
             reason = document.getElementById('employHistroy');
@@ -30,17 +30,17 @@ function nextPage2(pageNumber) {
 
             }
         }
-        if(pageNumber-1==1){
-            if (validateAddressHistory()){
+        if (pageNumber - 1 == 1) {
+            if (validateAddressHistory()) {
                 collectFormData('form2', pageNumber - 1);
                 const currentPage = document.querySelector(`#form2-page${pageNumber - 1}`);
                 const nextPage = document.querySelector(`#form2-page${pageNumber}`);
                 const inputs = nextPage.querySelectorAll('input, select, textarea');
-                inputs.forEach(input=>{
-                input.addEventListener('input',()=>{
-                    validatePage('form2',pageNumber,false)
+                inputs.forEach(input => {
+                    input.addEventListener('input', () => {
+                        validatePage('form2', pageNumber, false)
+                    })
                 })
-            })
                 currentPage.style.display = 'none';
                 nextPage.style.display = 'block';
                 updatePageInfo2('form2', pageNumber);
@@ -48,16 +48,16 @@ function nextPage2(pageNumber) {
             };
         }
         else {
-    //         const form = document.getElementById(formId);
-    // const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
+            //         const form = document.getElementById(formId);
+            // const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
 
             collectFormData('form2', pageNumber - 1);
             const currentPage = document.querySelector(`#form2-page${pageNumber - 1}`);
             const nextPage = document.querySelector(`#form2-page${pageNumber}`);
             const inputs = nextPage.querySelectorAll('input, select, textarea');
-            inputs.forEach(input=>{
-                input.addEventListener('input',()=>{
-                    validatePage('form2',pageNumber,false)
+            inputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    validatePage('form2', pageNumber, false)
                 })
             })
             currentPage.style.display = 'none';
@@ -193,11 +193,11 @@ function initializeForm2(formId) {
     });
     const nextPage = document.querySelector(`#form2-page1`);
     const inputs = nextPage.querySelectorAll('input, select, textarea');
-            inputs.forEach(input=>{
-                input.addEventListener('input',()=>{
-                    validatePage('form2',1,false);
-                })
-            })
+    inputs.forEach(input => {
+        input.addEventListener('input', () => {
+            validatePage('form2', 1, false);
+        })
+    })
 
     handleMutualExclusiveCheckboxes2(formId);
 
@@ -338,7 +338,7 @@ function caluclateTotalFeilds() {
 //         // Calculate duration in years
 //         if (earliestStartDate && latestEndDate) {
 //             let totalYears = (latestEndDate - earliestStartDate) / (1000 * 60 * 60 * 24 * 365);
-            
+
 //             if (totalYears >= 3 && validContainerIndex === -1) {
 //                 validContainerIndex = index; // First container that completes 3 years
 //             }
@@ -361,7 +361,7 @@ function caluclateTotalFeilds() {
 
 // // Main function to handle initial Yes/No for address history
 // function addAddressHistory() {
-    
+
 //         const addressHistory = document.createElement('div');
 //         addressHistory.id = `subAddressContainer${addressCounter}`;
 //         addressHistory.innerHTML = `
@@ -486,7 +486,7 @@ function caluclateTotalFeilds() {
 //         maxDate();
 //         caluclateTotalFeilds();
 //         addressCounter++;
-    
+
 // }
 
 // function removeExtraAddressHistory(validContainerIndex) {
@@ -535,22 +535,22 @@ function validateAddressHistory() {
     document.querySelectorAll('#mainAddressContainer, #addressSon').forEach(container => {
         let fromInput = container.querySelector('[id^="addressFrom"]');
         let toInput = container.querySelector('[id^="addressTo"]');
-       console.log("fromInput?.value && toInput?.value " , fromInput?.value , toInput?.value);
+        console.log("fromInput?.value && toInput?.value ", fromInput?.value, toInput?.value);
         if (fromInput?.value && toInput?.value) {
             let fromDate = new Date(fromInput.value);
             let toDate = new Date(toInput.value);
-          console.log("fromInput", fromInput.value);
-          console.log("fromInput", toInput.value);
+            console.log("fromInput", fromInput.value);
+            console.log("fromInput", toInput.value);
             if (fromDate <= toDate) {
                 console.log("to date - from date ", toDate - fromDate);
-                console.log("(toDate - fromDate) / (1000 * 60 * 60 * 24) ",(toDate - fromDate) / (1000 * 60 * 60 * 24));
+                console.log("(toDate - fromDate) / (1000 * 60 * 60 * 24) ", (toDate - fromDate) / (1000 * 60 * 60 * 24));
                 totalDays += (toDate - fromDate) / (1000 * 60 * 60 * 24); // Convert to days
             }
         }
     });
 
- let totalYears = totalDays / 365; // Convert total days to years
- console.log("total Days ",totalDays);
+    let totalYears = totalDays / 365; // Convert total days to years
+    console.log("total Days ", totalDays);
     if (totalYears >= 3) {
         return true; // Validation passes
     }
@@ -725,7 +725,7 @@ function addressHistory(value) {
                         </div>
 
                     </div>
-                                            <div class="mt-3">
+                         <div class="mt-3">
                             <h6 class="just-color">
                                 <p class="question-label">Did you have additional prior address to add?</p>
                             </h6>
@@ -753,8 +753,8 @@ function addressHistory(value) {
         mainContainer.appendChild(addressHistory);
         maxDate();
         caluclateTotalFeilds();
-        validatePage('form2',1,false);
-        addNextButtonListner(addressHistory.id,1);
+        validatePage('form2', 1, false);
+        addNextButtonListner(addressHistory.id, 1);
     }
 }
 
@@ -765,7 +765,7 @@ function removeHistoryElement(value) {
             addressCounter = 1;
             Element.remove();
         }
-        validatePage('form2',1,false);
+        validatePage('form2', 1, false);
         caluclateTotalFeilds();
     }
 
@@ -790,9 +790,9 @@ function licenseAccepted(value) {
     if (value == 'no') {
         if (document.getElementById('denyExplanation')) {
             document.getElementById('denyExplanation').remove();
-            validatePage('form2',5,false);
+            validatePage('form2', 5, false);
             caluclateTotalFeilds();
-          
+
         }
     }
 }
@@ -810,9 +810,9 @@ function licenseDenied(value) {
         MainContainer.appendChild(licenseElement);
         maxDate();
         caluclateTotalFeilds();
-        validatePage('form2',5,false);
-        addNextButtonListner('licenseContainer',5);
-        
+        validatePage('form2', 5, false);
+        addNextButtonListner('licenseContainer', 5);
+
     }
 
 }
@@ -830,8 +830,8 @@ function licenseSuspended(value) {
         document.getElementById('suspendContainer').appendChild(suspendExplain);
         maxDate();
         caluclateTotalFeilds();
-        validatePage('form2',5,false);
-        addNextButtonListner('suspendContainer',5);
+        validatePage('form2', 5, false);
+        addNextButtonListner('suspendContainer', 5);
 
 
     }
@@ -842,14 +842,14 @@ function licenseNotSuspended(value) {
         suspendExplainBox = document.getElementById('suspendedExplanation');
         if (suspendExplainBox) {
             suspendExplainBox.remove();
-            validatePage('form2',5,false);
+            validatePage('form2', 5, false);
             caluclateTotalFeilds();
         }
     }
 }
 
 
-function handleDateChange2(event,bool) {
+function handleDateChange2(event, bool) {
     const input = event.target;
     const selectedDate = new Date(input.value);
     const year = selectedDate.getFullYear();
@@ -860,10 +860,10 @@ function handleDateChange2(event,bool) {
         return false;
     }
     if (year > thisYear || year < 1900) {
-        if(bool){
-        input.classList.add('highlight');
-        errorField.style.display = 'block';
-        errorField.textContent = 'Invalid date. Please enter a valid Year.';
+        if (bool) {
+            input.classList.add('highlight');
+            errorField.style.display = 'block';
+            errorField.textContent = 'Invalid date. Please enter a valid Year.';
         }
 
         return false;
@@ -885,7 +885,7 @@ function formatDateToDDMMYYYY(date) {
     return `${day}/${month}/${year}`;
 }
 
-function validateAndFormatPhoneNumber(input,bool) {
+function validateAndFormatPhoneNumber(input, bool) {
     let rawValue = input.value.replace(/\D/g, ''); // Remove non-numeric characters
     const errorField = input.nextElementSibling; // Select the small tag for error messages
 
@@ -897,21 +897,21 @@ function validateAndFormatPhoneNumber(input,bool) {
     // Handle empty input (allows clearing)
     if (rawValue.length === 0) {
         input.value = '';
-        if(bool){
-        input.classList.add('highlight');
-        errorField.textContent = 'Phone number must be exactly 10 digits.';
-        errorField.style.display = 'block';
+        if (bool) {
+            input.classList.add('highlight');
+            errorField.textContent = 'Phone number must be exactly 10 digits.';
+            errorField.style.display = 'block';
         }
         return false;
     }
 
     // Validate and show error for invalid length
     if (rawValue.length !== 10) {
-        if(bool){
-        input.classList.add('highlight');
-        errorField.textContent = 'Phone number must be exactly 10 digits.';
-        errorField.style.display = 'block';
-        input.value = formatPhoneNumber(rawValue);
+        if (bool) {
+            input.classList.add('highlight');
+            errorField.textContent = 'Phone number must be exactly 10 digits.';
+            errorField.style.display = 'block';
+            input.value = formatPhoneNumber(rawValue);
         } // Format partial input for better UX
         return false;
     }
@@ -969,13 +969,13 @@ function validInput(input, regex, errorMessage) {
     }
 
     if (!regex.test(trimmedValue)) {
-        if(bool){
-        input.classList.add('highlight');
-        if (errorField) {
-            errorField.style.display = 'block';
-            errorField.textContent = errorMessage;
+        if (bool) {
+            input.classList.add('highlight');
+            if (errorField) {
+                errorField.style.display = 'block';
+                errorField.textContent = errorMessage;
+            }
         }
-    }
         return false;
     } else {
         input.classList.remove('highlight');
@@ -987,7 +987,7 @@ function validInput(input, regex, errorMessage) {
 }
 
 
-function validateAndFormatSSN(input,bool) {
+function validateAndFormatSSN(input, bool) {
     let rawValue = input.value.replace(/\D/g, ''); // Remove all non-numeric characters
     const errorField = input.nextElementSibling; // Select the small tag for error messages
 
@@ -999,21 +999,21 @@ function validateAndFormatSSN(input,bool) {
     // Handle empty input (allows clearing)
     if (rawValue.length === 0) {
         input.value = '';
-        if(bool){
-        input.classList.add('highlight');
-        errorField.textContent = 'SSN must be exactly 9 digits.'; // Clear error message
-        errorField.style.display = 'block';
+        if (bool) {
+            input.classList.add('highlight');
+            errorField.textContent = 'SSN must be exactly 9 digits.'; // Clear error message
+            errorField.style.display = 'block';
         }
         return false;
     }
 
     // Validate and show error for invalid length (less than 9 digits)
     if (rawValue.length !== 9) {
-        if(bool){
-        input.classList.add('highlight');
-        errorField.textContent = 'SSN must be exactly 9 digits.';
-        errorField.style.display = 'block';
-        input.value = formatSSN(rawValue); // Format partial input for better UX
+        if (bool) {
+            input.classList.add('highlight');
+            errorField.textContent = 'SSN must be exactly 9 digits.';
+            errorField.style.display = 'block';
+            input.value = formatSSN(rawValue); // Format partial input for better UX
         }
         return false;
     }
@@ -1041,7 +1041,7 @@ function formatSSN(value) {
 
 
 
-function validatePage(formId, pageNumber,bool) {
+function validatePage(formId, pageNumber, bool) {
     const form = document.getElementById(formId);
     const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
     const inputs = currentPage.querySelectorAll('input, select, textarea');
@@ -1060,7 +1060,7 @@ function validatePage(formId, pageNumber,bool) {
                 const checkboxes = currentPage.querySelectorAll(`input[name="${input.name}"]`);
                 let isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
                 const endDateField = document.getElementById('companySeparation');
-               // toggleEmploymentDates();
+                // toggleEmploymentDates();
                 if (endDateField.required && input.id === 'stillEmployee') {
                     // isAnyChecked = Array.from(checkboxes)
                     //     .filter(checkbox => checkbox.id !== 'stillEmployee') // Exclude 'stillEmployee'
@@ -1071,8 +1071,8 @@ function validatePage(formId, pageNumber,bool) {
                 if (!isAnyChecked) {
 
                     isValid = false;
-                    if(bool){
-                    checkboxes.forEach(checkbox => checkbox.classList.add('highlight-feedback'));
+                    if (bool) {
+                        checkboxes.forEach(checkbox => checkbox.classList.add('highlight-feedback'));
                     }
                 } else {
                     checkboxes.forEach(checkbox => checkbox.classList.remove('highlight-feedback'));
@@ -1082,8 +1082,8 @@ function validatePage(formId, pageNumber,bool) {
                 const isAnyChecked = Array.from(radios).some(radio => radio.checked);
                 if (!isAnyChecked) {
                     isValid = false;
-                    if(bool){  
-                    radios.forEach(radio => radio.classList.add('highlight-feedback'));
+                    if (bool) {
+                        radios.forEach(radio => radio.classList.add('highlight-feedback'));
                     }
                 } else {
                     radios.forEach(radio => radio.classList.remove('highlight-feedback'));
@@ -1091,45 +1091,45 @@ function validatePage(formId, pageNumber,bool) {
             } else if (input.required) {
                 if (input.tagName === 'SELECT' && !input.value) {
                     isValid = false;
-                    if(bool){
-                    input.classList.add('highlight');
+                    if (bool) {
+                        input.classList.add('highlight');
                     }
                 } else if (input.tagName === 'TEXTAREA' && !input.value.trim()) {
                     isValid = false;
-                    if(bool){
-                    input.classList.add('highlight');
+                    if (bool) {
+                        input.classList.add('highlight');
                     }
                 } else if (input.value.trim()) {
                     input.classList.remove('highlight');
                 } else {
                     isValid = false;
-                    if(bool){
-                    input.classList.add('highlight');
+                    if (bool) {
+                        input.classList.add('highlight');
                     }
                 }
                 if (input.name === "home" || input.name === "supervisorNo") {
-                    const isPhoneValid = validateAndFormatPhoneNumber(input,bool);
+                    const isPhoneValid = validateAndFormatPhoneNumber(input, bool);
                     if (!isPhoneValid) {
                         isValid = false;
                     }
                 }
                 if (input.name === "ssn") {
-                    const isSSNValid = validateAndFormatSSN(input,bool);
+                    const isSSNValid = validateAndFormatSSN(input, bool);
                     if (!isSSNValid) {
                         isValid = false;
                     }
                 }
                 if (input.type === "date") {
                     const errorField = input.nextElementSibling;
-                    if (!handleDateChange2({ target: input },bool)) {
+                    if (!handleDateChange2({ target: input }, bool)) {
                         isValid = false;
                         errorField.textContent = "Invalid date. Please enter a valid Date.";
                         if (input.id === "companySeparation" || input.id === "companyStart") {
                             errorField.textContent = "Please enter a valid Date.";
                         }
-                        if(bool){
-                        input.classList.add('highlight');
-                        errorField.style.display = 'block';
+                        if (bool) {
+                            input.classList.add('highlight');
+                            errorField.style.display = 'block';
                         }
                     } else {
                         input.classList.remove('highlight');
@@ -1158,23 +1158,23 @@ function validatePage(formId, pageNumber,bool) {
 
         if (isCanvasEmpty) {
             isValid = false;
-            if(bool){
-            canvas.classList.add('highlight');
+            if (bool) {
+                canvas.classList.add('highlight');
             }
         } else {
             canvas.classList.remove('highlight');
         }
     });
-    if(!bool){
-        const nextBtn=document.getElementById(`next${pageNumber}`)
-           if(isValid){
-               nextBtn.classList.remove('notValid-btn');
-               nextBtn.classList.add('valid-btn');
-           }else{
-               nextBtn.classList.add('notValid-btn');
-               nextBtn.classList.remove('valid-btn');
-           }
-       }
+    if (!bool) {
+        const nextBtn = document.getElementById(`next${pageNumber}`)
+        if (isValid) {
+            nextBtn.classList.remove('notValid-btn');
+            nextBtn.classList.add('valid-btn');
+        } else {
+            nextBtn.classList.add('notValid-btn');
+            nextBtn.classList.remove('valid-btn');
+        }
+    }
     //return true;
     return isValid;
 }
@@ -1237,7 +1237,7 @@ function collectFormData(formId, pageNumber) {
     return data;
 }
 
-let violationCount = 1;
+let violationCount = 0;
 
 function handleRadioChange(event) {
     const container = document.getElementById("violation-container");
@@ -1247,7 +1247,7 @@ function handleRadioChange(event) {
         violationCount++;
 
         // Create a unique ID for the new violation detail
-        const violationId = `violationDetail-${violationCount}`;
+        const violationId = `violationDetail_${violationCount}`;
 
         // Create the template for the new violation detail
         const template = `
@@ -1255,38 +1255,38 @@ function handleRadioChange(event) {
                 <div class="address-container mt-3">
                     <div class="col-12">
                         <label class="question-label">Date of Conviction</label>
-                        <input required type="date"  class="dab" name="date-of-conviction-${violationCount}" id="voilationDate-${violationCount}" oninput="handleDateChange2(event,true)" onchange="updateProgress2('form2')">
+                        <input required type="date"  class="dab" name="date-of-conviction_${violationCount}" id="voilationDate-${violationCount}" oninput="handleDateChange2(event,true)" onchange="updateProgress2('form2')">
                          <small class="error-message"></small>
                     </div>
                     <div class="col-12 mt-3">
                         <label class="question-label">Offence</label>
-                        <input required type="text" data-validate="text" name="offence-${violationCount}" autocomplete="off" class="form-control"  maxlength="200" id="voilationOffence-${violationCount}" onchange="updateProgress2('form2')">
+                        <input required type="text" data-validate="text" name="offence_${violationCount}" autocomplete="off" class="form-control"  maxlength="200" id="voilationOffence-${violationCount}" onchange="updateProgress2('form2')">
                     </div>
                     <div class="col-12 mt-3 mb-3">
                         <label class="question-label">Location</label>
-                        <input required type="text" data-validate="text" name="voilationLocation-${violationCount}" autocomplete="off" class="form-control"  maxlength="200" id="voilationLocation-${violationCount}" onchange="updateProgress2('form2')">
+                        <input required type="text" data-validate="text" name="voilationLocation_${violationCount}" autocomplete="off" class="form-control"  maxlength="200" id="voilationLocation-${violationCount}" onchange="updateProgress2('form2')">
                     </div>
                     <div class="mt-3 mb-2">
                         <label class="question-label">Type Of Vehicle Operated</label>
                         <div class="form-check col-12 mt-2">
-                            <input class="form-check-input box" type="radio" required id="offenceCommercial-${violationCount}" name="offenceVehicle-${violationCount}" value="Commercial" onchange="updateProgress2('form2')">
-                            <label class="form-check-label" for="offenceCommercial-${violationCount}" class="label ms-3">Commercial</label>
+                            <input class="form-check-input box" type="radio"  name="offenceVehicle_${violationCount}" required id="offenceCommercial_${violationCount}" value="Commercial" onchange="updateProgress2('form2')"/>
+                            <label class="form-check-label" for="offenceCommercial_${violationCount}" class="label ms-3">Commercial</label>
                         </div>
                         <div class="form-check col-12 mt-2">
-                            <input class="form-check-input box" type="radio" required id="offencePrivate-${violationCount}" name="offenceVehicle-${violationCount}" value="Private" onchange="updateProgress2('form2')">
-                            <label class="form-check-label"  for="offencePrivate-${violationCount}" class="label ms-3">Private</label>
+                            <input class="form-check-input box" type="radio" name="offenceVehicle_${violationCount}" required id="offencePrivate_${violationCount}"  value="Private" onchange="updateProgress2('form2')"/>
+                            <label class="form-check-label"  for="offencePrivate_${violationCount}" class="label ms-3">Private</label>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 d-flex flex-column mt-2">
                     <label class="question-label">Do you have additional traffic violations to add?</label>
                     <div class="form-check d-flex align-items-end">
-                        <input class="form-check-input" type="radio" required value="no" id="violationNo-${violationCount}" name="trafficVoilation-${violationCount}" onchange="handleRadioChange(event)">
-                        <label class="form-check-label label ms-4" for="violationNo-${violationCount}">No</label>
+                        <input class="form-check-input" type="radio" required value="no" id="violationNo_${violationCount}" name="trafficVoilation_${violationCount}" onchange="handleRadioChange(event)">
+                        <label class="form-check-label label ms-4" for="violationNo_${violationCount}">No</label>
                     </div>
                     <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" required value="yes" id="violationYes-${violationCount}" name="trafficVoilation-${violationCount}" onchange="handleRadioChange(event)">
-                        <label class="form-check-label ms-4" for="violationYes-${violationCount}">Yes</label>
+                        <input class="form-check-input" type="radio" name="trafficVoilation_${violationCount}" required value="yes" id="violationYes_${violationCount}"  onchange="handleRadioChange(event)">
+                        <label class="form-check-label ms-4" for="violationYes_${violationCount}">Yes</label>
                     </div>
                 </div>
             </div>
@@ -1296,8 +1296,8 @@ function handleRadioChange(event) {
         container.insertAdjacentHTML("beforeend", template);
         maxDate();
         caluclateTotalFeilds();
-       validatePage('form2',3,false);
-       addNextButtonListner("violation-container",3);
+        validatePage('form2', 3, false);
+        addNextButtonListner("violation-container", 3);
     } else if (event.target.value === "no") {
         const currentViolation = event.target.closest(".violation-detail");
 
@@ -1306,9 +1306,9 @@ function handleRadioChange(event) {
             while (container.firstChild) {
                 container.removeChild(container.firstChild);
             }
-            violationCount = 1;
+            violationCount = 0;
             caluclateTotalFeilds();
-            validatePage('form2',3,false);
+            validatePage('form2', 3, false);
             return;
         }
 
@@ -1326,20 +1326,20 @@ function handleRadioChange(event) {
 
         // Update the violationCount to match the remaining violations
         violationCount = currentViolationIndex;
-        validatePage('form2',3,false);
+        validatePage('form2', 3, false);
     }
 }
 
-function addNextButtonListner(id,pageNumber){
-    const Element=document.getElementById(id);
-    inputFeilds=Element.querySelectorAll('input, select, textarea');
+function addNextButtonListner(id, pageNumber) {
+    const Element = document.getElementById(id);
+    inputFeilds = Element.querySelectorAll('input, select, textarea');
     // inputs.forEach(input=>{
     // input.addEventListener('input',()=>{
     //     validatePage('form2',pageNumber,false)
     // })
-    inputFeilds.forEach(input=>{
-        input.addEventListener('input',()=>{
-            validatePage('form2',pageNumber,false);   
+    inputFeilds.forEach(input => {
+        input.addEventListener('input', () => {
+            validatePage('form2', pageNumber, false);
         })
     })
 
@@ -1406,8 +1406,8 @@ function handleAccidentChange(event) {
         container.insertAdjacentHTML("beforeend", template);
         maxDate();
         caluclateTotalFeilds();
-        validatePage('form2',4,false);
-        addNextButtonListner("accident-container",4);
+        validatePage('form2', 4, false);
+        addNextButtonListner("accident-container", 4);
     } else if (event.target.value === "no") {
         const currentAccident = event.target.closest(".accident-detail");
 
@@ -1418,7 +1418,7 @@ function handleAccidentChange(event) {
                 caluclateTotalFeilds();
             }
             accidentCount = 0;
-            validatePage('form2',4,false);
+            validatePage('form2', 4, false);
             return;
         }
 
@@ -1436,9 +1436,9 @@ function handleAccidentChange(event) {
 
         // Update the accidentCount to match the remaining accidents
         accidentCount = currentAccidentIndex;
-       
+
     }
-    validatePage('form2',4,false);
+    validatePage('form2', 4, false);
 }
 //<------------------------------------------------------------------PAGE 6---------------------------------->
 
@@ -1699,8 +1699,8 @@ function militaryDriver(value) {
         document.getElementById('militaryDriving').appendChild(militaryElement);
         maxDate();
         addSectionListener();
-        validatePage('form2',6,false);
-        addNextButtonListner("militaryDriving",6);
+        validatePage('form2', 6, false);
+        addNextButtonListner("militaryDriving", 6);
         caluclateTotalFeilds();
     }
 }
@@ -1710,7 +1710,7 @@ function notMilitaryDriver(value) {
         if (militaryElement) {
             militaryElement.remove();
             caluclateTotalFeilds();
-            validatePage('form2',6,false);
+            validatePage('form2', 6, false);
         }
 
 
@@ -1881,10 +1881,10 @@ function addNewEmploymentForm() {
     maxDate();
 
 
-   validateEmploymentHistory();
+    validateEmploymentHistory();
     caluclateTotalFeilds();
-    addNextButtonListner(`employmentForm_${formCounter}`,7);
-    validatePage('form2',7,false);
+    addNextButtonListner(`employmentForm_${formCounter}`, 7);
+    validatePage('form2', 7, false);
 }
 
 
@@ -1917,14 +1917,14 @@ function clearAdditionalForms(currentFormId) {
                 parseInt(form.id.split('_')[1])
             )
         );
-       
+
     } else {
         // Reset to 1 if no forms remain
         formCounter = 1;
     }
 
-   validateEmploymentHistory();
-   validatePage('form2',7,false);
+    validateEmploymentHistory();
+    validatePage('form2', 7, false);
     caluclateTotalFeilds();
 
 }
@@ -2028,8 +2028,8 @@ function addDotMode(presentId, value) {
                                         </div>
                                     </div>`
         document.getElementById(presentId).appendChild(dotMode);
-        validatePage('form2',7,false);
-        addNextButtonListner(presentId,7);
+        validatePage('form2', 7, false);
+        addNextButtonListner(presentId, 7);
         maxDate();
         caluclateTotalFeilds();
 
@@ -2042,7 +2042,7 @@ function removeDotMode(presentId, value) {
         if (removeDot) {
             removeDot.remove();
             caluclateTotalFeilds();
-            validatePage('form2',7,false);
+            validatePage('form2', 7, false);
         }
         else {
         }
@@ -2080,8 +2080,8 @@ function addUnemployment(presentId, value) {
         document.getElementById(presentId).appendChild(unemploy);
         maxDate();
         caluclateTotalFeilds();
-        validatePage('form2',7,false);
-        addNextButtonListner(presentId,7);
+        validatePage('form2', 7, false);
+        addNextButtonListner(presentId, 7);
     }
 }
 
@@ -2092,7 +2092,7 @@ function removeUnemployment(presentId, value) {
         if (reasonbox) {
             reasonbox.remove();
             caluclateTotalFeilds();
-            validatePage('form2',7,false);
+            validatePage('form2', 7, false);
         }
     }
 }
@@ -2152,7 +2152,7 @@ function removeUnemployment(presentId, value) {
 //     forms.forEach((form) => {
 //         const startDateField = form.querySelector('[id^="companyStart"]');
 //         const endDateField = form.querySelector('[id^="companySeparation"]');
-      
+
 
 //         const startDate = startDateField ? new Date(startDateField.value) : null;
 //         let endDate = endDateField ? new Date(endDateField.value) : null;
@@ -2161,7 +2161,7 @@ function removeUnemployment(presentId, value) {
 //         if (currentlyEmployed && currentlyEmployed.checked && form.id==='employmentForm_1' ) {
 //             endDate = new Date();
 //         }
-        
+
 //         if (startDate && !isNaN(startDate) && endDate && !isNaN(endDate) && endDate >= startDate) {
 //             console.log('startDAte ' ,startDate ,'End datee',endDate);
 //             let yearsWorked = (endDate - startDate) / (1000 * 60 * 60 * 24 * 365);
@@ -2224,32 +2224,32 @@ function validateEmploymentHistory() {
     document.querySelectorAll('[id^="employmentForm"]').forEach(container => {
         let startDateField = container.querySelector('[id^="companyStart"]');
         let endDateField = container.querySelector('[id^="companySeparation"]');
-       console.log("startDateField?.value&& endDateField.value " , startDateField?.value, endDateField.value);
+        console.log("startDateField?.value&& endDateField.value ", startDateField?.value, endDateField.value);
         if (startDateField?.value && endDateField?.value) {
             let startDate = new Date(startDateField.value);
             let endDate = new Date(endDateField.value);
-        if (currentlyEmployed && currentlyEmployed.checked && container.id=="employmentForm_1") {
+            if (currentlyEmployed && currentlyEmployed.checked && container.id == "employmentForm_1") {
                 endDate = new Date();
             }
             startDate.setHours(0, 0, 0, 0);
             endDate.setHours(0, 0, 0, 0);
-          console.log("startDate", startDate);
-          console.log("endDate", endDate);
+            console.log("startDate", startDate);
+            console.log("endDate", endDate);
             if (startDate <= endDate) {
                 console.log("endDate - startDate", endDate - startDate);
-                console.log("(endDate - startDate) / (1000 * 60 * 60 * 24) ",(endDate - startDate) / (1000 * 60 * 60 * 24));
+                console.log("(endDate - startDate) / (1000 * 60 * 60 * 24) ", (endDate - startDate) / (1000 * 60 * 60 * 24));
                 totalDays += (endDate - startDate) / (1000 * 60 * 60 * 24); // Convert to days
             }
         }
     });
 
-totalYears = totalDays / 365; // Convert total days to years
- console.log("total Days ",totalDays);
- console.log("total Years ",totalYears);
+    totalYears = totalDays / 365; // Convert total days to years
+    console.log("total Days ", totalDays);
+    console.log("total Years ", totalYears);
     if (totalYears < 10) {
         addEmploymentValidation();
     }
-    else{
+    else {
         removeEmploymentValidation();
     }
 }
@@ -2303,18 +2303,18 @@ function toggleEmploymentDates() {
     const errorField = endDateField.nextElementSibling;
 
     if (stillEmployeeCheckbox.checked) {
-         const currentDate = new Date();
+        const currentDate = new Date();
         // const startDate = new Date(currentDate.setFullYear(currentDate.getFullYear() - 10));
         // startDateField.value = startDate.toISOString().split('T')[0];
 
-        endDateField.value =currentDate.toISOString().split('T')[0];;
+        endDateField.value = currentDate.toISOString().split('T')[0];;
         endDateField.classList.remove('highlight');
         endDateField.removeAttribute("required");
         errorField.textContent = "";
         errorField.style.display = 'none';
     } else {
         // startDateField.value = '';
-         endDateField.value = '';
+        endDateField.value = '';
         errorField.textContent = "Please enter a valid date";
         endDateField.classList.add('highlight');
         errorField.style.display = 'block';
@@ -2396,7 +2396,7 @@ function initializeSignatureBox() {
         context.beginPath();
         const pos = getMousePosition(event);
         removeCanvasHighlight();
-        validatePage('form2',9,false);
+        validatePage('form2', 9, false);
         context.moveTo(pos.x, pos.y);
     });
 
@@ -2404,7 +2404,7 @@ function initializeSignatureBox() {
         if (isDrawing) {
             const pos = getMousePosition(event);
             removeCanvasHighlight();
-            validatePage('form2',9,false);
+            validatePage('form2', 9, false);
             context.lineTo(pos.x, pos.y);
             context.stroke();
         }
@@ -2432,7 +2432,7 @@ function clearSign() {
         } else {
             console.error("Signature box is not initialized.");
         }
-        validatePage('form2',9,false);
+        validatePage('form2', 9, false);
     });
 }
 
@@ -2466,11 +2466,11 @@ function showInvalidDates() {
 }
 
 function closeModal() {
-    const invalidDates=document.getElementById('invalidDates');
+    const invalidDates = document.getElementById('invalidDates');
     const overlay = document.getElementById('overlay3');
     const invalidModal = document.getElementById('invalidModal');
     if (invalidModal && overlay || invalidDates) {
-        invalidDates.style.display='none';
+        invalidDates.style.display = 'none';
         invalidModal.style.display = 'none';
         overlay.style.display = 'none';
         document.body.style.overflow = 'auto';
@@ -2482,7 +2482,7 @@ function addForm2EventListeners() {
     if (form1SubmitButton) {
         form1SubmitButton.addEventListener('click', function (event) {
             event.preventDefault();
-            if (validatePage('form2', 9,true)) {
+            if (validatePage('form2', 9, true)) {
 
                 showCheckmark('form3Tick');
                 showSuccessModal();
@@ -2497,7 +2497,7 @@ function addForm2EventListeners() {
 }
 
 function showSuccessModal() {
-    if (validatePage('form2', 9 ,true)) {
+    if (validatePage('form2', 9, true)) {
         const successModal = document.getElementById('successModal3');
         const overlay = document.getElementById('overlay3');
         if (successModal && overlay) {

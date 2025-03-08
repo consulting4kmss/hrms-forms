@@ -1,3 +1,5 @@
+
+//Renders text area if drug test is selected as affirmative
 function drugTestPositive(value) {
     if (value == 'yes') {
         const affirmative = document.createElement('div');
@@ -10,19 +12,8 @@ function drugTestPositive(value) {
 
     }
 }
- function addChangeEvent() {
-    console.log("Entered event Listener");
-    // Select all input fields (including text, radio, and date)
-    const inputs = document.querySelectorAll("input");
 
-    // Add the onchange event to each input field
-    inputs.forEach(input => {
-        input.addEventListener("input", function () {
-            validateForm(false);
-        });
-    });
-};
-
+//Removes text area if drug test is selected as negative
 function drugTestNegative(value) {
     if (value == 'no') {
         const removeCertificate = document.getElementById(`affirmativeNotes`);
@@ -32,6 +23,20 @@ function drugTestNegative(value) {
     }
 }
 
+//add oninput event to each input feild for checking if all feilds are filled to make submit button blue
+ function addChangeEvent() {
+    console.log("Entered event Listener");
+    const inputs = document.querySelectorAll("input");
+
+    inputs.forEach(input => {
+        input.addEventListener("input", function () {
+            validateForm(false);
+        });
+    });
+};
+
+
+//Makes sure Enter date is valid
 function handleDateChange(event) {
     const input = event.target;
     const selectedDate = new Date(input.value);
@@ -54,11 +59,13 @@ function handleDateChange(event) {
 
     }
 }
+
+//variables for singnature drawing
 var canvas, context;
 var isDrawing = false;
 var signatureData;
 
-
+//this is used to get the mouse position
 function getMousePosition(event) {
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
@@ -69,6 +76,7 @@ function getMousePosition(event) {
     };
 }
 
+//it adds necessary event listners on rendering the form
 function initializeSignatureBox() {
 
     canvas = document.getElementById('signBox1');
@@ -113,7 +121,7 @@ function initializeSignatureBox() {
 
 }
 
-
+//this method clears the sign in canvas
 function clearSign() {
     const clearButton = document.getElementById('clearButton');
     clearButton.addEventListener('click', () => {
@@ -125,24 +133,24 @@ function clearSign() {
     });
 }
 
+//removes the red highlight on canvas if signature is drawn on it 
 function removeCanvasHighlight() {
     validateForm(false);
     canvas.classList.remove('highlight');
 }
 
+//it saves the signature
 function saveSign() {
     if (canvas) {
         signatureData = canvas.toDataURL('image/png');
         console.log('sign Data', signatureData);
-       // validateCanvases('form1', 1);
-
     } else {
         console.error("Signature box is not initialized.");
     }
 }
 
+//this function collects all required input feilds canvases checks if they are valid if not it highlights the respective feilds and returns false else return true 
 function validateForm(bool) {
-   // const form = document.getElementById(formId);
     const currentPage = document.getElementById(`firstForm-page1`);
     const inputs = currentPage.querySelectorAll('input, select, textarea');
     const canvases = document.getElementById('signBox1');
@@ -234,30 +242,11 @@ function validateForm(bool) {
         Element.remove('submit-valid');
     }
 
-    //return true;
+   // return true;
     return isValid;
 }
 
-// function validateCanvases(formId,pageNumber){
-//     const form = document.getElementById(formId);
-//     const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
-//     const canvases = currentPage.querySelectorAll('canvas');
-//     canvases.forEach(canvas => {
-//         const context = canvas.getContext('2d');
-//         const pixelData = context.getImageData(0, 0, canvas.width, canvas.height).data;
-//         const isCanvasEmpty = !pixelData.some(value => value !== 0);
-
-//         if (isCanvasEmpty) {
-           
-//             canvas.classList.add('highlight');
-           
-//         } else {
-//             canvas.classList.remove('highlight');
-          
-//         }
-//     });
-// }
-
+//on clicking submit it calls validateform which checks if all required input feilds are filled if so shows sucess dialog else shows 
 function Submission() {
     const valid = validateForm(true);
     if (valid) {
@@ -269,6 +258,7 @@ function Submission() {
     }
 }
 
+//it make sure that date entered is valid
 function handleDateChange2(event) {
     const input = event.target;
     const selectedDate = new Date(input.value);
@@ -303,6 +293,7 @@ function formatDateToDDMMYYYY(date) {
     return `${day}/${month}/${year}`;
 }
 
+// it displays the hidden success dialogand overlay 
 function showSuccessModal() {
    const drugPositive= document.getElementById('affirmativeNotes');
    const overlay = document.getElementById('overlay1');
@@ -336,6 +327,7 @@ function showSuccessModal() {
 
 }
 
+//it displays the hidden invalid dialog and overlay
 function showInvalidModal() {
     const invalidModal = document.getElementById('invalidModal1');
     const overlay = document.getElementById('overlay1');
@@ -346,6 +338,7 @@ function showInvalidModal() {
     }
 }
 
+//it validates the entered input based on regex if value is not as per rules adds error message else removes error message
 function validInput(input, regex, errorMessage) {
     if (!(regex instanceof RegExp)) {
         console.error("Invalid regex provided to validInput:", regex);
@@ -393,6 +386,7 @@ function validInput(input, regex, errorMessage) {
     }
 }
 
+//it gets the element by id passed and makes its property 
 function closeDialog(id) {
     const modalContent = document.getElementById(id);
     const overlay = document.getElementById('overlay1');
@@ -410,6 +404,8 @@ function closeDialog(id) {
        document.body.style.overflow = 'auto';
     }
 }
+
+//it gets the hides the element of passed id( successmodal) and overlay rendes the nexr following form
 function loadForm2(id) {
     const modalContent = document.getElementById(id);
     const overlay = document.getElementById('overlay1');
@@ -433,6 +429,7 @@ function loadForm2(id) {
         .catch(error => console.error('Error loading Form 1:', error));
 }
 
+//it loads the style sheet of the following form
 function loadStyleSheet(href) {
     const existingLink = document.querySelector(`link[href="${href}"]`);
     if (!existingLink) {
@@ -443,25 +440,30 @@ function loadStyleSheet(href) {
     }
 }
 
-// Function to remove a CSS file
+// Function to remove a CSS file of current file
 function removeStyleSheet(href) {
     const link = document.querySelector(`link[href="${href}"]`);
     if (link) {
         link.parentNode.removeChild(link);
     }
 }
+
+// it loads the script of the next following form
 function loadScript(scriptUrl) {
     const script = document.createElement('script');
     script.src = scriptUrl;
     document.body.appendChild(script);
 }
 
+// it removes the script of the next following form
 function removeScript(scriptUrl) {
     const script = document.querySelector(`script[src="${scriptUrl}"]`);
     if (script) {
         script.parentNode.removeChild(script);
     }
 }
+
+//it makes checkmark visible by adding a class and removing current class beside the form headings after the form is submitted 
 function showCheckmark(formId) {
     const checkmark = document.getElementById(formId);
     if (checkmark) {
@@ -469,7 +471,7 @@ function showCheckmark(formId) {
     }
 }
 
-
+//it hides the check mark 
 function hideCheckmark(formId) {
     const checkmark = document.getElementById(formId);
     if (checkmark) {
@@ -477,6 +479,7 @@ function hideCheckmark(formId) {
     }
 }
 
+//it collects all the data from the input feilds  for sending to api
 function collectFormData() {
     const formData = new FormData();
     const form = document.getElementById("firstForm-page1");

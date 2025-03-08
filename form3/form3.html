@@ -36,14 +36,14 @@
 
                             <input required type="text" placeholder="Enter Text" data-validate="text" name="applicant name"
                                 autocomplete="off" maxlength="50"
-                                oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.')"
+                                oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.',true)"
                                 class="form-control" onchange="updateProgress2('form2')" />
                             <small class="error-message"></small>
                         </div>
                         <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
                             <label class="question-label">Date of Birth</label>
                             <input required type="date" class="dab" name="applicantdob" id="applicantDob"
-                                oninput="handleDateChange2(event)" onchange="updateProgress2('form2')">
+                                oninput="handleDateChange2(event,true)" onchange="updateProgress2('form2')">
 
 
                             <small class="error-message"></small>
@@ -53,7 +53,7 @@
                         <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
                             <label class="question-label">Social Security Number (SSN)</label>
                             <input required type="text" placeholder="xxx-xx-xxxx" name="ssn" autocomplete="off"
-                                maxlength="11" oninput="validateAndFormatSSN(this);" class="form-control"
+                                maxlength="11" oninput="validateAndFormatSSN(this,true);" class="form-control"
                                 onchange="updateProgress2('form2')" />
                             <small class="error-message" style="color: rgb(255, 94, 94); display: none;">Error
                                 message</small>
@@ -62,7 +62,7 @@
                         <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
                             <label class="question-label">Phone</label>
                             <input required datavalidate='' type="text" name="phone-number" autocomplete="off"
-                                placeholder="(xxx) xxx-xxxx" oninput="validateAndFormatPhoneNumber(this);"
+                                placeholder="(xxx) xxx-xxxx" oninput="validateAndFormatPhoneNumber(this,true);"
                                 class="form-control" onchange="updateProgress2('form2')" />
                             <small class="error-message" style="color: rgb(255, 94, 94); display: none;"></small>
                             <!-- Error message container -->
@@ -94,7 +94,7 @@
                             <!-- <input required type="text" data-validate="text" autocomplete="off" name="city" onchange="updateProgress2('form2')"> -->
                             <input required type="text" data-validate="text" name="city" maxlength="50"
                                 autocomplete="off"
-                                oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only Letters are allowed.')"
+                                oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only Letters are allowed.',true)"
                                 class="form-control" onchange="updateProgress2('form2')" placeholder="Enter Text" />
                             <small class="error-message"></small>
                         </div>
@@ -158,7 +158,7 @@
                             <label class="question-label">Zip</label>
                             <input required type="text" name="zip" autocomplete="off" maxlength="9"
                                 data-validate="number" class="form-control" onchange="updateProgress2('form2')"
-                                oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')"
+                                oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.',true)"
                                 placeholder="Enter Number" />
                             <small class="error-message"></small>
                         </div>
@@ -168,13 +168,13 @@
                             <label class="question-label">From</label>
 
                             <input required type="date" class="dab form-control " id="addressFrom" name="addressFrom"
-                                oninput="handleDateChange2(event)"/>
+                                oninput="handleDateChange2(event,true)"/>
                             <small class="error-message"></small>
                         </div>
                         <div>
                             <label class="question-label">To</label>
                             <input required type="date" class="to form-control" id="addressTo" name="addressTo"
-                                oninput="handleDateChange2(event)"/>
+                                oninput="handleDateChange2(event,true)"/>
                             <small class="error-message"></small>
                         </div>
                     </div>
@@ -293,7 +293,7 @@
                     <div class="col-12 mt-3 mb-3">
                         <label class="question-label">Current DL Expiration Date </label>
                         <input required type="date" class="dab " name="current dl expiry" id="dlxpiry"
-                            oninput="handleDateChange2(event)" onchange="updateProgress2('form2')">
+                            oninput="handleDateChange2(event,true)" onchange="updateProgress2('form2')">
                         <small class="error-message"></small>
                     </div>
 
@@ -370,7 +370,7 @@
                     <div class="col-12 mt-3 mb-3">
                         <label class="question-label">Previous DL Expiration Date </label>
                         <input required type="date" class="dab  " name="pre dl Expiry" id="preDlExpiry"
-                            oninput="handleDateChange2(event)" onchange="updateProgress2('form2')">
+                            oninput="handleDateChange2(event,true)" onchange="updateProgress2('form2')">
                         <small class="error-message"></small>
                     </div>
 
@@ -687,7 +687,7 @@
                         employment
                         with reason and dates
                     </p>
-                    <div id="employmentFormsContainer">
+                    <div id="employmentsContainer">
                         <div id="employmentForm_1">
                             <div class="address-container">
                                 <div class="row">
@@ -698,7 +698,7 @@
                                         <input required type="text" data-validate="text" name="currentCompany"
                                             autocomplete="off" class="form-control" maxlength="50"
                                             placeholder="Enter Text"
-                                            oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.')"
+                                            oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.',true)"
                                             onchange="updateProgress2('form2')" />
                                         <small class="error-message"></small>
                                     </div>
@@ -709,7 +709,7 @@
 
                                         <input required type="text" placeholder="Enter Text" data-validate="text"
                                             name="companyType" autocomplete="off" class="form-control" maxlength="50"
-                                            oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.')"
+                                            oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.',true)"
                                             onchange="updateProgress2('form2')" />
                                         <small class="error-message"></small>
                                     </div>
@@ -729,7 +729,7 @@
                                         <label class="question-label">City</label>
                                         <input required type="text" data-validate="text" name="companyCity"
                                             maxlength="50" autocomplete="off"
-                                            oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.')"
+                                            oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.',true)"
                                             class="form-control" onchange="updateProgress2('form2')"
                                             placeholder="Enter Text" />
                                         <small class="error-message"></small>
@@ -796,7 +796,7 @@
                                         <input required type="text" name="companyZip" autocomplete="off" maxlength="9"
                                             data-validate="number" class="form-control"
                                             onchange="updateProgress2('form2')"
-                                            oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')"
+                                            oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.',true)"
                                             placeholder="Enter Number" />
                                         <small class="error-message"></small>
                                     </div>
@@ -805,14 +805,14 @@
                                     <div class="col">
                                         <label class="question-label">Start Date</label>
                                         <input required type="date" class="dab form-control" id="companyStart"
-                                            name="startDate" onchange="validateEmploymentHistory()" oninput="handleDateChange2(event)"/>
+                                            name="startDate" onchange="validateEmploymentHistory()" oninput="handleDateChange2(event,true)"/>
                                         <small class="error-message"></small>
                                     </div>
 
                                     <div class="col">
                                         <label class="question-label">Separation Date</label>
                                         <input required type="date" class="dab form-control" id="companySeparation"
-                                            name="separationDate" onchange="validateEmploymentHistory()" oninput="handleDateChange2(event)"/>
+                                            name="separationDate" onchange="validateEmploymentHistory()" oninput="handleDateChange2(event,true)"/>
                                         <small class="error-message"></small>
                                     </div>
 
@@ -840,7 +840,7 @@
 
                                         <input required type="text" data-validate="text" name="supervisor"
                                             autocomplete="off"
-                                            oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.')"
+                                            oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.',true)"
                                             class="form-control" maxlength="50" onchange="updateProgress2('form2')"
                                             placeholder="Enter Text" id="supervisorName" />
                                         <small class="error-message"></small>
@@ -851,7 +851,7 @@
                                         <label class="question-label">Supervisor/HR Phone #</label>
                                         <input required type="text" name="supervisorNo" id="supervisorPhone"
                                             autocomplete="off" class="form-control" placeholder="(xxx) xxx-xxxx"
-                                            oninput="validateAndFormatPhoneNumber(this);"
+                                            oninput="validateAndFormatPhoneNumber(this,true);"
                                             onchange="updateProgress2('form2')" />
                                         <small class="error-message"></small>
                                     </div>
@@ -1207,7 +1207,7 @@
                 <div class="col-12 col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 mt-3">
                     <label class="appDate just-color form-check-label">Date of Application</label>
                     <input required type="date" class="dab" id="appliedDate" name="applicantdob"
-                        oninput="handleDateChange2(event)" onchange="updateProgress2('form2')">
+                        oninput="handleDateChange2(event,true)" onchange="updateProgress2('form2')">
                     <small class="error-message"></small>
                 </div>
 

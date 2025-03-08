@@ -195,7 +195,7 @@ function initializeForm2(formId) {
     const inputs = nextPage.querySelectorAll('input, select, textarea');
             inputs.forEach(input=>{
                 input.addEventListener('input',()=>{
-                    validatePage('form2',1,false)
+                    validatePage('form2',1,false);
                 })
             })
 
@@ -542,6 +542,8 @@ function validateAddressHistory() {
           console.log("fromInput", fromInput.value);
           console.log("fromInput", toInput.value);
             if (fromDate <= toDate) {
+                console.log("to date - from date ", toDate - fromDate);
+                console.log("(toDate - fromDate) / (1000 * 60 * 60 * 24) ",(toDate - fromDate) / (1000 * 60 * 60 * 24));
                 totalDays += (toDate - fromDate) / (1000 * 60 * 60 * 24); // Convert to days
             }
         }
@@ -637,7 +639,7 @@ function addressHistory(value) {
                             <div class="col">
                                 <label class="question-label">City</label>
                                 <input required type="text" name="city${addressCounter}" maxlength="50" autocomplete="off" id="additionalCity${addressCounter}"
-                                    oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only Letters are allowed.')"
+                                    oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only Letters are allowed.',true)"
                                     class="form-control"  maxlength="50" onchange="updateProgress2('form2')" placeholder="Enter Text" />
                                 <small class="error-message"></small>
                             </div>
@@ -702,7 +704,7 @@ function addressHistory(value) {
                                 <label class="question-label">Zip</label>
                                 <input required type="text" name="zip${addressCounter}" id="additionalZip${addressCounter}" autocomplete="off" maxlength="9"
                                     class="form-control" onchange="updateProgress2('form2')"
-                                    oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')"
+                                    oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.',true)"
                                     placeholder="Enter Number" />
                                 <small class="error-message"></small>
                             </div>
@@ -711,13 +713,13 @@ function addressHistory(value) {
                             <div>
                                 <label class="question-label">From</label>
                                 <input required type="date"  class="dab form-control" id="addressFrom${addressCounter}" name="from${addressCounter}"
-                                    onchange="handleDateChange2(event)">
+                                    onchange="handleDateChange2(event,true)">
                                 <small class="error-message"></small>
                             </div>
                             <div>
                                 <label class="question-label">To</label>
                                 <input required type="date"  class="dab form-control" id="addressTo${addressCounter}" name="to${addressCounter}"
-                                    onchange="handleDateChange2(event)">
+                                    onchange="handleDateChange2(event,true)">
                                 <small class="error-message"></small>
                             </div>
                         </div>
@@ -788,8 +790,9 @@ function licenseAccepted(value) {
     if (value == 'no') {
         if (document.getElementById('denyExplanation')) {
             document.getElementById('denyExplanation').remove();
+            validatePage('form2',5,false);
             caluclateTotalFeilds();
-            validatePage('form2',1,false);
+          
         }
     }
 }
@@ -1252,7 +1255,7 @@ function handleRadioChange(event) {
                 <div class="address-container mt-3">
                     <div class="col-12">
                         <label class="question-label">Date of Conviction</label>
-                        <input required type="date"  class="dab" name="date-of-conviction-${violationCount}" id="voilationDate-${violationCount}" oninput="handleDateChange2(event)" onchange="updateProgress2('form2')">
+                        <input required type="date"  class="dab" name="date-of-conviction-${violationCount}" id="voilationDate-${violationCount}" oninput="handleDateChange2(event,true)" onchange="updateProgress2('form2')">
                          <small class="error-message"></small>
                     </div>
                     <div class="col-12 mt-3">
@@ -1305,6 +1308,7 @@ function handleRadioChange(event) {
             }
             violationCount = 1;
             caluclateTotalFeilds();
+            validatePage('form2',3,false);
             return;
         }
 
@@ -1358,7 +1362,7 @@ function handleAccidentChange(event) {
                 <div class="address-container mb-2 mt-3">
                     <div class="col-12">
                         <label class="question-label">Date of Accident</label>
-                        <input required type="date"  class="dab" name="accidentDate-${accidentCount}" id="accidentDate-${accidentCount}" oninput="handleDateChange2(event)" placeholder="MM/DD/YYYY" onchange="updateProgress2('form2')">
+                        <input required type="date"  class="dab" name="accidentDate-${accidentCount}" id="accidentDate-${accidentCount}" oninput="handleDateChange2(event,true)" placeholder="MM/DD/YYYY" onchange="updateProgress2('form2')">
                          <small class="error-message"></small>
                     </div>
 
@@ -1414,6 +1418,7 @@ function handleAccidentChange(event) {
                 caluclateTotalFeilds();
             }
             accidentCount = 0;
+            validatePage('form2',4,false);
             return;
         }
 
@@ -1509,13 +1514,13 @@ function militaryDriver(value) {
                             <label class="question-label">From</label>
 
                             <input required type="date"  class="dab form-control " id="fromDateTruck" name="truckFrom"
-                                onchange="handleDateChange2(event)">
+                                onchange="handleDateChange2(event,true)">
                             <small class="error-message"></small>
                         </div>
                         <div class="col">
                             <label class="question-label">To</label>
                             <input required type="date"  class="form-control" id="toDateTruck" name="truckto"
-                                onchange="handleDateChange2(event)">
+                                onchange="handleDateChange2(event,true)">
                             <small class="error-message"></small>
                         </div>
                         <div class="or">
@@ -1524,7 +1529,7 @@ function militaryDriver(value) {
                         <div class="col-5">
                             <label class="question-label">Approximate Number of Miles</label>
                             <input required type="text" class="form-control"  maxlength="15" id="approxMilesTruck" name="truckmiles"
-                                placeholder="Enter number"  oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')">
+                                placeholder="Enter number"  oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.',true)">
                             <small class="error-message"></small>
                         </div>
                     </div>
@@ -1588,13 +1593,13 @@ function militaryDriver(value) {
                             <label class="question-label">From</label>
 
                             <input required type="date"  class="dab form-control " id="fromDateTractor" name="tractorFrom"
-                                onchange="handleDateChange2(event)">
+                                onchange="handleDateChange2(event,true)">
                             <small class="error-message"></small>
                         </div>
                         <div class="col">
                             <label class="question-label">To</label>
                             <input required type="date"  class="form-control" id="toDateTractor" name="tractorto"
-                                onchange="handleDateChange2(event)">
+                                onchange="handleDateChange2(event,true)">
                             <small class="error-message"></small>
                         </div>
                         <div class="or">
@@ -1603,7 +1608,7 @@ function militaryDriver(value) {
                         <div class="col-5">
                             <label class="question-label">Approximate Number of Miles</label>
                             <input required type="text" class="form-control" maxlength="15" id="approxMilesTractor" name="tractormiles"
-                                placeholder="Enter number"  oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')" >
+                                placeholder="Enter number"  oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.',true)" >
                             <small class="error-message"></small>
                         </div>
                     </div>
@@ -1637,13 +1642,13 @@ function militaryDriver(value) {
                             <label class="question-label">From</label>
 
                             <input required type="date"  class="dab form-control " id="fromDateBus" name="busFrom"
-                                onchange="handleDateChange2(event)">
+                                onchange="handleDateChange2(event,true)">
                             <small class="error-message"></small>
                         </div>
                         <div class="col">
                             <label class="question-label">To</label>
                             <input required type="date"  class="form-control" id="toDateBus" name="busto"
-                                onchange="handleDateChange2(event)">
+                                onchange="handleDateChange2(event,true)">
                             <small class="error-message"></small>
                         </div>
                         <div class="or">
@@ -1652,7 +1657,7 @@ function militaryDriver(value) {
                         <div class="col-5">
                             <label class="question-label">Approximate Number of Miles</label>
                             <input required type="" class="form-control" id="approxMilesBus" name="busmiles"
-                                placeholder="Enter number"  oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')">
+                                placeholder="Enter number"  oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.',true)">
                             <small class="error-message"></small>
                         </div>
                     </div>
@@ -1671,13 +1676,13 @@ function militaryDriver(value) {
                             <label class="question-label">From</label>
 
                             <input required type="date"  class="dab form-control " id="fromDateOther" name="otherfrom"
-                                onchange="handleDateChange2(event)">
+                                onchange="handleDateChange2(event,true)">
                             <small class="error-message"></small>
                         </div>
                         <div class="col">
                             <label class="question-label">To</label>
                             <input required type="date"  class="form-control" id="toDateOther" name="otherto"
-                                onchange="handleDateChange2(event)">
+                                onchange="handleDateChange2(event,true)">
                             <small class="error-message"></small>
                         </div>
                         <div class="or">
@@ -1686,7 +1691,7 @@ function militaryDriver(value) {
                         <div class="col-5">
                             <label class="question-label">Approximate Number of Miles</label>
                             <input required type="number" class="form-control" id="approxMilesOther" name="othermiles"
-                                placeholder="Enter number"  oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')">
+                                placeholder="Enter number"  oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.',true)">
                             <small class="error-message"></small>
                         </div>
                     </div>
@@ -1871,21 +1876,21 @@ function addNewEmploymentForm() {
         }
     });
 
-    const container = document.getElementById('employmentFormsContainer');
+    const container = document.getElementById('employmentsContainer');
     container.appendChild(newForm);
     maxDate();
 
 
    validateEmploymentHistory();
     caluclateTotalFeilds();
+    addNextButtonListner(`employmentForm_${formCounter}`,7);
     validatePage('form2',7,false);
-    addNextButtonListner("employmentFormsContainer",7);
 }
 
 
 
 function clearAdditionalForms(currentFormId) {
-    const container = document.getElementById('employmentFormsContainer');
+    const container = document.getElementById('employmentsContainer');
 
     // Extract the form number from the current form's ID
     const currentFormNumber = parseInt(currentFormId.split('_')[1]);
@@ -1912,12 +1917,14 @@ function clearAdditionalForms(currentFormId) {
                 parseInt(form.id.split('_')[1])
             )
         );
+       
     } else {
         // Reset to 1 if no forms remain
         formCounter = 1;
     }
 
    validateEmploymentHistory();
+   validatePage('form2',7,false);
     caluclateTotalFeilds();
 
 }
@@ -2054,13 +2061,13 @@ function addUnemployment(presentId, value) {
                                         <label class="question-label">Unemployed From</label>
 
                                         <input required type="date"  class="dab form-control " id="unemployedFrom_${(unemployNumber) ? ('_' + unemployNumber) : ''}"
-                                            name="unemploymentFrom_${(unemployNumber) ? ('_' + unemployNumber) : ''}" onchange="handleDateChange2(event)">
+                                            name="unemploymentFrom_${(unemployNumber) ? ('_' + unemployNumber) : ''}" onchange="handleDateChange2(event,true)">
                                         <small class="error-message"></small>
                                     </div>
                                     <div>
                                         <label class="question-label"> Unemployed To</label>
                                         <input required type="date"  class="to form-control" id="unemployedTo_${(unemployNumber) ? ('_' + unemployNumber) : ''}"
-                                            name="unemploymentTo_${(unemployNumber) ? ('_' + unemployNumber) : ''}" onchange="handleDateChange2(event)">
+                                            name="unemploymentTo_${(unemployNumber) ? ('_' + unemployNumber) : ''}" onchange="handleDateChange2(event,true)">
                                         <small class="error-message"></small>
                                     </div>
                                 </div>
@@ -2093,7 +2100,7 @@ function removeUnemployment(presentId, value) {
 
 
 // function validateEmploymentHistory() {
-//     const container = document.getElementById('employmentFormsContainer');
+//     const container = document.getElementById('employmentsContainer');
 //     const forms = container.querySelectorAll('[id^="employmentForm"]');
 //     const currentlyEmployed = document.getElementById('stillEmployee');
 
@@ -2221,7 +2228,7 @@ function validateEmploymentHistory() {
         if (startDateField?.value && endDateField?.value) {
             let startDate = new Date(startDateField.value);
             let endDate = new Date(endDateField.value);
-        if (currentlyEmployed && currentlyEmployed.checked && form.id=="employmentForm_1") {
+        if (currentlyEmployed && currentlyEmployed.checked && container.id=="employmentForm_1") {
                 endDate = new Date();
             }
             startDate.setHours(0, 0, 0, 0);
@@ -2230,15 +2237,16 @@ function validateEmploymentHistory() {
           console.log("endDate", endDate);
             if (startDate <= endDate) {
                 console.log("endDate - startDate", endDate - startDate);
+                console.log("(endDate - startDate) / (1000 * 60 * 60 * 24) ",(endDate - startDate) / (1000 * 60 * 60 * 24));
                 totalDays += (endDate - startDate) / (1000 * 60 * 60 * 24); // Convert to days
             }
         }
     });
 
- let totalYears = totalDays / 365; // Convert total days to years
+totalYears = totalDays / 365; // Convert total days to years
  console.log("total Days ",totalDays);
  console.log("total Years ",totalYears);
-    if (totalYears/2 < 10) {
+    if (totalYears < 10) {
         addEmploymentValidation();
     }
     else{
@@ -2424,6 +2432,7 @@ function clearSign() {
         } else {
             console.error("Signature box is not initialized.");
         }
+        validatePage('form2',9,false);
     });
 }
 

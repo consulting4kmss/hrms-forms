@@ -16,12 +16,12 @@
                         </div>
                         <div class="form-check mt-2">
                             <input class="form-check-input" type="radio" required value="no" id="sixMonthsNo"
-                                name="examination with in 6 months" onchange="removeAttachment(this.value)">
+                                name="examination with in 6 months" oninput="validateForm('form4', 1,false)" onchange="removeAttachment(this.value)"/>
                             <label class="form-check-label label ms-4" for="sixMonthsNo">No</label>
                         </div>
                         <div class="form-check mt-2">
                             <input class="form-check-input" type="radio" required value="yes" id="sixMonthsYes"
-                                name="examination with in 6 months" onchange="addAttachment(this.value)">
+                                name="examination with in 6 months" oninput="validateForm('form4', 1,false)"  onchange="addAttachment(this.value)"/>
                             <label class="form-check-label ms-4" for="sixMonthsYes">Yes</label>
                         </div>
                     </div>
@@ -39,18 +39,18 @@
                         </div>
                         <div class="mb-3 mt-4">
                             <label class="question-label">Front of Driver's License</label>
-                            <input required type="file" id="licenseFront" name="LicenseFrontImage" class="form-control mt-2" accept="image/png, image/jpeg" />
+                            <input required type="file" id="licenseFront" name="LicenseFrontImage" class="form-control mt-2" accept="image/png, image/jpeg" oninput="validateForm('form4', 1,false)" />
                         </div>
 
 
                         <div class="mb-3 mt-4">
                             <label class="question-label">Back of Driver's License</label>
-                            <input required type="file" id="licenseBack"  name="LicenseBackImage" class="form-control mt-2" accept="image/png, image/jpeg"/>
+                            <input required type="file" id="licenseBack"  name="LicenseBackImage" class="form-control mt-2" accept="image/png, image/jpeg" oninput="validateForm('form4', 1,false)"/>
                         </div>
                     </div>
                 </div>
                 <div class="button-row">
-                    <button class="submit-btn" onclick="Submission()">Submit</button>
+                    <button id="submit4" class="notValid-btn" onclick="Submission()">Submit</button>
                 </div>
 
                 <!-- <div id="invalidModal" class="invalid-modal">

@@ -235,7 +235,7 @@ function validateForm(bool) {
     }
 
     //return true;
-     return isValid;
+    return isValid;
 }
 
 // function validateCanvases(formId,pageNumber){

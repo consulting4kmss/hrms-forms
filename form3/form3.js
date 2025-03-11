@@ -216,348 +216,119 @@ function caluclateTotalFeilds() {
 }
 
 
-
-// function validateAddressHistory() {
-//     const container = document.getElementById('mainAddressContainer');
-//     const forms = container.querySelectorAll('[id^="subAddressContainer"]');
-
-//     let earliestStartDate = null;
-//     let latestEndDate = null;
-
-//  console.log("")
-//     forms.forEach((form) => {
-//         const startDateField = form.querySelector('[id^="addressFrom"]');
-//         const endDateField = form.querySelector('[id^="addressTo"]');
-
-//         const startDate = startDateField ? new Date(startDateField.value) : null;
-//         const endDate = endDateField ? new Date(endDateField.value) : null;
-
-//         if (startDate && !isNaN(startDate)) {
-//             if (!earliestStartDate || startDate < earliestStartDate) {
-//                 earliestStartDate = startDate;
-//             }
-//         }
-
-//         if (endDate && !isNaN(endDate)) {
-//             if (!latestEndDate || endDate > latestEndDate) {
-//                 latestEndDate = endDate;
-//             }
-//         }
-//     });
-
-//     if (earliestStartDate && latestEndDate) {
-//         totalYears = (latestEndDate - earliestStartDate) / (1000 * 60 * 60 * 24 * 365);
-
-//         if (totalYears < 3) {
-//             addAddressHistory();
-//         } else{
-//             removeHistoryElement(); 
-//         }
-//     } 
-
-// }
-
-
-
-
-// Main function to handle Yes/No selection
-// function handleAddressChange(radio) {
-//     const parentContainer = radio.closest('#addressSon'); // Current template container
-//     const addressSection = document.getElementById('addressSection');
-
-//     if (radio.value === 'yes') {
-//         // Clone the template
-//         addressCounter++;
-//         const newTemplate = parentContainer.cloneNode(true);
-
-//         // Update IDs, names, and attributes for uniqueness
-//         newTemplate.dataset.templateId = addressCounter;
-//         newTemplate.querySelectorAll('[id], [name], [for]').forEach(el => {
-//             if (el.id) el.id = el.id.replace(/\d+$/, addressCounter);
-//             if (el.name) el.name = el.name.replace(/\d+$/, addressCounter);
-//             if (el.htmlFor) el.htmlFor = el.htmlFor.replace(/\d+$/, addressCounter);
-//         });
-//         const label = newTemplate.querySelector('.question-label');
-//         if (label) {
-//             label.textContent = `Additional Address #${addressCounter}`;
-//         }
-//         // Reset inputs in the cloned template
-//         newTemplate.querySelectorAll('input[type="text"], input[type="number"], input[type="date"]').forEach(el => el.value = '');
-//         newTemplate.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
-//         newTemplate.querySelectorAll('select').forEach(el => el.value = '');
-
-
-//         addressSection.appendChild(newTemplate);
-//         maxDate();
-
-//         caluclateTotalFeilds();
-//     } else if (radio.value === 'no') {
-//         // Remove all templates with a higher data-template-id
-//         const currentTemplateId = parseInt(parentContainer.dataset.templateId, 10);
-//         document.querySelectorAll('#addressSon').forEach(el => {
-//             if (parseInt(el.dataset.templateId, 10) > currentTemplateId) {
-//                 addressCounter--;
-//                 console.log(addressCounter);
-//                 el.remove();
-//                 caluclateTotalFeilds();
-//             }
-//         });
-
-//         caluclateTotalFeilds();
-//     }
-// }
-
-
-// function validateAddressHistory() {
-//     const container = document.getElementById('mainAddressContainer');
-//     const forms = container.querySelectorAll('[id^="subAddressContainer"]');
-
-//     let earliestStartDate = null;
-//     let latestEndDate = null;
-//     let validContainerIndex = -1; // Index of the first container that reaches 3 years
-
-//     forms.forEach((form, index) => {
-//         const startDateField = form.querySelector('[id^="addressFrom"]');
-//         const endDateField = form.querySelector('[id^="addressTo"]');
-
-//         const startDate = startDateField ? new Date(startDateField.value) : null;
-//         const endDate = endDateField ? new Date(endDateField.value) : null;
-
-//         if (startDate && !isNaN(startDate)) {
-//             if (!earliestStartDate || startDate < earliestStartDate) {
-//                 earliestStartDate = startDate;
-//             }
-//         }
-
-//         if (endDate && !isNaN(endDate)) {
-//             if (!latestEndDate || endDate > latestEndDate) {
-//                 latestEndDate = endDate;
-//             }
-//         }
-
-//         // Calculate duration in years
-//         if (earliestStartDate && latestEndDate) {
-//             let totalYears = (latestEndDate - earliestStartDate) / (1000 * 60 * 60 * 24 * 365);
-
-//             if (totalYears >= 3 && validContainerIndex === -1) {
-//                 validContainerIndex = index; // First container that completes 3 years
-//             }
-//         }
-//     });
-
-//     if (earliestStartDate && latestEndDate) {
-//         let totalYears = (latestEndDate - earliestStartDate) / (1000 * 60 * 60 * 24 * 365);
-
-//         if (totalYears < 3) {
-//        return true 
-//         } else if (validContainerIndex !== -1) {
-//         return false
-//         }
-//     }
-// }
-
-
-// var addressCounter = 1; // Counter for unique IDs
-
-// // Main function to handle initial Yes/No for address history
-// function addAddressHistory() {
-
-//         const addressHistory = document.createElement('div');
-//         addressHistory.id = `subAddressContainer${addressCounter}`;
-//         addressHistory.innerHTML = `
-//             <div class="mt-3">
-//                 <h4 class="just-color" style="border-bottom: 2px solid #8bafdf; width: 100%; padding-bottom: 5px;">
-//                     Address History Continued
-//                 </h4>
-//             </div>
-//             <div>
-//                 <h6 class="just-color">
-//                     <p class="question-label">List any prior address in the THREE (3) years preceding the date of this
-//                         application, include street, city, state, and zip (NO PO BOXES)
-//                     </p>
-//                 </h6>
-//             </div>
-//             <div id="addressSection">
-//                 <div id="addressSon" class="mt-2" data-template-id="${addressCounter}">
-//                     <div class="address-container">
-//                         <div class="form-row">
-//                             <div>
-//                                 <label class="question-label">Additional Address #${addressCounter}</label>
-//                                 <input required type="text" autocomplete="off" name="address${addressCounter}" id="additionalAddress${addressCounter}"
-//                                     class="form-control" maxlength="200" onchange="updateProgress2('form2')" placeholder="Enter Text">
-//                             </div>
-//                         </div>
-//                         <div class="form-row">
-//                             <div class="col">
-//                                 <label class="question-label">City</label>
-//                                 <input required type="text" name="city${addressCounter}" maxlength="50" autocomplete="off" id="additionalCity${addressCounter}"
-//                                     oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only Letters are allowed.')"
-//                                     class="form-control"  maxlength="50" onchange="updateProgress2('form2')" placeholder="Enter Text" />
-//                                 <small class="error-message"></small>
-//                             </div>
-//                             <div class="col">
-//                                 <label class="question-label">State</label>
-//                                 <select required data-validate="text" name="additionalState${addressCounter}" id="additionalState${addressCounter}" class="state-feild"
-//                                     >
-//                                     <option value="">Select One</option>
-//                                     <option value="Alabama">Alabama</option>
-//                                     <option value="Alaska">Alaska</option>
-//                                     <option value="Arizona">Arizona</option>
-//                                     <option value="Arkansas">Arkansas</option>
-//                                     <option value="California">California</option>
-//                                     <option value="Colorado">Colorado</option>
-//                                     <option value="Connecticut">Connecticut</option>
-//                                     <option value="Delaware">Delaware</option>
-//                                     <option value="Florida">Florida</option>
-//                                     <option value="Georgia">Georgia</option>
-//                                     <option value="Hawaii">Hawaii</option>
-//                                     <option value="Idaho">Idaho</option>
-//                                     <option value="Illinois">Illinois</option>
-//                                     <option value="Indiana">Indiana</option>
-//                                     <option value="Iowa">Iowa</option>
-//                                     <option value="Kansas">Kansas</option>
-//                                     <option value="Kentucky">Kentucky</option>
-//                                     <option value="Louisiana">Louisiana</option>
-//                                     <option value="Maine">Maine</option>
-//                                     <option value="Maryland">Maryland</option>
-//                                     <option value="Massachusetts">Massachusetts</option>
-//                                     <option value="Michigan">Michigan</option>
-//                                     <option value="Minnesota">Minnesota</option>
-//                                     <option value="Mississippi">Mississippi</option>
-//                                     <option value="Missouri">Missouri</option>
-//                                     <option value="Montana">Montana</option>
-//                                     <option value="Nebraska">Nebraska</option>
-//                                     <option value="Nevada">Nevada</option>
-//                                     <option value="New Hampshire">New Hampshire</option>
-//                                     <option value="New Jersey">New Jersey</option>
-//                                     <option value="New Mexico">New Mexico</option>
-//                                     <option value="New York">New York</option>
-//                                     <option value="North Carolina">North Carolina</option>
-//                                     <option value="North Dakota">North Dakota</option>
-//                                     <option value="Ohio">Ohio</option>
-//                                     <option value="Oklahoma">Oklahoma</option>
-//                                     <option value="Oregon">Oregon</option>
-//                                     <option value="Pennsylvania">Pennsylvania</option>
-//                                     <option value="Rhode Island">Rhode Island</option>
-//                                     <option value="South Carolina">South Carolina</option>
-//                                     <option value="South Dakota">South Dakota</option>
-//                                     <option value="Tennessee">Tennessee</option>
-//                                     <option value="Texas">Texas</option>
-//                                     <option value="Utah">Utah</option>
-//                                     <option value="Vermont">Vermont</option>
-//                                     <option value="Virginia">Virginia</option>
-//                                     <option value="Washington">Washington</option>
-//                                     <option value="West Virginia">West Virginia</option>
-//                                     <option value="Wisconsin">Wisconsin</option>
-//                                     <option value="Wyoming">Wyoming</option>
-//                                 </select>
-//                             </div>
-//                             <div class="col">
-//                                 <label class="question-label">Zip</label>
-//                                 <input required type="text" name="zip${addressCounter}" id="additionalZip${addressCounter}" autocomplete="off" maxlength="9"
-//                                     class="form-control" onchange="updateProgress2('form2')"
-//                                     oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')"
-//                                     placeholder="Enter Number" />
-//                                 <small class="error-message"></small>
-//                             </div>
-//                         </div>
-//                         <div class="form-row">
-//                             <div>
-//                                 <label class="question-label">From</label>
-//                                 <input required type="date"  class="dab form-control" id="addressFrom${addressCounter}" name="from${addressCounter}"
-//                                     oninput="handleDateChange2(event)" onchange="validateAddressHistory()">
-//                                 <small class="error-message"></small>
-//                             </div>
-//                             <div>
-//                                 <label class="question-label">To</label>
-//                                 <input required type="date"  class="dab form-control" id="addressTo${addressCounter}" name="to${addressCounter}"
-//                                     oninput="handleDateChange2(event)" onchange="validateAddressHistory()">
-//                                 <small class="error-message"></small>
-//                             </div>
-//                         </div>
-
-//                     </div>
-
-//                 </div>
-//             </div>
-//         `;
-//         const mainContainer = document.getElementById('mainAddressContainer');
-//         mainContainer.appendChild(addressHistory);
-//         maxDate();
-//         caluclateTotalFeilds();
-//         addressCounter++;
-
-// }
-
-// function removeExtraAddressHistory(validContainerIndex) {
-//     const container = document.getElementById('mainAddressContainer');
-//     const forms = Array.from(container.querySelectorAll('[id^="subAddressContainer"]'));
-
-//     for (let i = forms.length - 1; i > validContainerIndex; i--) {
-//         forms[i].remove();
-//     }
-// }
-
-
-// function validateAddressHistory() {
-//     let fromDates = [];
-//     let toDates = [];
-
-//     // Collect all 'From' and 'To' dates from the address fields
-//     document.querySelectorAll('[id^="addressFrom"]').forEach(input => {
-//         if (input.value) fromDates.push(new Date(input.value));
-//     });
-
-//     document.querySelectorAll('[id^="addressTo"]').forEach(input => {
-//         if (input.value) toDates.push(new Date(input.value));
-//     });
-
-//     if (fromDates.length === 0 || toDates.length === 0) return; // Exit if no valid dates
-
-//     // Get the earliest 'From' date and the latest 'To' date
-//     let earliestStartDate = new Date(Math.min(...fromDates));
-//     let latestEndDate = new Date(Math.max(...toDates));
-//     if (earliestStartDate && latestEndDate) {
-//         let totalYears = (latestEndDate - earliestStartDate) / (1000 * 60 * 60 * 24 * 365);
-
-//          if (totalYears >= 3) {
-//             return true;
-//         }// Returns true if total address duration is less than 3 years, otherwise false
-//     }
-//     showInvalidDates();
-
-//     // return false;
-// }
-
 function validateAddressHistory() {
-    let totalDays = 0; // Store total address days
-    console.log(' document.querySelectorAll addressSon  ', document.querySelectorAll('#addressSon',));
+    let today = new Date();
+    let threeYearsAgo = new Date();
+    threeYearsAgo.setFullYear(today.getFullYear() - 3);
+
+    // 🔹 Normalize dates to remove time component
+    function normalizeDate(date) {
+        return new Date(date.getFullYear(), date.getMonth(), date.getDate()); // Keeps only YYYY-MM-DD
+    }
+
+    today = normalizeDate(today);
+    threeYearsAgo = normalizeDate(threeYearsAgo);
+
+    console.log("Checking address history from", threeYearsAgo, "to", today);
+
+    let addressPeriods = [];
+    let totalDays = 0;
+
     document.querySelectorAll('#mainAddressContainer, #addressSon').forEach(container => {
         let fromInput = container.querySelector('[id^="addressFrom"]');
         let toInput = container.querySelector('[id^="addressTo"]');
-        console.log("fromInput?.value && toInput?.value ", fromInput?.value, toInput?.value);
+
         if (fromInput?.value && toInput?.value) {
             let fromDate = new Date(fromInput.value);
             let toDate = new Date(toInput.value);
-            console.log("fromInput", fromInput.value);
-            console.log("fromInput", toInput.value);
+
             if (fromDate <= toDate) {
-                console.log("to date - from date ", toDate - fromDate);
-                console.log("(toDate - fromDate) / (1000 * 60 * 60 * 24) ", (toDate - fromDate) / (1000 * 60 * 60 * 24));
-                totalDays += (toDate - fromDate) / (1000 * 60 * 60 * 24); // Convert to days
+                totalDays += (toDate - fromDate) / (1000 * 60 * 60 * 24);
+                addressPeriods.push({ from: normalizeDate(fromDate), to: normalizeDate(toDate) });
             }
         }
     });
 
-    let totalYears = totalDays / 365; // Convert total days to years
-    console.log("total Days ", totalDays);
-    if (totalYears >= 3) {
-        return true; // Validation passes
+    let totalYears = totalDays / 365;
+    console.log("Total Days:", totalDays);
+
+    if (addressPeriods.length === 1) {
+        let period = addressPeriods[0];
+
+        console.log("Normalized Comparison:");
+        console.log("threeYearsAgo:", threeYearsAgo, "today:", today);
+        console.log("Period:", period.from, "to", period.to);
+
+        if (period.from <= threeYearsAgo && period.to >= today) {
+            return true; // Valid address history
+        }
     }
 
-    showInvalidDates(); // Show validation error if total duration is less than 3 years
+    // Step 2: Check continuity for multiple periods
+    if (totalYears >= 3) {
+        addressPeriods.sort((a, b) => a.from - b.from);
+        let coveredUntil = null;
+        let maxAllowedGap = 30 * 24 * 60 * 60 * 1000;
+
+        for (let period of addressPeriods) {
+            if (coveredUntil === null) {
+                if (period.from > threeYearsAgo) {
+                    showInvalidDates();
+                    return false;
+                }
+            } else {
+                let gap = period.from - coveredUntil;
+                if (gap > maxAllowedGap) {
+                    showInvalidDates();
+                    return false;
+                }
+            }
+            coveredUntil = period.to;
+        }
+
+        if (coveredUntil < today) {
+            showInvalidDates();
+            return false;
+        }
+
+        return true;
+    }
+
+    showInvalidDates();
     return false;
 }
+
+
+
+// function validateAddressHistory() {
+//     let totalDays = 0; // Store total address days
+//     console.log(' document.querySelectorAll addressSon  ', document.querySelectorAll('#addressSon',));
+//     document.querySelectorAll('#mainAddressContainer, #addressSon').forEach(container => {
+//         let fromInput = container.querySelector('[id^="addressFrom"]');
+//         let toInput = container.querySelector('[id^="addressTo"]');
+//         console.log("fromInput?.value && toInput?.value ", fromInput?.value, toInput?.value);
+//         if (fromInput?.value && toInput?.value) {
+//             let fromDate = new Date(fromInput.value);
+//             let toDate = new Date(toInput.value);
+//             console.log("fromInput", fromInput.value);
+//             console.log("fromInput", toInput.value);
+//             if (fromDate <= toDate) {
+//                 console.log("to date - from date ", toDate - fromDate);
+//                 console.log("(toDate - fromDate) / (1000 * 60 * 60 * 24) ", (toDate - fromDate) / (1000 * 60 * 60 * 24));
+//                 totalDays += (toDate - fromDate) / (1000 * 60 * 60 * 24); // Convert to days
+//             }
+//         }
+//     });
+
+//     let totalYears = totalDays / 365; // Convert total days to years
+//     console.log("total Days ", totalDays);
+//     if (totalYears >= 3) {
+//         return true; // Validation passes
+//     }
+
+//     showInvalidDates(); // Show validation error if total duration is less than 3 years
+//     return false;
+// }
 
 var addressCounter = 1; // Counter for unique IDs
 
@@ -1176,7 +947,7 @@ function validatePage(formId, pageNumber, bool) {
         }
     }
     //return true;
-    return isValid;
+   return isValid;
 }
 
 

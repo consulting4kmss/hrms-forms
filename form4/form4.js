@@ -4,7 +4,7 @@ function addAttachment(value) {
         attachCertificate.classList.add('mb-3', 'mt-4');
         attachCertificate.id = `attachCertificate`;
         attachCertificate.innerHTML = ` <label class="question-label">Attach Certificate (The Exam has to be done within the last SIX(6) Months) </label>
-                        <input required type="file" id="medicalCertificate" name="medicalCertificate" class="form-control mt-2" oninput="validateForm('form4', 1,false)" />`
+                        <input required type="file" id="medicalCertificate" name="medicalCertificateData" class="form-control mt-2" oninput="validateForm('form4', 1,false)" />`
         document.getElementById("doneInSix").appendChild(attachCertificate);
         validateForm('form4', 1,false);
 
@@ -109,6 +109,7 @@ function validateForm(formId, pageNumber,bool) {
     }
     return isValid;
 }
+
 function validInput(input, regex, errorMessage) {
     if (!(regex instanceof RegExp)) {
         console.error("Invalid regex provided to validInput:", regex);
@@ -257,9 +258,62 @@ function hideCheckmark(formId) {
     }
 }
 
+// function collectFormData() {
+//     const formData = new FormData();
+//     const form = document.getElementById("form4-page1"); // Ensure this is the correct form ID
+
+//     if (!form) {
+//         console.error("Form not found.");
+//         return;
+//     }
+
+//     // Collect all input, select, and textarea fields
+//     const fields = form.querySelectorAll("input, select, textarea");
+
+//     fields.forEach(field => {
+//         if (field.type === "radio" || field.type === "checkbox") {
+//             if (field.checked) {
+//                 formData.append(field.name, field.value);
+//             }
+//         } else if (field.type === "file") {
+         
+//                 base64String=readDataAsURL(field.id);
+//                 formData.append(field.name,base64String ); // Append file
+            
+//         }
+//     });
+
+//     //Log FormData contents
+//     console.log("FormData before sending:");
+//     for (let pair of formData.entries()) {
+//         console.log(pair[0] + ": ", pair[1]);
+//     }
+
+//     // Send to API
+//    // sendFormDataToAPI(formData);
+// }
+
+// function readDataAsURL(id) {
+//     let fileInput = document.getElementById(id); // Get file input
+//     let file = fileInput.files[0]; // Get selected file
+
+//     if (file) {
+//         let reader = new FileReader();
+//         reader.readAsDataURL(file); // Convert file to Base64
+
+//         reader.onload = function () {
+//         return (reader.result) // return full Base64 string
+//         };
+//     } else {
+//         return("Error converting File to Base64");
+//     }
+// }
+
+
+
 function collectFormData() {
     const formData = new FormData();
-    const form = document.getElementById("form4-page1"); // Ensure this is the correct form ID
+    const form = document.getElementById("form4-page1"); // Ensure correct form ID
 
     if (!form) {
         console.error("Form not found.");
@@ -268,6 +322,7 @@ function collectFormData() {
 
     // Collect all input, select, and textarea fields
     const fields = form.querySelectorAll("input, select, textarea");
+    let filePromises = []; // Store promises for async file reading
 
     fields.forEach(field => {
         if (field.type === "radio" || field.type === "checkbox") {
@@ -276,22 +331,58 @@ function collectFormData() {
             }
         } else if (field.type === "file") {
             if (field.files.length > 0) {
-                formData.append(field.name, field.files[0]); // Append file
+                if(field.id){
+                let filePromise = readDataAsURL(field.id).then(base64String => {
+                    formData.append(field.name, base64String);
+                }).catch(error => {
+                    console.error("File conversion error:", error);
+                });
+
+                filePromises.push(filePromise); // Store the promise
+            }
             }
         } else {
             formData.append(field.name, field.value);
         }
     });
 
-    //Log FormData contents
-    console.log("FormData before sending:");
-    for (let pair of formData.entries()) {
-        console.log(pair[0] + ": ", pair[1]);
-    }
-
-    // Send to API
-   // sendFormDataToAPI(formData);
+    // Wait for all file conversions to complete using .then()
+    Promise.all(filePromises)
+        .then(() => {
+            console.log("FormData before sending:");
+            for (let pair of formData.entries()) {
+                console.log(pair[0] + ": ", pair[1]);
+            }
+            // Send to API
+            // sendFormDataToAPI(formData);
+        })
+        .catch(error => {
+            console.error("Error processing files:", error);
+        });
 }
+
+function readDataAsURL(id) {
+    return new Promise((resolve, reject) => {
+        let fileInput = document.getElementById(id);
+        if (!fileInput || fileInput.files.length === 0) {
+            reject("Error: No file selected for " + id);
+            return;
+        }
+
+        let file = fileInput.files[0];
+        let reader = new FileReader();
+        reader.readAsDataURL(file); // Convert file to Base64
+
+        reader.onload = function () {
+            resolve(reader.result); // Return Base64 string
+        };
+
+        reader.onerror = function (error) {
+            reject("Error converting file: " + error);
+        };
+    });
+}
+
 
 // function sendFormDataToAPI(formData) {
 //     fetch("url", { // Replace with your API URL

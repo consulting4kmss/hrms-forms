@@ -157,50 +157,6 @@ function validInput(input, regex, errorMessage) {
     }
 }
 
-// function validateForm(formId, pageNumber) {
-//     const form = document.getElementById(formId);
-//     const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
-//     const inputs = currentPage.querySelectorAll('input');
-
-//     let isValid = true;
-
-//     inputs.forEach(input => {
-//         // Skip hidden inputs
-//         const isHidden = getComputedStyle(input).display === 'none' || input.closest('[style*="display: none"]');
-//         if (isHidden) {
-//             return;
-//         }
-
-//         const validateInput = () => {
-//             if (input.type === 'radio') {
-//                 const radios = currentPage.querySelectorAll(`input[name="${input.name}"]`);
-//                 const isAnyChecked = Array.from(radios).some(radio => radio.checked);
-//                 if (!isAnyChecked) {
-//                     isValid = false;
-//                     radios.forEach(radio => radio.classList.add('highlight-feedback'));
-//                 } else {
-//                     radios.forEach(radio => radio.classList.remove('highlight-feedback'));
-//                 }
-//             } else if (input.required) {
-//                 if (input.value.trim()) {
-//                     input.classList.remove('highlight');
-//                 } else {
-//                     isValid = false;
-//                     input.classList.add('highlight');
-//                 }
-//             } else {
-//                 input.classList.remove('highlight');
-//             }
-
-//         };
-
-//         validateInput();
-//     });
-
-
-//     return isValid;
-// }
-
 function showInvalidModal() {
     const invalidModal = document.getElementById('invalidModal');
     const overlay = document.getElementById('overlay');
@@ -257,58 +213,6 @@ function hideCheckmark(formId) {
         checkmark.classList.remove('visible');
     }
 }
-
-// function collectFormData() {
-//     const formData = new FormData();
-//     const form = document.getElementById("form4-page1"); // Ensure this is the correct form ID
-
-//     if (!form) {
-//         console.error("Form not found.");
-//         return;
-//     }
-
-//     // Collect all input, select, and textarea fields
-//     const fields = form.querySelectorAll("input, select, textarea");
-
-//     fields.forEach(field => {
-//         if (field.type === "radio" || field.type === "checkbox") {
-//             if (field.checked) {
-//                 formData.append(field.name, field.value);
-//             }
-//         } else if (field.type === "file") {
-         
-//                 base64String=readDataAsURL(field.id);
-//                 formData.append(field.name,base64String ); // Append file
-            
-//         }
-//     });
-
-//     //Log FormData contents
-//     console.log("FormData before sending:");
-//     for (let pair of formData.entries()) {
-//         console.log(pair[0] + ": ", pair[1]);
-//     }
-
-//     // Send to API
-//    // sendFormDataToAPI(formData);
-// }
-
-// function readDataAsURL(id) {
-//     let fileInput = document.getElementById(id); // Get file input
-//     let file = fileInput.files[0]; // Get selected file
-
-//     if (file) {
-//         let reader = new FileReader();
-//         reader.readAsDataURL(file); // Convert file to Base64
-
-//         reader.onload = function () {
-//         return (reader.result) // return full Base64 string
-//         };
-//     } else {
-//         return("Error converting File to Base64");
-//     }
-// }
-
 
 
 function collectFormData() {

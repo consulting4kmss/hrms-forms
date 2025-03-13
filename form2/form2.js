@@ -857,38 +857,6 @@ function formatDateToDDMMYYYY(date) {
     return `${day}/${month}/${year}`;
 }
 
-// function validateAndFormatPhoneNumber(input) {
-//     const rawValue = input.value.replace(/\D/g, '');
-
-
-//     if (rawValue.length === 0) {
-//         input.value = '';
-//         const errorField = input.nextElementSibling;
-//         errorField.textContent = '';
-//         errorField.style.display = 'none';
-//         return;
-//     }
-
-
-//     if (rawValue.length > 10) {
-//         input.value = formatPhoneNumber(rawValue.substring(0, 10));
-//         return;
-//     }
-
-
-//     input.value = formatPhoneNumber(rawValue);
-// }
-
-// function formatPhoneNumber(value) {
-//     if (value.length <= 3) {
-//         return `(${value}`;
-//     } else if (value.length <= 6) {
-//         return `(${value.substring(0, 3)}) ${value.substring(3)}`;
-//     } else {
-//         return `(${value.substring(0, 3)}) ${value.substring(3, 6)}-${value.substring(6)}`;
-//     }
-// }
-
 function validateAndFormatPhoneNumber(input,bool) {
     const errorField = input.nextElementSibling;
 

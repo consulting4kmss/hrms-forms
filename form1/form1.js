@@ -9,6 +9,7 @@ function drugTestPositive(value) {
                     <textarea required maxlength="250" name="affirmativeExplanation" id="defectiveVisionExplanation" rows="4"
                         class="form-control txtfeild "></textarea>`
         document.getElementById("drugTest").appendChild(affirmative);
+        validateForm(false);
 
     }
 }
@@ -19,6 +20,7 @@ function drugTestNegative(value) {
         const removeCertificate = document.getElementById(`affirmativeNotes`);
         if (removeCertificate) {
             removeCertificate.remove();
+            validateForm(false);
         }
     }
 }
@@ -130,6 +132,7 @@ function clearSign() {
         } else {
             console.error("Signature box is not initialized.");
         }
+        validateForm(false);
     });
 }
 

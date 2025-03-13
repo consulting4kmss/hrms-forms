@@ -50,8 +50,11 @@ function nextPage2(pageNumber) {
         else {
             //         const form = document.getElementById(formId);
             // const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
-
+            // if(pageNumber-1==4){
+            //     collectAccidentData();
+            // }else{
             collectFormData('form2', pageNumber - 1);
+            //}
             const currentPage = document.querySelector(`#form2-page${pageNumber - 1}`);
             const nextPage = document.querySelector(`#form2-page${pageNumber}`);
             const inputs = nextPage.querySelectorAll('input, select, textarea');
@@ -278,7 +281,7 @@ function validateAddressHistory() {
                 }
             } else {
                 let gap = period.from - coveredUntil;
-                if (gap > maxAllowedGap) {
+                if (gap > 1) {
                     showInvalidDates();
                     return false;
                 }
@@ -298,37 +301,6 @@ function validateAddressHistory() {
     return false;
 }
 
-
-
-// function validateAddressHistory() {
-//     let totalDays = 0; // Store total address days
-//     console.log(' document.querySelectorAll addressSon  ', document.querySelectorAll('#addressSon',));
-//     document.querySelectorAll('#mainAddressContainer, #addressSon').forEach(container => {
-//         let fromInput = container.querySelector('[id^="addressFrom"]');
-//         let toInput = container.querySelector('[id^="addressTo"]');
-//         console.log("fromInput?.value && toInput?.value ", fromInput?.value, toInput?.value);
-//         if (fromInput?.value && toInput?.value) {
-//             let fromDate = new Date(fromInput.value);
-//             let toDate = new Date(toInput.value);
-//             console.log("fromInput", fromInput.value);
-//             console.log("fromInput", toInput.value);
-//             if (fromDate <= toDate) {
-//                 console.log("to date - from date ", toDate - fromDate);
-//                 console.log("(toDate - fromDate) / (1000 * 60 * 60 * 24) ", (toDate - fromDate) / (1000 * 60 * 60 * 24));
-//                 totalDays += (toDate - fromDate) / (1000 * 60 * 60 * 24); // Convert to days
-//             }
-//         }
-//     });
-
-//     let totalYears = totalDays / 365; // Convert total days to years
-//     console.log("total Days ", totalDays);
-//     if (totalYears >= 3) {
-//         return true; // Validation passes
-//     }
-
-//     showInvalidDates(); // Show validation error if total duration is less than 3 years
-//     return false;
-// }
 
 var addressCounter = 1; // Counter for unique IDs
 
@@ -946,7 +918,7 @@ function validatePage(formId, pageNumber, bool) {
             nextBtn.classList.remove('valid-btn');
         }
     }
-    //return true;
+   //return true;
    return isValid;
 }
 
@@ -974,39 +946,73 @@ function getValidationRule(input) {
     return rules[validationType] || null;
 }
 
-function collectFormData(formId, pageNumber) {
+
+async function collectFormData(formId, pageNumber) {
+    const formData = new FormData();
     const form = document.getElementById(formId);
     const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
 
     if (!currentPage) {
-        console.error(`Page ${pageNumber} not found inside form ${formId}`);
-        return {};
+        console.error("Form not found.");
+        return;
     }
 
-    const inputs = currentPage.querySelectorAll('input, select, textarea');
-    let data = {};
+    // Collect all input, select, and textarea fields
+    const fields = currentPage.querySelectorAll("input, select, textarea");
 
-    inputs.forEach(input => {
-        // Ignore hidden fields
-        //if (input.offsetParent === null) return;
-
-        if (input.type === 'radio') {
-            if (input.checked) {
-                data[input.name] = input.value;
+    for (const field of fields) {
+        if (field.type === "radio" || field.type === "checkbox") {
+            if (field.checked) {
+                formData.append(field.name, field.value);
             }
-        } else if (input.type === 'checkbox') {
-            if (!data[input.name]) data[input.name] = [];
-            if (input.checked) {
-                data[input.name].push(input.value);
+        } else if (field.type === "file") {
+            if (field.files.length > 0) {
+                if (field.id) {
+                    let fileDataObject = {};
+                     //JSON Object to store file data
+                    let i=1;
+                    for (const file of field.files) {
+                        try {
+                            const base64String = await readFileAsBase64(file);
+                            fileDataObject[field.name+"_"+i] = base64String; //Store as key-value pair
+                        } catch (error) {
+                            console.error("File conversion error:", error);
+                        }
+                        i++;
+                    }
+
+                    // Store the JSON object under a single key in FormData
+                    formData.append(field.name, JSON.stringify(fileDataObject));
+                }
             }
         } else {
-            data[input.name] = input.value.trim();
+            formData.append(field.name, field.value);
         }
-    });
+    }
 
-    console.log("Collected Data:", JSON.stringify(data, null, 2)); // Print data in JSON format
-    return data;
+    console.log("FormData before sending:");
+    for (let pair of formData.entries()) {
+        console.log(pair[0] + ": ", pair[1]);
+    }
+
+    return formData;
 }
+
+function readFileAsBase64(file) {
+    return new Promise((resolve, reject) => {
+        let reader = new FileReader();
+        reader.readAsDataURL(file); // Convert file to Base64
+
+        reader.onload = function () {
+            resolve(reader.result.split(",")[1]); // Return Base64 content only (excluding prefix)
+        };
+
+        reader.onerror = function (error) {
+            reject("Error converting file: " + error);
+        };
+    });
+}
+
 
 let violationCount = 0;
 
@@ -1155,7 +1161,7 @@ function handleAccidentChange(event) {
                         </div>
                         <div class="mb-3 mt-4">
                             <label class="question-label">Attachment (Optional)</label>
-                            <input type="file"  id="fileInput-${accidentCount}" name="Attachment_${accidentCount}" class="form-control mt-2" />
+                            <input type="file"  id="fileInput-${accidentCount}" name="Attachment_${accidentCount}" multiple class="form-control mt-2" />
                         </div>
                     </div>
                 </div>
@@ -1210,6 +1216,23 @@ function handleAccidentChange(event) {
 
     }
     validatePage('form2', 4, false);
+}
+
+
+function validateFileCount(input) {
+    if (input.files.length > 3) {
+        alert("You can only upload a maximum of 3 files.");
+
+        // Create a new FileList containing only the first 3 files
+        let fileList = Array.from(input.files).slice(0, 3);
+
+        // Create a DataTransfer object to hold the valid files
+        let dataTransfer = new DataTransfer();
+        fileList.forEach(file => dataTransfer.items.add(file));
+
+        // Set the input's files to the modified list (without exceeding 3)
+        input.files = dataTransfer.files;
+    }
 }
 //<------------------------------------------------------------------PAGE 6---------------------------------->
 
@@ -1832,20 +1855,20 @@ function addUnemployment(presentId, value) {
                                         <label class="question-label">Unemployed From</label>
 
                                         <input required type="date"  class="dab form-control " id="unemployedFrom_${(unemployNumber) ? ('_' + unemployNumber) : ''}"
-                                            name="unemploymentFrom_${(unemployNumber) ? ('_' + unemployNumber) : ''}" onchange="handleDateChange2(event,true)">
+                                            name="unemploymentFrom${(unemployNumber) ? ('_' + unemployNumber) : ''}" onchange="handleDateChange2(event,true)">
                                         <small class="error-message"></small>
                                     </div>
                                     <div>
                                         <label class="question-label"> Unemployed To</label>
                                         <input required type="date"  class="to form-control" id="unemployedTo_${(unemployNumber) ? ('_' + unemployNumber) : ''}"
-                                            name="unemploymentTo_${(unemployNumber) ? ('_' + unemployNumber) : ''}" onchange="handleDateChange2(event,true)">
+                                            name="unemploymentTo${(unemployNumber) ? ('_' + unemployNumber) : ''}" onchange="handleDateChange2(event,true)">
                                         <small class="error-message"></small>
                                     </div>
                                 </div>
 
                                 <div class="col-12 mt-4">
                                     <label class="question-label">Reason for Unemployment</label>
-                                    <textarea maxlength="250" required name="unemploymentReason_${(unemployNumber) ? ('_' + unemployNumber) : ''}" id="unemployReason_${(unemployNumber) ? ('_' + unemployNumber) : ''}" placeholder="Enter Text"
+                                    <textarea maxlength="250" required name="unemploymentReason${(unemployNumber) ? ('_' + unemployNumber) : ''}" id="unemployReason_${(unemployNumber) ? ('_' + unemployNumber) : ''}" placeholder="Enter Text"
                                         rows="4" class="form-control mt-2 txtfeild"></textarea>
                                 </div>`
         document.getElementById(presentId).appendChild(unemploy);
@@ -1867,127 +1890,6 @@ function removeUnemployment(presentId, value) {
         }
     }
 }
-
-
-
-// function validateEmploymentHistory() {
-//     const container = document.getElementById('employmentsContainer');
-//     const forms = container.querySelectorAll('[id^="employmentForm"]');
-//     const currentlyEmployed = document.getElementById('stillEmployee');
-
-//     let earliestStartDate = null;
-//     let latestEndDate = null;
-//     if (currentlyEmployed.checked) {
-//         latestEndDate = new Date();
-
-//     }
-
-//     forms.forEach((form) => {
-//         const startDateField = form.querySelector('[id^="companyStart"]');
-//         const endDateField = form.querySelector('[id^="companySeparation"]');
-
-//         const startDate = startDateField ? new Date(startDateField.value) : null;
-//         const endDate = endDateField ? new Date(endDateField.value) : null;
-
-//         if (startDate && !isNaN(startDate)) {
-//             if (!earliestStartDate || startDate < earliestStartDate) {
-//                 earliestStartDate = startDate;
-//             }
-//         }
-
-//         if (endDate && !isNaN(endDate)) {
-//             if (!latestEndDate || endDate > latestEndDate) {
-//                 latestEndDate = endDate;
-//             }
-//         }
-//     });
-
-//     if (earliestStartDate && latestEndDate) {
-//         totalYears = (latestEndDate - earliestStartDate) / (1000 * 60 * 60 * 24 * 365);
-
-//         if (totalYears < 10) {
-//             addEmploymentValidation();
-//         } else {
-//             removeEmploymentValidation();
-//         }
-//     } else {
-//         addEmploymentValidation();
-//     }
-// }
-
-// function validateEmploymentHistory() {
-//     let totalYears = 0;
-//     const forms = document.querySelectorAll('[id^="employmentForm"]');
-//     const currentlyEmployed = document.getElementById('stillEmployee');
-//     //const stillEmployedField = form.querySelector('[id^="stillEmployee"]');
-//     forms.forEach((form) => {
-//         const startDateField = form.querySelector('[id^="companyStart"]');
-//         const endDateField = form.querySelector('[id^="companySeparation"]');
-
-
-//         const startDate = startDateField ? new Date(startDateField.value) : null;
-//         let endDate = endDateField ? new Date(endDateField.value) : null;
-
-//         // If "Currently Employed" is checked, use the current date as the end date
-//         if (currentlyEmployed && currentlyEmployed.checked && form.id==='employmentForm_1' ) {
-//             endDate = new Date();
-//         }
-
-//         if (startDate && !isNaN(startDate) && endDate && !isNaN(endDate) && endDate >= startDate) {
-//             console.log('startDAte ' ,startDate ,'End datee',endDate);
-//             let yearsWorked = (endDate - startDate) / (1000 * 60 * 60 * 24 * 365);
-//             console.log('yearsWorked ',yearsWorked)
-//             totalYears += yearsWorked;
-//         }
-//     });
-//     console.log('total Years ',years);
-//     if (totalYears < 10) {
-//         addEmploymentValidation();
-//     } else {
-//         removeEmploymentValidation();
-//     }
-// }
-
-// function validateEmploymentHistory() {
-//     let totalDays=0;
-//     const forms = document.querySelectorAll('[id^="employmentForm"]');
-
-//     forms.forEach((form) => {
-//         const startDateField = form.querySelector('[id^="companyStart"]');
-//         const endDateField = form.querySelector('[id^="companySeparation"]');
-//         const currentlyEmployed = form.querySelector('[id^="stillEmployee"]');
-
-
-//         console.log("startDateField", startDateField.value);
-//         console.log("endDateField", endDateField.value);
-//         if (startDateField?.value  && endDateField?.value) {
-
-//             let startDate = new Date(startDateField.value);
-//             let endDate = new Date(endDateField.value);
-//             if (currentlyEmployed && currentlyEmployed.checked && form.id=="employmentForm_1") {
-//                 endDate = new Date();
-//             }
-//             startDate.setHours(0, 0, 0, 0);
-//             endDate.setHours(0, 0, 0, 0);
-//           console.log("startDate", startDateField.value);
-//           console.log("endDate", endDateField.value);
-//           if (startDate <= endDate ) {
-//             totalDays += (endDate - startDate) / (1000 * 60 * 60 * 24); // Convert to days
-//         }
-//         }
-
-//     });
-
-//      let totalYears=totalDays/(365);
-//     console.log('Total Employment Years:', totalYears);
-
-//     if (totalYears < 10) {
-//         addEmploymentValidation();
-//     } else {
-//         removeEmploymentValidation();
-//     }
-// }
-
 
 function validateEmploymentHistory() {
     let totalDays = 0; // Store total address days
@@ -2024,48 +1926,6 @@ function validateEmploymentHistory() {
         removeEmploymentValidation();
     }
 }
-
-// function validateEmploymentHistory() {
-//     let totalDays = 0;
-//     const forms = document.querySelectorAll('[id^="employmentForm"]');
-
-//     forms.forEach((form) => {
-//         const startDateField = form.querySelector('[id^="companyStart"]');
-//         const endDateField = form.querySelector('[id^="companySeparation"]');
-//         const currentlyEmployed = form.querySelector('[id^="stillEmployee"]');
-
-//         if (startDateField?.value) {
-//             let startDate = new Date(startDateField.value);
-//             let endDate = endDateField?.value ? new Date(endDateField.value) : new Date(); // Default to today if empty
-
-//             // If "Currently Employed" is checked, use today's date
-//             if (currentlyEmployed && currentlyEmployed.checked && ) {
-//                 endDate = new Date();
-//             }
-
-//             // Normalize to remove time components
-//             startDate.setHours(0, 0, 0, 0);
-//             endDate.setHours(0, 0, 0, 0);
-
-//             console.log("startDate:", startDate.toISOString().split("T")[0]);
-//             console.log("endDate:", endDate.toISOString().split("T")[0]);
-
-//             if (startDate <= endDate) {
-//                 totalDays += Math.floor((endDate - startDate) / (1000 * 60 * 60 * 24)); // Convert to whole days
-//             }
-//         }
-//     });
-
-//     let totalYears = totalDays / 365;
-//     console.log('Total Employment Years:', totalYears);
-
-//     if (totalYears < 10) {
-//         addEmploymentValidation();
-//     } else {
-//         removeEmploymentValidation();
-//     }
-// }
-
 
 function toggleEmploymentDates() {
     const stillEmployeeCheckbox = document.getElementById('stillEmployee');

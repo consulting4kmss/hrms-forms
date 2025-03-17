@@ -281,7 +281,7 @@ function validateAddressHistory() {
                 }
             } else {
                 let gap = period.from - coveredUntil;
-                if (gap > 1) {
+                if (gap > maxAllowedGap) {
                     showInvalidDates();
                     return false;
                 }

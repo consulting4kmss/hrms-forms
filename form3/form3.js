@@ -224,16 +224,14 @@ function validateAddressHistory() {
     let threeYearsAgo = new Date();
     threeYearsAgo.setFullYear(today.getFullYear() - 3);
 
-    // 🔹 Normalize dates to remove time component
+    // Normalizing Dates
     function normalizeDate(date) {
         return new Date(date.getFullYear(), date.getMonth(), date.getDate()); // Keeps only YYYY-MM-DD
     }
-
     today = normalizeDate(today);
     threeYearsAgo = normalizeDate(threeYearsAgo);
 
     console.log("Checking address history from", threeYearsAgo, "to", today);
-
     let addressPeriods = [];
     let totalDays = 0;
 
@@ -254,7 +252,6 @@ function validateAddressHistory() {
 
     let totalYears = totalDays / 365;
     console.log("Total Days:", totalDays);
-
     if (addressPeriods.length === 1) {
         let period = addressPeriods[0];
 

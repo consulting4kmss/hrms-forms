@@ -219,39 +219,204 @@ function caluclateTotalFeilds() {
 }
 
 
-function validateAddressHistory() {
-    let today = new Date();
-    let threeYearsAgo = new Date();
-    threeYearsAgo.setFullYear(today.getFullYear() - 3);
+// function validateAddressHistory() {
+//     let today = new Date();
+//     let threeYearsAgo = new Date();
+//     threeYearsAgo.setFullYear(today.getFullYear() - 3);
 
-    // Normalizing Dates
-    function normalizeDate(date) {
-        return new Date(date.getFullYear(), date.getMonth(), date.getDate()); // Keeps only YYYY-MM-DD
+//     // Normalizing Dates
+//     function normalizeDate(date) {
+//         return new Date(date.getFullYear(), date.getMonth(), date.getDate()); // Keeps only YYYY-MM-DD
+//     }
+//     today = normalizeDate(today);
+//     threeYearsAgo = normalizeDate(threeYearsAgo);
+
+//     console.log("Checking address history from", threeYearsAgo, "to", today);
+//     let addressPeriods = [];
+//     let totalDays = 0;
+
+//     document.querySelectorAll('#mainAddressContainer, #addressSon').forEach(container => {
+//         let fromInput = container.querySelector('[id^="addressFrom"]');
+//         let toInput = container.querySelector('[id^="addressTo"]');
+
+//         if (fromInput?.value && toInput?.value) {
+//             let fromDate = new Date(fromInput.value);
+//             let toDate = new Date(toInput.value);
+
+//             if (fromDate <= toDate) {
+//                 totalDays += (toDate - fromDate) / (1000 * 60 * 60 * 24);
+//                 addressPeriods.push({ from: normalizeDate(fromDate), to: normalizeDate(toDate) });
+//             }
+//         }
+//     });
+
+//     let totalYears = totalDays / 365;
+//     console.log("Total Days:", totalDays);
+//     if (addressPeriods.length === 1) {
+//         let period = addressPeriods[0];
+
+//         console.log("Normalized Comparison:");
+//         console.log("threeYearsAgo:", threeYearsAgo, "today:", today);
+//         console.log("Period:", period.from, "to", period.to);
+
+//         if (period.from <= threeYearsAgo && period.to >= today) {
+//             return true; // Valid address history
+//         }
+//     }
+
+//     // Step 2: Check continuity for multiple periods
+//     if (totalYears >= 3) {
+//         addressPeriods.sort((a, b) => a.from - b.from);
+//         let coveredUntil = null;
+//         let maxAllowedGap = 30 * 24 * 60 * 60 * 1000;
+
+//         for (let period of addressPeriods) {
+//             if (coveredUntil === null) {
+//                 if (period.from > threeYearsAgo) {
+//                     showInvalidDates();
+//                     return false;
+//                 }
+//             } else {
+//                 let gap = period.from - coveredUntil;
+//                 if (gap > maxAllowedGap) {
+//                     showInvalidDates();
+//                     return false;
+//                 }
+//             }
+//             coveredUntil = period.to;
+//         }
+
+//         if (coveredUntil < today) {
+//             showInvalidDates();
+//             return false;
+//         }
+
+//         return true;
+//     }
+
+//     showInvalidDates();
+//     return false;
+// }
+
+// function validateAddressHistory() {
+//     let timeZone = "America/New_York";
+
+//     function getESTDate(dateStr) {
+//         // Parse as UTC first to avoid timezone shifts
+//         let utcDate = new Date(dateStr + "T00:00:00Z");
+//         let estDate = new Date(utcDate.toLocaleString("en-US", { timeZone }));
+//         return new Date(estDate.getFullYear(), estDate.getMonth(), estDate.getDate()); // Normalize to YYYY-MM-DD
+//     }
+
+//     let today = getESTDate(new Date().toISOString().split("T")[0]); // Use UTC-based today
+//     let threeYearsAgo = new Date(today);
+//     threeYearsAgo.setFullYear(today.getFullYear() - 3);
+
+//     console.log("Checking address history from", threeYearsAgo, "to", today);
+//     let addressPeriods = [];
+//     let totalDays = 0;
+
+//     document.querySelectorAll("#mainAddressContainer, #addressSon").forEach(container => {
+//         let fromInput = container.querySelector('[id^="addressFrom"]');
+//         let toInput = container.querySelector('[id^="addressTo"]');
+
+//         if (fromInput?.value && toInput?.value) {
+//             let fromDate = getESTDate(fromInput.value);
+//             let toDate = getESTDate(toInput.value);
+
+//             if (fromDate <= toDate) {
+//                 totalDays += (toDate - fromDate) / (1000 * 60 * 60 * 24);
+//                 addressPeriods.push({ from: fromDate, to: toDate });
+//             }
+//         }
+//     });
+
+//     let totalYears = totalDays / 365;
+//     console.log("Total Days:", totalDays);
+
+//     if (addressPeriods.length === 1) {
+//         let period = addressPeriods[0];
+
+//         console.log("Normalized Comparison:");
+//         console.log("threeYearsAgo:", threeYearsAgo, "today:", today);
+//         console.log("Period:", period.from, "to", period.to);
+
+//         if (period.from <= threeYearsAgo && period.to >= today) {
+//             return true; // Valid address history
+//         }
+//     }
+
+//     // Step 2: Check continuity for multiple periods
+//     if (totalYears >= 3) {
+//         addressPeriods.sort((a, b) => a.from - b.from);
+//         let coveredUntil = null;
+//         let maxAllowedGap = 30 * 24 * 60 * 60 * 1000;
+
+//         for (let period of addressPeriods) {
+//             if (coveredUntil === null) {
+//                 if (period.from > threeYearsAgo) {
+//                     showInvalidDates();
+//                     return false;
+//                 }
+//             } else {
+//                 let gap = period.from - coveredUntil;
+//                 if (gap > maxAllowedGap) {
+//                     showInvalidDates();
+//                     return false;
+//                 }
+//             }
+//             coveredUntil = period.to;
+//         }
+
+//         if (coveredUntil < today) {
+//             showInvalidDates();
+//             return false;
+//         }
+
+//         return true;
+//     }
+
+//     showInvalidDates();
+//     return false;
+// }
+
+
+function validateAddressHistory() {
+    let timeZone = "America/New_York";
+
+    function getESTDate(dateStr) {
+        // Parse as UTC first to avoid timezone shifts
+        let utcDate = new Date(dateStr + "T00:00:00Z");
+        let estDate = new Date(utcDate.toLocaleString("en-US", { timeZone }));
+        return new Date(estDate.getFullYear(), estDate.getMonth(), estDate.getDate()); // Normalize to YYYY-MM-DD
     }
-    today = normalizeDate(today);
-    threeYearsAgo = normalizeDate(threeYearsAgo);
+
+    let today = getESTDate(new Date().toISOString().split("T")[0]); // Use UTC-based today
+    let threeYearsAgo = new Date(today);
+    threeYearsAgo.setFullYear(today.getFullYear() - 3);
 
     console.log("Checking address history from", threeYearsAgo, "to", today);
     let addressPeriods = [];
     let totalDays = 0;
 
-    document.querySelectorAll('#mainAddressContainer, #addressSon').forEach(container => {
+    document.querySelectorAll("#mainAddressContainer, #addressSon").forEach(container => {
         let fromInput = container.querySelector('[id^="addressFrom"]');
         let toInput = container.querySelector('[id^="addressTo"]');
 
         if (fromInput?.value && toInput?.value) {
-            let fromDate = new Date(fromInput.value);
-            let toDate = new Date(toInput.value);
+            let fromDate = getESTDate(fromInput.value);
+            let toDate = getESTDate(toInput.value);
 
             if (fromDate <= toDate) {
                 totalDays += (toDate - fromDate) / (1000 * 60 * 60 * 24);
-                addressPeriods.push({ from: normalizeDate(fromDate), to: normalizeDate(toDate) });
+                addressPeriods.push({ from: fromDate, to: toDate });
             }
         }
     });
 
     let totalYears = totalDays / 365;
     console.log("Total Days:", totalDays);
+
     if (addressPeriods.length === 1) {
         let period = addressPeriods[0];
 

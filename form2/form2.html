@@ -33,15 +33,15 @@
                             <label class="question-label">First Name</label>
 
                             <input id="firstName" required type="text" data-validate="text" name="firstName"
-                                autocomplete="off" maxlength="30"
+                                autocomplete="off" maxlength="30"  value="{{result.coe_pp_heq_firstname | default: ''}}"
                                 oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed',true)"
-                                class="form-control" onchange="updateProgress('form1')" />
+                                class="form-control" onchange="updateProgress('form1')"/>
                             <small class="error-message"></small>
                         </div>
                         <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                             <label class="question-label">Last Name</label>
                             <input id="lastName" required type="text" data-validate="text" autocomplete="off"
-                                name="lastName" autocomplete="off" maxlength="30"
+                                name="lastName" autocomplete="off" maxlength="30" value="{{result.coe_pp_heq_lastname | default: ''}}"
                                 oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed',true)"
                                 class="form-control" onchange="updateProgress('form1')" />
                             <small class="error-message"></small>
@@ -52,14 +52,14 @@
                         <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                             <label class="question-label">Middle Name</label>
                             <input type="text" name="middleName" id="midName" autocomplete="off" maxlength="30"
-                                oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed',true)"
+                                oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed',true)" value="{{result.coe_pp_heq_middlename | default: ''}}"
                                 class="form-control" onchange="updateProgress('form1')" />
                             <small class="error-message"></small>
                         </div>
                         <div class="col-12 col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                             <label class="question-label">Suffix</label>
                             <input type="text" id="suffix" autocomplete="off" name="Suffix"
-                                maxlength="15" oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed',true)"
+                                maxlength="15" oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed',true)" value="{{result.coe_pp_heq_suffix | default: ''}}"
                                 class="form-control" onchange="updateProgress('form1')" />
                             <small class="error-message"></small>
                         </div>
@@ -68,14 +68,14 @@
                 <div class="form-row mt-3">
                     <div>
                         <label class="question-label">Permanent Home Address(Line1)</label>
-                        <input required type="text" autocomplete="off" name="address1" maxlength="200"
+                        <input required type="text" autocomplete="off" name="address1" maxlength="200" value="{{result.coe_pp_heq_addressline1 | default: ''}}"
                             class="form-control" onchange="updateProgress('form1')">
                     </div>
                 </div>
                 <div class="form-row">
                     <div>
                         <label class="question-label">Permanent Home Address(Line2)</label>
-                        <input type="text" autocomplete="off" name="address2" id="add2" class="form-control"
+                        <input type="text" autocomplete="off" name="address2" id="add2" class="form-control" value="{{result.coe_pp_heq_addressline2 | default: ''}}"
                             maxlength="200" onchange="updateProgress('form1')">
                     </div>
                 </div>
@@ -84,14 +84,14 @@
                         <label class="question-label">City</label>
 
                         <input required type="text" data-validate="text" name="city" maxlength="50" autocomplete="off"
-                            oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed',true)" class="form-control"
+                            oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed',true)" class="form-control" value="{{result.coe_pp_heq_city | default: ''}}"
                             onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
                     </div>
                     <div>
                         <label class="question-label">State</label>
                         <!-- <input required type="text" data-validate="text" name="state" maxlength="50" autocomplete="off" oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" class="form-control" onchange="updateProgress('form1')"/> -->
-                        <select required name="state" class="form-control select-feild" autocomplete="off"
+                        <select required name="state" class="form-control select-feild" autocomplete="off" value="{{result.coe_pp_heq_state | default: ''}}"
                             onchange="updateProgress('form1')">
                             <option class="opt" value="">Select One</option>
                             <option class="opt" value="Alabama">Alabama</option>
@@ -151,7 +151,7 @@
                         <label class="question-label">Zip</label>
 
                         <input required type="text" name="zip" autocomplete="off" maxlength="9" data-validate="number"
-                            class="form-control" onchange="updateProgress('form1')"
+                            class="form-control" value="{{result.coe_pp_heq_zipcode | default: ''}}" onchange="updateProgress('form1')"
                             oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed',true)" />
                         <small class="error-message"></small>
                     </div>
@@ -160,14 +160,14 @@
                     <div>
                         <label class="question-label">Home Phone No.</label>
 
-                        <input required type="text" name="home" autocomplete="off"
+                        <input required type="text" name="home" autocomplete="off" value="{{result.coe_pp_heq_homephnumber | default: ''}}"
                             oninput="validateAndFormatPhoneNumber(this,true);" class="form-control"
                             onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
                     </div>
                     <div>
                         <label class="question-label">Cell Phone No.</label>
-                        <input required type="text" name="cell" autocomplete="off"
+                        <input required type="text" name="cell" autocomplete="off" value="{{result.coe_pp_heq_cellphnumber | default: ''}}"
                             oninput="validateAndFormatPhoneNumber(this,true);" class="form-control"
                             onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
@@ -179,7 +179,7 @@
                     <div>
                         <label class="question-label">Date of Birth</label>
 
-                        <input required type="date" class="dab" id="dob" name="dob" onchange="handleDateChange(event)">
+                        <input required type="date" class="dab" id="dob" name="dob" value="{{result.coe_pp_heq_dateofbirth | default: ''}}" onchange="handleDateChange(event)">
                         <small class="error-message"></small>
                     </div>
                 </div>
@@ -187,7 +187,7 @@
                     <div>
                         <label class="question-label">Gender</label>
 
-                        <input required type="text" data-validate="text" name="gender" maxlength="10" autocomplete="off"
+                        <input required type="text" data-validate="text" name="gender" maxlength="10" autocomplete="off" value="{{result.coe_pp_heq_gender | default: ''}}"
                             oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed',true)" class="form-control"
                             onchange="updateProgress('form1')" />
                         <small class="error-message"></small>
@@ -200,7 +200,7 @@
                         <!-- <input required id="tall" type="number" min="1" max="999" autocomplete="off"
                         data-validate="number" oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed')" /> -->
 
-                        <input required type="text" id="tall" name="height" autocomplete="off" maxlength="3" data-validate="number"
+                        <input required type="text" id="tall" name="height" autocomplete="off" maxlength="3" data-validate="number" value="{{result.coe_pp_heq_height | default: ''}}"
                          
                         oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed',true)" onchange="updateProgress('form1')" />
 
@@ -209,7 +209,7 @@
                     <div>
                         <label class="question-label">Weight</label>
                         <input required id="weight" name="weight" type="decimal" step="0.01" min="0" max="999.99" autocomplete="off"
-                            maxlength="6"
+                            maxlength="6" value="{{result.coe_pp_heq_weight | default: ''}}"
                             oninput="validInput(this, /^\d{0,3}(\.\d{0,2})?$/, 'Only numbers with up to 2 decimals are allowed',true);" />
                         <small class="error-message"></small>
                     </div>
@@ -240,7 +240,8 @@
                         <div class="col-12 d-flex flex-column mt-2">
                             <div class="form-check" d-flex align-items-end>
                                 <input class="form-check-input" type="checkbox" value="no" id="visionNo"
-                                    name="defectiveVision" onchange="updateProgress('form1')">
+                                    name="defectiveVision" onchange="updateProgress('form1')"
+                                    {% if result.coe_pp_heq_eyes_defectivevision == 'no' %} checked {% endif %} />
 
                                 <label class="question-label label ms-4" for="visionNo">
                                     No
@@ -249,7 +250,8 @@
 
                             <div class="form-check mt-2">
                                 <input class="form-check-input" type="checkbox" value="yes" name="defectiveVision"
-                                    id="visionYes" name="defectiveVision" onchange="updateProgress('form1')">
+                                    id="visionYes" name="defectiveVision" onchange="updateProgress('form1')"                                   
+                                    {% if result.coe_pp_heq_eyes_defectivevision == 'yes' %} checked {% endif %} >
 
                                 <label class="question-label ms-4" for="visionYes">
                                     Yes
@@ -260,7 +262,7 @@
                         <div id="defectiveVisionYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
                             <select required style="width:35%;" name="defectiveVisionYear" id="defectiveVisionYear"
-                                class="form-control mt-2 select-feild ">
+                                class="form-control mt-2 select-feild" value="{{result.coe_pp_heq_eyes_defectivevision_Year | default: ''}}" >
                                 <option class="opt" value="">Select Year</option>
                                 <option class="opt" value="2020">2020</option>
                                 <option class="opt" value="2021">2021</option>
@@ -271,7 +273,7 @@
                         <div id="defectiveVisionExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
                             <textarea required maxlength="250" style="display: none;" name="defectiveVisionExplanation"
-                                id="defectiveVisionExplanation" rows="4" class="form-control mt-2 txtfeild "></textarea>
+                                id="defectiveVisionExplanation" rows="4" class="form-control mt-2 txtfeild " value="{{result.coe_pp_heq_eyes_defectivevision_explain | default: ''}}"></textarea>
                         </div>
                         <div class="col-12 mt-3">
                             <div class="col-12">
@@ -283,7 +285,7 @@
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="no"
                                                 id="visionOtherNo" name="visionOther"
-                                                onchange="updateProgress('form1')">
+                                                onchange="updateProgress('form1')"   {% if result.coe_pp_heq_eyes_other== 'no' %} checked {% endif %}>
 
                                             <label class="question-label label ms-4" for="visionOtherNo">
                                                 No
@@ -293,7 +295,7 @@
                                         <div class="form-check mt-2">
                                             <input class="form-check-input" type="checkbox" value="yes"
                                                 name="visionOther" id="visionOtherYes" name="defectiveVision"
-                                                onchange="updateProgress('form1')">
+                                                onchange="updateProgress('form1')"    {% if result.coe_pp_heq_eyes_other== 'yes' %} checked {% endif %}>
 
                                             <label class="question-label ms-4" for="visionYes">
                                                 Yes
@@ -305,7 +307,7 @@
                             <div id="visionOtherYearInput" class="col-12 " style="display: none;">
                                 <label class="question-label">Indicate Year it Occurred</label>
                                 <select required style="width:35%;" name="visionOtherYear" id="visionOtherYear"
-                                    class="form-control mt-2 select-feild ">
+                                    class="form-control mt-2 select-feild " value="{{result.coe_pp_heq_eyes_other_Year | default: ''}}" >
                                     <option value="">Select Year</option>
                                     <option value="2020">2020</option>
                                     <option value="2021">2021</option>
@@ -315,7 +317,7 @@
                             </div>
                             <div id="visionOtherExplanationInput" class="col-12 mt-3" style="display: none;">
                                 <label class="question-label">Explain</label>
-                                <textarea required maxlength="250" style="display:none" name="visionOtherExplanation"
+                                <textarea required maxlength="250" style="display:none" name="visionOtherExplanation" value="{{result.coe_pp_heq_eyes_other_explain | default: ''}}"
                                     id="visionOtherExplanation" rows="4" class="form-control mt-2 txtfeild "></textarea>
                             </div>
                         </div>
@@ -334,9 +336,9 @@
                                     <div class="checkbox-item d-flex align-items-center mt-2">
                                         <div class="col-12 d-flex flex-column">
                                             <div class="form-check" d-flex align-items-end>
-                                                <input class="form-check-input" type="checkbox" value="no"
+                                                <input class="form-check-input" type="checkbox" value="no" 
                                                     id="hearingNo" name="hearingLoss"
-                                                    onchange="updateProgress('form1')">
+                                                    onchange="updateProgress('form1')" {% if result.coe_pp_heq_ent_hearingloss== 'no' %} checked {% endif %}>
 
                                                 <label class="question-label label ms-4" for="hearingNo">
                                                     No
@@ -346,7 +348,7 @@
                                             <div class="form-check mt-2">
                                                 <input class="form-check-input" type="checkbox" value="yes"
                                                     name="hearingLoss" id="hearingYes"
-                                                    onchange="updateProgress('form1')">
+                                                    onchange="updateProgress('form1')"  {% if result.coe_pp_heq_ent_hearingloss== 'yes' %} checked {% endif %}>
 
                                                 <label class="question-label ms-4" for="hearingYes">
                                                     Yes
@@ -357,7 +359,7 @@
                                     </div>
                                     <div id="hearingLossYearInput" class="col-12" style="display: none;">
                                         <label class="question-label">Indicate Year it Occurred</label>
-                                        <select required style="width:35%;" name="hearingLossYear" id="hearingLossYear"
+                                        <select required style="width:35%;" name="hearingLossYear" id="hearingLossYear" value="{{result.coe_pp_heq_ent_hearingloss_Year | default: ''}}"
                                             class="form-control mt-2 select-feild ">
                                             <option value="">Select Year</option>
                                             <option value="2020">2020</option>
@@ -370,7 +372,7 @@
                                         style="display: none;">
                                         <label class="question-label">Explain</label>
                                         <textarea required maxlength="250" name="hearingLossExplanation"
-                                            id="hearingLossExplanation" rows="4"
+                                            id="hearingLossExplanation" rows="4" value="{{result.coe_pp_heq_ent_hearingloss_explain | default: ''}}"
                                             class="form-control mt-2 txtfeild "></textarea>
                                     </div>
                                     <div class="col-12 mt-2">
@@ -383,7 +385,7 @@
 
                                             <div class="form-check" d-flex align-items-end>
                                                 <input class="form-check-input" type="checkbox" value="no"
-                                                    id="hearingotherNo" name="hearingOther"
+                                                    id="hearingotherNo" name="hearingOther" {% if result.coe_pp_heq_ent_other== 'no' %} checked {% endif %}
                                                     onchange="updateProgress('form1')">
 
                                                 <label class="question-label label ms-4" for="hearingotherNo">
@@ -393,7 +395,7 @@
 
                                             <div class="form-check mt-2">
                                                 <input class="form-check-input" type="checkbox" value="yes"
-                                                    name="hearingOther" id="hearingotherYes"
+                                                    name="hearingOther" id="hearingotherYes" {% if result.coe_pp_heq_ent_other== 'yes' %} checked {% endif %}
                                                     onchange="updateProgress('form1')">
 
                                                 <label class="question-label ms-4" for="hearingotherYes">
@@ -404,7 +406,7 @@
                                         </div>
                                         <div id="hearingOtherYearInput" class="col-12 mt-2" style="display: none;">
                                             <label class="question-label">Indicate Year it Occurred</label>
-                                            <select required style="width:35%;" name="hearingOtherYear"
+                                            <select required style="width:35%;" name="hearingOtherYear" value="{{result.coe_pp_heq_ent_other_Year | default: ''}}"
                                                 id="hearingOtherYear" class="form-control mt-2 select-feild ">
                                                 <option value="">Select Year</option>
                                                 <option value="2020">2020</option>
@@ -416,7 +418,7 @@
                                         <div id="hearingOtherExplanationInput" class="col-12 mt-3"
                                             style="display: none;">
                                             <label class="question-label">Explain</label>
-                                            <textarea required maxlength="250" name="hearingOtherExplanation"
+                                            <textarea required maxlength="250" name="hearingOtherExplanation" value="{{result.coe_pp_heq_ent_other_explain | default: ''}}"
                                                 id="hearingOtherExplanation" rows="4"
                                                 class="form-control mt-2 txtfeild "></textarea>
                                         </div>
@@ -438,7 +440,7 @@
                                                 <div class="form-check" d-flex align-items-end>
                                                     <input class="form-check-input" type="checkbox" value="no"
                                                         id="migrainesNo" name="migraines"
-                                                        onchange="updateProgress('form1')">
+                                                        onchange="updateProgress('form1')" {% if result.coe_pp_heq_head_migraines== 'no' %} checked {% endif %}>
 
                                                     <label class="question-label label ms-4" for="migrainesNo">
                                                         No
@@ -448,7 +450,7 @@
                                                 <div class="form-check mt-2">
                                                     <input class="form-check-input" type="checkbox" value="yes"
                                                         name="migraines" id="migrainesYes"
-                                                        onchange="updateProgress('form1')">
+                                                        onchange="updateProgress('form1')" {% if result.coe_pp_heq_head_migraines== 'yes' %} checked {% endif %}>
 
                                                     <label class="question-label ms-4" for="migrainesYes">
                                                         Yes
@@ -459,7 +461,7 @@
                                         </div>
                                         <div id="migrainesYearInput" class="col-12 mt-2" style="display: none;">
                                             <label class="question-label">Indicate Year it Occurred</label>
-                                            <select required style="width:35%;" name="migrainesYear" id="migrainesYear"
+                                            <select required style="width:35%;" name="migrainesYear" id="migrainesYear" value="{{result.coe_pp_heq_ent_head_migranes_Year | default: ''}}"
                                                 class="form-control mt-2 select-feild ">
                                                 <option value="">Select Year</option>
                                                 <option value="2020">2020</option>
@@ -470,9 +472,9 @@
                                         </div>
                                         <div id="migrainesExplanationInput" class="col-12 mt-3" style="display: none;">
                                             <label class="question-label">Explain</label>
-                                            <textarea required maxlength="250" name="migrainesExplanation"
+                                            <textarea required maxlength="250" name="migrainesExplanation" value="{{result.coe_pp_heq_ent_head_migranes_explain | default: ''}}"
                                                 id="migrainesExplanation" rows="4"
-                                                class="form-control mt-2 txtfeild "></textarea>
+                                                class="form-control mt-2 txtfeild" ></textarea>
                                         </div>
                                         <div class="col-12 mt-3">
                                             <div class="col-12">
@@ -484,7 +486,7 @@
 
 
                                                     <div class="form-check" d-flex align-items-end>
-                                                        <input class="form-check-input" type="checkbox" value="no"
+                                                        <input class="form-check-input" type="checkbox" value="no" {% if result.coe_pp_heq_head_aches== 'no' %} checked {% endif %}
                                                             id="headachesNo" name="headaches"
                                                             onchange="updateProgress('form1')">
 
@@ -494,7 +496,7 @@
                                                     </div>
 
                                                     <div class="form-check mt-2">
-                                                        <input class="form-check-input" type="checkbox" value="yes"
+                                                        <input class="form-check-input" type="checkbox" value="yes" {% if result.coe_pp_heq_head_aches== 'yes' %} checked {% endif %}
                                                             name="headaches" id="headachesYes"
                                                             onchange="updateProgress('form1')">
 
@@ -511,7 +513,7 @@
                                         <div id="headachesYearInput" class="col-12 mt-2" style="display: none;">
                                             <label class="question-label">Indicate Year it Occurred</label>
                                             <select required style="width:35%;" name="headachesYear" id="headachesYear"
-                                                class="form-control mt-2 select-feild ">
+                                                class="form-control mt-2 select-feild " value="{{result.coe_pp_heq_ent_head_aches_Year | default: ''}}">
                                                 <option value="">Select Year</option>
                                                 <option value="2020">2020</option>
                                                 <option value="2021">2021</option>
@@ -521,7 +523,7 @@
                                         </div>
                                         <div id="headachesExplanationInput" class="col-12 mt-3" style="display: none;">
                                             <label class="question-label">Explain</label>
-                                            <textarea required maxlength="250" name="headachesExplanation"
+                                            <textarea required maxlength="250" name="headachesExplanation" value="{{result.coe_pp_heq_ent_head_aches_explain | default: ''}}"
                                                 id="headachesExplanation" rows="4" class="form-control mt-2 txtfeild ">
                                         </textarea>
                                         </div>
@@ -533,7 +535,7 @@
 
                                                 <div class="col-12 d-flex flex-column mt-2">
                                                     <div class="form-check" d-flex align-items-end>
-                                                        <input class="form-check-input" type="checkbox" value="no"
+                                                        <input class="form-check-input" type="checkbox" value="no" {% if result.coe_pp_heq_head_tbi== 'no' %} checked {% endif %}
                                                             id="tbiNo" name="tbi" onchange="updateProgress('form1')">
 
                                                         <label class="question-label label ms-4" for="headachesNo">
@@ -542,7 +544,7 @@
                                                     </div>
 
                                                     <div class="form-check mt-2">
-                                                        <input class="form-check-input" type="checkbox" value="yes"
+                                                        <input class="form-check-input" type="checkbox" value="yes" {% if result.coe_pp_heq_head_tbi== 'yes' %} checked {% endif %}
                                                             name="tbi" id="tbiYes" onchange="updateProgress('form1')">
 
                                                         <label class="question-label ms-4" for="tbiYes">
@@ -555,7 +557,7 @@
                                         </div>
                                         <div id="tbiYearInput" class="col-12  mt-2" style="display: none;">
                                             <label class="question-label">Indicate Year it Occurred</label>
-                                            <select required style="width:35%;" name="tbiYear" id="tbiYear"
+                                            <select required style="width:35%;" name="tbiYear" id="tbiYear" value="{{result.coe_pp_heq_head_tbi_Year | default: ''}}"
                                                 class="form-control mt-2 select-feild ">
                                                 <option value="">Select Year</option>
                                                 <option value="2020">2020</option>
@@ -566,7 +568,7 @@
                                         </div>
                                         <div id="tbiExplanationInput" class="col-12 mt-3" style="display: none;">
                                             <label class="question-label">Explain</label>
-                                            <textarea required maxlength="250" name="tbiExplanation" id="tbiExplanation"
+                                            <textarea required maxlength="250" name="tbiExplanation" id="tbiExplanation" value="{{result.coe_pp_heq_head_tbi_explain | default: ''}}"
                                                 rows="4" class="form-control txtfeild"></textarea>
                                         </div>
                                     </div>
@@ -608,7 +610,7 @@
                                         </div>
                                         <div id="thyroidYearInput" class="col-12 mt-2" style="display: none;">
                                             <label class="question-label">Indicate Year it Occurred</label>
-                                            <select required style="width:35%;" name="thyroidYear" id="thyroidYear"
+                                            <select required style="width:35%;" name="thyroidYear" id="thyroidYear" value="{{result.coe_pp_heq_thyroid_Year | default: ''}}"
                                                 class="form-control mt-2 select-feild ">
                                                 <option value="">Select Year</option>
                                                 <option value="2020">2020</option>
@@ -619,7 +621,7 @@
                                         </div>
                                         <div id="thyroidExplanationInput" class="col-12 mt-3" style="display: none;">
                                             <label class="question-label">Explain</label>
-                                            <textarea required maxlength="250" name="thyroidExplanation"
+                                            <textarea required maxlength="250" name="thyroidExplanation" value="{{result.coe_pp_heq_thyroid_explain | default: ''}}"
                                                 id="thyroidExplanation" rows="4"
                                                 class="form-control mt-2 txtfeild "></textarea>
                                         </div>
@@ -665,7 +667,7 @@
                                         <div id="irregularHeartbeatYearInput" class="col-12 mt-2"
                                             style="display: none;">
                                             <label class="question-label">Indicate Year it Occurred</label>
-                                            <select required style="width:35%;" name="irregularHeartbeatYear"
+                                            <select required style="width:35%;" name="irregularHeartbeatYear" value="{{result.coe_pp_heq_heart_irregular_Year| default: ''}}"
                                                 id="irregularHeartbeatYear" class="form-control mt-2 select-feild ">
                                                 <option value="">Select Year</option>
                                                 <option value="2020">2020</option>
@@ -677,7 +679,7 @@
                                         <div id="irregularHeartbeatExplanationInput" class="col-12 mt-3"
                                             style="display: none;">
                                             <label class="question-label">Explain</label>
-                                            <textarea required maxlength="250" name="irregularHeartbeatExplanation"
+                                            <textarea required maxlength="250" name="irregularHeartbeatExplanation" value="{{result.coe_pp_heq_heart_irregular_explain| default: ''}}"
                                                 id="irregularHeartbeatExplanation" rows="4"
                                                 class="form-control"></textarea>
                                         </div>
@@ -689,7 +691,7 @@
 
                                                 <div class="col-12 d-flex flex-column">
                                                     <div class="form-check" d-flex align-items-end>
-                                                        <input class="form-check-input" type="checkbox" value="no"
+                                                        <input class="form-check-input" type="checkbox" value="no" 
                                                             id="highBpNo" name="highBp"
                                                             onchange="updateProgress('form1')">
 
@@ -712,7 +714,7 @@
                                         </div>
                                         <div id="highBpYearInput" class="col-12 mt-2" style="display: none;">
                                             <label class="question-label">Indicate Year it Occurred</label>
-                                            <select required style="width:35%;" name="highBpYear" id="highBpYear"
+                                            <select required style="width:35%;" name="highBpYear" id="highBpYear" value="{{result.coe_pp_heq_heart_hbp_Year| default: ''}}"
                                                 class="form-control mt-2 select-feild ">
                                                 <option value="">Select Year</option>
                                                 <option value="2020">2020</option>
@@ -723,7 +725,7 @@
                                         </div>
                                         <div id="highBpExplanationInput" class="col-12 mt-3" style="display: none;">
                                             <label class="question-label">Explain</label>
-                                            <textarea required maxlength="250" name="highBpExplanation"
+                                            <textarea required maxlength="250" name="highBpExplanation" value="{{result.coe_pp_heq_heart_hbp_explain| default: ''}}"
                                                 id="highBpExplanation" rows="4"
                                                 class="form-control mt-2 txtfeild "></textarea>
                                         </div>
@@ -735,7 +737,7 @@
 
                                                 <div class="col-12 d-flex flex-column">
                                                     <div class="form-check" d-flex align-items-end>
-                                                        <input class="form-check-input" type="checkbox" value="no"
+                                                        <input class="form-check-input" type="checkbox" value="no" 
                                                             id="heartDiseaseNo" name="heartDisease"
                                                             onchange="updateProgress('form1')">
 
@@ -758,7 +760,7 @@
                                         </div>
                                         <div id="heartDiseaseYearInput" class="col-12 mt-2" style="display: none;">
                                             <label class="question-label">Indicate Year it Occurred</label>
-                                            <select required style="width:35%;" name="heartDiseaseYear"
+                                            <select required style="width:35%;" name="heartDiseaseYear" value="{{result.coe_pp_heq_heart_disease_Year| default: ''}}"
                                                 id="heartDiseaseYear" class="form-control mt-2 select-feild ">
                                                 <option value="">Select Year</option>
                                                 <option value="2020">2020</option>
@@ -770,7 +772,7 @@
                                         <div id="heartDiseaseExplanationInput" class="col-12 mt-3"
                                             style="display: none;">
                                             <label class="question-label">Explain</label>
-                                            <textarea required maxlength="250" name="heartDiseaseExplanation"
+                                            <textarea required maxlength="250" name="heartDiseaseExplanation" value="{{result.coe_pp_heq_heart_disease_explain| default: ''}}"
                                                 id="heartDiseaseExplanation" rows="4" class="form-control"></textarea>
                                         </div>
                                         <div class="col-12 mt-3">
@@ -805,7 +807,7 @@
                                         </div>
                                         <div id="heartFailureYearInput" class="col-12 mt-2" style="display: none;">
                                             <label class="question-label">Indicate Year it Occurred</label>
-                                            <select required style="width:35%;" name="heartFailureYear"
+                                            <select required style="width:35%;" name="heartFailureYear" value="{{result.coe_pp_heq_heart_failure_Year | default: ''}}"
                                                 id="heartFailureYear" class="form-control mt-2 select-feild ">
                                                 <option value="">Select Year</option>
                                                 <option value="2020">2020</option>
@@ -817,7 +819,7 @@
                                         <div id="heartFailureExplanationInput" class="col-12 mt-3"
                                             style="display: none;">
                                             <label class="question-label">Explain</label>
-                                            <textarea required maxlength="250" name="heartFailureExplanation"
+                                            <textarea required maxlength="250" name="heartFailureExplanation" value="{{result.coe_pp_heq_heart_failure_explain | default: ''}}"
                                                 id="heartFailureExplanation" rows="4"
                                                 class="form-control mt-2 txtfeild "></textarea>
                                         </div>
@@ -882,7 +884,7 @@
 
                         <div id="asthmaYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="asthmaYear" id="asthmaYear"
+                            <select required style="width:35%;" name="asthmaYear" id="asthmaYear" value="{{result.coe_pp_heq_lungs_asthma_Year | default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -893,7 +895,7 @@
                         </div>
                         <div id="asthmaExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="asthmaExplanation" id="asthmaExplanation" rows="4"
+                            <textarea required maxlength="250" name="asthmaExplanation" id="asthmaExplanation" rows="4" value="{{result.coe_pp_heq_lungs_asthma_explain | default: ''}}"
                                 class="form-control mt-2 txtfeild ">
                     </textarea>
                         </div>
@@ -930,7 +932,7 @@
 
                         <div id="copdYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="copdYear" id="copdYear"
+                            <select required style="width:35%;" name="copdYear" id="copdYear" value="{{result.coe_pp_heq_emphysema_Year | default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -941,7 +943,7 @@
                         </div>
                         <div id="copdExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="copdExplanation" id="copdExplanation" rows="4"
+                            <textarea required maxlength="250" name="copdExplanation" id="copdExplanation" rows="4" value="{{result.coe_pp_heq_emphysema_explain | default: ''}}"
                                 class="form-control mt-2 txtfeild ">
                     </textarea>
                         </div>
@@ -978,7 +980,7 @@
 
                         <div id="tuberYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="tuberYear" id="tuberYear"
+                            <select required style="width:35%;" name="tuberYear" id="tuberYear" value="{{result.coe_pp_heq_tuberclosis_Year | default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -989,7 +991,7 @@
                         </div>
                         <div id="tuberExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="tuberExplanation" id="tuberExplanation" rows="4"
+                            <textarea required maxlength="250" name="tuberExplanation" id="tuberExplanation" rows="4" value="{{result.coe_pp_heq_tuberclosis_explain | default: ''}}"
                                 class="form-control mt-2 txtfeild "></textarea>
                         </div>
                     </div>
@@ -1037,7 +1039,7 @@
 
                         <div id="kneeYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="kneeYear" id="kneeYear"
+                            <select required style="width:35%;" name="kneeYear" id="kneeYear" value="{{result.coe_pp_heq_knees_Year | default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -1048,7 +1050,7 @@
                         </div>
                         <div id="kneeExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="kneeExplanation" id="kneeExplanation" rows="4"
+                            <textarea required maxlength="250" name="kneeExplanation" id="kneeExplanation" rows="4" value="{{result.coe_pp_heq_knees_expain | default: ''}}"
                                 class="form-control mt-2 txtfeild ">
                     </textarea>
                         </div>
@@ -1085,7 +1087,7 @@
 
                         <div id="shoulderYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="shoulderYear" id="shoulderYear"
+                            <select required style="width:35%;" name="shoulderYear" id="shoulderYear"  value="{{result.coe_pp_heq_shoulder_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -1096,7 +1098,7 @@
                         </div>
                         <div id="shoulderExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="shoulderExplanation" id="shoulderExplanation"
+                            <textarea required maxlength="250" name="shoulderExplanation" id="shoulderExplanation" value="{{result.coe_pp_heq_shoulder_explain| default: ''}}"
                                 rows="4" class="form-control mt-2 txtfeild ">
                     </textarea>
                         </div>
@@ -1133,7 +1135,7 @@
 
                         <div id="elbowYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="elbowYear" id="elbowYear"
+                            <select required style="width:35%;" name="elbowYear" id="elbowYear" value="{{result.coe_pp_heq_elbow_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -1144,7 +1146,7 @@
                         </div>
                         <div id="elbowExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="elbowExplanation" id="elbowExplanation" rows="4"
+                            <textarea required maxlength="250" name="elbowExplanation" id="elbowExplanation" rows="4" value="{{result.coe_pp_heq_elbow_explain| default: ''}}"
                                 class="form-control mt-2 txtfeild "></textarea>
                         </div>
                     </div>
@@ -1179,7 +1181,7 @@
 
                         <div id="spineYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="spineYear" id="spineYear"
+                            <select required style="width:35%;" name="spineYear" id="spineYear" value="{{result.coe_pp_heq_backspine_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -1190,7 +1192,7 @@
                         </div>
                         <div id="spineExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="spineExplanation" id="spineExplanation" rows="4"
+                            <textarea required maxlength="250" name="spineExplanation" id="spineExplanation" rows="4" value="{{result.coe_pp_heq_backspine_explain| default: ''}}"
                                 class="form-control mt-2 txtfeild "></textarea>
                         </div>
                     </div>
@@ -1206,7 +1208,7 @@
 
 
                             <div class="form-check" d-flex align-items-end>
-                                <input class="form-check-input" type="checkbox" value="no" id="wristNo" name="wrist"
+                                <input class="form-check-input" type="checkbox" value="no" id="wristNo" name="wrist" 
                                     onchange="updateProgress('form1')">
 
                                 <label class="question-label label ms-4" for="wristNo">
@@ -1226,7 +1228,7 @@
 
                         <div id="wristYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="wristYear" id="wristYear"
+                            <select required style="width:35%;" name="wristYear" id="wristYear" value="{{result.coe_pp_heq_wrist_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -1237,7 +1239,7 @@
                         </div>
                         <div id="wristExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="wristExplanation" id="wristExplanation" rows="4"
+                            <textarea required maxlength="250" name="wristExplanation" id="wristExplanation" rows="4" value="{{result.coe_pp_heq_wrist_explain| default: ''}}"
                                 class="form-control mt-2 txtfeild "></textarea>
                         </div>
                     </div>
@@ -1272,7 +1274,7 @@
 
                         <div id="arthritisYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="arthritisYear" id="arthritisYear"
+                            <select required style="width:35%;" name="arthritisYear" id="arthritisYear" value="{{result.coe_pp_heq_arthritis_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -1283,7 +1285,7 @@
                         </div>
                         <div id="arthritisExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="arthritisExplanation" id="arthritisExplanation"
+                            <textarea required maxlength="250" name="arthritisExplanation" id="arthritisExplanation" value="{{result.coe_pp_heq_arthritis_explain| default: ''}}"
                                 rows="4" class="form-control mt-2 txtfeild "></textarea>
                         </div>
                     </div>
@@ -1326,7 +1328,7 @@
 
                         <div id="anemiaYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="anemiaYear" id="anemiaYear"
+                            <select required style="width:35%;" name="anemiaYear" id="anemiaYear" value="{{result.coe_pp_heq_anemia_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -1337,7 +1339,7 @@
                         </div>
                         <div id="anemiaExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="anemiaExplanation" id="anemiaExplanation" rows="4"
+                            <textarea required maxlength="250" name="anemiaExplanation" id="anemiaExplanation" rows="4" value="{{result.coe_pp_heq_anemia_explain| default: ''}}"
                                 class="form-control mt-2 txtfeild ">
                     </textarea>
                         </div>
@@ -1374,7 +1376,7 @@
 
                         <div id="sickleYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="sickleYear" id="sickleYear"
+                            <select required style="width:35%;" name="sickleYear" id="sickleYear" value="{{result.coe_pp_heq_sicklecellanemia_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -1385,7 +1387,7 @@
                         </div>
                         <div id="sickleExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="sickleExplanation" id="sickleExplanation" rows="4"
+                            <textarea required maxlength="250" name="sickleExplanation" id="sickleExplanation" rows="4" value="{{result.coe_pp_heq_sicklecellanemia_explain| default: ''}}"
                                 class="form-control mt-2 txtfeild ">
                     </textarea>
                         </div>
@@ -1422,7 +1424,7 @@
 
                         <div id="otherBloodYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="otherBloodYear" id="otherBloodYear"
+                            <select required style="width:35%;" name="otherBloodYear" id="otherBloodYear" value="{{result.coe_pp_heq_otherblooddisease_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -1433,7 +1435,7 @@
                         </div>
                         <div id="otherBloodExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="otherBloodExplanation" id="otherBloodExplanation"
+                            <textarea required maxlength="250" name="otherBloodExplanation" id="otherBloodExplanation" value="{{result.coe_pp_heq_otherblooddisease_explain| default: ''}}"
                                 rows="4" class="form-control mt-2 txtfeild "></textarea>
                         </div>
                     </div>
@@ -1473,7 +1475,7 @@
 
                         <div id="herniaYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="herniaYear" id="herniaYear"
+                            <select required style="width:35%;" name="herniaYear" id="herniaYear" value="{{result.coe_pp_heq_hernia_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -1484,7 +1486,7 @@
                         </div>
                         <div id="herniaExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="herniaExplanation" id="herniaExplanation" rows="4"
+                            <textarea required maxlength="250" name="herniaExplanation" id="herniaExplanation" rows="4" value="{{result.coe_pp_heq_hernia_explain| default: ''}}"
                                 class="form-control mt-2 txtfeild ">
                     </textarea>
                         </div>
@@ -1526,7 +1528,7 @@
 
                         <div id="cancerYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="cancerYear" id="cancerYear"
+                            <select required style="width:35%;" name="cancerYear" id="cancerYear" value="{{result.coe_pp_heq_cancer_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -1537,7 +1539,7 @@
                         </div>
                         <div id="cancerExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="cancerExplanation" id="cancerExplanation" rows="4"
+                            <textarea required maxlength="250" name="cancerExplanation" id="cancerExplanation" rows="4" value="{{result.coe_pp_heq_cancer_explain| default: ''}}"
                                 class="form-control mt-2 txtfeild ">
                     </textarea>
                         </div>
@@ -1560,7 +1562,7 @@
 
 
                             <div class="form-check" d-flex align-items-end>
-                                <input class="form-check-input" type="checkbox" value="no" id="diabetesNo"
+                                <input class="form-check-input" type="checkbox" value="no" id="diabetesNo" 
                                     name="diabetes" onchange="updateProgress('form1')">
 
                                 <label class="question-label label ms-4" for="diabetesNo">
@@ -1580,7 +1582,7 @@
 
                         <div id="diabetesYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="diabetesYear" id="diabetesYear"
+                            <select required style="width:35%;" name="diabetesYear" id="diabetesYear" value="{{result.coe_pp_heq_diabetes_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -1591,7 +1593,7 @@
                         </div>
                         <div id="diabetesExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="diabetesExplanation" id="diabetesExplanation"
+                            <textarea required maxlength="250" name="diabetesExplanation" id="diabetesExplanation" value="{{result.coe_pp_heq_diabetes_explain| default: ''}}"
                                 rows="4" class="form-control mt-2 txtfeild ">
                     </textarea>
                         </div>
@@ -1634,7 +1636,7 @@
 
                         <div id="seizureYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="seizureYear" id="seizureYear"
+                            <select required style="width:35%;" name="seizureYear" id="seizureYear" value="{{result.coe_pp_heq_epilepsy_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -1645,7 +1647,7 @@
                         </div>
                         <div id="seizureExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="seizureExplanation" id="seizureExplanation"
+                            <textarea required maxlength="250" name="seizureExplanation" id="seizureExplanation" value="{{result.coe_pp_heq_epilepsy_explain| default: ''}}"
                                 rows="4" class="form-control mt-2 txtfeild ">
                     </textarea>
                         </div>
@@ -1689,7 +1691,7 @@
 
                         <div id="faintingYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="faintingYear" id="faintingYear"
+                            <select required style="width:35%;" name="faintingYear" id="faintingYear" value="{{result.coe_pp_heq_faintingspells_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -1700,7 +1702,7 @@
                         </div>
                         <div id="faintingExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="faintingExplanation" id="faintingExplanation"
+                            <textarea required maxlength="250" name="faintingExplanation" id="faintingExplanation" value="{{result.coe_pp_heq_faintingspells_explain| default: ''}}"
                                 rows="4" class="form-control mt-2 txtfeild ">
                     </textarea>
                         </div>
@@ -1746,7 +1748,7 @@
 
                         <div id="depressionYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="depressionYear" id="depressionYear"
+                            <select required style="width:35%;" name="depressionYear" id="depressionYear" value="{{result.coe_pp_heq_depression_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -1757,7 +1759,7 @@
                         </div>
                         <div id="depressionExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="depressionExplanation" id="depressionExplanation"
+                            <textarea required maxlength="250" name="depressionExplanation" id="depressionExplanation"  value="{{result.coe_pp_heq_depression_explain| default: ''}}"
                                 rows="4" class="form-control mt-2 txtfeild ">
                     </textarea>
                         </div>
@@ -1794,7 +1796,7 @@
 
                         <div id="anxietyYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="anxietyYear" id="anxietyYear"
+                            <select required style="width:35%;" name="anxietyYear" id="anxietyYear" value="{{result.coe_pp_heq_anxiety_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -1805,7 +1807,7 @@
                         </div>
                         <div id="anxietyExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="anxietyExplanation" id="anxietyExplanation"
+                            <textarea required maxlength="250" name="anxietyExplanation" id="anxietyExplanation" value="{{result.coe_pp_heq_anxiety_explain| default: ''}}"
                                 rows="4" class="form-control mt-2 txtfeild ">
                     </textarea>
                         </div>
@@ -1842,7 +1844,7 @@
 
                         <div id="bipolarYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="bipolarYear" id="bipolarYear"
+                            <select required style="width:35%;" name="bipolarYear" id="bipolarYear" value="{{result.coe_pp_heq_bipolardisorder_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -1853,7 +1855,7 @@
                         </div>
                         <div id="bipolarExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="bipolarExplanation" id="bipolarExplanation"
+                            <textarea required maxlength="250" name="bipolarExplanation" id="bipolarExplanation" value="{{result.coe_pp_heq_bipolardisorder_explain| default: ''}}"
                                 rows="4" class="form-control mt-2 txtfeild "></textarea>
                         </div>
                     </div>
@@ -1888,7 +1890,7 @@
 
                         <div id="substanceYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="substanceYear" id="substanceYear"
+                            <select required style="width:35%;" name="substanceYear" id="substanceYear" value="{{result.coe_pp_heq_substanceusedisorder_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -1899,7 +1901,7 @@
                         </div>
                         <div id="substanceExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="substanceExplanation" id="substanceExplanation"
+                            <textarea required maxlength="250" name="substanceExplanation" id="substanceExplanation" value="{{result.coe_pp_heq_substanceusedisorder_explain| default: ''}}"
                                 rows="4" class="form-control mt-2 txtfeild "></textarea>
                         </div>
                     </div>
@@ -1960,7 +1962,7 @@
 
                         <div id="crohnYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="crohnYear" id="crohnYear"
+                            <select required style="width:35%;" name="crohnYear" id="crohnYear" value="{{result.coe_pp_heq_gastrointestinal_crohns_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -1971,7 +1973,7 @@
                         </div>
                         <div id="crohnExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="crohnExplanation" id="crohnExplanation" rows="4"
+                            <textarea required maxlength="250" name="crohnExplanation" id="crohnExplanation" rows="4" value="{{result.coe_pp_heq_gastrointestinal_crohns_explain| default: ''}}"
                                 class="form-control mt-2 txtfeild ">
                     </textarea>
                         </div>
@@ -2007,7 +2009,7 @@
 
                         <div id="colitisYearInput" class="col-12 mt-2" style="display: none;">
                             <label class="question-label">Indicate Year it Occurred</label>
-                            <select required style="width:35%;" name="colitisYear" id="colitisYear"
+                            <select required style="width:35%;" name="colitisYear" id="colitisYear" value="{{result.coe_pp_heq_gastrointestinal_ulcerative_Year | default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
                                 <option value="2020">2020</option>
@@ -2018,7 +2020,7 @@
                         </div>
                         <div id="colitisExplanationInput" class="col-12 mt-3" style="display: none;">
                             <label class="question-label">Explain</label>
-                            <textarea required maxlength="250" name="colitisExplanation" id="colitisExplanation"
+                            <textarea required maxlength="250" name="colitisExplanation" id="colitisExplanation" value="{{result.coe_pp_heq_gastrointestinal_ulcerative_explain | default: ''}}"
                                 rows="4" class="form-control mt-2 txtfeild ">
                     </textarea>
                         </div>
@@ -2038,7 +2040,7 @@
 
 
                                 <div class="form-check" d-flex align-items-end>
-                                    <input class="form-check-input" type="checkbox" value="no" id="hepatisNo"
+                                    <input class="form-check-input" type="checkbox" value="no" id="hepatisNo" 
                                         name="hepatis" onchange="updateProgress('form1')">
 
                                     <label class="question-label label ms-4" for="hepatisNo">
@@ -2058,7 +2060,7 @@
 
                             <div id="hepatisYearInput" class="col-12 mt-2" style="display: none;">
                                 <label class="question-label">Indicate Year it Occurred</label>
-                                <select required style="width:35%;" name="hepatisYear" id="hepatisYear"
+                                <select required style="width:35%;" name="hepatisYear" id="hepatisYear" value="{{result.coe_pp_heq_liver_hepatitis_Year | default: ''}}"
                                     class="form-control mt-2 select-feild ">
                                     <option value="">Select Year</option>
                                     <option value="2020">2020</option>
@@ -2069,7 +2071,7 @@
                             </div>
                             <div id="hepatisExplanationInput" class="col-12 mt-3" style="display: none;">
                                 <label class="question-label">Explain</label>
-                                <textarea required maxlength="250" name="hepatisExplanation" id="hepatisExplanation"
+                                <textarea required maxlength="250" name="hepatisExplanation" id="hepatisExplanation" value="{{result.coe_pp_heq_liver_hepatitis_explain | default: ''}}"
                                     rows="4" class="form-control mt-2 txtfeild ">
                         </textarea>
                             </div>
@@ -2105,7 +2107,7 @@
 
                             <div id="cirrhosisYearInput" class="col-12 mt-2" style="display: none;">
                                 <label class="question-label">Indicate Year it Occurred</label>
-                                <select required style="width:35%;" name="cirrhosisYear" id="cirrhosisYear"
+                                <select required style="width:35%;" name="cirrhosisYear" id="cirrhosisYear" value="{{result.coe_pp_heq_liver_cirrhosis_Year | default: ''}}"
                                     class="form-control mt-2 select-feild ">
                                     <option value="">Select Year</option>
                                     <option value="2020">2020</option>
@@ -2116,7 +2118,7 @@
                             </div>
                             <div id="cirrhosisExplanationInput" class="col-12 mt-3" style="display: none;">
                                 <label class="question-label">Explain</label>
-                                <textarea required maxlength="250" name="cirrhosisExplanation" id="cirrhosisExplanation"
+                                <textarea required maxlength="250" name="cirrhosisExplanation" id="cirrhosisExplanation" value="{{result.coe_pp_heq_liver_cirrhosis_explain | default: ''}}"
                                     rows="4" class="form-control mt-2 txtfeild ">
                         </textarea>
                             </div>
@@ -2158,7 +2160,7 @@
 
                             <div id="kidneyYearInput" class="col-12 mt-2" style="display: none;">
                                 <label class="question-label">Indicate Year it Occurred</label>
-                                <select required style="width:35%;" name="kidneyYear" id="kidneyYear"
+                                <select required style="width:35%;" name="kidneyYear" id="kidneyYear" value="{{result.coe_pp_heq_kidney_Year | default: ''}}"
                                     class="form-control mt-2 select-feild ">
                                     <option value="">Select Year</option>
                                     <option value="2020">2020</option>
@@ -2169,7 +2171,7 @@
                             </div>
                             <div id="kidneyExplanationInput" class="col-12 mt-3" style="display: none;">
                                 <label class="question-label">Explain</label>
-                                <textarea required maxlength="250" name="kidneyExplanation" id="kidneyExplanation"
+                                <textarea required maxlength="250" name="kidneyExplanation" id="kidneyExplanation" value="{{result.coe_pp_heq_kidney_explain | default: ''}}"
                                     rows="4" class="form-control mt-2 txtfeild ">
                         </textarea>
                             </div>
@@ -2212,7 +2214,7 @@
 
                             <div id="skinYearInput" class="col-12 mt-2" style="display: none;">
                                 <label class="question-label">Indicate Year it Occurred</label>
-                                <select required style="width:35%;" name="skinYear" id="skinYear"
+                                <select required style="width:35%;" name="skinYear" id="skinYear" value="{{result.coe_pp_heq_skin_Year | default: ''}}"
                                     class="form-control mt-2 select-feild ">
                                     <option value="">Select Year</option>
                                     <option value="2020">2020</option>
@@ -2223,7 +2225,7 @@
                             </div>
                             <div id="skinExplanationInput" class="col-12 mt-3" style="display: none;">
                                 <label class="question-label">Explain</label>
-                                <textarea required maxlength="250" name="skinExplanation" id="skinExplanation" rows="4"
+                                <textarea required maxlength="250" name="skinExplanation" id="skinExplanation" rows="4" value="{{result.coe_pp_heq_skin_explain | default: ''}}"
                                     class="form-control mt-2 txtfeild ">
                         </textarea>
                             </div>
@@ -2266,7 +2268,7 @@
 
                             <div id="drugYearInput" class="col-12 mt-2" style="display: none;">
                                 <label class="question-label">Indicate Year it Occurred</label>
-                                <select required style="width:35%;" name="drugYear" id="drugYear"
+                                <select required style="width:35%;" name="drugYear" id="drugYear" value="{{result.coe_pp_heq_drugallergy_Year | default: ''}}"
                                     class="form-control mt-2 select-feild ">
                                     <option value="">Select Year</option>
                                     <option value="2020">2020</option>
@@ -2277,7 +2279,7 @@
                             </div>
                             <div id="drugExplanationInput" class="col-12 mt-3" style="display: none;">
                                 <label class="question-label">Explain</label>
-                                <textarea required maxlength="250" name="drugExplanation" id="drugExplanation" rows="4"
+                                <textarea required maxlength="250" name="drugExplanation" id="drugExplanation" rows="4"  value="{{result.coe_pp_heq_drugallergy_explain | default: ''}}"
                                     class="form-control mt-2 txtfeild ">
                         </textarea>
                             </div>
@@ -2313,7 +2315,7 @@
 
                             <div id="otherAlergyYearInput" class="col-12 mt-2" style="display: none;">
                                 <label class="question-label">Indicate Year it Occurred</label>
-                                <select required style="width:35%;" name="otherAlergyYear" id="otherAlergyYear"
+                                <select required style="width:35%;" name="otherAlergyYear" id="otherAlergyYear" value="{{result.coe_pp_heq_otherallergies_Year | default: ''}}"
                                     class="form-control mt-2 select-feild ">
                                     <option value="">Select Year</option>
                                     <option value="2020">2020</option>
@@ -2324,7 +2326,7 @@
                             </div>
                             <div id="otherAlergyExplanationInput" class="col-12 mt-3" style="display: none;">
                                 <label class="question-label">Explain</label>
-                                <textarea required maxlength="250" name="otherAlergyExplanation"
+                                <textarea required maxlength="250" name="otherAlergyExplanation" value="{{result.coe_pp_heq_otherallergies_explain | default: ''}}"
                                     id="otherAlergyExplanation" rows="4" class="form-control mt-2 txtfeild ">
                         </textarea>
                             </div>
@@ -2367,7 +2369,7 @@
 
                             <div id="otherHealthYearInput" class="col-12 mt-2" style="display: none;">
                                 <label class="question-label">Indicate Year it Occurred</label>
-                                <select required style="width:35%;" name="otherHealthYear" id="otherHealthYear"
+                                <select required style="width:35%;" name="otherHealthYear" id="otherHealthYear" value="{{result.coe_pp_heq_otherhealthcondition_Year | default: ''}}"
                                     class="form-control mt-2 select-feild ">
                                     <option value="">Select Year</option>
                                     <option value="2020">2020</option>
@@ -2378,7 +2380,7 @@
                             </div>
                             <div id="otherHealthExplanationInput" class="col-12 mt-3" style="display: none;">
                                 <label class="question-label">Explain</label>
-                                <textarea required maxlength="250" name="otherHealthExplanation"
+                                <textarea required maxlength="250" name="otherHealthExplanation" value="{{result.coe_pp_heq_otherhealthcondition_explain | default: ''}}"
                                     id="otherHealthExplanation" rows="4" class="form-control mt-2 txtfeild ">
                         </textarea>
                             </div>
@@ -2423,7 +2425,7 @@
 
                             <div id="tetanusYearInput" class="col-12 mt-2" style="display: none;">
                                 <label class="question-label">Year</label>
-                                <select required style="width:35%;" name="tetanusYear" id="tetanusYear"
+                                <select required style="width:35%;" name="tetanusYear" id="tetanusYear" value="{{result.coe_pp_heq_tetanusimmunization_Year | default: ''}}"
                                     class="form-control mt-2 select-feild ">
                                     <option value="">Select Year</option>
                                     <option value="2020">2020</option>
@@ -2464,7 +2466,7 @@
 
                             <div id="hepImmuneYearInput" class="col-12 mt-2" style="display: none;">
                                 <label class="question-label">Year</label>
-                                <select required style="width:35%;" name="hepImmuneYear" id="hepImmuneYear"
+                                <select required style="width:35%;" name="hepImmuneYear" id="hepImmuneYear" value="{{result.coe_pp_heq_tetanusimmunizationshotseries_Year | default: ''}}"
                                     class="form-control mt-2 select-feild ">
                                     <option value="">Select Year</option>
                                     <option value="2020">2020</option>
@@ -2554,7 +2556,7 @@
                             <div id="declineExplanationInput" class="col-12 mt-3" style="display: none;">
                                 <label class="question-label">Explain declined employment ,military service, or life
                                     insurance due to medical reasons?</label>
-                                <textarea required maxlength="250" name="declineExplanation" id="declineExplanation"
+                                <textarea required maxlength="250" name="declineExplanation" id="declineExplanation" value="{{result.coe_pp_heq_haveyou_declined_explain | default: ''}}"
                                     rows="4" class="form-control mt-2 txtfeild ">
                             </textarea>
                             </div>
@@ -2593,7 +2595,7 @@
                             <div id="restrictExplanationInput" class="col-12 mt-3" style="display: none;">
                                 <label class="question-label">Explain restricted or limited job duties for health
                                     reasons</label>
-                                <textarea required maxlength="250" name="restrictExplanation" id="restrictExplanation"
+                                <textarea required maxlength="250" name="restrictExplanation" id="restrictExplanation" value="{{result.coe_pp_heq_haveyou_restricted_explain | default: ''}}"
                                     rows="4" class="form-control mt-2 txtfeild ">
                             </textarea>
                             </div>
@@ -2634,7 +2636,7 @@
                             <div id="dutiesExplanationInput" class="col-12 mt-3" style="display: none;">
                                 <label class="question-label">Explain health effects related to your workplace/job
                                     duties</label>
-                                <textarea required maxlength="250" name="dutiesExplanation" id="dutiesExplanation"
+                                <textarea required maxlength="250" name="dutiesExplanation" id="dutiesExplanation" value="{{result.coe_pp_heq_haveyou_serioushealtheffects_explain | default: ''}}"
                                     rows="4" class="form-control mt-2 txtfeild ">
                             </textarea>
                             </div>
@@ -2670,7 +2672,7 @@
 
                             <div id="accommodationExplanationInput" class="col-12 mt-3" style="display: none;">
                                 <label class="question-label">What are the accomodations needed?</label>
-                                <textarea required maxlength="250" name="accommodationExplanation" id="accommodationExplanation"
+                                <textarea required maxlength="250" name="accommodationExplanation" id="accommodationExplanation" value="{{result.coe_pp_heq_reasonableaccomodation_explain | default: ''}}"
                                     rows="4" class="form-control mt-2 txtfeild "> </textarea>
                             </div>
 
@@ -2679,8 +2681,8 @@
                         <div id="currentMedications" class="col-12 mt-3">
                             <label class="question-label">Please list all prescription medications you are currently
                                 taking</label>
-                            <textarea name="medicationsList" id="medicationsList" rows="4"
-                                class="form-control mt-2 txtfeild meditxt"> I do not take any prescription medications </textarea>
+                            <textarea name="medicationsList" id="medicationsList" rows="4" value="{{result.coe_pp_heq_prescriptionmedications_explain | default: 'I do not take any prescription medications '}}"
+                                class="form-control mt-2 txtfeild meditxt"></textarea>
                         </div>
 
                         <div class="form-check mt-3" d-flex align-items-end>
@@ -2698,7 +2700,7 @@
                         <div class="form-row mt-3">
                             <div class="d-flex flex-column">
                                 <label class="question-label">Date of Application</label>
-                                <input required class="appDate" type="date" id="doa" name="doa"
+                                <input required class="appDate" type="date" id="doa" name="doa" value="{{result.coe_pp_heq_signdate | default: ''}}"
                                     onchange="handleDateChange(event)">
                             </div>
                         </div>

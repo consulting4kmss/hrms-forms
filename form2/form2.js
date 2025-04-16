@@ -16,13 +16,14 @@ function initializeForm(formId) {
          validatePage(formId,1,false);
         });
     });
+    Initializefeilds(product);
+    toggleFields(formId, toggleFieldsConfig);
 
     const fields = document.querySelectorAll(`#${formId} .form-page input, #${formId} .form-page select,#${formId} .form-page textarea,#${formId} .form-page canvas`);
     fields.forEach(field => {
         field.addEventListener('change', () => {
             updateProgress(formId);
 
-          //  toggleFields(formId, toggleFieldsConfig);
         });
     });
 
@@ -1015,6 +1016,63 @@ function collectFormData(formId,pageNumber) {
        // sendFormDataToAPI(formData);
     }
 }
+
+function Initializefeilds(product){
+    setCheckboxState("visionYes",visionNo,product[0].defectiveVision);
+    setCheckboxState("visionOtherYes",visionOtherNo,product[0].eyesOther);
+
+    // select 
+    setSelected("selectState",states,product[0].coe_pp_heq_state );
+    setSelected("selectState",years,product[0].coe_pp_heq_eyes_defectivevision_Year);
+
+}
+
+
+
+function setCheckboxState(id1,id2,value) {
+    const checkbox = document.getElementById(id1);
+    const checkbox2 = document.getElementById(id2);
+    // If result.coe_pp_heq_eyes_defectivevision is 'no', check the checkbox
+    if (value === 'no') {
+        checkbox.checked = true;
+        checkbox2.checked = false;
+    } else if(value === 'yes') {
+        checkbox2.checked = true;
+        checkbox.checked = false;
+    }else{
+        checkbox2.checked = false;
+        checkbox.checked = false;  
+    }
+}
+const states = [
+    "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", 
+    "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", 
+    "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", 
+    "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", 
+    "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", 
+    "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", 
+    "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"
+  ];
+
+const years=["2023","2022","2021","2020"];
+
+function setSelected(id,dataSet,selectedItem){
+    const selectElement = document.getElementById(id);
+
+    dataSet.forEach(item => {
+      const option = document.createElement("option");
+      option.value = item;
+      option.textContent = item;
+      if (item === selectedItem) {
+        option.selected = true;
+      }
+      selectElement.appendChild(option);
+    });
+}
+
+
+
+
 
 
 initializeForm('form1');

@@ -91,7 +91,7 @@
                     <div>
                         <label class="question-label">State</label>
                         <!-- <input required type="text" data-validate="text" name="state" maxlength="50" autocomplete="off" oninput="validInput(this, /^[a-zA-Z ]*$/, 'Only letters are allowed')" class="form-control" onchange="updateProgress('form1')"/> -->
-                        <select required name="state" class="form-control select-feild" autocomplete="off" value="{{result.coe_pp_heq_state | default: ''}}"
+                        <select required name="state" class="form-control select-feild" autocomplete="off" id="selectState"
                             onchange="updateProgress('form1')">
                             <option class="opt" value="">Select One</option>
                             <option class="opt" value="Alabama">Alabama</option>
@@ -240,8 +240,7 @@
                         <div class="col-12 d-flex flex-column mt-2">
                             <div class="form-check" d-flex align-items-end>
                                 <input class="form-check-input" type="checkbox" value="no" id="visionNo"
-                                    name="defectiveVision" onchange="updateProgress('form1')"
-                                    {% if result.coe_pp_heq_eyes_defectivevision == 'no' %} checked {% endif %} />
+                                    name="defectiveVision" onchange="updateProgress('form1')" />
 
                                 <label class="question-label label ms-4" for="visionNo">
                                     No
@@ -250,8 +249,7 @@
 
                             <div class="form-check mt-2">
                                 <input class="form-check-input" type="checkbox" value="yes" name="defectiveVision"
-                                    id="visionYes" name="defectiveVision" onchange="updateProgress('form1')"                                   
-                                    {% if result.coe_pp_heq_eyes_defectivevision == 'yes' %} checked {% endif %} >
+                                    id="visionYes" name="defectiveVision" onchange="updateProgress('form1')" >
 
                                 <label class="question-label ms-4" for="visionYes">
                                     Yes
@@ -285,7 +283,7 @@
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="no"
                                                 id="visionOtherNo" name="visionOther"
-                                                onchange="updateProgress('form1')"   {% if result.coe_pp_heq_eyes_other== 'no' %} checked {% endif %}>
+                                                onchange="updateProgress('form1')" >
 
                                             <label class="question-label label ms-4" for="visionOtherNo">
                                                 No
@@ -295,7 +293,7 @@
                                         <div class="form-check mt-2">
                                             <input class="form-check-input" type="checkbox" value="yes"
                                                 name="visionOther" id="visionOtherYes" name="defectiveVision"
-                                                onchange="updateProgress('form1')"    {% if result.coe_pp_heq_eyes_other== 'yes' %} checked {% endif %}>
+                                                onchange="updateProgress('form1')">
 
                                             <label class="question-label ms-4" for="visionYes">
                                                 Yes
@@ -338,7 +336,7 @@
                                             <div class="form-check" d-flex align-items-end>
                                                 <input class="form-check-input" type="checkbox" value="no" 
                                                     id="hearingNo" name="hearingLoss"
-                                                    onchange="updateProgress('form1')" {% if result.coe_pp_heq_ent_hearingloss== 'no' %} checked {% endif %}>
+                                                    onchange="updateProgress('form1')" >
 
                                                 <label class="question-label label ms-4" for="hearingNo">
                                                     No
@@ -348,7 +346,7 @@
                                             <div class="form-check mt-2">
                                                 <input class="form-check-input" type="checkbox" value="yes"
                                                     name="hearingLoss" id="hearingYes"
-                                                    onchange="updateProgress('form1')"  {% if result.coe_pp_heq_ent_hearingloss== 'yes' %} checked {% endif %}>
+                                                    onchange="updateProgress('form1')" >
 
                                                 <label class="question-label ms-4" for="hearingYes">
                                                     Yes
@@ -385,7 +383,7 @@
 
                                             <div class="form-check" d-flex align-items-end>
                                                 <input class="form-check-input" type="checkbox" value="no"
-                                                    id="hearingotherNo" name="hearingOther" {% if result.coe_pp_heq_ent_other== 'no' %} checked {% endif %}
+                                                    id="hearingotherNo" name="hearingOther"
                                                     onchange="updateProgress('form1')">
 
                                                 <label class="question-label label ms-4" for="hearingotherNo">
@@ -395,7 +393,7 @@
 
                                             <div class="form-check mt-2">
                                                 <input class="form-check-input" type="checkbox" value="yes"
-                                                    name="hearingOther" id="hearingotherYes" {% if result.coe_pp_heq_ent_other== 'yes' %} checked {% endif %}
+                                                    name="hearingOther" id="hearingotherYes" 
                                                     onchange="updateProgress('form1')">
 
                                                 <label class="question-label ms-4" for="hearingotherYes">
@@ -440,7 +438,7 @@
                                                 <div class="form-check" d-flex align-items-end>
                                                     <input class="form-check-input" type="checkbox" value="no"
                                                         id="migrainesNo" name="migraines"
-                                                        onchange="updateProgress('form1')" {% if result.coe_pp_heq_head_migraines== 'no' %} checked {% endif %}>
+                                                        onchange="updateProgress('form1')" >
 
                                                     <label class="question-label label ms-4" for="migrainesNo">
                                                         No
@@ -450,7 +448,7 @@
                                                 <div class="form-check mt-2">
                                                     <input class="form-check-input" type="checkbox" value="yes"
                                                         name="migraines" id="migrainesYes"
-                                                        onchange="updateProgress('form1')" {% if result.coe_pp_heq_head_migraines== 'yes' %} checked {% endif %}>
+                                                        onchange="updateProgress('form1')">
 
                                                     <label class="question-label ms-4" for="migrainesYes">
                                                         Yes
@@ -486,7 +484,7 @@
 
 
                                                     <div class="form-check" d-flex align-items-end>
-                                                        <input class="form-check-input" type="checkbox" value="no" {% if result.coe_pp_heq_head_aches== 'no' %} checked {% endif %}
+                                                        <input class="form-check-input" type="checkbox" value="no"
                                                             id="headachesNo" name="headaches"
                                                             onchange="updateProgress('form1')">
 
@@ -496,7 +494,7 @@
                                                     </div>
 
                                                     <div class="form-check mt-2">
-                                                        <input class="form-check-input" type="checkbox" value="yes" {% if result.coe_pp_heq_head_aches== 'yes' %} checked {% endif %}
+                                                        <input class="form-check-input" type="checkbox" value="yes"
                                                             name="headaches" id="headachesYes"
                                                             onchange="updateProgress('form1')">
 
@@ -535,7 +533,7 @@
 
                                                 <div class="col-12 d-flex flex-column mt-2">
                                                     <div class="form-check" d-flex align-items-end>
-                                                        <input class="form-check-input" type="checkbox" value="no" {% if result.coe_pp_heq_head_tbi== 'no' %} checked {% endif %}
+                                                        <input class="form-check-input" type="checkbox" value="no"
                                                             id="tbiNo" name="tbi" onchange="updateProgress('form1')">
 
                                                         <label class="question-label label ms-4" for="headachesNo">
@@ -544,7 +542,7 @@
                                                     </div>
 
                                                     <div class="form-check mt-2">
-                                                        <input class="form-check-input" type="checkbox" value="yes" {% if result.coe_pp_heq_head_tbi== 'yes' %} checked {% endif %}
+                                                        <input class="form-check-input" type="checkbox" value="yes"
                                                             name="tbi" id="tbiYes" onchange="updateProgress('form1')">
 
                                                         <label class="question-label ms-4" for="tbiYes">

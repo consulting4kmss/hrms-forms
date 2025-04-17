@@ -6,7 +6,7 @@ function initializeForm(formId) {
     //showCheckmark('form1Tick');
     totalPages = document.querySelectorAll(`#${formId} .form-page`).length;
 
-
+    
     caluclateTotalFeilds();
     updatePageInfo(formId, 1);
     const firstPage = document.querySelector(`#${formId}-page1`);
@@ -18,6 +18,10 @@ function initializeForm(formId) {
     });
     Initializefeilds(product);
     toggleFields(formId, toggleFieldsConfig);
+    validatePage(formId,1,false);
+    validatePage(formId,2,false);
+    validatePage(formId,3,false);
+    validatePage(formId,4,false);
 
     const fields = document.querySelectorAll(`#${formId} .form-page input, #${formId} .form-page select,#${formId} .form-page textarea,#${formId} .form-page canvas`);
     fields.forEach(field => {
@@ -1024,10 +1028,18 @@ function Initializefeilds(product){
     // select 
     setSelected("selectState",states,product[0].coe_pp_heq_state );
     setSelected("selectState",years,product[0].coe_pp_heq_eyes_defectivevision_Year);
+    
+    setDates("dob",product[0].dob);//Date Of Birth
+    setDates("doa",product[0].doa);//date Of Application
+
 
 }
 
+function setDates(id,val){
+    const dateFeild=document.getElementById(id);
+    dateFeild.value=val;
 
+}
 
 function setCheckboxState(id1,id2,value) {
     const checkbox = document.getElementById(id1);
@@ -1043,6 +1055,8 @@ function setCheckboxState(id1,id2,value) {
         checkbox2.checked = false;
         checkbox.checked = false;  
     }
+    checkbox.dispatchEvent(new Event('change'));
+    checkbox2.dispatchEvent(new Event('change'));
 }
 const states = [
     "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", 

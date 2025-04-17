@@ -1,7 +1,6 @@
 var totalFields2 = 0;
 var totalPages2 = 0;
 let formCounter = 1;
-let years = 0;
 let totalYears = 0;
 function nextPage2(pageNumber) {
     if (validatePage('form2', pageNumber - 1, true)) {
@@ -215,6 +214,7 @@ function initializeForm2(formId) {
     handleMutualExclusiveCheckboxes2(formId);
 
     updateProgress2(formId);
+    populateSavedAddresses(savedAddresses);
 }
 
 function caluclateTotalFeilds() {
@@ -817,6 +817,86 @@ function recalculateAddressIds() {
     }
 
 }
+
+
+
+const savedAddresses = [
+    {
+      address: "123 Main St",
+      city: "New York",
+      state: "New York",
+      zip: "10001",
+      from: "2022-01-01",
+      to: "2022-12-31",
+      historyAddress:"yes"
+    },
+    {
+      address: "456 Broadway",
+      city: "Los Angeles",
+      state: "California",
+      zip: "90001",
+      from: "2021-01-01",
+      to: "2021-12-31",
+      historyAddress:"yes"
+    },
+    {
+      address: "789 Sunset Blvd",
+      city: "Chicago",
+      state: "Illinois",
+      zip: "60007",
+      from: "2020-01-01",
+      to: "2020-12-31",
+      historyAddress:"no"
+    }
+  ];
+
+  function populateSavedAddresses(savedAddresses) {
+    if (!savedAddresses || savedAddresses.length === 0) return;
+
+    // Check if any historyAddress is "yes"
+    const hasHistory = savedAddresses.some(data => data.historyAddress === "yes");
+
+    if (hasHistory) {
+        addressHistory('yes'); // Trigger only once to add the first history section
+    }
+
+    setTimeout(() => {
+        let formIndex = 1; // To match with addressCounter
+
+        savedAddresses.forEach((data, index) => {
+            if (data.historyAddress === "yes") {
+                if (formIndex > 1) {
+                    // Simulate clicking "yes" to add more address forms
+                    const lastYesRadio = document.querySelector(`#addressYes${formIndex - 1}`);
+                    if (lastYesRadio) {
+                        lastYesRadio.checked = true;
+                        handleAddressChange(lastYesRadio);
+                    }
+                }
+
+                // Fill the current address form
+                document.getElementById(`additionalAddress${formIndex}`).value = data.address;
+                document.getElementById(`additionalCity${formIndex}`).value = data.city;
+                document.getElementById(`additionalState${formIndex}`).value = data.state;
+                document.getElementById(`additionalZip${formIndex}`).value = data.zip;
+                document.getElementById(`addressFrom${formIndex}`).value = data.from;
+                document.getElementById(`addressTo${formIndex}`).value = data.to;
+
+                formIndex++;
+            } else {
+                // If historyAddress is "no", update radio buttons accordingly
+                const lastNoRadio = document.querySelector(`#addressNo${formIndex}`);
+                if (lastNoRadio) {
+                    lastNoRadio.checked = true;
+                }
+            }
+        });
+    }, 200);
+}
+
+
+
+
 
 function licenseAccepted(value) {
     if (value == 'no') {

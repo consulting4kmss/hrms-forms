@@ -214,7 +214,15 @@ function initializeForm2(formId) {
     handleMutualExclusiveCheckboxes2(formId);
 
     updateProgress2(formId);
-    populateSavedAddresses(savedAddresses);
+    const initialAddresssHistory='yes'
+    populateSavedAddresses(savedAddresses,initialAddresssHistory);
+     const initialVoilation='yes';
+    populateViolationData(savedViolations,initialVoilation);
+    const initialAccident='yes';
+    populateAccidentData(savedAccidents, initialAccident);
+    populateLicenseData(savedLicenseData);
+    militaryDriverData(savedMilitaryDrivingData);
+    initializeEmploymentForm();
 }
 
 function caluclateTotalFeilds() {
@@ -850,7 +858,7 @@ const savedAddresses = [
     }
   ];
 
-  function populateSavedAddresses(savedAddresses) {
+  function populateSavedAddresses(savedAddresses,initialAddressHistory) {
     if (!savedAddresses || savedAddresses.length === 0) return;
 
     // Check if any historyAddress is "yes"
@@ -859,15 +867,17 @@ const savedAddresses = [
     if (hasHistory) {
         addressHistory('yes'); // Trigger only once to add the first history section
     }
+    if (initialAddressHistory=='yes'){
+        const AddressYes=document.getElementById('addressYes');
+        AddressYes.checked=true;
+    
 
-    setTimeout(() => {
-        let formIndex = 1; // To match with addressCounter
+     setTimeout(() => { // To match with addressCounter
 
         savedAddresses.forEach((data, index) => {
-            if (data.historyAddress === "yes") {
-                if (formIndex > 1) {
+                if (index > 0) {
                     // Simulate clicking "yes" to add more address forms
-                    const lastYesRadio = document.querySelector(`#addressYes${formIndex - 1}`);
+                    const lastYesRadio = document.querySelector(`#addressYes${index}`);
                     if (lastYesRadio) {
                         lastYesRadio.checked = true;
                         handleAddressChange(lastYesRadio);
@@ -875,23 +885,31 @@ const savedAddresses = [
                 }
 
                 // Fill the current address form
-                document.getElementById(`additionalAddress${formIndex}`).value = data.address;
-                document.getElementById(`additionalCity${formIndex}`).value = data.city;
-                document.getElementById(`additionalState${formIndex}`).value = data.state;
-                document.getElementById(`additionalZip${formIndex}`).value = data.zip;
-                document.getElementById(`addressFrom${formIndex}`).value = data.from;
-                document.getElementById(`addressTo${formIndex}`).value = data.to;
+                document.getElementById(`additionalAddress${index+1}`).value = data.address;
+                document.getElementById(`additionalCity${index+1}`).value = data.city;
+                document.getElementById(`additionalState${index+1}`).value = data.state;
+                document.getElementById(`additionalZip${index+1}`).value = data.zip;
+                document.getElementById(`addressFrom${index+1}`).value = data.from;
+                document.getElementById(`addressTo${index+1}`).value = data.to;
 
-                formIndex++;
-            } else {
+                if (data.historyAddress === "yes") {
+                    const Addressyes=document.getElementById(`addressYes${index+1}`); 
+                    Addressyes.checked=true
+                }
+            
+            else {
                 // If historyAddress is "no", update radio buttons accordingly
-                const lastNoRadio = document.querySelector(`#addressNo${formIndex}`);
+                const lastNoRadio =document.getElementById(`addressNo${index+1}`); 
                 if (lastNoRadio) {
                     lastNoRadio.checked = true;
                 }
             }
         });
     }, 200);
+}else{
+    const AddressNo=document.getElementById('addressNo');
+    AddressNo.checked=true
+}
 }
 
 
@@ -957,6 +975,42 @@ function licenseNotSuspended(value) {
             validatePage('form2', 5, false);
             caluclateTotalFeilds();
         }
+    }
+}
+
+const savedLicenseData = {
+    licenseDeny: "yes",
+    licenseDenyExplanation: "I was once denied due to expired documentation.",
+    licenseSuspended: "yes",
+    licenseSuspendedExplanation: "My license was suspended for a month due to speeding."
+};
+
+function populateLicenseData(data) {
+    if (data.licenseDeny === "yes") {
+        // Check the "Yes" radio button
+        document.getElementById("licenseDenyYes").checked = true;
+        // Trigger the onchange manually to add the textarea
+        licenseDenied("yes");
+        // Add saved explanation
+        setTimeout(() => {
+            const denyInput = document.getElementById("licenseDenyExplanation");
+            if (denyInput) denyInput.value = data.licenseDenyExplanation;
+        }, 100); // Delay to ensure the textarea is added
+    } else if (data.licenseDeny === "no") {
+        document.getElementById("licenseDenyNo").checked = true;
+        licenseAccepted("no");
+    }
+
+    if (data.licenseSuspended === "yes") {
+        document.getElementById("licenseSuspendedYes").checked = true;
+        licenseSuspended("yes");
+        setTimeout(() => {
+            const suspendInput = document.getElementById("licenseSuspendedExplanation");
+            if (suspendInput) suspendInput.value = data.licenseSuspendedExplanation;
+        }, 100);
+    } else if (data.licenseSuspended === "no") {
+        document.getElementById("licenseSuspendedNo").checked = true;
+        licenseNotSuspended("no");
     }
 }
 
@@ -1476,6 +1530,90 @@ function handleRadioChange(event) {
     }
 }
 
+
+const savedViolations = [
+    {
+        date: "2022-04-15",
+        offence: "Speeding",
+        location: "New York",
+        vehicleType: "Commercial",
+        trafficViolation:"yes"
+    },
+    {
+        date: "2023-01-10",
+        offence: "Running Red Light",
+        location: "Los Angeles",
+        vehicleType: "Private",
+        trafficViolation:"yes"
+    },
+    {
+        date: "2023-09-05",
+        offence: "Illegal Lane Change",
+        location: "Chicago",
+        vehicleType: "Commercial",
+        trafficViolation:"no"
+    }
+];
+
+
+
+function populateViolationData(savedViolations,initialVoilation) {
+    if (!savedViolations || savedViolations.length === 0) return;
+
+    // Automatically select "Yes" to display violation section
+    const yesRadio = document.getElementById("voilationYes");
+    const noRadio=document.getElementById("voilationNo");
+    if(initialVoilation=='yes'){
+    if (yesRadio) {
+        yesRadio.checked = true;
+        handleRadioChange({ target: yesRadio });
+    }
+
+
+    setTimeout(() => {
+        savedViolations.forEach((violation, index) => {
+
+            if (index > 0) {
+                const addMoreRadio = document.querySelector(`#violationYes_${index}`);
+                if (addMoreRadio) {
+                    addMoreRadio.checked = true;
+                    handleRadioChange({ target: addMoreRadio });
+                }
+            }
+
+           
+            document.getElementById(`voilationDate-${index + 1}`).value = violation.date;
+            document.getElementById(`voilationOffence-${index + 1}`).value = violation.offence;
+            document.getElementById(`voilationLocation-${index + 1}`).value = violation.location;
+
+            const vehicleRadioId = violation.vehicleType === "Commercial"
+                ? `offenceCommercial_${index + 1}`
+                : `offencePrivate_${index + 1}`;
+
+            const vehicleRadio = document.getElementById(vehicleRadioId);
+            if (vehicleRadio) {
+                vehicleRadio.checked = true;
+            }
+            if(violation.trafficViolation=='yes'){
+                console.log( `violationYes_${index + 1}`);
+                const violationYes=document.getElementById(`violationYes_${index + 1}`);
+                violationYes.checked = true;
+            }
+            else if(violation.trafficViolation=='no'){
+                const violationNo=document.getElementById(`violationNo_${index + 1}`);
+                violationNo.checked = true;
+            }
+        });
+    }, 300); 
+}// Wait for DOM render from handleRadioChange
+else{
+    noRadio.checked=true;
+}
+}
+
+
+
+
 function addNextButtonListner(id, pageNumber) {
     const Element = document.getElementById(id);
     inputFeilds = Element.querySelectorAll('input, select, textarea');
@@ -1585,6 +1723,75 @@ function handleAccidentChange(event) {
 
     }
     validatePage('form2', 4, false);
+}
+
+
+
+
+const savedAccidents = [
+    {
+        date: "2022-03-10",
+        fatalityType: "Fatalities",
+        circumstances: "Hit by another vehicle on the highway",
+        additionalAccident:'yes'
+    },
+    {
+        date: "2023-05-21",
+        fatalityType: "Personal Injuries",
+        circumstances: "Rear-ended at a red light",
+        additionalAccident:'yes'
+    },
+    {
+        date: "2023-12-01",
+        fatalityType: "Personal Injuries",
+        circumstances: "Skidded due to rain and hit a pole",
+        additionalAccident:'yes'
+    }
+];
+
+function populateAccidentData(savedAccidents, initialAccident) {
+    const yesRadio = document.getElementById("accidentYes");
+    const noRadio = document.getElementById("accidentNo");
+
+    if (!savedAccidents || savedAccidents.length === 0) {
+        noRadio.checked = true;
+        return;
+    }
+
+    if (initialAccident === "yes" && yesRadio) {
+        yesRadio.checked = true;
+        handleAccidentChange({ target: yesRadio });
+
+        setTimeout(() => {
+            savedAccidents.forEach((accident, index) => {
+                if (index > 0) {
+                    const addMoreRadio = document.getElementById(`accidentYes-${index}`);
+                    if (addMoreRadio) {
+                        addMoreRadio.checked = true;
+                        handleAccidentChange({ target: addMoreRadio });
+                    }
+                }
+
+                document.getElementById(`accidentDate-${index + 1}`).value = accident.date;
+
+                const fatalityRadioId = accident.fatalityType === "Fatalities"
+                    ? `fatalities-${index + 1}`
+                    : `injuries-${index + 1}`;
+                const fatalityRadio = document.getElementById(fatalityRadioId);
+                if (fatalityRadio) fatalityRadio.checked = true;
+
+                document.getElementById(`accidentExplanation-${index + 1}`).value = accident.circumstances;
+
+                // Select "No" for further accidents if this is the last one
+                const isLast = index === savedAccidents.length - 1;
+                const nextRadioId = isLast ? `accidentNo-${index + 1}` : `accidentYes-${index + 1}`;
+                const nextRadio = document.getElementById(nextRadioId);
+                if (nextRadio) nextRadio.checked = true;
+            });
+        }, 300); // Wait for DOM render
+    } else {
+        noRadio.checked = true;
+    }
 }
 
 
@@ -1829,7 +2036,7 @@ function militaryDriver(value) {
 
                     <div class="col-12 mt-2">
                         <label class="question-label">Other commercial motor vehicles (list)</label>
-                        <textarea maxlength="250" required name="defectiveVisionExplanation" id="otherVehicles" rows="4"
+                        <textarea maxlength="250" required name="otherVehicles" id="otherVehicle" rows="4"
                             class="form-control mt-2 txtfeild "></textarea>
                     </div>
 
@@ -1990,6 +2197,79 @@ function removeDateHighlight(input) {
     errorField.textContent = "";
     errorField.style.display = 'none';
 };
+
+
+const savedMilitaryDrivingData = {
+    militaryDriving: "yes",
+    straightTruck: ["Van", "Box"],
+    truckFrom: "2023-01-01",
+    truckTo: "2023-06-01",
+    truckMiles: "12000",
+
+    tractor: ["Box Trailer", "Tank trailer"],
+    tractorFrom: "2022-05-01",
+    tractorTo: "2022-10-01",
+    tractorMiles: "15000",
+
+    bus: ["8passengers"],
+    busFrom: "2021-01-01",
+    busTo: "2021-04-01",
+    busMiles: "5000",
+
+    otherVehicle:"Lorry Driver",
+    fromDateOther:"2022-05-01",
+    toDateOther:"2022-06-02",
+    othermiles:"2000"
+};
+
+ function militaryDriverData(data) {
+
+    if (data.militaryDriving === "yes") {
+        // Select YES radio and trigger change handler
+        document.getElementById("militaryYes").checked = true;
+        militaryDriver("yes");
+
+        // Give some time for militaryDriver to render content
+        setTimeout(() => {
+            // Straight Truck
+            data.straightTruck?.forEach(val => {
+                const el = [...document.getElementsByName("straightTruck")].find(e => e.value === val);
+                if (el) el.checked = true;
+            });
+            data.truckFrom!=null ? document.getElementById("fromDateTruck").value = data.truckFrom: "";
+            data.truckTo !=null  ? document.getElementById("toDateTruck").value = data.truckTo:"";
+            data.truckMiles !=null ? document.getElementById("approxMilesTruck").value = data.truckMiles:"";
+
+            // Tractor & Semi
+            data.tractor?.forEach(val => {
+                const el = [...document.getElementsByName("tractor")].find(e => e.value === val);
+                if (el) el.checked = true;
+            });
+            data.tractorFrom !=null ?document.getElementById("fromDateTractor").value = data.tractorFrom:"";
+            data.tractorTo !=null ?document.getElementById("toDateTractor").value = data.tractorTo:"";
+            data.tractorMiles!=null ?document.getElementById("approxMilesTractor").value = data.tractorMiles:"";
+
+            // Bus
+            data.bus?.forEach(val => {
+                const el = [...document.getElementsByName("bus")].find(e => e.value === val);
+                if (el) el.checked = true;
+            });
+            data.busFrom !=null ? document.getElementById("fromDateBus").value = data.busFrom:"";
+            data.busTo !=null ?document.getElementById("toDateBus").value = data.busTo:"";
+            data.busMiles !=null ?document.getElementById("approxMilesBus").value = data.busMiles:"";
+
+            //Other
+            data.otherVehicle != null ? document.getElementById("otherVehicle").value=data.otherVehicle:"";
+            data.fromDateOther != null ? document.getElementById("fromDateOther").value=data.fromDateOther:"";
+            data.toDateOther != null ? document.getElementById("toDateOther").value=data.toDateOther:"";
+            data.othermiles != null ? document.getElementById("approxMilesOther").value=data.othermiles:"";
+        }, 100); // Wait briefly to ensure DOM is updated
+    } else {
+        document.getElementById("militaryNo").checked = true;
+        notMilitaryDriver("no");
+    }
+};
+
 
 // <------------------------------------------------------------------PAGE 7--------------------------------->
 
@@ -2223,13 +2503,13 @@ function addUnemployment(presentId, value) {
                                     <div>
                                         <label class="question-label">Unemployed From</label>
 
-                                        <input required type="date"  class="dab form-control " id="unemployedFrom_${(unemployNumber) ? ('_' + unemployNumber) : ''}"
+                                        <input required type="date"  class="dab form-control " id="unemployedFrom${(unemployNumber) ? ('_' + unemployNumber) : ''}"
                                             name="unemploymentFrom${(unemployNumber) ? ('_' + unemployNumber) : ''}" onchange="handleDateChange2(event,true)">
                                         <small class="error-message"></small>
                                     </div>
                                     <div>
                                         <label class="question-label"> Unemployed To</label>
-                                        <input required type="date"  class="to form-control" id="unemployedTo_${(unemployNumber) ? ('_' + unemployNumber) : ''}"
+                                        <input required type="date"  class="to form-control" id="unemployedTo${(unemployNumber) ? ('_' + unemployNumber) : ''}"
                                             name="unemploymentTo${(unemployNumber) ? ('_' + unemployNumber) : ''}" onchange="handleDateChange2(event,true)">
                                         <small class="error-message"></small>
                                     </div>
@@ -2237,7 +2517,7 @@ function addUnemployment(presentId, value) {
 
                                 <div class="col-12 mt-4">
                                     <label class="question-label">Reason for Unemployment</label>
-                                    <textarea maxlength="250" required name="unemploymentReason${(unemployNumber) ? ('_' + unemployNumber) : ''}" id="unemployReason_${(unemployNumber) ? ('_' + unemployNumber) : ''}" placeholder="Enter Text"
+                                    <textarea maxlength="250" required name="unemploymentReason${(unemployNumber) ? ('_' + unemployNumber) : ''}" id="unemployReason${(unemployNumber) ? ('_' + unemployNumber) : ''}" placeholder="Enter Text"
                                         rows="4" class="form-control mt-2 txtfeild"></textarea>
                                 </div>`
         document.getElementById(presentId).appendChild(unemploy);
@@ -2355,6 +2635,134 @@ function removeEmploymentValidation() {
         caluclateTotalFeilds();
     }
 }
+
+
+
+const savedEmployments = [
+    {
+      currentCompany: "Google",
+      companyType: "IT",
+      companyAddress: "1600 Amphitheatre Parkway",
+      companyCity: "Mountain View",
+      companyState: "California",
+      companyZip: "94043",
+      startDate: "2018-01-01",
+      separationDate: "2022-12-31",
+      stillEmployee:"",
+      supervisor: "John Doe",
+      supervisorNo: "(123) 456-7890",
+      leaveReason: "Pursued better opportunity",
+      federalCarrier: "yes",
+      sensitive: "yes",
+      dotMode:"PHMSA",
+      unemployment: "no",
+      additional:"yes"
+   
+    },
+    {
+      currentCompany: "Amazon",
+      companyType: "E-Commerce",
+      companyAddress: "410 Terry Ave N",
+      companyCity: "Seattle",
+      companyState: "Washington",
+      companyZip: "98109",
+      startDate: "2015-01-01",
+      separationDate: "2017-12-31",
+      stillEmployee: "currentlyEmployee",
+      supervisor: "Jane Smith",
+      supervisorNo: "(321) 654-0987",
+      leaveReason: "Relocated",
+      federalCarrier: "no",
+      sensitive: "yes",
+      unemployment: "yes",
+      unemployedFrom:"2021-02-01",
+      unemployedTo:"2022-01-26",
+      unemployReason:"Weak economics",
+      additional:"yes"
+    },
+    {
+      currentCompany: "Microsoft",
+      companyType: "Tech",
+      companyAddress: "1 Microsoft Way",
+      companyCity: "Redmond",
+      companyState: "Washington",
+      companyZip: "98052",
+      startDate: "2010-05-01",
+      separationDate: "2014-12-31",
+      stillEmployee: false,
+      supervisor: "Bill Gates",
+      supervisorNo: "(555) 123-4567",
+      leaveReason: "Career Change",
+      federalCarrier: "no",
+      sensitive: "no",
+      unemployment: "yes",
+      unemployedFrom:"2022-09-16",
+      unemployedTo:"2023-04-31",
+      additional:"no",
+      employhistroyReason:"High Inflation"
+    }
+  ];
+
+ function initializeEmploymentForm () {
+
+    if (!savedEmployments || savedEmployments.length === 0) {
+        return;
+    }
+  savedEmployments.forEach((data, index) => {
+    console.log(`companyName${index>0?"_"+index:""}`);
+    data.currentCompany?document.getElementById(`companyName${index>0?"_"+index:""}`).value = data.currentCompany:"";
+    data.companyType?document.getElementById(`companyType${index>0?"_"+index:""}`).value = data.companyType:"";
+    data.companyAddress?document.getElementById(`companyAddress${index>0?"_"+index:""}`).value = data.companyAddress:"";
+    data.companyCity?document.getElementById(`companyCity${index>0?"_"+index:""}`).value = data.companyCity:"";
+    data.companyState?document.getElementById(`companyState${index>0?"_"+index:""}`).value = data.companyState:"";
+    data.companyZip?document.getElementById(`companyZip${index>0?"_"+index:""}`).value = data.companyZip:"";
+    data.startDate?document.getElementById(`companyStart${index>0?"_"+index:""}`).value = data.startDate:"";
+    data.separationDate?document.getElementById(`companySeparation${index>0?"_"+index:""}`).value = data.separationDate:"";
+    data.supervisor?document.getElementById(`supervisorName${index>0?"_"+index:""}`).value = data.supervisor:"";
+    data.supervisorNo?document.getElementById(`supervisorPhone${index>0?"_"+index:""}`).value = data.supervisorNo:"";
+    data.leaveReason?document.getElementById(`leavingReason${index>0?"_"+index:""}`).value = data.leaveReason:"";
+     // Set currently employed checkbox federalMotorNo
+    const stillEmp =   document.getElementById(`stillEmployee${index>0?"_"+index:""}`);
+    data.stillEmployee=="currentlyEmployee"?stillEmp.checked = data.stillEmployee:"";
+
+    // Set radio buttons unemployReason
+    const fedCarrierYes =  document.getElementById(`federalMotorYes${index>0?"_"+index:""}`);
+    const fedCarrierNo=  document.getElementById(`federalMotorNo${index>0?"_"+index:""}`);
+    if (data.federalCarrier && data. federalCarrier=='yes') {
+        fedCarrierYes.checked = true;
+    }else if(data.federalCarrier && data. federalCarrier=='no'){
+        fedCarrierNo.checked = true;
+    }
+
+    const sensitive = document.getElementById(`${index>0?"_"+index:""}`);
+    if (sensitive) sensitive.checked = true;
+
+    const unemploymentNo = document.getElementById(`unemploymentNo${index>0?"_"+index:""}`);
+    const unemploymentYes=document.getElementById(`unemploymentYes${index>0?"_"+index:""}`);
+    if (data.unemployment && data.unemployment=="yes") {
+        unemploymentYes.checked = true;
+        const unemployedFrom=document.getElementById(`unemployedFrom${index>0?"_"+index:""}`);
+        unemployedFrom.value=data.unemployedFrom;
+        const unemployedTo=document.getElementById(`unemployedTo${index>0?"_"+index:""}`);
+        unemployedTo.value=data.unemployedTo;
+        const unemployedReason=document.getElementById(`unemployReason${index>0?"_"+index:""}`);
+        unemployedReason.value =data.unemployReason
+
+    }else if(data.unemployment && data.unemployment=="yes"){              
+        unemploymentNo.checked = true;  
+    }
+
+    const isLast = index === savedEmployments.length - 1;
+    const nextRadioId = isLast ? `additionalNo-${index + 1}` : `additionalYes-${index + 1}`;
+    const nextRadio = document.getElementById(nextRadioId);
+    if (nextRadio) nextRadio.checked = true;
+   
+  
+
+});
+};
+
+
 
 
 

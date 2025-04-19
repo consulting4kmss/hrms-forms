@@ -94,56 +94,6 @@
                         <select required name="state" class="form-control select-feild" autocomplete="off" id="selectState"
                             onchange="updateProgress('form1')">
                             <option class="opt" value="">Select One</option>
-                            <option class="opt" value="Alabama">Alabama</option>
-                            <option class="opt" value="Alaska">Alaska</option>
-                            <option class="opt" value="Arizona">Arizona</option>
-                            <option class="opt" value="Arkansas">Arkansas</option>
-                            <option class="opt" value="California">California</option>
-                            <option class="opt" value="Colorado">Colorado</option>
-                            <option class="opt" value="Connecticut">Connecticut</option>
-                            <option class="opt" value="Delaware">Delaware</option>
-                            <option class="opt" value="Florida">Florida</option>
-                            <option class="opt" value="Georgia">Georgia</option>
-                            <option class="opt" value="Hawaii">Hawaii</option>
-                            <option class="opt" value="Idaho">Idaho</option>
-                            <option class="opt" value="Illinois">Illinois</option>
-                            <option class="opt" value="Indiana">Indiana</option>
-                            <option class="opt" value="Iowa">Iowa</option>
-                            <option class="opt" value="Kansas">Kansas</option>
-                            <option class="opt" value="Kentucky">Kentucky</option>
-                            <option class="opt" value="Louisiana">Louisiana</option>
-                            <option class="opt" value="Maine">Maine</option>
-                            <option class="opt" value="Maryland">Maryland</option>
-                            <option class="opt" value="Massachusetts">Massachusetts</option>
-                            <option class="opt" value="Michigan">Michigan</option>
-                            <option class="opt" value="Minnesota">Minnesota</option>
-                            <option class="opt" value="Mississippi">Mississippi</option>
-                            <option class="opt" value="Missouri">Missouri</option>
-                            <option class="opt" value="Montana">Montana</option>
-                            <option class="opt" value="Nebraska">Nebraska</option>
-                            <option class="opt" value="Nevada">Nevada</option>
-                            <option class="opt" value="New Hampshire">New Hampshire</option>
-                            <option class="opt" value="New Jersey">New Jersey</option>
-                            <option class="opt" value="New Mexico">New Mexico</option>
-                            <option class="opt" value="New York">New York</option>
-                            <option class="opt" value="North Carolina">North Carolina</option>
-                            <option class="opt" value="North Dakota">North Dakota</option>
-                            <option class="opt" value="Ohio">Ohio</option>
-                            <option class="opt" value="Oklahoma">Oklahoma</option>
-                            <option class="opt" value="Oregon">Oregon</option>
-                            <option class="opt" value="Pennsylvania">Pennsylvania</option>
-                            <option class="opt" value="Rhode Island">Rhode Island</option>
-                            <option class="opt" value="South Carolina">South Carolina</option>
-                            <option class="opt" value="South Dakota">South Dakota</option>
-                            <option class="opt" value="Tennessee">Tennessee</option>
-                            <option class="opt" value="Texas">Texas</option>
-                            <option class="opt" value="Utah">Utah</option>
-                            <option class="opt" value="Vermont">Vermont</option>
-                            <option class="opt" value="Virginia">Virginia</option>
-                            <option class="opt" value="Washington">Washington</option>
-                            <option class="opt" value="West Virginia">West Virginia</option>
-                            <option class="opt" value="Wisconsin">Wisconsin</option>
-                            <option class="opt" value="Wyoming">Wyoming</option>
                         </select>
                         <small class="error-message"></small>
                     </div>
@@ -262,10 +212,6 @@
                             <select required style="width:35%;" name="defectiveVisionYear" id="defectiveVisionYear"
                                 class="form-control mt-2 select-feild" value="{{result.coe_pp_heq_eyes_defectivevision_Year | default: ''}}" >
                                 <option class="opt" value="">Select Year</option>
-                                <option class="opt" value="2020">2020</option>
-                                <option class="opt" value="2021">2021</option>
-                                <option class="opt" value="2022">2022</option>
-                                <option class="opt" value="2023">2023</option>
                             </select>
                         </div>
                         <div id="defectiveVisionExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -307,10 +253,6 @@
                                 <select required style="width:35%;" name="visionOtherYear" id="visionOtherYear"
                                     class="form-control mt-2 select-feild " value="{{result.coe_pp_heq_eyes_other_Year | default: ''}}" >
                                     <option value="">Select Year</option>
-                                    <option value="2020">2020</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2023">2023</option>
                                 </select>
                             </div>
                             <div id="visionOtherExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -360,10 +302,6 @@
                                         <select required style="width:35%;" name="hearingLossYear" id="hearingLossYear" value="{{result.coe_pp_heq_ent_hearingloss_Year | default: ''}}"
                                             class="form-control mt-2 select-feild ">
                                             <option value="">Select Year</option>
-                                            <option value="2020">2020</option>
-                                            <option value="2021">2021</option>
-                                            <option value="2022">2022</option>
-                                            <option value="2023">2023</option>
                                         </select>
                                     </div>
                                     <div id="hearingLossExplanationInput" class="col-12 mt-3 mb-2"
@@ -407,10 +345,6 @@
                                             <select required style="width:35%;" name="hearingOtherYear" value="{{result.coe_pp_heq_ent_other_Year | default: ''}}"
                                                 id="hearingOtherYear" class="form-control mt-2 select-feild ">
                                                 <option value="">Select Year</option>
-                                                <option value="2020">2020</option>
-                                                <option value="2021">2021</option>
-                                                <option value="2022">2022</option>
-                                                <option value="2023">2023</option>
                                             </select>
                                         </div>
                                         <div id="hearingOtherExplanationInput" class="col-12 mt-3"
@@ -462,10 +396,6 @@
                                             <select required style="width:35%;" name="migrainesYear" id="migrainesYear" value="{{result.coe_pp_heq_ent_head_migranes_Year | default: ''}}"
                                                 class="form-control mt-2 select-feild ">
                                                 <option value="">Select Year</option>
-                                                <option value="2020">2020</option>
-                                                <option value="2021">2021</option>
-                                                <option value="2022">2022</option>
-                                                <option value="2023">2023</option>
                                             </select>
                                         </div>
                                         <div id="migrainesExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -513,10 +443,6 @@
                                             <select required style="width:35%;" name="headachesYear" id="headachesYear"
                                                 class="form-control mt-2 select-feild " value="{{result.coe_pp_heq_ent_head_aches_Year | default: ''}}">
                                                 <option value="">Select Year</option>
-                                                <option value="2020">2020</option>
-                                                <option value="2021">2021</option>
-                                                <option value="2022">2022</option>
-                                                <option value="2023">2023</option>
                                             </select>
                                         </div>
                                         <div id="headachesExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -558,10 +484,6 @@
                                             <select required style="width:35%;" name="tbiYear" id="tbiYear" value="{{result.coe_pp_heq_head_tbi_Year | default: ''}}"
                                                 class="form-control mt-2 select-feild ">
                                                 <option value="">Select Year</option>
-                                                <option value="2020">2020</option>
-                                                <option value="2021">2021</option>
-                                                <option value="2022">2022</option>
-                                                <option value="2023">2023</option>
                                             </select>
                                         </div>
                                         <div id="tbiExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -611,10 +533,6 @@
                                             <select required style="width:35%;" name="thyroidYear" id="thyroidYear" value="{{result.coe_pp_heq_thyroid_Year | default: ''}}"
                                                 class="form-control mt-2 select-feild ">
                                                 <option value="">Select Year</option>
-                                                <option value="2020">2020</option>
-                                                <option value="2021">2021</option>
-                                                <option value="2022">2022</option>
-                                                <option value="2023">2023</option>
                                             </select>
                                         </div>
                                         <div id="thyroidExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -668,10 +586,6 @@
                                             <select required style="width:35%;" name="irregularHeartbeatYear" value="{{result.coe_pp_heq_heart_irregular_Year| default: ''}}"
                                                 id="irregularHeartbeatYear" class="form-control mt-2 select-feild ">
                                                 <option value="">Select Year</option>
-                                                <option value="2020">2020</option>
-                                                <option value="2021">2021</option>
-                                                <option value="2022">2022</option>
-                                                <option value="2023">2023</option>
                                             </select>
                                         </div>
                                         <div id="irregularHeartbeatExplanationInput" class="col-12 mt-3"
@@ -715,10 +629,6 @@
                                             <select required style="width:35%;" name="highBpYear" id="highBpYear" value="{{result.coe_pp_heq_heart_hbp_Year| default: ''}}"
                                                 class="form-control mt-2 select-feild ">
                                                 <option value="">Select Year</option>
-                                                <option value="2020">2020</option>
-                                                <option value="2021">2021</option>
-                                                <option value="2022">2022</option>
-                                                <option value="2023">2023</option>
                                             </select>
                                         </div>
                                         <div id="highBpExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -761,10 +671,6 @@
                                             <select required style="width:35%;" name="heartDiseaseYear" value="{{result.coe_pp_heq_heart_disease_Year| default: ''}}"
                                                 id="heartDiseaseYear" class="form-control mt-2 select-feild ">
                                                 <option value="">Select Year</option>
-                                                <option value="2020">2020</option>
-                                                <option value="2021">2021</option>
-                                                <option value="2022">2022</option>
-                                                <option value="2023">2023</option>
                                             </select>
                                         </div>
                                         <div id="heartDiseaseExplanationInput" class="col-12 mt-3"
@@ -808,10 +714,6 @@
                                             <select required style="width:35%;" name="heartFailureYear" value="{{result.coe_pp_heq_heart_failure_Year | default: ''}}"
                                                 id="heartFailureYear" class="form-control mt-2 select-feild ">
                                                 <option value="">Select Year</option>
-                                                <option value="2020">2020</option>
-                                                <option value="2021">2021</option>
-                                                <option value="2022">2022</option>
-                                                <option value="2023">2023</option>
                                             </select>
                                         </div>
                                         <div id="heartFailureExplanationInput" class="col-12 mt-3"
@@ -885,10 +787,6 @@
                             <select required style="width:35%;" name="asthmaYear" id="asthmaYear" value="{{result.coe_pp_heq_lungs_asthma_Year | default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="asthmaExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -933,10 +831,6 @@
                             <select required style="width:35%;" name="copdYear" id="copdYear" value="{{result.coe_pp_heq_emphysema_Year | default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="copdExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -981,10 +875,6 @@
                             <select required style="width:35%;" name="tuberYear" id="tuberYear" value="{{result.coe_pp_heq_tuberclosis_Year | default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="tuberExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -1040,10 +930,6 @@
                             <select required style="width:35%;" name="kneeYear" id="kneeYear" value="{{result.coe_pp_heq_knees_Year | default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="kneeExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -1088,10 +974,6 @@
                             <select required style="width:35%;" name="shoulderYear" id="shoulderYear"  value="{{result.coe_pp_heq_shoulder_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="shoulderExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -1136,10 +1018,6 @@
                             <select required style="width:35%;" name="elbowYear" id="elbowYear" value="{{result.coe_pp_heq_elbow_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="elbowExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -1182,10 +1060,6 @@
                             <select required style="width:35%;" name="spineYear" id="spineYear" value="{{result.coe_pp_heq_backspine_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="spineExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -1229,10 +1103,6 @@
                             <select required style="width:35%;" name="wristYear" id="wristYear" value="{{result.coe_pp_heq_wrist_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="wristExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -1275,10 +1145,6 @@
                             <select required style="width:35%;" name="arthritisYear" id="arthritisYear" value="{{result.coe_pp_heq_arthritis_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="arthritisExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -1329,10 +1195,6 @@
                             <select required style="width:35%;" name="anemiaYear" id="anemiaYear" value="{{result.coe_pp_heq_anemia_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="anemiaExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -1377,10 +1239,6 @@
                             <select required style="width:35%;" name="sickleYear" id="sickleYear" value="{{result.coe_pp_heq_sicklecellanemia_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="sickleExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -1425,10 +1283,6 @@
                             <select required style="width:35%;" name="otherBloodYear" id="otherBloodYear" value="{{result.coe_pp_heq_otherblooddisease_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="otherBloodExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -1476,10 +1330,6 @@
                             <select required style="width:35%;" name="herniaYear" id="herniaYear" value="{{result.coe_pp_heq_hernia_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="herniaExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -1529,10 +1379,6 @@
                             <select required style="width:35%;" name="cancerYear" id="cancerYear" value="{{result.coe_pp_heq_cancer_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="cancerExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -1583,10 +1429,6 @@
                             <select required style="width:35%;" name="diabetesYear" id="diabetesYear" value="{{result.coe_pp_heq_diabetes_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="diabetesExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -1637,10 +1479,6 @@
                             <select required style="width:35%;" name="seizureYear" id="seizureYear" value="{{result.coe_pp_heq_epilepsy_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="seizureExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -1692,10 +1530,6 @@
                             <select required style="width:35%;" name="faintingYear" id="faintingYear" value="{{result.coe_pp_heq_faintingspells_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="faintingExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -1749,10 +1583,6 @@
                             <select required style="width:35%;" name="depressionYear" id="depressionYear" value="{{result.coe_pp_heq_depression_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="depressionExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -1797,10 +1627,6 @@
                             <select required style="width:35%;" name="anxietyYear" id="anxietyYear" value="{{result.coe_pp_heq_anxiety_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="anxietyExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -1845,10 +1671,6 @@
                             <select required style="width:35%;" name="bipolarYear" id="bipolarYear" value="{{result.coe_pp_heq_bipolardisorder_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="bipolarExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -1891,10 +1713,6 @@
                             <select required style="width:35%;" name="substanceYear" id="substanceYear" value="{{result.coe_pp_heq_substanceusedisorder_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="substanceExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -1963,10 +1781,6 @@
                             <select required style="width:35%;" name="crohnYear" id="crohnYear" value="{{result.coe_pp_heq_gastrointestinal_crohns_Year| default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="crohnExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -2010,10 +1824,6 @@
                             <select required style="width:35%;" name="colitisYear" id="colitisYear" value="{{result.coe_pp_heq_gastrointestinal_ulcerative_Year | default: ''}}"
                                 class="form-control mt-2 select-feild ">
                                 <option value="">Select Year</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
                             </select>
                         </div>
                         <div id="colitisExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -2061,10 +1871,6 @@
                                 <select required style="width:35%;" name="hepatisYear" id="hepatisYear" value="{{result.coe_pp_heq_liver_hepatitis_Year | default: ''}}"
                                     class="form-control mt-2 select-feild ">
                                     <option value="">Select Year</option>
-                                    <option value="2020">2020</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2023">2023</option>
                                 </select>
                             </div>
                             <div id="hepatisExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -2108,10 +1914,6 @@
                                 <select required style="width:35%;" name="cirrhosisYear" id="cirrhosisYear" value="{{result.coe_pp_heq_liver_cirrhosis_Year | default: ''}}"
                                     class="form-control mt-2 select-feild ">
                                     <option value="">Select Year</option>
-                                    <option value="2020">2020</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2023">2023</option>
                                 </select>
                             </div>
                             <div id="cirrhosisExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -2161,10 +1963,6 @@
                                 <select required style="width:35%;" name="kidneyYear" id="kidneyYear" value="{{result.coe_pp_heq_kidney_Year | default: ''}}"
                                     class="form-control mt-2 select-feild ">
                                     <option value="">Select Year</option>
-                                    <option value="2020">2020</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2023">2023</option>
                                 </select>
                             </div>
                             <div id="kidneyExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -2215,10 +2013,6 @@
                                 <select required style="width:35%;" name="skinYear" id="skinYear" value="{{result.coe_pp_heq_skin_Year | default: ''}}"
                                     class="form-control mt-2 select-feild ">
                                     <option value="">Select Year</option>
-                                    <option value="2020">2020</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2023">2023</option>
                                 </select>
                             </div>
                             <div id="skinExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -2269,10 +2063,6 @@
                                 <select required style="width:35%;" name="drugYear" id="drugYear" value="{{result.coe_pp_heq_drugallergy_Year | default: ''}}"
                                     class="form-control mt-2 select-feild ">
                                     <option value="">Select Year</option>
-                                    <option value="2020">2020</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2023">2023</option>
                                 </select>
                             </div>
                             <div id="drugExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -2316,10 +2106,6 @@
                                 <select required style="width:35%;" name="otherAlergyYear" id="otherAlergyYear" value="{{result.coe_pp_heq_otherallergies_Year | default: ''}}"
                                     class="form-control mt-2 select-feild ">
                                     <option value="">Select Year</option>
-                                    <option value="2020">2020</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2023">2023</option>
                                 </select>
                             </div>
                             <div id="otherAlergyExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -2370,10 +2156,6 @@
                                 <select required style="width:35%;" name="otherHealthYear" id="otherHealthYear" value="{{result.coe_pp_heq_otherhealthcondition_Year | default: ''}}"
                                     class="form-control mt-2 select-feild ">
                                     <option value="">Select Year</option>
-                                    <option value="2020">2020</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2023">2023</option>
                                 </select>
                             </div>
                             <div id="otherHealthExplanationInput" class="col-12 mt-3" style="display: none;">
@@ -2426,10 +2208,6 @@
                                 <select required style="width:35%;" name="tetanusYear" id="tetanusYear" value="{{result.coe_pp_heq_tetanusimmunization_Year | default: ''}}"
                                     class="form-control mt-2 select-feild ">
                                     <option value="">Select Year</option>
-                                    <option value="2020">2020</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2023">2023</option>
                                 </select>
                             </div>
                         </div>
@@ -2467,10 +2245,6 @@
                                 <select required style="width:35%;" name="hepImmuneYear" id="hepImmuneYear" value="{{result.coe_pp_heq_tetanusimmunizationshotseries_Year | default: ''}}"
                                     class="form-control mt-2 select-feild ">
                                     <option value="">Select Year</option>
-                                    <option value="2020">2020</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2023">2023</option>
                                 </select>
                             </div>
                         </div>

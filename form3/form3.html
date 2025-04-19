@@ -697,7 +697,7 @@
                                         <label class="question-label">Current or Last Employer - Name of
                                             Company/School</label>
 
-                                        <input required type="text" data-validate="text" name="currentCompany"
+                                        <input required type="text" data-validate="text" name="currentCompany" id="companyName"
                                             autocomplete="off" class="form-control" maxlength="50"
                                             placeholder="Enter Text"
                                             oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.',true)"
@@ -709,7 +709,7 @@
                                     <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
                                         <label class="question-label">Type of Business/School</label>
 
-                                        <input required type="text" placeholder="Enter Text" data-validate="text"
+                                        <input required type="text" placeholder="Enter Text" data-validate="text" id="companyType"
                                             name="companyType" autocomplete="off" class="form-control" maxlength="50"
                                             oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.',true)"
                                             onchange="updateProgress2('form2')" />
@@ -719,7 +719,7 @@
                                     <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
                                         <label class="question-label">Address</label>
 
-                                        <input required type="text" placeholder="Enter Text" data-validate="text"
+                                        <input required type="text" placeholder="Enter Text" data-validate="text" id="companyAddress"
                                             name="companyAddress" autocomplete="off" class="form-control"
                                             maxlength="250" onchange="updateProgress2('form2')" />
                                         <small class="error-message"></small>
@@ -729,7 +729,7 @@
                                 <div class="form-row mt-3">
                                     <div class="col">
                                         <label class="question-label">City</label>
-                                        <input required type="text" data-validate="text" name="companyCity"
+                                        <input required type="text" data-validate="text" name="companyCity" id="companyCity"
                                             maxlength="50" autocomplete="off"
                                             oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.',true)"
                                             class="form-control" onchange="updateProgress2('form2')"
@@ -795,7 +795,7 @@
                                     </div>
                                     <div class="col">
                                         <label class="question-label">Zip</label>
-                                        <input required type="text" name="companyZip" autocomplete="off" maxlength="9"
+                                        <input required type="text" name="companyZip" autocomplete="off" maxlength="9" id="companyZip"
                                             data-validate="number" class="form-control"
                                             onchange="updateProgress2('form2')"
                                             oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.',true)"
@@ -843,7 +843,7 @@
                                     <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                         <label class="question-label">Supervisor Name</label>
 
-                                        <input required type="text" data-validate="text" name="supervisor"
+                                        <input required type="text" data-validate="text" name="supervisor" 
                                             autocomplete="off"
                                             oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.',true)"
                                             class="form-control" maxlength="50" onchange="updateProgress2('form2')"

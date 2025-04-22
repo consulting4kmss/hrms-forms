@@ -16,6 +16,7 @@ function initializeForm(formId) {
          validatePage(formId,1,false);
         });
     });
+    handleMutualExclusiveCheckboxes(formId);
     Initializefeilds(product);
     toggleFields(formId, toggleFieldsConfig);
     validatePage(formId,1,false);
@@ -1077,9 +1078,10 @@ function setSelected(id,dataSet,selectedItem){
       const option = document.createElement("option");
       option.value = item;
       option.textContent = item;
+      if(selectedItem){
       if (item === selectedItem) {
         option.selected = true;
-      }
+      }}
       selectElement.appendChild(option);
     });
 }

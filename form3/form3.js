@@ -222,7 +222,7 @@ function initializeForm2(formId) {
     populateAccidentData(savedAccidents, initialAccident);
     populateLicenseData(savedLicenseData);
     militaryDriverData(savedMilitaryDrivingData);
-    initializeEmploymentForm();
+    initializeEmploymentForm(savedEmploy);
 }
 
 function caluclateTotalFeilds() {
@@ -892,18 +892,23 @@ const savedAddresses = [
                 document.getElementById(`addressFrom${index+1}`).value = data.from;
                 document.getElementById(`addressTo${index+1}`).value = data.to;
 
-                if (data.historyAddress === "yes") {
-                    const Addressyes=document.getElementById(`addressYes${index+1}`); 
-                    Addressyes.checked=true
-                }
+                const isLast = index === savedAddresses.length - 1;
+                const nextRadioId = isLast ? `addressYes${index+1}` : `addressNo${index+1}`;
+                const nextRadio = document.getElementById(nextRadioId);
+                if (nextRadio) nextRadio.checked = true;
+
+                // if (data.historyAddress === "yes") {
+                //     const Addressyes=document.getElementById(`addressYes${index+1}`); 
+                //     Addressyes.checked=true
+                // }
             
-            else {
-                // If historyAddress is "no", update radio buttons accordingly
-                const lastNoRadio =document.getElementById(`addressNo${index+1}`); 
-                if (lastNoRadio) {
-                    lastNoRadio.checked = true;
-                }
-            }
+            // else {
+            //     // If historyAddress is "no", update radio buttons accordingly
+            //     const lastNoRadio =document.getElementById(`addressNo${index+1}`); 
+            //     if (lastNoRadio) {
+            //         lastNoRadio.checked = true;
+            //     }
+            // }
         });
     }, 200);
 }else{
@@ -1594,15 +1599,21 @@ function populateViolationData(savedViolations,initialVoilation) {
             if (vehicleRadio) {
                 vehicleRadio.checked = true;
             }
-            if(violation.trafficViolation=='yes'){
-                console.log( `violationYes_${index + 1}`);
-                const violationYes=document.getElementById(`violationYes_${index + 1}`);
-                violationYes.checked = true;
-            }
-            else if(violation.trafficViolation=='no'){
-                const violationNo=document.getElementById(`violationNo_${index + 1}`);
-                violationNo.checked = true;
-            }
+
+
+            const isLast = index === savedViolations.length - 1;
+            const nextRadioId = isLast ? `violationYes_${index + 1}` : `violationNo_${index + 1}`;
+            const nextRadio = document.getElementById(nextRadioId);
+            if (nextRadio) nextRadio.checked = true;
+            // if(violation.trafficViolation=='yes'){
+            //     console.log( `violationYes_${index + 1}`);
+            //     const violationYes=document.getElementById(`violationYes_${index + 1}`);
+            //     violationYes.checked = true;
+            // }
+            // else if(violation.trafficViolation=='no'){
+            //     const violationNo=document.getElementById(`violationNo_${index + 1}`);
+            //     violationNo.checked = true;
+            // }
         });
     }, 300); 
 }// Wait for DOM render from handleRadioChange
@@ -2223,7 +2234,7 @@ const savedMilitaryDrivingData = {
 };
 
  function militaryDriverData(data) {
-
+    if (!data || data.length === 0) return;
     if (data.militaryDriving === "yes") {
         // Select YES radio and trigger change handler
         document.getElementById("militaryYes").checked = true;
@@ -2381,7 +2392,7 @@ function addDotMode(presentId, value) {
         dotMode.innerHTML = `     <label class="question-label">Check the DotMode Below</label>
                                     <div class=" form-check col-12 mt-2">
                                         <div class="checkbox ">
-                                            <input class="form-check-input box" type="radio" required id="dotFMCSA" name="dotMode"
+                                            <input class="form-check-input box" type="radio" required id="dotFMCSA${(dotNumber) ? ('_' + dotNumber) : ''}" name="dotMode${(dotNumber) ? ('_' + dotNumber) : ''}"
                                                 value="FMCSA" onchange="updateProgress2('form2')">
                                         </div>
                                         <div class="label ms-3">
@@ -2390,7 +2401,7 @@ function addDotMode(presentId, value) {
                                     </div>
                                     <div class=" form-check col-12 mt-2">
                                         <div class="checkbox">
-                                            <input class="form-check-input box" type="radio" required id="dotPHMSA" name="dotMode"
+                                            <input class="form-check-input box" type="radio" required id="dotPHMSA${(dotNumber) ? ('_' + dotNumber) : ''}" name="dotMode${(dotNumber) ? ('_' + dotNumber) : ''}"
                                                 value="PHMSA" onchange="updateProgress2('form2')">
                                         </div>
                                         <div class="label ms-3">
@@ -2400,7 +2411,7 @@ function addDotMode(presentId, value) {
     
                                     <div class=" form-check col-12 mt-2">
                                         <div class="checkbox ">
-                                            <input class="form-check-input box" type="radio" required id="dotFAA" name="dotMode"
+                                            <input class="form-check-input box" type="radio" required id="dotFAA${(dotNumber) ? ('_' + dotNumber) : ''}" name="dotMode${(dotNumber) ? ('_' + dotNumber) : ''}"
                                                 value="FAA" onchange="updateProgress2('form2')">
                                         </div>
                                         <div class="label ms-3">
@@ -2411,7 +2422,7 @@ function addDotMode(presentId, value) {
     
                                     <div class=" form-check col-12 mt-2">
                                         <div class="checkbox">
-                                            <input class="form-check-input box" type="radio" required id="dotFTA" name="dotMode"
+                                            <input class="form-check-input box" type="radio" required id="dotFTA${(dotNumber) ? ('_' + dotNumber) : ''}" name="dotMode${(dotNumber) ? ('_' + dotNumber) : ''}"
                                                 value="FTA" onchange="updateProgress2('form2')">
                                         </div>
                                         <div class="label ms-3">
@@ -2421,7 +2432,7 @@ function addDotMode(presentId, value) {
     
                                     <div class=" form-check col-12 mt-2">
                                         <div class="checkbox">
-                                            <input class="form-check-input box" type="radio" required id="dotFRA" name="dotMode"
+                                            <input class="form-check-input box" type="radio" required id="dotFRA${(dotNumber) ? ('_' + dotNumber) : ''}" name="dotMode${(dotNumber) ? ('_' + dotNumber) : ''}"
                                                 value="FRA" onchange="updateProgress2('form2')">
                                         </div>
                                         <div class="label ms-3">
@@ -2431,7 +2442,7 @@ function addDotMode(presentId, value) {
     
                                     <div class=" form-check col-12 mt-2">
                                         <div class="checkbox">
-                                            <input class="form-check-input box" type="radio" required id="dotUSCG" name="dotMode"
+                                            <input class="form-check-input box" type="radio" required id="dotUSCG${(dotNumber) ? ('_' + dotNumber) : ''}" name="dotMode${(dotNumber) ? ('_' + dotNumber) : ''}"
                                                 value="USCG" onchange="updateProgress2('form2')">
                                         </div>
                                         <div class="label ms-3">
@@ -2448,8 +2459,8 @@ function addDotMode(presentId, value) {
                                                 background investigator to contact your current employer.</p>
                                         </div>
                                         <div class="form-check" d-flex align-items-end>
-                                            <input class="form-check-input" type="radio" required value="yes" id="verifyYes"
-                                                name="verify" onchange="updateProgress2('form2')">
+                                            <input class="form-check-input" type="radio" required value="yes" id="verifyyes${(dotNumber) ? ('_' + dotNumber) : ''}"
+                                                name="verify${(dotNumber) ? ('_' + dotNumber) : ''}" onchange="updateProgress2('form2')">
                                             <label class="form-check-label ms-4" for="verifyYes">
                                                 By checking this box, I give my permission for my current employment to be
                                                 verified
@@ -2458,7 +2469,7 @@ function addDotMode(presentId, value) {
                                         </div>
         
                                         <div class="form-check mt-2">
-                                            <input class="form-check-input" type="radio" required value="no" id="verifyNo" name="verify"
+                                            <input class="form-check-input" type="radio" required value="no" id="verifyno${(dotNumber) ? ('_' + dotNumber) : ''}" name="verify${(dotNumber) ? ('_' + dotNumber) : ''}"
                                                 onchange="updateProgress2('form2')">
                                             <label class="form-check-label ms-4" for="verifyNo">
                                                 I would like the background investigator to wait until the very end of the
@@ -2517,7 +2528,7 @@ function addUnemployment(presentId, value) {
 
                                 <div class="col-12 mt-4">
                                     <label class="question-label">Reason for Unemployment</label>
-                                    <textarea maxlength="250" required name="unemploymentReason${(unemployNumber) ? ('_' + unemployNumber) : ''}" id="unemployReason${(unemployNumber) ? ('_' + unemployNumber) : ''}" placeholder="Enter Text"
+                                    <textarea maxlength="250" required name="unemploymentReason${(unemployNumber) ? ('_' + unemployNumber) : ''}" id="unemploymentReason${(unemployNumber) ? ('_' + unemployNumber) : ''}"
                                         rows="4" class="form-control mt-2 txtfeild"></textarea>
                                 </div>`
         document.getElementById(presentId).appendChild(unemploy);
@@ -2638,7 +2649,7 @@ function removeEmploymentValidation() {
 
 
 
-const savedEmployments = [
+const savedEmploy = [
     {
       currentCompany: "Google",
       companyType: "IT",
@@ -2646,8 +2657,8 @@ const savedEmployments = [
       companyCity: "Mountain View",
       companyState: "California",
       companyZip: "94043",
-      startDate: "2018-01-01",
-      separationDate: "2022-12-31",
+      startDate: "2020-01-01",
+      separationDate: "2022-01-01",
       stillEmployee:"",
       supervisor: "John Doe",
       supervisorNo: "(123) 456-7890",
@@ -2655,7 +2666,11 @@ const savedEmployments = [
       federalCarrier: "yes",
       sensitive: "yes",
       dotMode:"PHMSA",
-      unemployment: "no",
+      verify:"yes",
+      unemployment: "yes",
+      unemployedFrom:"2023-01-01",
+      unemployedTo:"2023-05-03",
+      unemployedReason:"Jagan",
       additional:"yes"
    
     },
@@ -2674,10 +2689,12 @@ const savedEmployments = [
       leaveReason: "Relocated",
       federalCarrier: "no",
       sensitive: "yes",
+      dotMode:"FAA",
+      verify:"no",
       unemployment: "yes",
       unemployedFrom:"2021-02-01",
       unemployedTo:"2022-01-26",
-      unemployReason:"Weak economics",
+      unemployedReason:"Weak economics",
       additional:"yes"
     },
     {
@@ -2694,76 +2711,108 @@ const savedEmployments = [
       supervisorNo: "(555) 123-4567",
       leaveReason: "Career Change",
       federalCarrier: "no",
-      sensitive: "no",
+      sensitive: "yes",
+      dotMode:"FTA",
+      verify:"yes",
       unemployment: "yes",
       unemployedFrom:"2022-09-16",
-      unemployedTo:"2023-04-31",
+      unemployedTo:"2022-01-26",
+      unemployedReason:"dirty Govt",
       additional:"no",
       employhistroyReason:"High Inflation"
     }
   ];
 
- function initializeEmploymentForm () {
+ function initializeEmploymentForm (savedEmploymentData) {
 
-    if (!savedEmployments || savedEmployments.length === 0) {
+    if (!savedEmploymentData || savedEmploymentData.length === 0) {
         return;
     }
-  savedEmployments.forEach((data, index) => {
-    console.log(`companyName${index>0?"_"+index:""}`);
-    data.currentCompany?document.getElementById(`companyName${index>0?"_"+index:""}`).value = data.currentCompany:"";
-    data.companyType?document.getElementById(`companyType${index>0?"_"+index:""}`).value = data.companyType:"";
-    data.companyAddress?document.getElementById(`companyAddress${index>0?"_"+index:""}`).value = data.companyAddress:"";
-    data.companyCity?document.getElementById(`companyCity${index>0?"_"+index:""}`).value = data.companyCity:"";
-    data.companyState?document.getElementById(`companyState${index>0?"_"+index:""}`).value = data.companyState:"";
-    data.companyZip?document.getElementById(`companyZip${index>0?"_"+index:""}`).value = data.companyZip:"";
-    data.startDate?document.getElementById(`companyStart${index>0?"_"+index:""}`).value = data.startDate:"";
-    data.separationDate?document.getElementById(`companySeparation${index>0?"_"+index:""}`).value = data.separationDate:"";
-    data.supervisor?document.getElementById(`supervisorName${index>0?"_"+index:""}`).value = data.supervisor:"";
-    data.supervisorNo?document.getElementById(`supervisorPhone${index>0?"_"+index:""}`).value = data.supervisorNo:"";
-    data.leaveReason?document.getElementById(`leavingReason${index>0?"_"+index:""}`).value = data.leaveReason:"";
-     // Set currently employed checkbox federalMotorNo
-    const stillEmp =   document.getElementById(`stillEmployee${index>0?"_"+index:""}`);
-    data.stillEmployee=="currentlyEmployee"?stillEmp.checked = data.stillEmployee:"";
+    savedEmploymentData.forEach((data, index) => {
+    data.currentCompany?document.getElementById(`companyName${index>0?"_"+(index+1):""}`).value = data.currentCompany:"";
+    data.companyType?document.getElementById(`companyType${index>0?"_"+(index+1):""}`).value = data.companyType:"";
+    data.companyAddress?document.getElementById(`companyAddress${index>0?"_"+(index+1):""}`).value = data.companyAddress:"";
+    data.companyCity?document.getElementById(`companyCity${index>0?"_"+(index+1):""}`).value = data.companyCity:"";
+    data.companyState?document.getElementById(`companyState${index>0?"_"+(index+1):""}`).value = data.companyState:"";
+    data.companyZip?document.getElementById(`companyZip${index>0?"_"+(index+1):""}`).value = data.companyZip:"";
+    data.startDate?document.getElementById(`companyStart${index>0?"_"+(index+1):""}`).value = data.startDate:"";
+    data.separationDate?document.getElementById(`companySeparation${index>0?"_"+(index+1):""}`).value = data.separationDate:"";
+    data.supervisor?document.getElementById(`supervisorName${index>0?"_"+(index+1):""}`).value = data.supervisor:"";
+    data.supervisorNo?document.getElementById(`supervisorPhone${index>0?"_"+(index+1):""}`).value = data.supervisorNo:"";
+    data.leaveReason?document.getElementById(`leavingReason${index>0?"_"+(index+1):""}`).value = data.leaveReason:"";
+     // Set currently employed checkbox federalMotorNo  unemployReason_2
+
+     if (index==0){
+    const stillEmp =   document.getElementById(`stillEmployee${index>0?"_"+(index+1):""}`);
+    data.stillEmployee=="currentlyEmployee"?stillEmp.checked = data.stillEmployee:"";}
 
     // Set radio buttons unemployReason
-    const fedCarrierYes =  document.getElementById(`federalMotorYes${index>0?"_"+index:""}`);
-    const fedCarrierNo=  document.getElementById(`federalMotorNo${index>0?"_"+index:""}`);
+    const fedCarrierYes =  document.getElementById(`federalMotorYes${index>0?"_"+(index+1):""}`);
+    const fedCarrierNo=  document.getElementById(`federalMotorNo${index>0?"_"+(index+1):""}`);
     if (data.federalCarrier && data. federalCarrier=='yes') {
         fedCarrierYes.checked = true;
     }else if(data.federalCarrier && data. federalCarrier=='no'){
         fedCarrierNo.checked = true;
     }
+    
+    const sensitiveYes = document.getElementById(`sensitiveYes${index>0?"_"+(index+1):""}`);
+    const sensitiveNo = document.getElementById(`sensitiveNo${index>0?"_"+(index+1):""}`);
+    if (data.sensitive=="yes"){
+        sensitiveYes.checked = true;
+        addDotMode(sensitiveYes.closest('[id^=dotDiv]').id,"yes");
+        const dotNumber = index > 0 ? `_${index + 1}` : "";
+        const dotRadioId = `dot${data.dotMode}${dotNumber}`;
+        console.log("dotmode Id ",`dot${data.dotMode}${dotNumber}`);
+        const dotRadio = document.getElementById(dotRadioId);
+        const verifyElement=document.getElementById(`verify${data.verify}${dotNumber}`);
 
-    const sensitive = document.getElementById(`${index>0?"_"+index:""}`);
-    if (sensitive) sensitive.checked = true;
+        if (dotRadio) {
+            dotRadio.checked = true;
+            verifyElement.checked=true;
 
-    const unemploymentNo = document.getElementById(`unemploymentNo${index>0?"_"+index:""}`);
-    const unemploymentYes=document.getElementById(`unemploymentYes${index>0?"_"+index:""}`);
+        } 
+      
+    }else {
+        sensitiveNo.checked = true;
+    }
+    
+    const unemploymentNo = document.getElementById(`unemploymentNo${index>0?"_"+(index+1):""}`);
+    const unemploymentYes=document.getElementById(`unemploymentYes${index>0?"_"+(index+1):""}`);
     if (data.unemployment && data.unemployment=="yes") {
         unemploymentYes.checked = true;
-        const unemployedFrom=document.getElementById(`unemployedFrom${index>0?"_"+index:""}`);
+        const unemployDiv = unemploymentYes.closest('[id^=unemployDiv]');
+       if (unemployDiv) {
+        addUnemployment(unemployDiv.id, "yes"); // Trigger it manually here
+        }
+      
+        const unemployedFrom=document.getElementById(`unemployedFrom${index>0?"_"+(index+1):""}`);
+     
         unemployedFrom.value=data.unemployedFrom;
-        const unemployedTo=document.getElementById(`unemployedTo${index>0?"_"+index:""}`);
+        const unemployedTo=document.getElementById(`unemployedTo${index>0?"_"+(index+1):""}`);
+
         unemployedTo.value=data.unemployedTo;
-        const unemployedReason=document.getElementById(`unemployReason${index>0?"_"+index:""}`);
-        unemployedReason.value =data.unemployReason
+        const unemployReason=document.getElementById(`unemploymentReason${index>0?"_"+(index+1):""}`);
+        if(unemployReason==null){
+            console.log("reasonbox is null");
+        }else{
+            console.log(unemployReason);
+        }
+        unemployReason.value =data.unemployedReason;
 
     }else if(data.unemployment && data.unemployment=="yes"){              
         unemploymentNo.checked = true;  
     }
 
-    const isLast = index === savedEmployments.length - 1;
-    const nextRadioId = isLast ? `additionalNo-${index + 1}` : `additionalYes-${index + 1}`;
+    const isLast = index === savedEmploymentData.length - 1;
+    const nextRadioId = isLast ? `additionalNo${index>0?"_"+(index+1):""}` : `additionalYes${index>0?"_"+(index+1):""}`;
     const nextRadio = document.getElementById(nextRadioId);
     if (nextRadio) nextRadio.checked = true;
+    if(!isLast){
+        addNewEmploymentForm();
+    }
    
-  
-
 });
 };
-
-
-
 
 
 

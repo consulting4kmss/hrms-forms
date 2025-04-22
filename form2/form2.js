@@ -2,6 +2,19 @@ var totalFields = 0;
 var totalPages = 0;
 var signatureData = '';
 var filledFields = 0;
+
+
+const product = [
+    {
+      defectiveVision: 'no',
+      eyesOther: 'yes',
+      coe_pp_heq_state: 'California',
+      coe_pp_heq_eyes_defectivevision_Year: '2022',
+      dob: '1990-05-15',
+      doa: '2024-03-01'
+    }
+  ];
+
 function initializeForm(formId) {
     //showCheckmark('form1Tick');
     totalPages = document.querySelectorAll(`#${formId} .form-page`).length;
@@ -18,12 +31,10 @@ function initializeForm(formId) {
     });
     handleMutualExclusiveCheckboxes(formId);
     Initializefeilds(product);
-    toggleFields(formId, toggleFieldsConfig);
-    validatePage(formId,1,false);
-    validatePage(formId,2,false);
-    validatePage(formId,3,false);
-    validatePage(formId,4,false);
-
+    toggleFields(1, toggleFieldsConfig);
+    toggleFields(2, toggleFieldsConfig);
+    toggleFields(3, toggleFieldsConfig);
+    toggleFields(4, toggleFieldsConfig);
     const fields = document.querySelectorAll(`#${formId} .form-page input, #${formId} .form-page select,#${formId} .form-page textarea,#${formId} .form-page canvas`);
     fields.forEach(field => {
         field.addEventListener('change', () => {
@@ -160,7 +171,15 @@ function caluclateFilledFeilds() {
 function validatePage(formId, pageNumber,bool) {
    console.log('FORMID , PAGENUMBER , BOOL ',formId, pageNumber, bool)
     const form = document.getElementById(formId);
+    // if(form===null){
+    //     console.log("formIsNull");
+    //     return false;
+    // }
     const currentPage = form.querySelector(`#${formId}-page${pageNumber}`);
+    // if(currentPage===null){
+    //     console.log("currentPageIsNull");
+    //     return false;
+    // }
     const inputs = currentPage.querySelectorAll('input, select, textarea');
     const canvases = currentPage.querySelectorAll('canvas');
     let isValid = true;
@@ -1023,8 +1042,8 @@ function collectFormData(formId,pageNumber) {
 }
 
 function Initializefeilds(product){
-    setCheckboxState("visionYes",visionNo,product[0].defectiveVision);
-    setCheckboxState("visionOtherYes",visionOtherNo,product[0].eyesOther);
+    setCheckboxState("visionYes","visionNo",product[0].defectiveVision);
+    setCheckboxState("visionOtherYes","visionOtherNo",product[0].eyesOther);
 
     // select 
     setSelected("selectState",states,product[0].coe_pp_heq_state );

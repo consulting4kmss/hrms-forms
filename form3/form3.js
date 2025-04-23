@@ -10,11 +10,6 @@ function nextPage2(pageNumber) {
             addForm2EventListeners();
 
         }
-        if (pageNumber == 7) {
-            addSectionListener();
-            checkSections();
-            validateEmploymentHistory();
-        }
         if (pageNumber - 1 == 7) {
             reason = document.getElementById('employHistroy');
             if (totalYears >= 10 || reason.value) {
@@ -44,7 +39,7 @@ function nextPage2(pageNumber) {
                 nextPage.style.display = 'block';
                 updatePageInfo2('form2', pageNumber);
                 caluclateTotalFeilds();
-            };
+            }else{ showInvalidDates()}
         }
         else {
             //         const form = document.getElementById(formId);
@@ -62,10 +57,16 @@ function nextPage2(pageNumber) {
                     validatePage('form2', pageNumber, false)
                 })
             })
+            
             currentPage.style.display = 'none';
             nextPage.style.display = 'block';
             updatePageInfo2('form2', pageNumber);
             caluclateTotalFeilds();
+            if (pageNumber == 7) {
+                addSectionListener();
+                checkSections();
+                validateEmploymentHistory();
+            }
         }
     } else {
         showInvalidModal();
@@ -172,17 +173,20 @@ function maxDate() {
     const today = new Date().toISOString().split('T')[0];
     const dateInputs = document.querySelectorAll('input[type="date"]'); // Select all date inputs
     dateInputs.forEach(input => {
+        if(input.id=="dlxpiry" || input.id=="preDlExpiry"){
+            return
+        }
         input.setAttribute("max", today); // Set max attribute to today's date
     });
 
     addressTo.addEventListener("click", function (event) {
-    const addressTo=document.getElementById("addressTo");
-    if(addressTo){
-        
-        addressTo.value=today;
-    }
+        const addressTo = document.getElementById("addressTo");
+        if (addressTo) {
+
+            addressTo.value = today;
+        }
     });
-    
+
 
 }
 
@@ -211,18 +215,32 @@ function initializeForm2(formId) {
         })
     })
 
+  
     handleMutualExclusiveCheckboxes2(formId);
-
     updateProgress2(formId);
-    const initialAddresssHistory='yes'
-    populateSavedAddresses(savedAddresses,initialAddresssHistory);
-     const initialVoilation='yes';
-    populateViolationData(savedViolations,initialVoilation);
-    const initialAccident='yes';
+    const initialAddresssHistory = 'yes'
+    populateSavedAddresses(savedAddresses, initialAddresssHistory);
+    initializePage2(DataForm2);
+    const initialVoilation = 'yes';
+    populateViolationData(savedViolations, initialVoilation);
+    const initialAccident = 'yes';
     populateAccidentData(savedAccidents, initialAccident);
     populateLicenseData(savedLicenseData);
     militaryDriverData(savedMilitaryDrivingData);
     initializeEmploymentForm(savedEmploy);
+    checkSections();
+    setTimeout(() => {
+       //validatePage('form2',5, false);
+        validatePage('form2',1, false);
+        validatePage('form2',2, false);
+        validatePage('form2',3, false);
+        validatePage('form2',4, false);
+        validatePage('form2',6, false);
+        validatePage('form2',7, false);
+        validatePage('form2',8, false);
+        validatePage('form2',9, false);
+    }, 200);
+
 }
 
 function caluclateTotalFeilds() {
@@ -237,294 +255,20 @@ function caluclateTotalFeilds() {
 }
 
 
-// function validateAddressHistory() {
-//     let today = new Date();
-//     let threeYearsAgo = new Date();
-//     threeYearsAgo.setFullYear(today.getFullYear() - 3);
-
-//     // Normalizing Dates
-//     function normalizeDate(date) {
-//         return new Date(date.getFullYear(), date.getMonth(), date.getDate()); // Keeps only YYYY-MM-DD
-//     }
-//     today = normalizeDate(today);
-//     threeYearsAgo = normalizeDate(threeYearsAgo);
-
-//     console.log("Checking address history from", threeYearsAgo, "to", today);
-//     let addressPeriods = [];
-//     let totalDays = 0;
-
-//     document.querySelectorAll('#mainAddressContainer, #addressSon').forEach(container => {
-//         let fromInput = container.querySelector('[id^="addressFrom"]');
-//         let toInput = container.querySelector('[id^="addressTo"]');
-
-//         if (fromInput?.value && toInput?.value) {
-//             let fromDate = new Date(fromInput.value);
-//             let toDate = new Date(toInput.value);
-
-//             if (fromDate <= toDate) {
-//                 totalDays += (toDate - fromDate) / (1000 * 60 * 60 * 24);
-//                 addressPeriods.push({ from: normalizeDate(fromDate), to: normalizeDate(toDate) });
-//             }
-//         }
-//     });
-
-//     let totalYears = totalDays / 365;
-//     console.log("Total Days:", totalDays);
-//     if (addressPeriods.length === 1) {
-//         let period = addressPeriods[0];
-
-//         console.log("Normalized Comparison:");
-//         console.log("threeYearsAgo:", threeYearsAgo, "today:", today);
-//         console.log("Period:", period.from, "to", period.to);
-
-//         if (period.from <= threeYearsAgo && period.to >= today) {
-//             return true; // Valid address history
-//         }
-//     }
-
-//     // Step 2: Check continuity for multiple periods
-//     if (totalYears >= 3) {
-//         addressPeriods.sort((a, b) => a.from - b.from);
-//         let coveredUntil = null;
-//         let maxAllowedGap = 30 * 24 * 60 * 60 * 1000;
-
-//         for (let period of addressPeriods) {
-//             if (coveredUntil === null) {
-//                 if (period.from > threeYearsAgo) {
-//                     showInvalidDates();
-//                     return false;
-//                 }
-//             } else {
-//                 let gap = period.from - coveredUntil;
-//                 if (gap > maxAllowedGap) {
-//                     showInvalidDates();
-//                     return false;
-//                 }
-//             }
-//             coveredUntil = period.to;
-//         }
-
-//         if (coveredUntil < today) {
-//             showInvalidDates();
-//             return false;
-//         }
-
-//         return true;
-//     }
-
-//     showInvalidDates();
-//     return false;
-// }
-
-// function validateAddressHistory() {
-//     let timeZone = "America/New_York";
-
-//     function getESTDate(dateStr) {
-//         // Parse as UTC first to avoid timezone shifts
-//         let utcDate = new Date(dateStr + "T00:00:00Z");
-//         let estDate = new Date(utcDate.toLocaleString("en-US", { timeZone }));
-//         return new Date(estDate.getFullYear(), estDate.getMonth(), estDate.getDate()); // Normalize to YYYY-MM-DD
-//     }
-
-//     let today = getESTDate(new Date().toISOString().split("T")[0]); // Use UTC-based today
-//     let threeYearsAgo = new Date(today);
-//     threeYearsAgo.setFullYear(today.getFullYear() - 3);
-
-//     console.log("Checking address history from", threeYearsAgo, "to", today);
-//     let addressPeriods = [];
-//     let totalDays = 0;
-
-//     document.querySelectorAll("#mainAddressContainer, #addressSon").forEach(container => {
-//         let fromInput = container.querySelector('[id^="addressFrom"]');
-//         let toInput = container.querySelector('[id^="addressTo"]');
-
-//         if (fromInput?.value && toInput?.value) {
-//             let fromDate = getESTDate(fromInput.value);
-//             let toDate = getESTDate(toInput.value);
-
-//             if (fromDate <= toDate) {
-//                 totalDays += (toDate - fromDate) / (1000 * 60 * 60 * 24);
-//                 addressPeriods.push({ from: fromDate, to: toDate });
-//             }
-//         }
-//     });
-
-//     let totalYears = totalDays / 365;
-//     console.log("Total Days:", totalDays);
-
-//     if (addressPeriods.length === 1) {
-//         let period = addressPeriods[0];
-
-//         console.log("Normalized Comparison:");
-//         console.log("threeYearsAgo:", threeYearsAgo, "today:", today);
-//         console.log("Period:", period.from, "to", period.to);
-
-//         if (period.from <= threeYearsAgo && period.to >= today) {
-//             return true; // Valid address history
-//         }
-//     }
-
-//     // Step 2: Check continuity for multiple periods
-//     if (totalYears >= 3) {
-//         addressPeriods.sort((a, b) => a.from - b.from);
-//         let coveredUntil = null;
-//         let maxAllowedGap = 30 * 24 * 60 * 60 * 1000;
-
-//         for (let period of addressPeriods) {
-//             if (coveredUntil === null) {
-//                 if (period.from > threeYearsAgo) {
-//                     showInvalidDates();
-//                     return false;
-//                 }
-//             } else {
-//                 let gap = period.from - coveredUntil;
-//                 if (gap > maxAllowedGap) {
-//                     showInvalidDates();
-//                     return false;
-//                 }
-//             }
-//             coveredUntil = period.to;
-//         }
-
-//         if (coveredUntil < today) {
-//             showInvalidDates();
-//             return false;
-//         }
-
-//         return true;
-//     }
-
-//     showInvalidDates();
-//     return false;
-// }
-
-
-// function validateAddressHistory() {
-
-
-//     function getEDTDate(dateStr) {
-//         let utcDate = new Date(dateStr + "T12:00:00Z"); // Use noon UTC to prevent unintended date shifts
-    
-//         // Convert UTC to EDT (handles DST automatically)
-//         let edtDateStr = new Intl.DateTimeFormat("en-US", {
-//             timeZone: "America/New_York",
-//             year: "numeric",
-//             month: "2-digit",
-//             day: "2-digit",
-//         }).format(utcDate);
-    
-//         let [month, day, year] = edtDateStr.split("/");
-//         return new Date(`${year}-${month}-${day}`); // Normalize to YYYY-MM-DD
-//     }
-    
-
-//     let today = getEDTDate(new Date().toISOString().split("T")[0]); // Use UTC-based today
-//     let threeYearsAgo = new Date(today);
-//     threeYearsAgo.setFullYear(today.getFullYear() - 3);
-
-//     console.log("Checking address history from", threeYearsAgo, "to", today);
-//     let addressPeriods = [];
-//     let totalDays = 0;
-
-//     document.querySelectorAll("#mainAddressContainer, #addressSon").forEach(container => {
-//         let fromInput = container.querySelector('[id^="addressFrom"]');
-//         let toInput = container.querySelector('[id^="addressTo"]');
-
-//         if (fromInput?.value && toInput?.value) {
-//             let fromDate =getEDTDate(fromInput.value);
-//             console.log("fromDate ",fromDate);
-//             let toDate =getEDTDate(toInput.value);
-//             console.log("toDate ",toDate);
-//             if (fromDate <= toDate) {
-//                 totalDays += (toDate - fromDate) / (1000 * 60 * 60 * 24);
-//                 addressPeriods.push({ from: fromDate, to: toDate });
-//             }
-//         }
-//     });
-
-//     let totalYears = totalDays / 365;
-//     console.log("Total Days:", totalDays);
-
-//     if (addressPeriods.length === 1) {
-//         let period = addressPeriods[0];
-
-//         console.log("Normalized Comparison:");
-//         console.log("threeYearsAgo:", threeYearsAgo, "today:", today);
-//         console.log("Period:", period.from, "to", period.to);
-
-//         if (period.from <= threeYearsAgo && period.to >= today) {
-//             return true; // Valid address history
-//         }
-//     }
-
-//     // Step 2: Check continuity for multiple periods
-//     if (totalYears >= 3) {
-//         addressPeriods.sort((a, b) => a.from - b.from);
-//         let coveredUntil = null;
-//         let maxAllowedGap = 30 * 24 * 60 * 60 * 1000;
-
-//         for (let period of addressPeriods) {
-//             if (coveredUntil === null) {
-//                 if (period.from > threeYearsAgo) {
-//                     showInvalidDates();
-//                     return false;
-//                 }
-//             } else {
-//                 let gap = period.from - coveredUntil;
-//                 if (gap > maxAllowedGap) {
-//                     showInvalidDates();
-//                     return false;
-//                 }
-//             }
-//             coveredUntil = period.to;
-//         }
-
-//         if (coveredUntil < today) {
-//             showInvalidDates();
-//             return false;
-//         }
-
-//         return true;
-//     }
-
-//     showInvalidDates();
-//     return false;
-// }
-
-
 function validateAddressHistory() {
-    //function getEDTDate(dateStr, mode = "start") {
-    //     let utcDate = new Date(dateStr + "T12:00:00Z");
-
-    //     let edtDateStr = new Intl.DateTimeFormat("en-US", {
-    //         timeZone: "America/New_York",
-    //         year: "numeric",
-    //         month: "2-digit",
-    //         day: "2-digit",
-    //     }).format(utcDate);
-
-    //     let [month, day, year] = edtDateStr.split("/");
-    //     if (mode === "start") {
-    //         return new Date(`${year}-${month}-01`);
-    //     } else {
-    //         // Get last day of the month
-    //         return new Date(new Date(`${year}-${month}-01`).getFullYear(), new Date(`${year}-${month}-01`).getMonth() + 1, 0);
-    //     }
-    // }
-
 
     function getEDTDate(dateStr, mode = "start") {
         let utcDate = new Date(dateStr + "T12:00:00Z");
-    
+
         let edtDateStr = new Intl.DateTimeFormat("en-US", {
             timeZone: "America/New_York",
             year: "numeric",
             month: "2-digit",
             day: "2-digit",
         }).format(utcDate);
-    
+
         let [month, day, year] = edtDateStr.split("/");
-    
+
         if (mode === "start") {
             return new Date(Number(year), Number(month) - 1, 1, 0, 0, 0, 0);
         } else {
@@ -563,7 +307,7 @@ function validateAddressHistory() {
             return true;
         }
     }
-console.log("TOTAL MONTHS ",totalMonths);
+    console.log("TOTAL MONTHS ", totalMonths);
     if (totalMonths >= 36) {
         addressPeriods.sort((a, b) => a.from - b.from);
 
@@ -572,15 +316,15 @@ console.log("TOTAL MONTHS ",totalMonths);
         for (let period of addressPeriods) {
             if (coveredUntil === null) {
                 if (period.from > threeYearsAgo) {
-                    showInvalidDates();
-                    console.log("period.from >= threeYearsAgo ",period.from > threeYearsAgo);
-                    console.log("period.from  ",period.from ," threeYearsAgo ",threeYearsAgo);
+                  //  showInvalidDates();
+                    console.log("period.from >= threeYearsAgo ", period.from > threeYearsAgo);
+                    console.log("period.from  ", period.from, " threeYearsAgo ", threeYearsAgo);
                     return false;
                 }
             } else {
                 let monthGap = getMonthDifference(coveredUntil, period.from);
                 if (monthGap > 1) {
-                    showInvalidDates();
+                  //  showInvalidDates();
                     console.log("monthGap > 1", monthGap);
                     return false;
                 }
@@ -593,7 +337,7 @@ console.log("TOTAL MONTHS ",totalMonths);
         }
     }
 
-    showInvalidDates();
+   // showInvalidDates();
     return false;
 }
 
@@ -830,35 +574,35 @@ function recalculateAddressIds() {
 
 const savedAddresses = [
     {
-      address: "123 Main St",
-      city: "New York",
-      state: "New York",
-      zip: "10001",
-      from: "2022-01-01",
-      to: "2022-12-31",
-      historyAddress:"yes"
+        address: "123 Main St",
+        city: "New York",
+        state: "New York",
+        zip: "10001",
+        from: "2022-01-01",
+        to: "2022-12-31",
+        historyAddress: "yes"
     },
     {
-      address: "456 Broadway",
-      city: "Los Angeles",
-      state: "California",
-      zip: "90001",
-      from: "2021-01-01",
-      to: "2021-12-31",
-      historyAddress:"yes"
+        address: "456 Broadway",
+        city: "Los Angeles",
+        state: "California",
+        zip: "90001",
+        from: "2021-01-01",
+        to: "2021-12-31",
+        historyAddress: "yes"
     },
     {
-      address: "789 Sunset Blvd",
-      city: "Chicago",
-      state: "Illinois",
-      zip: "60007",
-      from: "2020-01-01",
-      to: "2020-12-31",
-      historyAddress:"no"
+        address: "789 Sunset Blvd",
+        city: "Chicago",
+        state: "Illinois",
+        zip: "60007",
+        from: "2020-01-01",
+        to: "2020-12-31",
+        historyAddress: "no"
     }
-  ];
+];
 
-  function populateSavedAddresses(savedAddresses,initialAddressHistory) {
+function populateSavedAddresses(savedAddresses, initialAddressHistory) {
     if (!savedAddresses || savedAddresses.length === 0) return;
 
     // Check if any historyAddress is "yes"
@@ -867,14 +611,14 @@ const savedAddresses = [
     if (hasHistory) {
         addressHistory('yes'); // Trigger only once to add the first history section
     }
-    if (initialAddressHistory=='yes'){
-        const AddressYes=document.getElementById('addressYes');
-        AddressYes.checked=true;
-    
+    if (initialAddressHistory == 'yes') {
+        const AddressYes = document.getElementById('addressYes');
+        AddressYes.checked = true;
 
-     setTimeout(() => { // To match with addressCounter
 
-        savedAddresses.forEach((data, index) => {
+     // To match with addressCounter
+
+            savedAddresses.forEach((data, index) => {
                 if (index > 0) {
                     // Simulate clicking "yes" to add more address forms
                     const lastYesRadio = document.querySelector(`#addressYes${index}`);
@@ -885,41 +629,74 @@ const savedAddresses = [
                 }
 
                 // Fill the current address form
-                document.getElementById(`additionalAddress${index+1}`).value = data.address;
-                document.getElementById(`additionalCity${index+1}`).value = data.city;
-                document.getElementById(`additionalState${index+1}`).value = data.state;
-                document.getElementById(`additionalZip${index+1}`).value = data.zip;
-                document.getElementById(`addressFrom${index+1}`).value = data.from;
-                document.getElementById(`addressTo${index+1}`).value = data.to;
+                document.getElementById(`additionalAddress${index + 1}`).value = data.address;
+                document.getElementById(`additionalCity${index + 1}`).value = data.city;
+                document.getElementById(`additionalState${index + 1}`).value = data.state;
+                document.getElementById(`additionalZip${index + 1}`).value = data.zip;
+                document.getElementById(`addressFrom${index + 1}`).value = data.from;
+                document.getElementById(`addressTo${index + 1}`).value = data.to;
 
                 const isLast = index === savedAddresses.length - 1;
-                const nextRadioId = isLast ? `addressYes${index+1}` : `addressNo${index+1}`;
+                const nextRadioId = isLast ? `addressNo${index + 1}` : `addressYes${index + 1}`;
                 const nextRadio = document.getElementById(nextRadioId);
                 if (nextRadio) nextRadio.checked = true;
-
-                // if (data.historyAddress === "yes") {
-                //     const Addressyes=document.getElementById(`addressYes${index+1}`); 
-                //     Addressyes.checked=true
-                // }
-            
-            // else {
-            //     // If historyAddress is "no", update radio buttons accordingly
-            //     const lastNoRadio =document.getElementById(`addressNo${index+1}`); 
-            //     if (lastNoRadio) {
-            //         lastNoRadio.checked = true;
-            //     }
-            // }
-        });
-    }, 200);
-}else{
-    const AddressNo=document.getElementById('addressNo');
-    AddressNo.checked=true
-}
+            });
+     
+    } else {
+        const AddressNo = document.getElementById('addressNo');
+        AddressNo.checked = true
+    }
 }
 
+const DataForm2={
+    "current_dl_state": "California",
+    "current_dl_number": "D123456789012345",
+    "current_dl_expiry": "2026-12-31",
+    "previous_dl_state": "Arizona",
+    "previous_dl_number": "A987654321098765",
+    "previous_dl_expiry": "2024-06-30",
+    "current_dl_type": "Commercial: CDL A,B or C",
+    "current_dl_endorsements": "Other"
+  }
+function initializePage2(data){
+ const currentState = document.getElementById("dlState");
+ const stateValue = data.current_dl_state;
+ 
+ // Loop through options to set selected attribute
+ [...currentState.options].forEach(option => {
+   if (option.value === stateValue) {
+     option.selected = true;
+   }
+ });
 
 
+ currentDlNumber=document.getElementById("currentDlNumber");
+ currentDlNumber.value=data.current_dl_number;
 
+ currentDlExpiry=document.getElementById("dlxpiry");
+ currentDlExpiry.value=data.current_dl_expiry;
+
+ previousDlState=document.getElementById("preDlState");
+ previousDlStateValue=data.previous_dl_state;
+
+ [...previousDlState.options].forEach(option => {
+    if (option.value === previousDlStateValue) {
+      option.selected = true;
+    }
+  });
+
+ previousDlNumber=document.getElementById("preDlNumber");
+ previousDlNumber.value=data.previous_dl_number;
+
+ previousExpiry=document.getElementById("preDlExpiry");
+ previousExpiry.value=data.previous_dl_expiry;
+
+ previousDlNumber=document.getElementById(data.current_dl_type);
+ previousDlNumber.checked=true;
+
+ previousDlNumber=document.getElementById(data.current_dl_endorsements);
+ previousDlNumber.checked=true;
+};
 
 function licenseAccepted(value) {
     if (value == 'no') {
@@ -992,15 +769,11 @@ const savedLicenseData = {
 
 function populateLicenseData(data) {
     if (data.licenseDeny === "yes") {
-        // Check the "Yes" radio button
         document.getElementById("licenseDenyYes").checked = true;
-        // Trigger the onchange manually to add the textarea
         licenseDenied("yes");
-        // Add saved explanation
-        setTimeout(() => {
+
             const denyInput = document.getElementById("licenseDenyExplanation");
             if (denyInput) denyInput.value = data.licenseDenyExplanation;
-        }, 100); // Delay to ensure the textarea is added
     } else if (data.licenseDeny === "no") {
         document.getElementById("licenseDenyNo").checked = true;
         licenseAccepted("no");
@@ -1009,14 +782,13 @@ function populateLicenseData(data) {
     if (data.licenseSuspended === "yes") {
         document.getElementById("licenseSuspendedYes").checked = true;
         licenseSuspended("yes");
-        setTimeout(() => {
             const suspendInput = document.getElementById("licenseSuspendedExplanation");
             if (suspendInput) suspendInput.value = data.licenseSuspendedExplanation;
-        }, 100);
     } else if (data.licenseSuspended === "no") {
         document.getElementById("licenseSuspendedNo").checked = true;
         licenseNotSuspended("no");
     }
+    validatePage('form2', 5, false);
 }
 
 
@@ -1031,12 +803,18 @@ function handleDateChange2(event, bool) {
         return false;
     }
     if (year > thisYear || year < 1900) {
+        if(input.id=="dl")
         if (bool) {
             input.classList.add('highlight');
             errorField.style.display = 'block';
             errorField.textContent = 'Invalid date. Please enter a valid Year.';
         }
-
+        if((input.id=="dlxpiry" || input.id=="preDlExpiry") && year > 1900){
+            input.classList.remove('highlight');
+            errorField.style.display = 'none';
+            errorField.style.display = 'none';
+            return true
+        }
         return false;
     } else {
         input.classList.remove('highlight');
@@ -1220,11 +998,12 @@ function validatePage(formId, pageNumber, bool) {
     let isValid = true;
 
     inputs.forEach(input => {
-        // Skip hidden inputs
-        const isHidden = getComputedStyle(input).display === 'none' || input.closest('[style*="display: none"]');
-        if (isHidden) {
-            return;
-        }
+        //Skip hidden inputs  
+
+        // const isHidden = getComputedStyle(input).display === 'none'|| input.closest('[style*="display: none"]') ;
+        // if (isHidden) {
+        //     return;
+        // }
 
         const validateInput = () => {
             if (input.type === 'checkbox' && input.required) {
@@ -1336,6 +1115,9 @@ function validatePage(formId, pageNumber, bool) {
             canvas.classList.remove('highlight');
         }
     });
+    if(!bool && pageNumber==1 && !validateAddressHistory()){
+        isValid=false;
+    }
     if (!bool) {
         const nextBtn = document.getElementById(`next${pageNumber}`)
         if (isValid) {
@@ -1346,8 +1128,8 @@ function validatePage(formId, pageNumber, bool) {
             nextBtn.classList.remove('valid-btn');
         }
     }
-   //return true;
-   return isValid;
+    //return true;
+    return isValid;
 }
 
 
@@ -1397,12 +1179,12 @@ async function collectFormData(formId, pageNumber) {
             if (field.files.length > 0) {
                 if (field.id) {
                     let fileDataObject = {};
-                     //JSON Object to store file data
-                    let i=1;
+                    //JSON Object to store file data
+                    let i = 1;
                     for (const file of field.files) {
                         try {
                             const base64String = await readFileAsBase64(file);
-                            fileDataObject[field.name+"_"+i] = base64String; //Store as key-value pair
+                            fileDataObject[field.name + "_" + i] = base64String; //Store as key-value pair
                         } catch (error) {
                             console.error("File conversion error:", error);
                         }
@@ -1542,84 +1324,76 @@ const savedViolations = [
         offence: "Speeding",
         location: "New York",
         vehicleType: "Commercial",
-        trafficViolation:"yes"
+        trafficViolation: "yes"
     },
     {
         date: "2023-01-10",
         offence: "Running Red Light",
         location: "Los Angeles",
         vehicleType: "Private",
-        trafficViolation:"yes"
+        trafficViolation: "yes"
     },
     {
         date: "2023-09-05",
         offence: "Illegal Lane Change",
         location: "Chicago",
         vehicleType: "Commercial",
-        trafficViolation:"no"
+        trafficViolation: "no"
     }
 ];
 
 
 
-function populateViolationData(savedViolations,initialVoilation) {
+function populateViolationData(savedViolations, initialVoilation) {
     if (!savedViolations || savedViolations.length === 0) return;
 
     // Automatically select "Yes" to display violation section
     const yesRadio = document.getElementById("voilationYes");
-    const noRadio=document.getElementById("voilationNo");
-    if(initialVoilation=='yes'){
-    if (yesRadio) {
-        yesRadio.checked = true;
-        handleRadioChange({ target: yesRadio });
-    }
+    const noRadio = document.getElementById("voilationNo");
+    if (initialVoilation == 'yes') {
+        if (yesRadio) {
+            yesRadio.checked = true;
+            handleRadioChange({ target: yesRadio });
+        }
 
 
-    setTimeout(() => {
-        savedViolations.forEach((violation, index) => {
+     
+            savedViolations.forEach((violation, index) => {
 
-            if (index > 0) {
-                const addMoreRadio = document.querySelector(`#violationYes_${index}`);
-                if (addMoreRadio) {
-                    addMoreRadio.checked = true;
-                    handleRadioChange({ target: addMoreRadio });
+                if (index > 0) {
+                    const addMoreRadio = document.querySelector(`#violationYes_${index}`);
+                    if (addMoreRadio) {
+                        addMoreRadio.checked = true;
+                        handleRadioChange({ target: addMoreRadio });
+                    }
                 }
-            }
-
-           
-            document.getElementById(`voilationDate-${index + 1}`).value = violation.date;
-            document.getElementById(`voilationOffence-${index + 1}`).value = violation.offence;
-            document.getElementById(`voilationLocation-${index + 1}`).value = violation.location;
-
-            const vehicleRadioId = violation.vehicleType === "Commercial"
-                ? `offenceCommercial_${index + 1}`
-                : `offencePrivate_${index + 1}`;
-
-            const vehicleRadio = document.getElementById(vehicleRadioId);
-            if (vehicleRadio) {
-                vehicleRadio.checked = true;
-            }
 
 
-            const isLast = index === savedViolations.length - 1;
-            const nextRadioId = isLast ? `violationYes_${index + 1}` : `violationNo_${index + 1}`;
-            const nextRadio = document.getElementById(nextRadioId);
-            if (nextRadio) nextRadio.checked = true;
-            // if(violation.trafficViolation=='yes'){
-            //     console.log( `violationYes_${index + 1}`);
-            //     const violationYes=document.getElementById(`violationYes_${index + 1}`);
-            //     violationYes.checked = true;
-            // }
-            // else if(violation.trafficViolation=='no'){
-            //     const violationNo=document.getElementById(`violationNo_${index + 1}`);
-            //     violationNo.checked = true;
-            // }
-        });
-    }, 300); 
-}// Wait for DOM render from handleRadioChange
-else{
-    noRadio.checked=true;
-}
+                document.getElementById(`voilationDate-${index + 1}`).value = violation.date;
+                document.getElementById(`voilationOffence-${index + 1}`).value = violation.offence;
+                document.getElementById(`voilationLocation-${index + 1}`).value = violation.location;
+
+                const vehicleRadioId = violation.vehicleType === "Commercial"
+                    ? `offenceCommercial_${index + 1}`
+                    : `offencePrivate_${index + 1}`;
+
+                const vehicleRadio = document.getElementById(vehicleRadioId);
+                if (vehicleRadio) {
+                    vehicleRadio.checked = true;
+                }
+
+
+                const isLast = index === savedViolations.length - 1;
+                const nextRadioId = isLast ? `violationNo_${index + 1}` : `violationYes_${index + 1}`;
+                const nextRadio = document.getElementById(nextRadioId);
+                if (nextRadio) nextRadio.checked = true;
+        
+            });
+       
+    }
+    else {
+        noRadio.checked = true;
+    }
 }
 
 
@@ -1628,10 +1402,6 @@ else{
 function addNextButtonListner(id, pageNumber) {
     const Element = document.getElementById(id);
     inputFeilds = Element.querySelectorAll('input, select, textarea');
-    // inputs.forEach(input=>{
-    // input.addEventListener('input',()=>{
-    //     validatePage('form2',pageNumber,false)
-    // })
     inputFeilds.forEach(input => {
         input.addEventListener('input', () => {
             validatePage('form2', pageNumber, false);
@@ -1744,19 +1514,19 @@ const savedAccidents = [
         date: "2022-03-10",
         fatalityType: "Fatalities",
         circumstances: "Hit by another vehicle on the highway",
-        additionalAccident:'yes'
+        additionalAccident: 'yes'
     },
     {
         date: "2023-05-21",
         fatalityType: "Personal Injuries",
         circumstances: "Rear-ended at a red light",
-        additionalAccident:'yes'
+        additionalAccident: 'yes'
     },
     {
         date: "2023-12-01",
         fatalityType: "Personal Injuries",
         circumstances: "Skidded due to rain and hit a pole",
-        additionalAccident:'yes'
+        additionalAccident: 'yes'
     }
 ];
 
@@ -1773,7 +1543,7 @@ function populateAccidentData(savedAccidents, initialAccident) {
         yesRadio.checked = true;
         handleAccidentChange({ target: yesRadio });
 
-        setTimeout(() => {
+
             savedAccidents.forEach((accident, index) => {
                 if (index > 0) {
                     const addMoreRadio = document.getElementById(`accidentYes-${index}`);
@@ -1799,7 +1569,7 @@ function populateAccidentData(savedAccidents, initialAccident) {
                 const nextRadio = document.getElementById(nextRadioId);
                 if (nextRadio) nextRadio.checked = true;
             });
-        }, 300); // Wait for DOM render
+      // Wait for DOM render
     } else {
         noRadio.checked = true;
     }
@@ -2213,27 +1983,11 @@ function removeDateHighlight(input) {
 const savedMilitaryDrivingData = {
     militaryDriving: "yes",
     straightTruck: ["Van", "Box"],
-    truckFrom: "2023-01-01",
-    truckTo: "2023-06-01",
     truckMiles: "12000",
 
-    tractor: ["Box Trailer", "Tank trailer"],
-    tractorFrom: "2022-05-01",
-    tractorTo: "2022-10-01",
-    tractorMiles: "15000",
-
-    bus: ["8passengers"],
-    busFrom: "2021-01-01",
-    busTo: "2021-04-01",
-    busMiles: "5000",
-
-    otherVehicle:"Lorry Driver",
-    fromDateOther:"2022-05-01",
-    toDateOther:"2022-06-02",
-    othermiles:"2000"
 };
 
- function militaryDriverData(data) {
+function militaryDriverData(data) {
     if (!data || data.length === 0) return;
     if (data.militaryDriving === "yes") {
         // Select YES radio and trigger change handler
@@ -2241,40 +1995,40 @@ const savedMilitaryDrivingData = {
         militaryDriver("yes");
 
         // Give some time for militaryDriver to render content
-        setTimeout(() => {
+      
             // Straight Truck
             data.straightTruck?.forEach(val => {
                 const el = [...document.getElementsByName("straightTruck")].find(e => e.value === val);
                 if (el) el.checked = true;
             });
-            data.truckFrom!=null ? document.getElementById("fromDateTruck").value = data.truckFrom: "";
-            data.truckTo !=null  ? document.getElementById("toDateTruck").value = data.truckTo:"";
-            data.truckMiles !=null ? document.getElementById("approxMilesTruck").value = data.truckMiles:"";
+            data.truckFrom != null ? document.getElementById("fromDateTruck").value = data.truckFrom : "";
+            data.truckTo != null ? document.getElementById("toDateTruck").value = data.truckTo : "";
+            data.truckMiles != null ? document.getElementById("approxMilesTruck").value = data.truckMiles : "";
 
             // Tractor & Semi
             data.tractor?.forEach(val => {
                 const el = [...document.getElementsByName("tractor")].find(e => e.value === val);
                 if (el) el.checked = true;
             });
-            data.tractorFrom !=null ?document.getElementById("fromDateTractor").value = data.tractorFrom:"";
-            data.tractorTo !=null ?document.getElementById("toDateTractor").value = data.tractorTo:"";
-            data.tractorMiles!=null ?document.getElementById("approxMilesTractor").value = data.tractorMiles:"";
+            data.tractorFrom != null ? document.getElementById("fromDateTractor").value = data.tractorFrom : "";
+            data.tractorTo != null ? document.getElementById("toDateTractor").value = data.tractorTo : "";
+            data.tractorMiles != null ? document.getElementById("approxMilesTractor").value = data.tractorMiles : "";
 
             // Bus
             data.bus?.forEach(val => {
                 const el = [...document.getElementsByName("bus")].find(e => e.value === val);
                 if (el) el.checked = true;
             });
-            data.busFrom !=null ? document.getElementById("fromDateBus").value = data.busFrom:"";
-            data.busTo !=null ?document.getElementById("toDateBus").value = data.busTo:"";
-            data.busMiles !=null ?document.getElementById("approxMilesBus").value = data.busMiles:"";
+            data.busFrom != null ? document.getElementById("fromDateBus").value = data.busFrom : "";
+            data.busTo != null ? document.getElementById("toDateBus").value = data.busTo : "";
+            data.busMiles != null ? document.getElementById("approxMilesBus").value = data.busMiles : "";
 
             //Other
-            data.otherVehicle != null ? document.getElementById("otherVehicle").value=data.otherVehicle:"";
-            data.fromDateOther != null ? document.getElementById("fromDateOther").value=data.fromDateOther:"";
-            data.toDateOther != null ? document.getElementById("toDateOther").value=data.toDateOther:"";
-            data.othermiles != null ? document.getElementById("approxMilesOther").value=data.othermiles:"";
-        }, 100); // Wait briefly to ensure DOM is updated
+            data.otherVehicle != null ? document.getElementById("otherVehicle").value = data.otherVehicle : "";
+            data.fromDateOther != null ? document.getElementById("fromDateOther").value = data.fromDateOther : "";
+            data.toDateOther != null ? document.getElementById("toDateOther").value = data.toDateOther : "";
+            data.othermiles != null ? document.getElementById("approxMilesOther").value = data.othermiles : "";
+       // Wait briefly to ensure DOM is updated
     } else {
         document.getElementById("militaryNo").checked = true;
         notMilitaryDriver("no");
@@ -2651,167 +2405,173 @@ function removeEmploymentValidation() {
 
 const savedEmploy = [
     {
-      currentCompany: "Google",
-      companyType: "IT",
-      companyAddress: "1600 Amphitheatre Parkway",
-      companyCity: "Mountain View",
-      companyState: "California",
-      companyZip: "94043",
-      startDate: "2020-01-01",
-      separationDate: "2022-01-01",
-      stillEmployee:"",
-      supervisor: "John Doe",
-      supervisorNo: "(123) 456-7890",
-      leaveReason: "Pursued better opportunity",
-      federalCarrier: "yes",
-      sensitive: "yes",
-      dotMode:"PHMSA",
-      verify:"yes",
-      unemployment: "yes",
-      unemployedFrom:"2023-01-01",
-      unemployedTo:"2023-05-03",
-      unemployedReason:"Jagan",
-      additional:"yes"
-   
-    },
-    {
-      currentCompany: "Amazon",
-      companyType: "E-Commerce",
-      companyAddress: "410 Terry Ave N",
-      companyCity: "Seattle",
-      companyState: "Washington",
-      companyZip: "98109",
-      startDate: "2015-01-01",
-      separationDate: "2017-12-31",
-      stillEmployee: "currentlyEmployee",
-      supervisor: "Jane Smith",
-      supervisorNo: "(321) 654-0987",
-      leaveReason: "Relocated",
-      federalCarrier: "no",
-      sensitive: "yes",
-      dotMode:"FAA",
-      verify:"no",
-      unemployment: "yes",
-      unemployedFrom:"2021-02-01",
-      unemployedTo:"2022-01-26",
-      unemployedReason:"Weak economics",
-      additional:"yes"
-    },
-    {
-      currentCompany: "Microsoft",
-      companyType: "Tech",
-      companyAddress: "1 Microsoft Way",
-      companyCity: "Redmond",
-      companyState: "Washington",
-      companyZip: "98052",
-      startDate: "2010-05-01",
-      separationDate: "2014-12-31",
-      stillEmployee: false,
-      supervisor: "Bill Gates",
-      supervisorNo: "(555) 123-4567",
-      leaveReason: "Career Change",
-      federalCarrier: "no",
-      sensitive: "yes",
-      dotMode:"FTA",
-      verify:"yes",
-      unemployment: "yes",
-      unemployedFrom:"2022-09-16",
-      unemployedTo:"2022-01-26",
-      unemployedReason:"dirty Govt",
-      additional:"no",
-      employhistroyReason:"High Inflation"
-    }
-  ];
+        currentCompany: "Google",
+        companyType: "IT",
+        companyAddress: "1600 Amphitheatre Parkway",
+        companyCity: "Mountain View",
+        companyState: "California",
+        companyZip: "94043",
+        startDate: "2020-01-01",
+        separationDate: "2022-01-01",
+        stillEmployee: "",
+        supervisor: "John Doe",
+        supervisorNo: "(123) 456-7890",
+        leaveReason: "Pursued better opportunity",
+        federalCarrier: "yes",
+        sensitive: "yes",
+        dotMode: "PHMSA",
+        verify: "yes",
+        unemployment: "yes",
+        unemployedFrom: "2023-01-01",
+        unemployedTo: "2023-05-03",
+        unemployedReason: "Jagan",
+        additional: "yes"
 
- function initializeEmploymentForm (savedEmploymentData) {
+    },
+    {
+        currentCompany: "Amazon",
+        companyType: "E-Commerce",
+        companyAddress: "410 Terry Ave N",
+        companyCity: "Seattle",
+        companyState: "Washington",
+        companyZip: "98109",
+        startDate: "2015-01-01",
+        separationDate: "2017-12-31",
+        stillEmployee: "currentlyEmployee",
+        supervisor: "Jane Smith",
+        supervisorNo: "(321) 654-0987",
+        leaveReason: "Relocated",
+        federalCarrier: "no",
+        sensitive: "yes",
+        dotMode: "FAA",
+        verify: "no",
+        unemployment: "yes",
+        unemployedFrom: "2021-02-01",
+        unemployedTo: "2022-01-26",
+        unemployedReason: "Weak economics",
+        additional: "yes"
+    },
+    {
+        currentCompany: "Microsoft",
+        companyType: "Tech",
+        companyAddress: "1 Microsoft Way",
+        companyCity: "Redmond",
+        companyState: "Washington",
+        companyZip: "98052",
+        startDate: "2010-05-01",
+        separationDate: "2014-12-31",
+        stillEmployee: false,
+        supervisor: "Bill Gates",
+        supervisorNo: "(555) 123-4567",
+        leaveReason: "Career Change",
+        federalCarrier: "no",
+        sensitive: "yes",
+        dotMode: "FTA",
+        verify: "yes",
+        unemployment: "yes",
+        unemployedFrom: "2022-09-16",
+        unemployedTo: "2022-01-26",
+        unemployedReason: "dirty Govt",
+        additional: "no",
+        employhistroyReason: "High Inflation"
+    }
+];
+
+function initializeEmploymentForm(savedEmploymentData) {
 
     if (!savedEmploymentData || savedEmploymentData.length === 0) {
         return;
     }
+
+    addNewEmploymentForm();
+    const additionalForm = document.getElementById("additionalYes");
+    if (additionalForm) additionalForm.checked = true;
     savedEmploymentData.forEach((data, index) => {
-    data.currentCompany?document.getElementById(`companyName${index>0?"_"+(index+1):""}`).value = data.currentCompany:"";
-    data.companyType?document.getElementById(`companyType${index>0?"_"+(index+1):""}`).value = data.companyType:"";
-    data.companyAddress?document.getElementById(`companyAddress${index>0?"_"+(index+1):""}`).value = data.companyAddress:"";
-    data.companyCity?document.getElementById(`companyCity${index>0?"_"+(index+1):""}`).value = data.companyCity:"";
-    data.companyState?document.getElementById(`companyState${index>0?"_"+(index+1):""}`).value = data.companyState:"";
-    data.companyZip?document.getElementById(`companyZip${index>0?"_"+(index+1):""}`).value = data.companyZip:"";
-    data.startDate?document.getElementById(`companyStart${index>0?"_"+(index+1):""}`).value = data.startDate:"";
-    data.separationDate?document.getElementById(`companySeparation${index>0?"_"+(index+1):""}`).value = data.separationDate:"";
-    data.supervisor?document.getElementById(`supervisorName${index>0?"_"+(index+1):""}`).value = data.supervisor:"";
-    data.supervisorNo?document.getElementById(`supervisorPhone${index>0?"_"+(index+1):""}`).value = data.supervisorNo:"";
-    data.leaveReason?document.getElementById(`leavingReason${index>0?"_"+(index+1):""}`).value = data.leaveReason:"";
-     // Set currently employed checkbox federalMotorNo  unemployReason_2
 
-     if (index==0){
-    const stillEmp =   document.getElementById(`stillEmployee${index>0?"_"+(index+1):""}`);
-    data.stillEmployee=="currentlyEmployee"?stillEmp.checked = data.stillEmployee:"";}
+        data.currentCompany ? document.getElementById(`companyName${"_" + (index + 2)}`).value = data.currentCompany : "";
+        data.companyType ? document.getElementById(`companyType${"_" + (index + 2)}`).value = data.companyType : "";
+        data.companyAddress ? document.getElementById(`companyAddress${"_" + (index + 2)}`).value = data.companyAddress : "";
+        data.companyCity ? document.getElementById(`companyCity${"_" + (index + 2)}`).value = data.companyCity : "";
+        data.companyState ? document.getElementById(`companyState${"_" + (index + 2)}`).value = data.companyState : "";
+        data.companyZip ? document.getElementById(`companyZip${"_" + (index + 2)}`).value = data.companyZip : "";
+        data.startDate ? document.getElementById(`companyStart${"_" + (index + 2)}`).value = data.startDate : "";
+        data.separationDate ? document.getElementById(`companySeparation${"_" + (index + 2)}`).value = data.separationDate : "";
+        data.supervisor ? document.getElementById(`supervisorName${"_" + (index + 2)}`).value = data.supervisor : "";
+        data.supervisorNo ? document.getElementById(`supervisorPhone${"_" + (index + 2)}`).value = data.supervisorNo : "";
+        data.leaveReason ? document.getElementById(`leavingReason${"_" + (index + 2)}`).value = data.leaveReason : "";
+        // Set currently employed checkbox federalMotorNo  unemployReason_2
 
-    // Set radio buttons unemployReason
-    const fedCarrierYes =  document.getElementById(`federalMotorYes${index>0?"_"+(index+1):""}`);
-    const fedCarrierNo=  document.getElementById(`federalMotorNo${index>0?"_"+(index+1):""}`);
-    if (data.federalCarrier && data. federalCarrier=='yes') {
-        fedCarrierYes.checked = true;
-    }else if(data.federalCarrier && data. federalCarrier=='no'){
-        fedCarrierNo.checked = true;
-    }
-    
-    const sensitiveYes = document.getElementById(`sensitiveYes${index>0?"_"+(index+1):""}`);
-    const sensitiveNo = document.getElementById(`sensitiveNo${index>0?"_"+(index+1):""}`);
-    if (data.sensitive=="yes"){
-        sensitiveYes.checked = true;
-        addDotMode(sensitiveYes.closest('[id^=dotDiv]').id,"yes");
-        const dotNumber = index > 0 ? `_${index + 1}` : "";
-        const dotRadioId = `dot${data.dotMode}${dotNumber}`;
-        console.log("dotmode Id ",`dot${data.dotMode}${dotNumber}`);
-        const dotRadio = document.getElementById(dotRadioId);
-        const verifyElement=document.getElementById(`verify${data.verify}${dotNumber}`);
+        //  if (index==0){
+        // const stillEmp =   document.getElementById(`stillEmployee$${"_"+(index+1)}`);
+        // data.stillEmployee=="currentlyEmployee"?stillEmp.checked = data.stillEmployee:"";}
 
-        if (dotRadio) {
-            dotRadio.checked = true;
-            verifyElement.checked=true;
-
-        } 
-      
-    }else {
-        sensitiveNo.checked = true;
-    }
-    
-    const unemploymentNo = document.getElementById(`unemploymentNo${index>0?"_"+(index+1):""}`);
-    const unemploymentYes=document.getElementById(`unemploymentYes${index>0?"_"+(index+1):""}`);
-    if (data.unemployment && data.unemployment=="yes") {
-        unemploymentYes.checked = true;
-        const unemployDiv = unemploymentYes.closest('[id^=unemployDiv]');
-       if (unemployDiv) {
-        addUnemployment(unemployDiv.id, "yes"); // Trigger it manually here
+        // Set radio buttons unemployReason
+        const fedCarrierYes = document.getElementById(`federalMotorYes${"_" + (index + 2)}`);
+        const fedCarrierNo = document.getElementById(`federalMotorNo${"_" + (index + 2)}`);
+        if (data.federalCarrier && data.federalCarrier == 'yes') {
+            fedCarrierYes.checked = true;
+        } else if (data.federalCarrier && data.federalCarrier == 'no') {
+            fedCarrierNo.checked = true;
         }
-      
-        const unemployedFrom=document.getElementById(`unemployedFrom${index>0?"_"+(index+1):""}`);
-     
-        unemployedFrom.value=data.unemployedFrom;
-        const unemployedTo=document.getElementById(`unemployedTo${index>0?"_"+(index+1):""}`);
 
-        unemployedTo.value=data.unemployedTo;
-        const unemployReason=document.getElementById(`unemploymentReason${index>0?"_"+(index+1):""}`);
-        if(unemployReason==null){
-            console.log("reasonbox is null");
-        }else{
-            console.log(unemployReason);
+        const sensitiveYes = document.getElementById(`sensitiveYes${"_" + (index + 2)}`);
+        const sensitiveNo = document.getElementById(`sensitiveNo${"_" + (index + 2)}`);
+        if (data.sensitive == "yes") {
+            sensitiveYes.checked = true;
+            addDotMode(sensitiveYes.closest('[id^=dotDiv]').id, "yes");
+            const dotNumber = "_" + (index + 2);
+            const dotRadioId = `dot${data.dotMode}${dotNumber}`;
+            console.log("dotmode Id ", `dot${data.dotMode}${dotNumber}`);
+            const dotRadio = document.getElementById(dotRadioId);
+            const verifyElement = document.getElementById(`verify${data.verify}${dotNumber}`);
+
+            if (dotRadio) {
+                dotRadio.checked = true;
+                verifyElement.checked = true;
+
+            }
+
+        } else {
+            sensitiveNo.checked = true;
         }
-        unemployReason.value =data.unemployedReason;
 
-    }else if(data.unemployment && data.unemployment=="yes"){              
-        unemploymentNo.checked = true;  
-    }
+        const unemploymentNo = document.getElementById(`unemploymentNo${"_" + (index + 2)}`);
+        const unemploymentYes = document.getElementById(`unemploymentYes${"_" + (index + 2)}`);
+        if (data.unemployment && data.unemployment == "yes") {
+            unemploymentYes.checked = true;
+            const unemployDiv = unemploymentYes.closest('[id^=unemployDiv]');
+            if (unemployDiv) {
+                addUnemployment(unemployDiv.id, "yes"); // Trigger it manually here
+            }
 
-    const isLast = index === savedEmploymentData.length - 1;
-    const nextRadioId = isLast ? `additionalNo${index>0?"_"+(index+1):""}` : `additionalYes${index>0?"_"+(index+1):""}`;
-    const nextRadio = document.getElementById(nextRadioId);
-    if (nextRadio) nextRadio.checked = true;
-    if(!isLast){
-        addNewEmploymentForm();
-    }
-   
-});
+            const unemployedFrom = document.getElementById(`unemployedFrom${"_" + (index + 2)}`);
+
+            unemployedFrom.value = data.unemployedFrom;
+            const unemployedTo = document.getElementById(`unemployedTo${"_" + (index + 2)}`);
+
+            unemployedTo.value = data.unemployedTo;
+            const unemployReason = document.getElementById(`unemploymentReason${"_" + (index + 2)}`);
+            if (unemployReason == null) {
+                console.log("reasonbox is null");
+            } else {
+                console.log(unemployReason);
+            }
+            unemployReason.value = data.unemployedReason;
+
+        } else if (data.unemployment && data.unemployment == "yes") {
+            unemploymentNo.checked = true;
+        }
+        const isLast = index === savedEmploymentData.length - 1;
+        const nextRadioId = isLast ? `additionalNo${"_" + (index + 2)}` : `additionalYes${"_" + (index + 2)}`;
+        const nextRadio = document.getElementById(nextRadioId);
+        if (nextRadio) nextRadio.checked = true;
+        if (!isLast) {
+            addNewEmploymentForm();
+        }
+
+
+
+    });
 };
 
 

@@ -283,7 +283,7 @@
 
                     <div class="col-12 mt-3">
                         <label class="question-label">Current DL Number</label>
-                        <input required type="text" name="current dl Number" autocomplete="off" data-validate="number"
+                        <input required type="text" name="current dl Number" autocomplete="off" data-validate="number" id="currentDlNumber"
                             class="form-control" maxlength="16" onchange="updateProgress2('form2')"
                             placeholder="Enter Number" />
                         <small class="error-message"></small>
@@ -302,7 +302,7 @@
                 <div class="address-container mt-3" id="dl1">
                     <div class="col-12 ">
                         <label class="question-label">Previous DL Issuing State</label>
-                        <select required data-validate="text" name="pre dl state" id="preDlState" class="state-feild">
+                        <select data-validate="text" name="pre dl state" id="preDlState" class="state-feild">
                             <option value="">Select One</option>
                             <option value="Alabama">Alabama</option>
                             <option value="Alaska">Alaska</option>
@@ -359,7 +359,7 @@
 
                     <div class="col-12 mt-3">
                         <label class="question-label">Previous DL Number</label>
-                        <input required type="text" name="pre dl number" autocomplete="off" data-validate="number"
+                        <input type="text" name="pre dl number" id="preDlNumber" autocomplete="off" data-validate="number"
                             class="form-control" maxlength="16" onchange="updateProgress2('form2')"
                             placeholder="Enter Number" />
                         <small class="error-message"></small>
@@ -367,7 +367,7 @@
                     <!-- oninput="validInput(this, /^[0-9]*$/, 'Only numbers are allowed.')" -->
                     <div class="col-12 mt-3 mb-3">
                         <label class="question-label">Previous DL Expiration Date </label>
-                        <input required type="date" class="dab  " name="pre dl Expiry" id="preDlExpiry"
+                        <input type="date" class="dab  " name="pre dl Expiry" id="preDlExpiry"
                             oninput="handleDateChange2(event,true)" onchange="updateProgress2('form2')">
                         <small class="error-message"></small>
                     </div>
@@ -380,8 +380,8 @@
                         <div>
                             <div class=" form-check col-12 mt-2">
                                 <div class="checkbox ">
-                                    <input class="form-check-input box" type="radio" required id="non-commercial"
-                                        name="dlType" value="non-commercial" onchange="updateProgress2('form2')">
+                                    <input class="form-check-input box" type="radio" required id="Non-Commercial"
+                                        name="dlType" value="Non-Commercial" onchange="updateProgress2('form2')">
                                 </div>
                                 <div class="label ms-3">
                                     <label class="form-check-label" for="non-commercial">Non-Commercial</label>
@@ -389,7 +389,7 @@
                             </div>
                             <div class=" form-check col-12 mt-2">
                                 <div class="checkbox">
-                                    <input class="form-check-input box" type="radio" required id="commercial"
+                                    <input class="form-check-input box" type="radio" required id="Commercial: CDL A,B or C"
                                         name="dlType" value="Commercial: CDL A,B or C"
                                         onchange="updateProgress2('form2')">
                                 </div>
@@ -400,26 +400,23 @@
 
                             <div class=" form-check col-12 mt-2">
                                 <div class="checkbox ">
-                                    <input class="form-check-input box" type="radio" required id="commercialLearner"
+                                    <input class="form-check-input box" type="radio" required id="Commercial Lerner's(CLP)"
                                         name="dlType" value="Commercial Lerner's(CLP)"
                                         onchange="updateProgress2('form2')">
                                 </div>
                                 <div class="label ms-3">
-                                    <label class="form-check-label" for="commercialLearner">Commercial
-                                        Lerner's(CLP)</label>
+                                    <label class="form-check-label" for="commercialLearner">Commercial Lerner's(CLP)</label>
                                 </div>
                             </div>
 
                             <div class=" form-check col-12 mt-2">
                                 <div class="checkbox">
-                                    <input class="form-check-input box" type="radio" required id="nonInState"
+                                    <input class="form-check-input box" type="radio" required id="Non-In-state only commercial,limited to 10-26k lbs."
                                         name="dlType" value="Non-In-state only commercial,limited to 10-26k lbs."
                                         onchange="updateProgress2('form2')" />
                                 </div>
                                 <div class="label ms-3">
-                                    <label class="form-check-label" for="nonInState">Non-In-state only
-                                        commercial,limited to
-                                        10-26k lbs.</label>
+                                    <label class="form-check-label" for="nonInState">Non-In-state only commercial,limited to 10-26k lbs.</label>
                                 </div>
                             </div>
                         </div>
@@ -432,8 +429,8 @@
                         <div>
                             <div class=" form-check col-12 mt-2">
                                 <div class="checkbox ">
-                                    <input class="form-check-input box" type="radio" required id="none"
-                                        name="endorsements" value="none" onchange="updateProgress2('form2')">
+                                    <input class="form-check-input box" type="radio" required id="None"
+                                        name="endorsements" value="None" onchange="updateProgress2('form2')">
                                 </div>
                                 <div class="label ms-3">
                                     <label class="form-check-label" for="none">None</label>
@@ -441,8 +438,8 @@
                             </div>
                             <div class=" form-check col-12 mt-2">
                                 <div class="checkbox">
-                                    <input class="form-check-input box" type="radio" required id="tankV"
-                                        name="endorsements" value="tank vechile" onchange="updateProgress2('form2')">
+                                    <input class="form-check-input box" type="radio" required id="Tank Vechile"
+                                        name="endorsements" value="Tank Vechile" onchange="updateProgress2('form2')">
                                 </div>
                                 <div class="label ms-3">
                                     <label class="form-check-label" for="tankV">Tank Vechile</label>
@@ -451,8 +448,8 @@
 
                             <div class=" form-check col-12 mt-2">
                                 <div class="checkbox ">
-                                    <input class="form-check-input box" type="radio" required id="hazardousM"
-                                        name="endorsements" value="hazardous materials"
+                                    <input class="form-check-input box" type="radio" required id="Hazardous Materials"
+                                        name="endorsements" value="Hazardous Materials"
                                         onchange="updateProgress2('form2')">
                                 </div>
                                 <div class="label ms-3">
@@ -462,8 +459,8 @@
 
                             <div class=" form-check col-12 mt-2">
                                 <div class="checkbox">
-                                    <input class="form-check-input box" type="radio" required id="otherE"
-                                        name="endorsements" value="other" onchange="updateProgress2('form2')">
+                                    <input class="form-check-input box" type="radio" required id="Other"
+                                        name="endorsements" value="Other" onchange="updateProgress2('form2')">
                                 </div>
                                 <div class="label ms-3">
                                     <label class="form-check-label" for="otherE">Other</label>
@@ -679,7 +676,7 @@
             </div>
 
             <div id="form2-page7" class="form-page2" style="display: none;">
-                <div id="histroyValidator">
+                <div id="histroyValidator" style="display: block;">
 
                     <p class="mainHeading" style="border-bottom: 2px solid #8bafdf; width: 100%; padding-bottom: 5px;">
                         Employment Verification</p>
@@ -689,11 +686,11 @@
                         employment
                         with reason and dates
                     </p>
-                    <div id="employmentsContainer">
-                        <div id="employmentForm_1">
-                            <div class="address-container">
-                                <div class="row">
-                                    <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
+                    <div id="employmentsContainer" style="display: block;">
+                        <div id="employmentForm_1" style="display: block;">
+                            <div class="address-container" style="display: block;">
+                                <div class="row" style="display: block;">
+                                    <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3" style="display: block;">
                                         <label class="question-label">Current or Last Employer - Name of
                                             Company/School</label>
 
@@ -701,18 +698,18 @@
                                             autocomplete="off" class="form-control" maxlength="50"
                                             placeholder="Enter Text"
                                             oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.',true)"
-                                            onchange="updateProgress2('form2')" />
+                                            onchange="updateProgress2('form2')" style="display: block;"/>
                                         <small class="error-message"></small>
                                     </div>
 
 
-                                    <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
+                                    <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3" style="display: block;">
                                         <label class="question-label">Type of Business/School</label>
 
                                         <input required type="text" placeholder="Enter Text" data-validate="text" id="companyType"
                                             name="companyType" autocomplete="off" class="form-control" maxlength="50"
                                             oninput="validInput(this, /^[a-zA-Z]*$/, 'Only Letters are allowed.',true)"
-                                            onchange="updateProgress2('form2')" />
+                                            onchange="updateProgress2('form2')" style="display: block;" />
                                         <small class="error-message"></small>
                                     </div>
 
@@ -721,7 +718,7 @@
 
                                         <input required type="text" placeholder="Enter Text" data-validate="text" id="companyAddress"
                                             name="companyAddress" autocomplete="off" class="form-control"
-                                            maxlength="250" onchange="updateProgress2('form2')" />
+                                            maxlength="250" onchange="updateProgress2('form2')" style="display: block;" />
                                         <small class="error-message"></small>
                                     </div>
                                 </div>
